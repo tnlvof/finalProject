@@ -1,0 +1,104 @@
+@charset "UTF-8";
+@font-face {
+ font-family: 'NanumBarunGothic';
+ font-style: normal;
+ font-weight: 400;
+ src: url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.eot');
+ src: url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.eot?#iefix') format('embedded-opentype'), url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.woff') format('woff'), url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.ttf') format('truetype');
+}
+
+@font-face {
+ font-family: 'NanumBarunGothic';
+ font-style: normal;
+ font-weight: 700;
+ src: url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWebBold.eot');
+ src: url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWebBold.eot?#iefix') format('embedded-opentype'), url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWebBold.woff') format('woff'), url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWebBold.ttf') format('truetype')
+}
+
+@font-face {
+ font-family: 'NanumBarunGothic';
+ font-style: normal;
+ font-weight: 300;
+ src: url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWebLight.eot');
+ src: url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWebLight.eot?#iefix') format('embedded-opentype'), url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWebLight.woff') format('woff'), url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWebLight.ttf') format('truetype');
+}
+
+.nanumbarungothic *  {
+	font-family: 'NanumBarunGothic', sans-serif;
+}
+
+li span {
+ line-height: 1.8;
+ font-size: 1.3em;
+}
+
+.overflow{ overflow: hidden; }
+.fl{ float: left; }
+.fr{ float: right; }
+
+.wrap{
+	width: 1200px;
+	margin: 0 auto;
+}
+
+button{
+	color: #fff;
+    background: #920021;
+    border: 0;
+    border-radius: 5px;
+    height: 40px;
+    padding: 0 20px;
+    cursor: pointer;
+}
+
+
+/* header */
+.header{
+	width: 100%;
+	background: #ff5a5f;
+}
+.header .wrap{
+	padding: 10px 0;
+	overflow: hidden
+}
+.header form{
+	float: left;
+}
+.logo{
+	width: 100px;
+	height: 28px;
+	background-image: url('../images/common/logo.png');
+	background-size: cover;
+	text-indent: 9999px;
+	float: left;
+	margin: 10px 60px 0 0;
+	cursor: pointer;
+}
+
+.gnb{
+	width: 100%;
+	background: #fff;
+}
+.gnb ul{
+	width: 1200px;
+	margin: 0 auto;
+	padding-left: 300px;
+}
+.gnb li{
+	float: left;
+	margin-right: 40px;
+	padding: 10px 0;
+}
+.gnb li:hover{
+	color: #ff5a5f;
+}
+
+input[type=search]{
+	border: 0;
+	padding: 4px 10px;
+	border-radius: 5px;
+	height: 40px;
+	line-height: 40px;
+	padding: 0 15px;
+	width: 400px;
+}
