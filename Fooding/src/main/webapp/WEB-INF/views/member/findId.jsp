@@ -69,7 +69,7 @@ input {
 			<form novalidate="">
 				<input type="email" id="email" name="email" placeholder="이메일"
 					required="">
-				<p class="notice"></p>
+				<p class="notice">공지사항 넣을거면 넣기</p>
 
 				<button>아이디 찾기</button>
 			</form>

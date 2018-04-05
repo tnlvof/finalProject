@@ -45,7 +45,7 @@ hr {
 }
 
 #loginBtn {
-	background: #ff5a5f;
+	background: #ff5a5f; 
 }
 
 #joinBtn {

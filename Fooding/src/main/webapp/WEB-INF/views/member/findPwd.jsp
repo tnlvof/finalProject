@@ -15,7 +15,7 @@ button {
 	background: #ff5a5f;
 }
 
-#forgot_password {
+#forgot_password { 
 	width: 440px;
 	height: 555px;
 	background-color: white;
@@ -56,15 +56,16 @@ input {
 	font-weight: bold;
 }
 </style>
-</head>
-<body>
+</head> 
+<body> 
 	<div id="forgot_password">
 		<i class="icon popup_close" data-close=""></i>
 		<div class="body custom">
 			<p id="title">비밀번호 재설정</p>
 			<hr>
 			<p class="description">
-				가입하신 계정의 이메일을 입력해주세요.<br>임의로 설정된 새로운 비밀번호가 메일로 전송됩니다.
+				가입하신 계정의 이메일을 입력해주세요.<br>
+				임의로 설정된 새로운 비밀번호가 메일로 전송 됩니다.
 			</p>
 
 			<form novalidate="">

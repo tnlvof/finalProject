@@ -115,7 +115,7 @@ input{
                <th>메뉴</th>
                <td><textarea id="menutextarea" cols="100" rows="15" style="resize:none;"></textarea></td>
             </tr>
-            
+              
                
          </tbody>
       </table>
