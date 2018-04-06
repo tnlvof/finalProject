@@ -1,0 +1,303 @@
+@charset "UTF-8";
+
+body {
+	line-height: 1;
+	background-color: #f3f3f3;
+}
+
+a {
+	text-decoration: none;
+}
+
+/* 마이페이지 배너(프로필 사진, 이름, 소개 등) */
+#banner_wrap {
+	width: 100%;
+}
+
+#banner {
+	position: relative;
+	overflow: hidden;
+	width: 100%;
+	height: 420px;
+	background-size: cover;
+	background-position: center center;
+	background: #615955;
+}
+
+#banner.user {
+	height: 330px;
+}
+
+#banner.user>.inner_wrap {
+	display: block;
+	width: 970px;
+	height: 100%;
+	margin: 0 auto;
+	font-weight: 300;
+}
+
+#banner.user>.inner_wrap>.inner {
+	position: relative;
+}
+
+/* 프로필 사진 영역 */
+#banner.user>.inner_wrap>.inner>.user_image {
+	cursor: pointer;
+	position: absolute;
+	top: 85px;
+	left: 10px;
+	width: 162px;
+	height: 162px;
+}
+
+.i_wrap {
+	display: inline-block;
+}
+
+.border_radius.circle {
+	border-radius: 50%;
+}
+
+div.image, div.profile_image {
+	background-size: cover;
+	background-position: center center;
+}
+
+div .profile_image {
+	width: 100%;
+	height: 100%;
+	background-image: url('../images/myPage/default_image.png');
+}
+
+/* 프로필 이름, 소개, 예약&리뷰 카운트 */
+#banner.user>.inner_wrap>.inner>.name {
+	position: absolute;
+	top: 115px;
+	left: 196px;
+	font-size: 24px;
+	color: #fff;
+}
+
+#banner.user>.inner_wrap>.inner>.name>span {
+	vertical-align: bottom;
+	color: inherit;
+}
+
+#banner.user>.inner_wrap>.inner>.intro {
+	position: absolute;
+	top: 150px;
+	left: 196px;
+	font-size: 16px;
+	color: #fff;
+}
+
+#banner.user>.inner_wrap>.inner>.info {
+	position: absolute;
+	top: 200px;
+	left: 198px;
+	font-size: 14px;
+	color: #fff;
+}
+
+#banner.user>.inner_wrap>.inner>.info>.item {
+	display: inline-block;
+	margin-right: 7px;
+	color: #fff;
+	font-size: 14px;
+}
+
+/* 마이페이지 탭 & 내용 */
+#content_wrap {
+	position: relative;
+	width: 970px;
+	margin: 20px auto 150px;
+}
+
+#content {
+	float: left;
+	position: relative;
+	width: 730px;
+}
+
+#content>.tab {
+	width: 716px;
+	padding: 0 6px;
+	border: 1px solid #e3e3e3;
+	border-top: 2px solid #ff5a5f;
+	background: #fff;
+}
+
+ol, ul {
+	list-style: none;
+}
+
+#content>.tab>.item {
+	float: left;
+	width: 80px;
+	height: 37px;
+	color: #444;
+	font-size: 17px;
+	font-weight: 600;
+	text-align: center;
+	line-height: 34px;
+}
+
+/* 탭 내용 */
+#content.mypage>.body.empty {
+	margin-bottom: 0;
+}
+
+#content>.body.empty {
+	width: 729px;
+	padding: 0;
+	border: none;
+	background: 0 0;
+}
+
+#content>.body {
+	position: relative;
+	width: 668px;
+	padding: 30px;
+	margin-bottom: 30px;
+	border: 1px solid #e3e3e3;
+	background: #fff;
+}
+
+/* 방문 예정 예약 | 지난 예약 */
+#content.mypage>.body>.filter {
+	margin: 10px 0;
+	text-align: right;
+	font-size: 10pt;
+}
+
+#content.mypage>.body>.filter>a {
+	position: relative;
+}
+
+#content.mypage>.body>.filter>a:not (:first-child ) {
+	margin-left: 16px;
+}
+
+#content.mypage>.body>.filter>a:not(:first-child):before {
+    content: " | ";
+}
+
+/* 탭 내용 */
+#content>.body.coupon>table>tbody>tr>td.status, #content>.body.payment>.blank,
+	#content>.body.payment>table>tbody>tr>td.order, #content>.body.payment>table>tbody>tr>td.status,
+	#content>.body>.blank {
+	text-align: center;
+}
+
+#content>.body>.blank {
+	background: #fff;
+	padding: 150px;
+	color: #969696;
+	font-size: 17px;
+	border: 1px solid #e3e3e3;
+}
+
+#content, #content>.body:after, #content>.tab:after, #content_wrap:after
+	{
+	content: "";
+	display: block;
+	clear: both;
+}
+
+#content>.body>.blank>.message {
+	margin-bottom: 30px;
+	color: #969696;
+	font-size: 12pt;
+	line-height: 25px;
+}
+
+#content>.body>.blank>button {
+	width: 180px;
+	height: 36px;
+	font-size: 11pt;
+}
+
+#nav_city>ul, .card-area.disable, button.disable {
+	display: none;
+}
+
+button {
+	cursor: pointer;
+}
+
+/* 사이드바(캘린더) */
+#sidebar_wrap {
+	float: right;
+	position: relative;
+	width: 220px;
+}
+
+#sidebar_wrap>.sidebar:first-child {
+	margin-top: 0;
+}
+
+#sidebar_wrap>.sidebar {
+	margin-top: 20px;
+	padding: 10px;
+	border: 1px solid #e3e3e3;
+	border-top: 2px solid #ff5a5f;
+	background: #fff;
+	border-bottom-left-radius: 7px;
+	border-bottom-right-radius: 7px;
+}
+
+#sidebar_wrap>.sidebar>.title {
+	padding-bottom: 10px;
+	border-bottom: 1px solid #dfdfdf;
+	/* color: #c91b3c; */
+	font-size: 12pt;
+	font-weight: 600;
+	text-align: center;
+}
+
+#reservation_calendar {
+	padding: 10px 0 !important;
+}
+
+#reservation_calendar>.calendar {
+	padding-bottom: 10px;
+	border-bottom: 1px solid #e3e3e3;
+}
+
+/* 캘린더 마커 */
+#reservation_calendar>.desc {
+	padding: 10px 10px 0;
+	font-size: 10pt;
+}
+
+#reservation_calendar>.desc>.recent {
+	margin-right: 2px;
+	background: #4f9ed9;
+}
+
+#reservation_calendar>.desc>.past {
+	margin-right: 2px;
+	background: #969696;
+}
+
+#reservation_calendar>.desc>.coupon {
+	background: url(http://c1.poing.co.kr/original/images/recent_sheet.png)
+		-186px -125px;
+	margin: 5px 2px 0 0;
+}
+
+#reservation_calendar>.desc>.coupon, #reservation_calendar>.desc>.past,
+	#reservation_calendar>.desc>.recent {
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	vertical-align: bottom;
+}
+
+#reservation_calendar>.desc>.text.margin {
+	margin-right: 17px;
+}
+
+#reservation_calendar>.desc>.text {
+	line-height: 20px;
+}

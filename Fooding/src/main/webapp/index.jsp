@@ -145,4 +145,4 @@
 
 
 <!-- footer -->
-<jsp:include page="/views/common/footer.jsp"/>
+<jsp:include page="/views/common/fooer.jsp"/>
