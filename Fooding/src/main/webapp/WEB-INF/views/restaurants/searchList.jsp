@@ -119,9 +119,13 @@ margin-left:10px;
 </style>
 </head>
 <body>
-<jsp:include page="/WEB-INF/views/common/menubar.jsp"></jsp:include>
+<!-- header -->
+<jsp:include page="/views/common/header.jsp"/>
 
-<div id="container">
+
+<!-- css or js파일 연결 시키는 곳 -->
+
+<div class="container" >
 
 <div id="map" style="width:100%;height:350px;"></div>
 
@@ -347,7 +351,30 @@ function placesSearchCB (data, status, pagination) {
        //  displayMarker(data[0]);    
          bounds.extend(new daum.maps.LatLng(data[0].y, data[0].x));
         
+       
+         // 식당 좌표 표시
+         var places = new daum.maps.services.Places();
 
+         var callback = function(result, status) {
+             if (status === daum.maps.services.Status.OK) {
+                 
+                 displayMarker(result[0]);    
+             }
+         };
+			
+         
+         var array = ['마이 타이', '젤렌', '타르틴'];
+         
+         for(var i =0; i<array.length;i++){
+        	 places.keywordSearch(array[i], callback);	 
+         }
+         
+         
+         
+         
+         
+         
+         
         // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
         map.setBounds(bounds);
         
@@ -358,7 +385,7 @@ function placesSearchCB (data, status, pagination) {
 
 
 // 지도에 마커를 표시하는 함수입니다
-/* function displayMarker(place) {
+ function displayMarker(place) {
     
     // 마커를 생성하고 지도에 표시합니다
     var marker = new daum.maps.Marker({
@@ -372,7 +399,11 @@ function placesSearchCB (data, status, pagination) {
         infowindow.setContent('<div style="padding:5px;font-size:12px;">' + place.place_name + '</div>');
         infowindow.open(map, marker);
     });
-} */
+} 
 </script>
+
+<!-- footer -->
+<jsp:include page="/views/common/footer.jsp"/>
+
 </body>
 </html>
