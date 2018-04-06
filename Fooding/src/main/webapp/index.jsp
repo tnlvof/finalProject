@@ -4,7 +4,7 @@
 
 
 <!-- header -->
-<jsp:include page="/views/common/header.jsp"/>
+<jsp:include page="WEB-INF/views/common/header.jsp"/>
 
 
 <!-- main css -->
@@ -145,4 +145,4 @@
 
 
 <!-- footer -->
-<jsp:include page="/views/common/footer.jsp"/>
+<jsp:include page="WEB-INF/views/common/footer.jsp"/>

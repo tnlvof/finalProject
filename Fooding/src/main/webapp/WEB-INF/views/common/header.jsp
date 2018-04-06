@@ -6,13 +6,12 @@
 <head>
 <meta charset="UTF-8">
 <title>맛있는 발견의 즐거움 - Fooding</title>
-<link rel="stylesheet" href="resources/css/reset.css">
-<link rel="stylesheet" href="resources/css/common.css">
+<link rel="stylesheet" href="/fooding/resources/css/reset.css">
+<link rel="stylesheet" href="/fooding/resources/css/common.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 </head>
 <body>
 	<c:set var="contextPath" value="${ pageContext.servletContext.contextPath }" scope="application"/>
-	
 	<div id="header" class="header">
 		<div class="wrap">
 			<h1 class="logo"><a href="#">Fooding</a></h1>

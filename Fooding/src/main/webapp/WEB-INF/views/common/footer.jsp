@@ -5,7 +5,7 @@
 	
 	<div id="footer" class="footer">
 		<div class="wrap">
-			<img src="resources/images/common/logo.png">
+			<img src="/fooding/resources/images/common/logo.png">
 			<p>
 				최고의 레스토랑을 즐기는 특별한 방법<br>
 				검색부터 예약까지 한번에, Fooding
