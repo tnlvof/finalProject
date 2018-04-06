@@ -20,7 +20,7 @@ time, mark, audio, video, input {
 	margin: 0;
 	padding: 0;
 	border: 0;
-	font-size: 14px;
+	font-size: 13px;
 	font: inherit;
 	vertical-align: baseline;
 	font-family: 'NanumBarunGothic', sans-serif;
@@ -33,6 +33,7 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
 	line-height: 1;
+	background: #f9f9f9;
 }
 ol, ul {
 	list-style: none;

@@ -37,14 +37,17 @@ li span {
 .fr{ float: right; }
 
 .wrap{
-	width: 1200px;
+	width: 1000px;
 	margin: 0 auto;
+	padding: 10px 0;
 }
 
 button{
 	color: #fff;
-    background: #920021;
+    background: #ec3e43;
     border: 0;
+    border-right: 2px solid #cc272b;
+    border-bottom: 2px solid #cc272b;
     border-radius: 5px;
     height: 40px;
     padding: 0 20px;
@@ -55,15 +58,20 @@ button{
 /* header */
 .header{
 	width: 100%;
-	background: #ff5a5f;
+	background: #FF5A5F;
+	position: fixed;
+	overflow: hidden;
+	z-index: 1;
 }
 .header .wrap{
-	padding: 10px 0;
 	overflow: hidden
 }
 .header form{
 	float: left;
+	width: 500px;
+	position: relative;
 }
+
 .logo{
 	width: 100px;
 	height: 28px;
@@ -71,23 +79,27 @@ button{
 	background-size: cover;
 	text-indent: 9999px;
 	float: left;
-	margin: 10px 60px 0 0;
+	margin: 8px 60px 0 0;
 	cursor: pointer;
 }
 
 .gnb{
 	width: 100%;
+	overflow: hidden;
 	background: #fff;
+	border-bottom: 1px solid #ddd;
 }
 .gnb ul{
 	width: 1200px;
 	margin: 0 auto;
-	padding-left: 300px;
+	padding-left: 170px;
+    box-sizing: border-box;
 }
 .gnb li{
 	float: left;
 	margin-right: 40px;
 	padding: 10px 0;
+	cursor: pointer;
 }
 .gnb li:hover{
 	color: #ff5a5f;
@@ -101,4 +113,91 @@ input[type=search]{
 	line-height: 40px;
 	padding: 0 15px;
 	width: 400px;
+}
+
+.srch-btn {
+	position: absolute;
+	top:0;
+	left: 410px;
+}
+
+.loginArea{
+	float: right;
+	margin-top: 13px;
+}
+.loginArea ul{
+	overflow: hidden;
+}
+.loginArea li{
+	float: left;
+	font-size: 13px;
+	color: #fff;
+	margin-left: 10px;
+	cursor: pointer;
+}
+.loginArea li:nth-child(2){
+	cursor: default;
+}
+
+/* footer */
+.footer{
+	background: #474747;
+	clear:both;
+	padding: 20px 0;
+}
+.footer .wrap{
+	position: relative;
+}
+.footer *{
+	color: #fff;
+	font-size: 13px;
+	line-height: 1.8em;
+}
+.footer img{
+	width: 90px;
+}
+.footer p{
+	margin: 10px 0;
+}
+.foot_menu{
+	overflow: hidden;
+	position: absolute;
+	top: 20px;
+	right: 0;
+}
+.foot_menu li{
+	float: left;
+	margin-left: 20px;
+}
+.foot_menu li:nth-child(even){
+	cursor: default;
+}
+.foot_menu li:hover{
+	color: #ddd;
+}
+.copyright li{
+	font-size: 12px;
+	cursor: default;
+}
+
+
+/* common */
+.container{
+	padding: 97px 0 140px 0;
+}
+h3{
+	font-size: 20px;
+	margin: 80px 0 50px 0;
+	text-align: center;
+	color: #444;
+}
+.content > div {
+	position: relative;
+}
+.more{
+	position: absolute;
+	top: 30px;
+	right: 0;
+	font-size: 14px;
+	cursor: pointer;
 }
