@@ -6,6 +6,7 @@
 <link rel="stylesheet" type="text/css" href="resources/css/common.css">
 <link rel="stylesheet" type="text/css" href="resources/css/reset.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <meta charset="utf-8">
     <title>Fooding - 검색 결과</title>
     <style>
@@ -127,22 +128,189 @@ font-weight:bold;
 	color:#920021;
 }
 
+#searchBar {
+	width:500px;
+	height:46px;
+	border-radius:3px;
+	border:2px solid gray;
+	align:center;    
+    display:inline-block;
+}
+
+.selectTag{
+	height:50px;
+	border-radius:3px;
+	border:2px solid gray;
+	font-size:15px;
+	display:inline-block;
+}
+
+#resMenu{
+	width:500px;
+}
+
+.searchArea{
+	margin-left:420px;	
+}
+
+#btn{
+height:50px;
+width:80px;
+font-size:15px;
+}
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+/* The Close Button */
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
 </style>
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/common/menubar.jsp"></jsp:include>
 <img alt="" src="resources/images/main/dining.png" class="headerPic">
- <div class="centered" >푸딩이 선정한 맛집 리스트를 합리적인 가격에 누려보세요.  </div>
+ <div class="centered">푸딩이 선정한 맛집 리스트를 합리적인 가격에 누려보세요.  </div>
 
 
 <div id="container">
 
 <hr>
-
 <br><br>
+<div class="searchArea">
+<select id="category" name="category" class="selectTag" onchange="getCue()">
+<option name="all">전체</option>
+<option name="resName">식당명</option>
+<option name="resCategory">식당 카테고리</option>
+</select>
 
+<script type="text/javascript">
+	$(function(){
+		$("#resMenu").hide();
+	});
+
+	function getCue(){
+		var category = document.getElementById("category");
+		var str = category.options[category.selectedIndex].value;
+		
+		console.log(str);
+		
+		if(str=="식당 카테고리"){
+			$("#searchBar").toggle();
+			$("#resMenu").toggle();			
+		} else {			
+			$("#searchBar").show();
+			$("#resMenu").hide();		
+		}
+	}
+</script>
+
+<input type="text"  id="searchBar" name="searchBar" placeholder="&nbsp;검색어를 입력하세요.">
+<select id="resMenu" class="selectTag">
+	<option>한식</option>
+	<option>중식</option>
+	<option>일식</option>
+	<option>양식</option>
+	<option>동남아</option>
+	<option>디저트/카페</option>	
+</select>
+<button id="btn" type="submit">검색</button>
+<br>
+</div>
 
 <div id="resultArea">
+	<div class="result">
+		<img alt="" src="resources/images/restaurants/vatos.jpg" class="profilePic" id="profilePic">
+		 <div class="nameAndPricesArea">
+		
+		 <h1 class="resName">바토스 Vatos</h1>
+					
+		<span class="fa fa-star checked"></span>
+		<span class="fa fa-star checked"></span>
+		<span class="fa fa-star checked"></span>
+		<span class="fa fa-star"></span>
+		<span class="fa fa-star"></span>
+		<br><br>
+		 <h5 class="menu">Fat Bastard 부리토볼</h5><br><h3 class="dc">20% OFF</h3><br>
+		 <p>#멕시칸 #이태원 #퓨전 </p>
+		 </div>
+		 
+			 <!-- The Modal -->
+			<div id="myModal" class="modal">
+			
+			  <!-- Modal content -->
+			  <div class="modal-content">
+			    <span class="close">&times;</span>
+			    <p align="center">Fooding 쿠폰은 캡쳐하셔서 식당에서 결제할 때 보여주시면 됩니다.</p>
+			    <!-- 쿠폰 소스 붙여넣기  -->
+			  </div>
+			
+			</div>
+			
+			<script>
+			// Get the modal
+			var modal = document.getElementById('myModal');
+			
+			// Get the button that opens the modal
+			var btn = document.getElementById("profilePic");
+			
+			// Get the <span> element that closes the modal
+			var span = document.getElementsByClassName("close")[0];
+			
+			// When the user clicks the button, open the modal 
+			btn.onclick = function() {
+			    modal.style.display = "block";
+			}
+			
+			// When the user clicks on <span> (x), close the modal
+			span.onclick = function() {
+			    modal.style.display = "none";
+			}
+			
+			// When the user clicks anywhere outside of the modal, close it
+			window.onclick = function(event) {
+			    if (event.target == modal) {
+			        modal.style.display = "none";
+			    }
+			}
+			</script>
+		 
+	</div>	
+
 	<div class="result">
 		<img alt="" src="resources/images/restaurants/vatos.jpg" class="profilePic">
 		 <div class="nameAndPricesArea">
@@ -159,7 +327,43 @@ font-weight:bold;
 		 <p>#멕시칸 #이태원 #퓨전 </p>
 		 </div>
 	</div>	
-
+	
+	<div class="result">
+		<img alt="" src="resources/images/restaurants/vatos.jpg" class="profilePic">
+		 <div class="nameAndPricesArea">
+		
+		 <h1 class="resName">바토스 Vatos</h1>
+					
+		<span class="fa fa-star checked"></span>
+		<span class="fa fa-star checked"></span>
+		<span class="fa fa-star checked"></span>
+		<span class="fa fa-star"></span>
+		<span class="fa fa-star"></span>
+		<br><br>
+		 <h5 class="menu">Fat Bastard 부리토볼</h5>
+		 <br>
+		 <h3 class="dc">20% OFF</h3><br>
+		 <p>#멕시칸 #이태원 #퓨전 </p>
+		 </div>
+	</div>	
+	
+	
+	<div class="result">
+		<img alt="" src="resources/images/restaurants/vatos.jpg" class="profilePic">
+		 <div class="nameAndPricesArea">
+		
+		 <h1 class="resName">바토스 Vatos</h1>
+					
+		<span class="fa fa-star checked"></span>
+		<span class="fa fa-star checked"></span>
+		<span class="fa fa-star checked"></span>
+		<span class="fa fa-star"></span>
+		<span class="fa fa-star"></span>
+		<br><br>
+		 <h5 class="menu">Fat Bastard 부리토볼</h5><br><h3 class="dc">20% OFF</h3><br>
+		 <p>#멕시칸 #이태원 #퓨전 </p>
+		 </div>
+	</div>	
 	
 
 
