@@ -37,20 +37,41 @@
 					<li class="item "><a href="#">리뷰</a></li>
 					<li class="item "><a href="#">1:1 문의</a></li>
 				</ul>
-				<div id="reservation" class="body empty">
-					<div class="filter">
-						<a href="?reservation&amp;type=recent" class="">방문 예정 예약</a>
-						<a href="?reservation&amp;type=past" class="">지나간 예약</a>
+			<div id="reservation" class="body empty">
+				<div class="filter">
+					<a href="?reservation&amp;type=recent" class="">방문 예정 예약</a> <a
+						href="?reservation&amp;type=past" class="">지나간 예약</a>
+				</div>
+				<!-- 예약이 없을 때 화면 -->
+				<div class="blank">
+					<div class="message">
+						예약이 없습니다.<br>지금 레스토랑에 예약해보시겠어요?
 					</div>
-					<!-- 예약이 없을 때 화면 -->
-					<div class="blank">
-						<div class="message">
-							예약이 없습니다.<br>지금 레스토랑에 예약해보시겠어요?
+					<button class="disable" onclick="" tabindex="-1"></button>
+				</div>
+				
+				<!-- 예약화면 -->
+				<div class="list">
+					<div class="reservation">
+						<div class="i_wrap image">
+						<div class="image border_radius hard" style="background-image: url(resources/images/myPage/brickoven.jpeg);"></div>
 						</div>
-						<button class="disable" onclick="" tabindex="-1"></button>
+						<div class="info">
+							<div class="name">
+								<a href="/restaurant/detail/26150">브릭오븐</a> <span
+									class="label blue border_radius soft">예약 대기</span>
+							</div>
+							<div class="date">예약정보: 2018.5.2 (수) 오후 12:00</div>
+							<div class="party_size">인원: 6명</div>
+						</div>
+
+						<button class="red border_radius soft"
+							data-type="poing.reservation.edit" data-id="869500" tabindex="-1">변경
+							/ 취소</button>
 					</div>
 				</div>
 			</div>
+		</div>
 			<div id="sidebar_wrap" class="mypage">
 				<div id="reservation_calendar" class="sidebar">
 					<div class="title">예약 캘린더</div>

@@ -225,6 +225,100 @@ button {
 	cursor: pointer;
 }
 
+/* 예약 내용 */
+#content.mypage>.body#reservation>.list {
+    position: relative;
+    width: 668px;
+    padding: 10px 30px;
+    margin-bottom: 30px;
+    border: 1px solid #e3e3e3;
+    background: #fff;
+}
+
+#content.mypage>.body>.list>.reservation:last-child {
+    border: none;
+}
+#content.mypage>.body>.list>.reservation {
+    position: relative;
+    padding: 20px 0;
+    border-bottom: 1px solid #e3e3e3;
+}
+
+#content.mypage>.body>.list>.reservation>.image {
+    float: left;
+    width: 84px;
+    height: 84px;
+}
+
+#content.mypage>.body>.list>.reservation>.info {
+    padding-left: 98px;
+    padding-top: 3px;
+    color: #444;
+}
+
+#content.mypage>.body>.list>.reservation>.info>.name {
+    margin-bottom: 10px;
+    font-size: 0;
+    font-weight: 600;
+}
+
+#content.mypage>.body>.list>.reservation>.info>.name>a {
+    color: #444;
+    font-size: 12pt;
+}
+
+#content.mypage>.body>.list>.reservation>.info>.name>.label.blue {
+    background: #4f9ed9;
+}
+#content.mypage>.body>.list>.reservation>.info>.name>.label {
+    padding: 2px 5px;
+    margin-left: 4px;
+    color: #fff;
+    font-size: 9pt;
+    letter-spacing: -1px;
+    font-weight: 400;
+}
+.border_radius.soft {
+    border-radius: 3px;
+}
+
+#content.mypage>.body>.list>.reservation>.info>.coupon, #content.mypage>.body>.list>.reservation>.info>.date, #content.mypage>.body>.list>.reservation>.info>.party_size, #content.mypage>.body>.list>.reservation>.info>.request {
+    margin-bottom: 2px;
+    line-height: 14px;
+    font-size: 10pt;
+}
+
+#content.mypage>.body>.list>.reservation>button {
+    position: absolute;
+    width: 107px;
+    line-height: 27px;
+    top: 45px;
+    right: 0;
+    text-align: center;
+    padding: 0;
+    font-size: 13px;
+}
+.border_radius.soft {
+    border-radius: 3px;
+}
+button.red {
+    color: #ff5a5f;
+    background: #fff;
+}
+button.red, button.red_fill {
+    border: 1px solid #ff5a5f;
+}
+#content.mypage>.body>.list>.reservation:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+#content, #content>.body:after, #content>.tab:after, #content_wrap:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
 /* 사이드바(캘린더) */
 #sidebar_wrap {
 	float: right;
