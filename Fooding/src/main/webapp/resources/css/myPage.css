@@ -270,6 +270,11 @@ button {
 #content.mypage>.body>.list>.reservation>.info>.name>.label.blue {
     background: #4f9ed9;
 }
+
+#content.mypage>.body>.list>.reservation>.info>.name>.label.green {
+    background: #2f7d09;
+}
+
 #content.mypage>.body>.list>.reservation>.info>.name>.label {
     padding: 2px 5px;
     margin-left: 4px;
@@ -305,6 +310,12 @@ button.red {
     color: #ff5a5f;
     background: #fff;
 }
+
+button.red.on, button.red:hover, button.red_fill {
+    color: #fff;
+    background: #ff5a5f;
+}
+
 button.red, button.red_fill {
     border: 1px solid #ff5a5f;
 }
