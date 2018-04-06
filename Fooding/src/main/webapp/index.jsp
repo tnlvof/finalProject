@@ -4,11 +4,11 @@
 
 
 <!-- header -->
-<jsp:include page="/views/common/header.jsp"/>
+<jsp:include page="WEB-INF/views/common/header.jsp"/>
 
 
 <!-- main css -->
-<link rel="stylesheet" href="resources/css/main.css">
+<link rel="stylesheet" href="/fooding/resources/css/main.css">
 
 	<div class="container">
 		<div class="caroursel">
@@ -145,4 +145,4 @@
 
 
 <!-- footer -->
-<jsp:include page="/views/common/fooer.jsp"/>
+<jsp:include page="WEB-INF/views/common/footer.jsp"/>
