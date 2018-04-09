@@ -45,7 +45,7 @@
 				<!-- 리뷰가 없을 때 화면 -->
 				<div class="blank">
 					<div class="message">
-						내 리뷰가 없습니다.<br>첫 리뷰를 작성해보세요!
+						내 리뷰가 없습니다.<br>첫 리뷰를 작성해보세요!  
 					</div>
 					<button class="disable" onclick="" tabindex="-1"></button>
 				</div>
