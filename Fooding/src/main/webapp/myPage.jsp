@@ -6,7 +6,7 @@
 <jsp:include page="WEB-INF/views/common/header.jsp"/>
 
 <!-- css or js파일 연결 시키는 곳 -->
-<link rel="stylesheet" href="resources/css/myPage.css">
+<link rel="stylesheet" href="/fooding/resources/css/myPage.css">
 
 <div class="container" id="container">
 		<div id="banner_wrap">
@@ -14,7 +14,8 @@
 				<div class="inner_wrap">
 					<div class="inner">
 						<div id="change_user_image" class="user_image i_wrap">
-							<div class="image border_radius circle profile_image"></div>
+							<div class="image border_radius circle profile_image">
+							</div>
 							<div class="border_radius circle"></div>
 						</div>
 						<div class="name">
@@ -29,14 +30,14 @@
 				</div>
 			</div>
 		</div>
-		<div id="content_wrap">
-			<div id="content" class="mypage">
-				<ul class="tab">
-					<li class="item selected"><a href="#">예약</a></li>
-					<!-- <li class="item "><a href="#">티켓</a></li> -->
-					<li class="item "><a href="#">리뷰</a></li>
-					<li class="item "><a href="#">1:1 문의</a></li>
-				</ul>
+	<div id="content_wrap">
+		<div id="content" class="mypage">
+			<ul class="tab">
+				<li class="item selected"><a href="#">예약</a></li>
+				<!-- <li class="item "><a href="#">티켓</a></li> -->
+				<li class="item "><a href="#">리뷰</a></li>
+				<li class="item "><a href="#">1:1 문의</a></li>
+			</ul>
 			<div id="reservation" class="body empty">
 				<div class="filter">
 					<a href="?reservation&amp;type=recent" class="">방문 예정 예약</a> <a
@@ -49,18 +50,20 @@
 					</div>
 					<button class="disable" onclick="" tabindex="-1"></button>
 				</div>
-				
+
 				<!-- 예약화면 -->
 				<div class="list">
 					<div class="reservation">
 						<div class="i_wrap image">
-						<div class="image border_radius hard" style="background-image: url(resources/images/myPage/brickoven.jpeg);"></div>
+							<div class="image border_radius hard"
+								style="background-image: url(resources/images/myPage/brickoven.jpeg);"></div>
 						</div>
 						<div class="info">
 							<div class="name">
-								<a href="/restaurant/detail/26150">브릭오븐</a>
-								<span class="label blue border_radius soft">예약 대기</span>
-								<span class="label green border_radius soft">예약 확정</span>
+								<a href="/restaurant/detail/26150">브릭오븐</a> <span
+									class="label blue border_radius soft">예약 대기</span> <span
+									class="label green border_radius soft">예약 확정</span> <span
+									class="label blue border_radius soft">변경 대기</span>
 							</div>
 							<div class="date">예약정보: 2018.5.2 (수) 오후 12:00</div>
 							<div class="party_size">인원: 6명</div>
@@ -73,22 +76,8 @@
 				</div>
 			</div>
 		</div>
-			<div id="sidebar_wrap" class="mypage">
-				<div id="reservation_calendar" class="sidebar">
-					<div class="title">예약 캘린더</div>
-					<div class="calendar hasDatepicker" id="dp1523004537154">
-					</div>
-					<div class="desc">
-						<span class="recent"></span>
-						<span class="text margin">방문 예정</span>
-						<span class="past"></span>
-						<span class="text">지나간 예약</span>
-						<span class="coupon"></span>
-						<span class="text">티켓 사용</span>
-					</div>
-				</div>
-			</div>
-		</div>
+		<jsp:include page="WEB-INF/views/myPage/myPageSidebar.jsp" />
+	</div>
 </div>
 <!-- container -->
 

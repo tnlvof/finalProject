@@ -29,14 +29,14 @@
 				</div>
 			</div>
 		</div>
-		<div id="content_wrap">
-			<div id="content" class="mypage">
-				<ul class="tab">
-					<li class="item selected"><a href="#">예약</a></li>
-					<!-- <li class="item "><a href="#">티켓</a></li> -->
-					<li class="item "><a href="#">리뷰</a></li>
-					<li class="item "><a href="#">1:1 문의</a></li>
-				</ul>
+	<div id="content_wrap">
+		<div id="content" class="mypage">
+			<ul class="tab">
+				<li class="item selected"><a href="#">예약</a></li>
+				<!-- <li class="item "><a href="#">티켓</a></li> -->
+				<li class="item "><a href="#">리뷰</a></li>
+				<li class="item "><a href="#">1:1 문의</a></li>
+			</ul>
 			<div id="reservation" class="body empty">
 				<div class="filter">
 					<a href="?reservation&amp;type=recent" class=""></a> <a
@@ -51,22 +51,8 @@
 				</div>
 			</div>
 		</div>
-			<div id="sidebar_wrap" class="mypage">
-				<div id="reservation_calendar" class="sidebar">
-					<div class="title">예약 캘린더</div>
-					<div class="calendar hasDatepicker" id="dp1523004537154">
-					</div>
-					<div class="desc">
-						<span class="recent"></span>
-						<span class="text margin">방문 예정</span>
-						<span class="past"></span>
-						<span class="text">지나간 예약</span>
-						<span class="coupon"></span>
-						<span class="text">티켓 사용</span>
-					</div>
-				</div>
-			</div>
-		</div>
+		<jsp:include page="WEB-INF/views/myPage/myPageSidebar.jsp" />
+	</div>
 </div>
 <!-- container -->
 

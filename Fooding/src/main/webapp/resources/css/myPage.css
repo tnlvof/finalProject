@@ -120,7 +120,7 @@ div .profile_image {
 }
 
 #content>.tab {
-	width: 716px;
+	width: 729px;
 	padding: 0 6px;
 	border: 1px solid #e3e3e3;
 	border-top: 2px solid #ff5a5f;
@@ -228,7 +228,7 @@ button {
 /* 예약 내용 */
 #content.mypage>.body#reservation>.list {
     position: relative;
-    width: 668px;
+    width: 729;
     padding: 10px 30px;
     margin-bottom: 30px;
     border: 1px solid #e3e3e3;
@@ -405,4 +405,135 @@ button.red, button.red_fill {
 
 #reservation_calendar>.desc>.text {
 	line-height: 20px;
+}
+
+
+/* 캘린더 */
+@main-bg:rgb(40,40,59);
+@calendar-border:rgb(220,220,255);
+@calendar-bg:#fff;
+@calendar-standout:rgb(40,40,59);
+@calendar-color:#444;
+@calendar-fade-color:#c0c0c0;
+@body-color:#444;
+
+*, *:before, *:after {
+  box-sizing:border-box;
+}
+
+.group {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+img {
+  max-width:100%;
+  height:auto;
+  vertical-align:baseline;
+}
+
+a {
+  text-decoration:none;
+}
+
+.max(@maxWidth;
+  @rules) {
+    @media only screen and (max-width: @maxWidth) {
+      @rules();
+    }
+  }
+
+.min(@minWidth;
+  @rules) {
+    @media only screen and (min-width: @minWidth) {
+      @rules();
+    }
+  }
+
+
+.calendar-wrapper {
+  width:220px;
+  margin:0 auto;
+  padding:10px;
+  border:1px solid @calendar-border;
+  border-radius:5px;
+  background:@calendar-bg;
+  
+}
+table {
+  clear:both;
+  width:100%;
+  border:1px solid @calendar-border;
+  border-radius:3px;
+  border-collapse:collapse;
+  color:@calendar-color;
+  font-size: 13px;
+}
+td {
+  height:30px;
+  text-align:center;
+  vertical-align:middle;
+  border-right:1px solid @calendar-border;
+  border-top:1px solid @calendar-border;
+  width:100% / 7;
+}
+
+td:first-child{
+	color:#ff5a5f;
+}
+
+td:last-child{
+	color:#4f9ed9;
+}
+
+td.not-current {
+  color:@calendar-fade-color;;
+}
+
+td.today {
+  font-weight:bold;
+  color:#222;
+}
+thead th {
+  border:none;
+  color:@calendar-standout;
+  text-transform:uppercase;
+  font-size:16px;
+  height: 25px;
+}
+#btnPrev {
+  float:left;
+  margin-bottom:10px;
+  &:before {
+    content:'\f104';
+    font-family:FontAwesome;
+    padding-right:4px;
+  }
+}
+#btnNext {
+  float:right;
+  margin-bottom:10px;
+  &:after {
+    content:'\f105';
+    font-family:FontAwesome;
+    padding-left:4px;
+  }
+}
+#btnPrev, #btnNext {
+  background:transparent;
+  border:none;
+  outline:none;
+  font-size:12px;
+  color:#666;
+  cursor:pointer;
+  font-family:"Roboto Condensed", sans-serif;
+  text-transform:uppercase;
+  transition:all 0.3s ease;
+  &:hover {
+    color:@calendar-standout;
+    font-weight:bold;
+  }
 }
