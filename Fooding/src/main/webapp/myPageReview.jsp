@@ -75,13 +75,18 @@
 								class="icon star medium odd active" data-id="123652"
 								data-index="6" style=""></i><i
 								class="icon star medium even active" data-id="123652"
-								data-index="7" style=""></i><i class="icon star medium odd "
-								data-id="123652" data-index="8" style=""></i><i
-								class="icon star medium even " data-id="123652" data-index="9"
-								style=""></i> <span
+								data-index="7" style=""></i><i
+								class="icon star medium odd active" data-id="123652"
+								data-index="8" style=""></i><i class="icon star medium even "
+								data-id="123652" data-index="9" style=""></i> <span
 								style="display: inline-block; vertical-align: super;"
-								data-id="123652" data-grade="80">4.0 / 인상적이네요. 꼭 추천하고
-								싶어요.</span>
+								data-id="123652" data-grade="80">0.5점 / 노 코멘트. 두 번 다시 오고
+								싶지 않아요.<br>1점 / 실망이에요. 집에서 먹는게 나을 뻔 했어요.<br>1.5점 / 맛,
+								분위기, 서비스...전체적으로 다 별로예요!<br>2점 / 평균 이하! 이 정도 레스토랑은 어디에나 있죠.<br>2.5점
+								/ 다 괜찮은데 뭔가 조금 아쉬워요!<br>3점 / 보통이에요. 이 정도면 괜찮네요.<br>3.5점
+								/ 평균 이상! 한 번 쯤은 다시 올 것 같아요.<br>4.0 / 인상적이네요. 꼭 추천하고 싶어요.<br>4.5점
+								/ 오랫동안 기억에 남을 만한 곳이에요.<br>5점 / 완벽 그 자체! 환상적이에요.
+							</span>
 						</div>
 						<div class="text" data-truncated="">치킨 와플 진짜 맛있어요ㅠㅠㅠㅠㅠ 메이플
 							시럽이랑 치킨조합은 처음이었는데 너무 잘어울려서 깜짝놀랐어요..! 다음에 다른 메뉴도 먹어보고싶어요~~~~~</div>

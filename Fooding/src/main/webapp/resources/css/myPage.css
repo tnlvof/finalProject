@@ -69,6 +69,11 @@ div .profile_image {
 	background-image: url('../images/myPage/default_image.png');
 }
 
+div .profile_image:hover {
+    background: black;
+    opacity: 0.3;
+}
+
 /* 프로필 이름, 소개, 예약&리뷰 카운트 */
 #banner.user>.inner_wrap>.inner>.name {
 	position: absolute;
@@ -104,6 +109,10 @@ div .profile_image {
 	margin-right: 7px;
 	color: #fff;
 	font-size: 14px;
+}
+
+#file {
+	display: none;
 }
 
 /* 마이페이지 탭 & 내용 */

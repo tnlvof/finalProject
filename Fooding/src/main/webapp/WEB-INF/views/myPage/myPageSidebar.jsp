@@ -6,8 +6,8 @@
 				<div class="title">예약 캘린더</div>
 				<div class="calendar hasDatepicker" id="dp1523004537154">
 					<div class="calendar-wrapper">
-						<button id="btnPrev" type="button">< Prev</button>
-						<button id="btnNext" type="button">Next ></button>
+						<button id="btnPrev" type="button">< 이전</button>
+						<button id="btnNext" type="button">다음 ></button>
 						<div id="divCal"></div>
 					</div>
 					<script>
