@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
 <!-- header -->
 <jsp:include page="WEB-INF/views/common/header.jsp"/>
@@ -14,11 +15,25 @@
 				<div class="inner_wrap">
 					<div class="inner">
 						<div id="change_user_image" class="user_image i_wrap">
-							<div class="image border_radius circle profile_image">
+							<div class="image border_radius circle profile_image" id="btn-upload">
+							<!-- <button type="button" id="btn-upload"></button> -->
 							</div>
+							<input type="file" id="file" name="file" onchange="changeValue(this)"/>
 							<div class="border_radius circle"></div>
 						</div>
-						<div class="name">
+						<script type="text/javascript">
+						$(function() {
+							$('#btn-upload').click(function(e) {
+								e.preventDefault();
+								$('#file').click();
+							});
+						});
+
+						function changeValue(obj) {
+							alert(obj.value);
+						}
+					</script>
+					<div class="name">
 							<span>Fooding</span>
 						</div>
 						<div class="intro">맛있는 발견의 즐거움 - Fooding</div>
@@ -70,8 +85,26 @@
 						</div>
 
 						<button class="red border_radius soft"
-							data-type="poing.reservation.edit" data-id="869500" tabindex="-1">변경
+							data-type="poing.reservation.edit" data-id="869500" tabindex="-1" onclick="document.getElementById('id01').style.display='block'">변경
 							/ 취소</button>
+						<!-- Modal -->
+						<div id="id01" class="w3-modal">
+							<div class="w3-modal-content">
+								<div class="w3-container">
+									<span
+										onclick="document.getElementById('id01').style.display='none'"
+										class="w3-button w3-display-topright">&times;</span>
+									<p>Some text. Some text. Some text.</p>
+									<p>Some text. Some text. Some text.</p>
+									<p>Some text. Some text. Some text.</p>
+									<p>Some text. Some text. Some text.</p>
+									<p>Some text. Some text. Some text.</p>
+									<p>Some text. Some text. Some text.</p>
+									<p>Some text. Some text. Some text.</p>
+									<p>Some text. Some text. Some text.</p>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
