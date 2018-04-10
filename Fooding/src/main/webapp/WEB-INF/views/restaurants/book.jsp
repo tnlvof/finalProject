@@ -59,8 +59,7 @@
 					<option>오후 19:00</option>
 					<option>오후 19:30</option>
 					<option>오후 20:00</option>
-					<option>오후 20:30</option>
-												
+					<option>오후 20:30</option>												
 				</select>
 			</td>
 		</tr>		
@@ -106,6 +105,7 @@
 <script type="text/javascript">
 	window.onload = setDate;
 		
+	//과거 날짜 막기
 	function setDate(){
 	
 		
@@ -127,6 +127,8 @@
 		
 	}
 	
+	
+	//필수항목 입력 확인
 	function checkForm(){
 		
 		var date = document.getElementById("bookDate").value; 
@@ -145,9 +147,6 @@
 		
 	}
 	
-	
-		
-		
 </script>	
 	
 
