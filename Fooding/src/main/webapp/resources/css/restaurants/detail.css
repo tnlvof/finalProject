@@ -1,0 +1,165 @@
+@charset "UTF-8";
+.banner-wrap{
+	background-size: cover;
+}
+.banner{
+	width: 1000px;
+	margin: 0 auto;
+	color: #fff;
+}
+.bg{
+	background-color: rgba(0,0,0, 0.7);
+}
+.title{
+	border-bottom: 1px solid #fff;
+	padding: 35px 25px 0 25px;
+	line-height: 3em;
+}
+.title span{
+	color: #fff;
+}
+.title .restaurant-name{
+	font-size: 18px;
+	margin-right: 8px;
+}
+.title .restuarant-info{
+	font-size: 13px;
+	margin-right: 8px;
+}
+.title .reservation-info{
+	font-size: 15px;
+	background: rgba(255, 255, 255, 0.3);
+	border-radius: 3px;
+	padding: 5px 8px;
+}
+
+
+.ban-con{
+	padding: 25px;
+	overflow: hidden;
+}
+.ban-con > li{
+	margin-bottom: 20px;
+}
+.ban-con label{
+	display: block;
+	float: left;
+	width: 120px;
+}
+.ban-con label, .ban-con li, 
+.ban-con p, .ban-con span{
+	color: #fff;
+	font-size: 14px;
+}
+.rank-wrap{
+	overflow: hidden;
+}
+.rank-wrap label{
+	float: left;
+	line-height: 28px;
+}
+.rank-box{
+	width: 200px;
+	float: left;
+	line-height: 28px;
+}
+.rank-box i{
+	font-size: 28px;
+	color: #cc272b;
+}
+.rank-box .no-star{
+	color: #fff;
+}
+.rank-wrap .num-rank{
+	line-height: 28px;
+}
+.asap-reservation{
+	background: transparent;
+	color: #fff;
+	border: 1px solid #fff;
+	padding: 18px 200px;
+	font-family: inherit;
+	cursor: pointer;
+}
+.asap-reservation:hover{
+	background-color: rgba(255,255,255, 0.2);
+}
+
+
+.detail-wrap{
+	width: 1000px;
+	margin: 0 auto;
+	margin-top: 22px;
+}
+/* tab menu */
+.tab{
+	overflow: hidden;
+	border: 1px solid #e3e3e3;
+	border-top: 2px solid #c91b3c;
+	background-color: #fff;
+	margin-bottom: 10px;
+}
+.tab li{
+	background-color: inherit;
+	float: left;
+	padding: 14px 30px;
+	transition: 0.3s;
+}
+.tab li.active{
+	color: #c91b3c;
+	font-weight: bold;
+}
+.tabcontent{
+	display: none;
+	padding: 0 30px;
+	border: 1px solid #e3e3e3;
+	background: #fff;
+}
+.con-box{
+	border-bottom: 1px solid #e3e3e3;
+	padding: 15px 10px 30px 10px;
+	overflow: hidden;
+}
+.con-box:last-child{
+	border-bottom: 0;
+	padding: 0;
+	text-align: center;
+}
+.con-box li,
+.con-box li span{
+	cursor: default;
+	line-height: 1.4em;
+	font-size: 14px;
+}
+.con-box p{
+	line-height: 1.4em;
+	font-size: 14px;
+}
+.con-box h4{
+	color: #969696;
+	font-weight: bold;
+	line-height: 3em;
+}
+.con-box .tip{
+	color: c91b3c;
+}
+.leftCon{
+	float: left;
+	width: 50%;
+}
+.rightCon{
+	width: 50%;
+	float: left;
+}
+
+.ask-btn{
+    color: #fff;
+    background: #ec3e43;
+    border: 0;
+    border-right: 2px solid #cc272b;
+    border-bottom: 2px solid #cc272b;
+    border-radius: 5px;
+    padding: 20px 40px;
+    cursor: pointer;
+    margin: 20px 0;
+}
