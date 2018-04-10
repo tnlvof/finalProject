@@ -7,7 +7,7 @@
 <link rel="stylesheet" type="text/css" href="resources/css/reset.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <meta charset="utf-8">
-    <title>Fooding - 검색 결과</title>
+    <title>Fooding - 추천 식당 : 일식</title>
     <style>
 .map_wrap, .map_wrap * {margin:0;padding:0;font-family:'Malgun Gothic',dotum,'돋움',sans-serif;font-size:12px;}
 .map_wrap a, .map_wrap a:hover, .map_wrap a:active{color:#000;text-decoration: none;}
@@ -138,7 +138,7 @@ margin-left:10px;
 </style>
 </head>
 <body>
-<jsp:include page="/WEB-INF/views/common/menubar.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
 
 <div id="container">
 

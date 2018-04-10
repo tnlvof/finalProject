@@ -25,7 +25,7 @@
 #placesList .item .info{padding:10px 0 10px 55px;}
 #placesList .info .gray {color:#8a8a8a;}
 #placesList .info .jibun {padding-left:26px;background:url(http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_jibun.png) no-repeat;}
-#placesList .info .tel {color:#009900;}
+#placesList .info .tel {color:#009900; }
 #placesList .item .markerbg {float:left;position:absolute;width:36px; height:37px;margin:10px 0 0 10px;background:url(http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png) no-repeat;}
 #placesList .item .marker_1 {background-position: 0 -10px;}
 #placesList .item .marker_2 {background-position: 0 -56px;}
@@ -119,9 +119,13 @@ margin-left:10px;
 </style>
 </head>
 <body>
-<jsp:include page="/WEB-INF/views/common/menubar.jsp"></jsp:include>
+<!-- header -->
+<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 
-<div id="container">
+
+<!-- css or js파일 연결 시키는 곳 -->
+
+<div class="container" >
 
 <div id="map" style="width:100%;height:350px;"></div>
 
@@ -347,7 +351,30 @@ function placesSearchCB (data, status, pagination) {
        //  displayMarker(data[0]);    
          bounds.extend(new daum.maps.LatLng(data[0].y, data[0].x));
         
+       
+         // 식당 좌표 표시
+         var places = new daum.maps.services.Places();
 
+         var callback = function(result, status) {
+             if (status === daum.maps.services.Status.OK) {
+                 
+                 displayMarker(result[0]);    
+             }
+         };
+			
+         
+         var array = ['마이 타이', '젤렌', '타르틴'];
+         
+         for(var i =0; i<array.length;i++){
+        	 places.keywordSearch(array[i], callback);	 
+         }
+         
+         
+         
+         
+         
+         
+         
         // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
         map.setBounds(bounds);
         
@@ -358,7 +385,7 @@ function placesSearchCB (data, status, pagination) {
 
 
 // 지도에 마커를 표시하는 함수입니다
-/* function displayMarker(place) {
+ function displayMarker(place) {
     
     // 마커를 생성하고 지도에 표시합니다
     var marker = new daum.maps.Marker({
@@ -372,7 +399,11 @@ function placesSearchCB (data, status, pagination) {
         infowindow.setContent('<div style="padding:5px;font-size:12px;">' + place.place_name + '</div>');
         infowindow.open(map, marker);
     });
-} */
+} 
 </script>
+
+<!-- footer -->
+<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
+
 </body>
 </html>

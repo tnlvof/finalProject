@@ -202,7 +202,7 @@ font-size:15px;
 </style>
 </head>
 <body>
-<jsp:include page="/WEB-INF/views/common/menubar.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
 <img alt="" src="resources/images/main/dining.png" class="headerPic">
  <div class="centered">푸딩이 선정한 맛집 리스트를 합리적인 가격에 누려보세요.  </div>
 
