@@ -120,7 +120,7 @@ margin-left:10px;
 </head>
 <body>
 <!-- header -->
-<jsp:include page="/views/common/header.jsp"/>
+<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 
 
 <!-- css or js파일 연결 시키는 곳 -->
@@ -403,7 +403,7 @@ function placesSearchCB (data, status, pagination) {
 </script>
 
 <!-- footer -->
-<jsp:include page="/views/common/footer.jsp"/>
+<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 
 </body>
 </html>

@@ -9,13 +9,15 @@
 		<result property="userPwd" column="USER_PWD"/>
 		<result property="userName" column="USER_NAME"/>
 		<result property="email" column="EMAIL"/>
-		<result property="birthDay" column="BIRTHDAY"/>
+		<result property="birth" column="BIRTH"/>
 		<result property="gender" column="GENDER"/>
 		<result property="phone" column="PHONE"/>
 		<result property="address" column="ADDRESS"/>
+		<result property="mCode" column="MCODE"/>
 		<result property="enrollDate" column="ENROLL_DATE"/>
-		<result property="modifyDate" column="MODIFY_DATE"/>
-		<result property="status" column="STATUS"/>
+		<result property="repCount" column="REP_COUNT"/>
+		<result property="bizNo" column="BIZ_NO"/>
+		<result property="bookCount" column="BOOK_COUNT"/>
 	</resultMap>
 	
 	<select id="loginCheck" resultMap="memberResultSet" parameterType="Member">
