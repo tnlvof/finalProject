@@ -40,4 +40,24 @@ public class MemberController {
 		}
 	}
 	
+	@RequestMapping(value = "goMemberJoin.me")
+	public String goMemberJoin() {
+		
+		return "member/memberJoin";
+	}
+	
+	@RequestMapping(value = "goStoreJoin.me")
+	public String goStoreJoin() {
+		
+		return "member/storeJoin";
+	}
+	
+	@RequestMapping(value ="memberJoin.me")
+	public String memberJoin(Member m) {
+		
+		
+		return "main/main";
+	}
+	
+	
 }
