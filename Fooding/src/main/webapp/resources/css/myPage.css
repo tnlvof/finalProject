@@ -69,6 +69,11 @@ div .profile_image {
 	background-image: url('../images/myPage/default_image.png');
 }
 
+div .profile_image:hover {
+    background: black;
+    opacity: 0.3;
+}
+
 /* 프로필 이름, 소개, 예약&리뷰 카운트 */
 #banner.user>.inner_wrap>.inner>.name {
 	position: absolute;
@@ -106,6 +111,10 @@ div .profile_image {
 	font-size: 14px;
 }
 
+#file {
+	display: none;
+}
+
 /* 마이페이지 탭 & 내용 */
 #content_wrap {
 	position: relative;
@@ -120,7 +129,7 @@ div .profile_image {
 }
 
 #content>.tab {
-	width: 716px;
+	width: 729px;
 	padding: 0 6px;
 	border: 1px solid #e3e3e3;
 	border-top: 2px solid #ff5a5f;
@@ -225,6 +234,294 @@ button {
 	cursor: pointer;
 }
 
+/* 예약 내용 */
+#content>.list {
+    overflow: hidden;
+}
+#content>.body {
+    position: relative;
+    width: 729px;
+    padding: 30px;
+    margin-bottom: 30px;
+    border: 1px solid #e3e3e3;
+    background: #fff;
+}
+
+#content.mypage>.body#reservation>.list {
+    position: relative;
+    width: 729;
+    padding: 10px 30px;
+    margin-bottom: 30px;
+    border: 1px solid #e3e3e3;
+    background: #fff;
+}
+
+#content.mypage>.body>.list>.reservation:last-child {
+    border: none;
+}
+#content.mypage>.body>.list>.reservation {
+    position: relative;
+    padding: 20px 0;
+    border-bottom: 1px solid #e3e3e3;
+}
+
+#content.mypage>.body>.list>.reservation>.image {
+    float: left;
+    width: 84px;
+    height: 84px;
+}
+
+#content.mypage>.body>.list>.reservation>.info {
+    padding-left: 98px;
+    padding-top: 3px;
+    color: #444;
+}
+
+#content.mypage>.body>.list>.reservation>.info>.name {
+    margin-bottom: 10px;
+    font-size: 0;
+    font-weight: 600;
+}
+
+#content.mypage>.body>.list>.reservation>.info>.name>a {
+    color: #444;
+    font-size: 12pt;
+}
+
+#content.mypage>.body>.list>.reservation>.info>.name>.label.blue {
+    background: #4f9ed9;
+}
+
+#content.mypage>.body>.list>.reservation>.info>.name>.label.green {
+    background: #2f7d09;
+}
+
+#content.mypage>.body>.list>.reservation>.info>.name>.label {
+    padding: 2px 5px;
+    margin-left: 4px;
+    color: #fff;
+    font-size: 9pt;
+    letter-spacing: -1px;
+    font-weight: 400;
+}
+.border_radius.soft {
+    border-radius: 3px;
+}
+
+#content.mypage>.body>.list>.reservation>.info>.coupon, #content.mypage>.body>.list>.reservation>.info>.date, #content.mypage>.body>.list>.reservation>.info>.party_size, #content.mypage>.body>.list>.reservation>.info>.request {
+    margin-bottom: 2px;
+    line-height: 14px;
+    font-size: 10pt;
+}
+
+#content.mypage>.body>.list>.reservation>button {
+    position: absolute;
+    width: 107px;
+    line-height: 27px;
+    top: 40px;
+    right: 0;
+    text-align: center;
+    padding: 0;
+    font-size: 13px;
+}
+.border_radius.soft {
+    border-radius: 3px;
+}
+button.red {
+    color: #ff5a5f;
+    background: #fff;
+}
+
+button.red.on, button.red:hover, button.red_fill {
+    color: #fff;
+    background: #ff5a5f;
+}
+
+button.red, button.red_fill {
+    border: 1px solid #ff5a5f;
+}
+#content.mypage>.body>.list>.reservation:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+#content, #content>.body:after, #content>.tab:after, #content_wrap:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+/* 리뷰내용 */
+#content>.list {
+    overflow: hidden;
+}
+
+#content.mypage>.body.list.review_wrap>.review {
+    padding: 0 44px;
+    margin: 0;
+}
+.review_wrap>.review {
+    background: #fff;
+    padding: 30px 75px;
+    margin-bottom: 20px;
+}
+.review_wrap>.review>.place {
+    display: block;
+    padding-bottom: 15px;
+    overflow: auto;
+}
+.review_wrap>.review>.place>.thumbnail {
+    float: left;
+    width: 45px;
+    height: 45px;
+    background-position: center center;
+    background-size: cover;
+    border-radius: 50%;
+    margin-right: 13px;
+}
+.review_wrap>.review>.place>.favorite {
+    float: right;
+    width: 77px;
+    height: 27px;
+    background: 0;
+    border: 1px solid #969696;
+    color: #969696;
+    border-radius: 5px;
+    padding: 0;
+    line-height: 19px;
+}
+.review_wrap>.review>.place>.thumbnail~.name {
+    margin-top: 7px;
+}
+.review_wrap>.review>.place>.name {
+    color: #323232;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 3px;
+}
+.review_wrap>.review>.place>.info {
+    color: #828282;
+    font-size: 12px;
+}
+.review_wrap>.review>.body {
+    border-top: solid #dcdcdc;
+    border-width: 1px 0;
+    padding: 17px 0 22px;
+}
+.review_wrap>.review>.body>.time {
+    display: none;
+    float: right;
+    font-size: 10px;
+    color: #969696;
+    line-height: 19px;
+}
+.review_wrap>.review>.body>.text {
+    color: #666;
+    line-height: 16px;
+    margin-bottom: 17px;
+    word-wrap: break-word;
+    font-size: 13px;
+}
+.review_wrap>.review>.body>.action>button {
+    line-height: 27px;
+    padding: 0 3px;
+    border: 1px solid #969696;
+    color: #969696;
+    background: #fff;
+    border-radius: 4px;
+    margin-right: 6px;
+    font-size: 0;
+}
+.review_wrap>.review>.body>.action>.article {
+    float: right;
+}
+.review_wrap>.review>.body>.action>.article>button {
+    font-size: 10px;
+    color: #969696;
+    margin-right: 5px;
+    border: 0;
+    padding: 0;
+    background: 0;
+}
+.review_wrap>.review>.body>.action>.article>button {
+    font-size: 10px;
+    color: #969696;
+    margin-right: 5px;
+    border: 0;
+    padding: 0;
+    background: 0;
+}
+#content, #content>.body:after, #content>.tab:after, #content_wrap:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+/* 리뷰 별점 */
+.review_wrap>.review>.body>.grade {
+    margin-bottom: 10px;
+}
+i.icon.star.medium.odd.active {
+    background-position: -277px -42px;
+}
+i.icon.star.medium.odd {
+    background-position: -277px -66px;
+}
+.review_wrap>.review>.body>.grade>* {
+    vertical-align: middle!important;
+}
+i.icon.star.medium {
+    width: 10px;
+    height: 19px;
+}
+i {
+    width: 100%;
+    height: 100%;
+    background-image: url(http://c1.poing.co.kr/original/images/recent_sheet.png);
+}
+i.icon.star.medium.even.active {
+    background-position: -287px -42px;
+}
+i.icon.star.medium.even {
+    background-position: -287px -66px;
+    padding-right: 2px;
+}
+
+i, input[type=checkbox].slide-toggle+label span {
+    background-repeat: no-repeat;
+    display: inline-block;
+}
+.review_wrap>.review>.body>.grade>span {
+    margin-left: 5px;
+    font-size: 12px;
+}
+
+/* 리뷰 페이징 */
+div.page-list {
+    text-align: center;
+}
+div.page-list>ul.pagination {
+    margin-top: 10px;
+}
+ol, ul {
+    list-style: none;
+}
+div.page-list>ul.pagination>li {
+    display: inline-block;
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+    line-height: 24px;
+    text-align: center;
+    font-size: 12px;
+    color: #969696;
+}
+div.page-list>ul.pagination>li.active {
+    color: #FF5A5F;
+    font-weight: 600;
+    font-size: 11pt;
+}
+
 /* 사이드바(캘린더) */
 #sidebar_wrap {
 	float: right;
@@ -300,4 +597,135 @@ button {
 
 #reservation_calendar>.desc>.text {
 	line-height: 20px;
+}
+
+
+/* 캘린더 */
+@main-bg:rgb(40,40,59);
+@calendar-border:rgb(220,220,255);
+@calendar-bg:#fff;
+@calendar-standout:rgb(40,40,59);
+@calendar-color:#444;
+@calendar-fade-color:#c0c0c0;
+@body-color:#444;
+
+*, *:before, *:after {
+  box-sizing:border-box;
+}
+
+.group {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+img {
+  max-width:100%;
+  height:auto;
+  vertical-align:baseline;
+}
+
+a {
+  text-decoration:none;
+}
+
+.max(@maxWidth;
+  @rules) {
+    @media only screen and (max-width: @maxWidth) {
+      @rules();
+    }
+  }
+
+.min(@minWidth;
+  @rules) {
+    @media only screen and (min-width: @minWidth) {
+      @rules();
+    }
+  }
+
+
+.calendar-wrapper {
+  width:220px;
+  margin:0 auto;
+  padding:10px;
+  border:1px solid @calendar-border;
+  border-radius:5px;
+  background:@calendar-bg;
+  
+}
+table {
+  clear:both;
+  width:100%;
+  border:1px solid @calendar-border;
+  border-radius:3px;
+  border-collapse:collapse;
+  color:@calendar-color;
+  font-size: 13px;
+}
+td {
+  height:30px;
+  text-align:center;
+  vertical-align:middle;
+  border-right:1px solid @calendar-border;
+  border-top:1px solid @calendar-border;
+  width:100% / 7;
+}
+
+td:first-child{
+	color:#ff5a5f;
+}
+
+td:last-child{
+	color:#4f9ed9;
+}
+
+td.not-current {
+  color:@calendar-fade-color;;
+}
+
+td.today {
+  font-weight:bold;
+  color:#333;
+}
+thead th {
+  border:none;
+  color:@calendar-standout;
+  text-transform:uppercase;
+  font-size:16px;
+  height: 25px;
+}
+#btnPrev {
+  float:left;
+  margin-bottom:10px;
+  &:before {
+    content:'\f104';
+    font-family:FontAwesome;
+    padding-right:4px;
+  }
+}
+#btnNext {
+  float:right;
+  margin-bottom:10px;
+  &:after {
+    content:'\f105';
+    font-family:FontAwesome;
+    padding-left:4px;
+  }
+}
+#btnPrev, #btnNext {
+  background:transparent;
+  border:none;
+  outline:none;
+  font-size:12px;
+  color:#666;
+  cursor:pointer;
+  font-family:"Roboto Condensed", sans-serif;
+  text-transform:uppercase;
+  transition:all 0.3s ease;
+  &:hover {
+    color:@calendar-standout;
+    font-weight:bold;
+  }
 }
