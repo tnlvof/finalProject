@@ -5,7 +5,7 @@
 <style>
 .basic {
 	width: 600px;
-	height: 1000px;
+	height: 1200px;
 	border: 1px solid lightgray;
 	margin: 0 auto;
 	text-align: center;
@@ -93,6 +93,19 @@ iNPUT.c {
 	width: 132;
 	height: 40px;
 }
+
+INPUT.d {
+	border: 1px solid grey;
+	width: 402;
+	height: 40px;
+}
+
+INPUT.d1 {
+	border: 1px solid grey;
+	width: 290;
+	height: 40px;
+}
+
 
 .textarea {
 	text-align: center;
@@ -183,6 +196,27 @@ input::placeholder {
 	cursor: pointer;
 }
 
+.d{
+	padding: 15px;
+	margin: 10px;
+}
+
+.d1{
+	padding: 15px;
+	margin-top: 20px;
+	margin-bottom: 10px;
+}
+
+.storeBtn{
+	background: #ff5a5f;
+	color : #3a3a3a;
+	width: 112px;
+	height: 40px;
+	cursor: pointer;
+	border:0px;	
+}
+
+
 
 
 </style>
@@ -193,21 +227,27 @@ input::placeholder {
 
 <div class="container">
 	<div class="join">
-		<form class="join_form" action="memberJoin.me" method="post">
+		<form class="join_form" action="#">
 			<br>
 			<div class="basic">
 
-				<p class="title">일반 회원가입</p>
+				<p class="title">업체 회원가입</p>
 				<p class="subtitle">가입 정보 입력</p>
 
 				<!-- 아이디/이름/이메일 -->
 				<input type="text" name="userId" placeholder="아이디" required class="a">
-				<input type="text" name="userName" placeholder="이름" class="a" required> 
+				<input type="text" name="name" placeholder="이름" class="a" value required> 
 				<input type="text" name="email" placeholder="이메일" required class="a">
 				
 				<!-- 비밀번호 -->
-				<input type="password" name="password" placeholder="비밀번호 (6자이상)" pattern=".{6,}" required class="b"> 
-				<input type="password" name="password2" placeholder="비밀번호 재확인" required class="b">
+				<input type="password" name="password" placeholder="비밀번호 (6자이상)" pattern=".{6,}" required class="b" required=""> 
+				<input type="password" name="password2" placeholder="비밀번호 재확인" required class="b" required="">
+				
+				<!-- 사업자 등록 번호 인증 -->
+				<input type="text" name="userId" placeholder="사업자등록번호" required class="d1">
+				<button class="storeBtn">인증확인</button>
+				<input type="text" name="userId" placeholder="업체명" required class="d">
+				<input type="text" name="userId" placeholder="대표자명" required class="d">
 
 				<!-- 생년월일 -->
 				<p class="plz">생년월일과 성별 기입은 선택사항입니다. 개인화된 추천을 받으시려면 입력해주세요.</p>
@@ -217,8 +257,8 @@ input::placeholder {
 				
 				
 				<!-- 성별선택 -->
-				<input type="button" name="gender" value="여자" id="gender_male" class="sb">
-				<input type="button" name="gender" value="남자" id="gender_female" class="sb"> 
+				<input type="button" name="gender" value="남자" id="gender_female" class="sb" align="right"> 
+				<input type="button" name="gender" value="여자" id="gender_male" class="sb" align="left">
 
 
 				<div class="agre-wrap">

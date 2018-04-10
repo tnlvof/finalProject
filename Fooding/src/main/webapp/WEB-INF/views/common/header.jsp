@@ -6,26 +6,12 @@
 <head>
 <meta charset="UTF-8">
 <title>맛있는 발견의 즐거움 - Fooding</title>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="/fooding/resources/css/reset.css">
 <link rel="stylesheet" href="/fooding/resources/css/common.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
-<style>
-.profile_image{
-	width: 37px;
-    height: 37px;
-    background-size: cover;
-    background-position: center center;
-}
-.border_radius.circle{
-	border-radius: 50%;
-}
-.nav_user{
-	float: right;
-	margin-top: 13px;
-}
-</style>
+
 <body>
 	<c:set var="contextPath" value="${ pageContext.servletContext.contextPath }" scope="application"/>
 	
@@ -36,29 +22,35 @@
 				<input type="search" name="search" placeholder="지역,음식 종류 등 검색하세요">
 				<button type="submit" class="srch-btn">검색</button>
 			</form>
+         
+         <div class="loginArea">
+         	<c:if test="${ empty loginUser }">
+	            <ul>
+	               <li onclick="document.getElementById('id01').style.display='block'">로그인</li>
+	               <li> &nbsp; | &nbsp; </li>
+	               <li>회원가입</li>
+	            </ul>
+			</c:if>
 			
-			<c:if test="${ empty loginUser }">
-			<div class="loginArea">
-				<ul>
-					<li onclick="document.getElementById('id01').style.display='block'">로그인</li>
-					<li> &nbsp; | &nbsp; </li>
-					<li>회원가입</li>
-				</ul>
-			</div>
-			</c:if>
 			<c:if test="${ !empty loginUser }">
-			<div class="nav_user">
-				<div class="nav_profile">
-					<div class="i_wrap">
-						<i class="profile_image border_radius circle"
-						style="background-image:url(${contextPath}/resources/images/common/no-data.png)"></i>
-					</div>
-				</div>
-			</div>
+	            <div class="dropdown" style="display: block;">
+	               <div class="user-profile"><img src="/fooding/resources/images/common/no-image.png"></div>
+	               
+	               <ul class="dropdown-content">
+	                  <li><a href="#">예약</a></li>
+	                  <li><a href="#">티켓</a></li>
+	                  <li><a href="#">결제</a></li>
+	                  <li><a href="#">설정</a></li>
+	                  <li><a href="#">로그아웃</a></li>
+	               </ul>
+	            </div>
+	            <!-- dropdown -->
 			</c:if>
-			<!-- loginArea -->
-		</div>
-		<!-- wrap -->
+         </div>
+         <!-- loginArea -->
+      </div>
+      <!-- wrap -->			
+
 		
 		<div class="gnb">
 			<ul>
@@ -72,7 +64,7 @@
 	</div>
 	<!-- header -->
 	
-  <div id="id01" class="w3-modal">
+	<div id="id01" class="w3-modal">
 
       <div id="sign">
       	<img src="${contextPath }/resources/images/common/closeButton.png" width="15" height="15" align="right" class="xBtn"
@@ -82,10 +74,8 @@
 				<p id="title">로그인</p>
 
 				<form action="login.me" method="post">
-					<input type="text" id="userId" name="userId" placeholder="아이디"
-						required="" class="input"> 
-					<input type="password" name="userPwd"
-						placeholder="비밀번호" required="" class="input">
+					<input type="text" id="userId" name="userId" placeholder="아이디" required="" class="input"> 
+					<input type="password" name="userPwd" placeholder="비밀번호" required="" class="input">
 
 					<button type="submit" id="loginBtn" class="button loginBtn">로그인</button>
 				</form>
@@ -94,8 +84,9 @@
 				</p>
 
 				<hr class="hr">
-				<button id="joinBtn" type="button" class="change button">회원가입</button>
-			</div>
+				<button id="joinBtn" type="button" class="change" onclick="location.href='goMemberJoin.me'">일반 회원가입</button>
+				<button id="joinBtn" type="button" class="change" onclick="location.href='goStoreJoin.me'">업체 회원가입</button>
+			</div><!-- login -->
 		</div>
 	</div>
 	<!-- login_body -->
