@@ -1,0 +1,26 @@
+@charset "UTF-8";
+
+.header{
+   background-color: #FF5A5F;
+   padding: 2% 3%;
+}
+.logo{
+   height: 25px;
+   text-indent: -9999px;
+   background-image: url('/fooding/resources/images/common/logo.png');
+   background-repeat: no-repeat;
+   background-size: contain;
+}
+
+
+.footer{
+   padding: 2% 3%;
+   background-color: #eee;
+   text-align: center;
+}
+.footer p{
+   margin-bottom: 3%;
+}
+.footer li:last-child{
+   font-size: 12px;
+}
