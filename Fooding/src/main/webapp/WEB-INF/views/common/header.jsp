@@ -17,7 +17,7 @@
 	
 	<div id="header" class="header">
 		<div class="wrap">
-			<h1 class="logo"><a href="#">Fooding</a></h1>
+			<h1 class="logo" onclick="location.href='goMain.me'">Fooding</h1>
 			<form action="" method="post">
 				<input type="search" name="search" placeholder="지역,음식 종류 등 검색하세요">
 				<button type="submit" class="srch-btn">검색</button>
@@ -28,20 +28,19 @@
 	            <ul>
 	               <li onclick="document.getElementById('id01').style.display='block'">로그인</li>
 	               <li> &nbsp; | &nbsp; </li>
-	               <li>회원가입</li>
+	               <li onclick="document.getElementById('id01').style.display='block'">회원가입</li>
 	            </ul>
 			</c:if>
 			
 			<c:if test="${ !empty loginUser }">
 	            <div class="dropdown" style="display: block;">
 	               <div class="user-profile"><img src="/fooding/resources/images/common/no-image.png"></div>
-	               
 	               <ul class="dropdown-content">
-	                  <li><a href="#">예약</a></li>
-	                  <li><a href="#">티켓</a></li>
-	                  <li><a href="#">결제</a></li>
-	                  <li><a href="#">설정</a></li>
-	                  <li><a href="#">로그아웃</a></li>
+	                  <li>예약</li>
+	                  <li>티켓</li>
+	                  <li>결제</li>
+	                  <li>설정</li>
+	                  <li onclick="location.href='logout.me'">로그아웃</li>
 	               </ul>
 	            </div>
 	            <!-- dropdown -->

@@ -27,11 +27,11 @@
 	<bean id="sqlSessionTemplet" class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg ref="sqlSession"/>
 	</bean>
-<!-- 	
+	
 	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource"/>
 	</bean>
-	트랜젝션 매니저 설정 추가
+<!-- 	트랜젝션 매니저 설정 추가 -->
 	<tx:advice id="txAdvice" transaction-manager="transactionManager">
 		<tx:attributes>
 			<tx:method name="select*" rollback-for="Exception"/>
@@ -43,13 +43,12 @@
 	
 	<tx:annotation-driven transaction-manager="transactionManager"/>
 	
-	aop 추가
+	<!-- aop 추가 -->
 	<aop:config proxy-target-class="true">
-		<aop:pointcut expression="execution(* com.kh.tsp..*ServiceImpl.*(..))" id="serviceMethod"/>
+		<aop:pointcut expression="execution(* com.kh.fooding..*ServiceImpl.*(..))" id="serviceMethod"/>
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="serviceMethod"
 					id="transactionAdvisor"/>
-					
-	</aop:config> -->
+	</aop:config>
 	
 	
 	
