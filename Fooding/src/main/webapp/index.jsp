@@ -2,7 +2,8 @@
     pageEncoding="UTF-8"%>
 <meta charset="UTF-8">
 
-
+	<jsp:forward page="WEB-INF/mobile/main.jsp"/>
+ 
 <!-- header --> 
 <jsp:include page="WEB-INF/views/common/header.jsp"/>
 
@@ -146,3 +147,4 @@
 
 <!-- footer -->
 <jsp:include page="WEB-INF/views/common/footer.jsp"/>
+ --%>

@@ -111,9 +111,12 @@
 }
 .tabcontent{
 	display: none;
-	padding: 0 30px;
+	padding: 40px 30px;
 	border: 1px solid #e3e3e3;
 	background: #fff;
+}
+#tabInfo{
+	padding-top: 0;
 }
 .con-box{
 	border-bottom: 1px solid #e3e3e3;
@@ -123,7 +126,6 @@
 .con-box:last-child{
 	border-bottom: 0;
 	padding: 0;
-	text-align: center;
 }
 .con-box li,
 .con-box li span{
@@ -153,13 +155,418 @@
 }
 
 .ask-btn{
-    color: #fff;
-    background: #ec3e43;
-    border: 0;
-    border-right: 2px solid #cc272b;
-    border-bottom: 2px solid #cc272b;
-    border-radius: 5px;
-    padding: 20px 40px;
+	border: 0;
+	background-color: transparent;
+	margin-top: 40px;
+	text-decoration: underline;
+	color: #666;
     cursor: pointer;
-    margin: 20px 0;
+}
+.ask-form{
+	display: none;
+	width: 100%;
+	margin-top: 40px;
+	background: #f7f7f7;
+	padding: 10px 20px;
+	border-radius: 5px;
+}
+.ask-form h4{
+	color: #c91b3c;
+	border-bottom: 1px solid #ddd;
+	margin-bottom: 30px;
+	padding-left: 20px;
+}
+.ask-form p{
+	margin: 0 0 15px 20px;
+}
+.ask-form textarea{
+	resize: none;
+	overflow: auto;
+	font-size: 13px;
+	color: #666;
+	padding: 10px;
+	width: 95%;
+	height: 100px;
+	margin: 0 20px;
+	border: 1px solid #ddd;
+}
+.ask-form button{
+	background: #c91b3c;
+	color: #fff;
+	cursor: pointer;
+	border: 0;
+	width: 95%;
+	height: 40px;
+	font-size: 14px;
+	margin: 10px 20px 20px 20px;
+	border-radius: 5px;
+}
+
+/* photoTab */
+/* Position the image container (needed to position the left and right arrows) */
+.photo-container {
+  position: relative;
+}
+
+/* Hide the images by default */
+.mySlides {
+  display: none;
+}
+
+/* Add a pointer when hovering over the thumbnail images */
+.cursor {
+  cursor: pointer;
+}
+
+/* Next & previous buttons */
+.prev,
+.next {
+  cursor: pointer;
+  position: absolute;
+  top: 40%;
+  width: auto;
+  padding: 16px;
+  margin-top: -50px;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Position the "next button" to the right */
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover,
+.next:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Number text (1/3 etc) */
+.numbertext {
+  color: #f2f2f2;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+}
+
+/* Container for image text */
+.caption-container {
+  text-align: center;
+  padding: 20px 16px;
+  color: white;
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Six columns side by side */
+.column {
+  float: left;
+  width: 16.66%;
+}
+
+/* Add a transparency effect for thumnbail images */
+.demo {
+  opacity: 0.6;
+}
+
+.on,
+.demo:hover {
+  opacity: 1;
+}
+
+/* reviewTab */
+.tabReview label{
+	display: inline-block;
+	width: 150px;
+	font-size: 14px;
+	vertical-align: top;
+}
+.tabReview li{
+	cursor: initial;
+	margin-bottom: 10px;
+}
+.tabReview h4{
+	margin-bottom: 40px;
+}
+.tabReview select{
+  padding: .8em 3.5em .8em 1em;
+  font-family: inherit;
+  background: url(https://farm1.staticflickr.com/379/19928272501_4ef877c265_t.jpg) no-repeat 95% 50%;  
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  border: 1px solid #ddd;
+  border-radius: 0px;
+  font-size: 13px;
+  color: #999;
+
+}
+.rankResult{
+	font-size: 13px;
+	margin-left: 20px;
+}
+.tabReview textarea{
+	display: inline-block;
+	resize: none;
+	overflow: auto;
+	font-size: 13px;
+	color: #666;
+	padding: 10px;
+	width: 780px;
+	height: 100px;
+	border: 1px solid #ddd;
+}
+.tabReview button{
+	background: #c91b3c;
+	border: 0;
+	color: #fff;
+	width: 100%;
+	border-radius: 5px;
+	font-size: 14px;
+	height: 50px;
+	margin-top: 10px;
+	cursor: pointer;
+}
+
+/* file upload */
+.filebox{
+    width: 780px;
+    display: inline-block;
+}
+.filebox input[type="file"] {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip:rect(0,0,0,0);
+	border: 0;
+}
+
+.filebox label {
+	display: inline-block;
+	width: initial;
+	padding: .5em .75em;
+	color: #999;
+	font-size: 13px;
+	line-height: normal;
+	vertical-align: middle;
+	cursor: pointer;
+	background-color: #ec3e43;
+	border: 1px solid #ebebeb;
+	border-bottom-color: #cc272b;
+	border-radius: .25em;
+}
+
+/* named upload */
+.filebox .upload-name {
+	display: inline-block;
+	padding: .5em .75em;
+	font-size: 13px;
+	font-family: inherit;
+	line-height: normal;
+	vertical-align: middle;
+	background-color: #f5f5f5;
+  border: 1px solid #ebebeb;
+  border-bottom-color: #e2e2e2;
+  border-radius: .25em;
+  -webkit-appearance: none; /* 네이티브 외형 감추기 */
+  -moz-appearance: none;
+  appearance: none;
+}
+
+/* imaged preview */
+.filebox .upload-display {
+	margin: 10px 0 5px 0;
+}
+
+@media(min-width: 768px) {
+	.filebox .upload-display {
+		display: inline-block;
+		margin-right: 5px;
+		margin-bottom: 0;
+	}
+}
+
+.filebox .upload-thumb-wrap {
+	display: inline-block;
+	main-width: 100px;
+	max-width: 780px;
+	padding: 2px;
+	vertical-align: middle;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+	background-color: #fff;
+}
+
+.filebox .upload-display img {
+	display: block;
+	max-width: 100%;
+	width: 100% \9;
+	height: auto;
+}
+
+.filebox.bs3-primary label {
+  color: #fff;
+  background-color: #ec3e43;
+	border-color: #cc272b;
+}
+/********************/
+.reviews{
+	margin-top: 50px;
+	display:none;
+}
+.reviews > div{
+	background-color: #fff;
+	border: 1px solid #e3e3e3;
+	margin-top: 15px;
+}
+.noReview{
+	text-align: center;
+	padding: 200px 0 120px 0;
+	color: #969696;
+	position: relative;
+}
+.iconReview{
+	background-image:url('/fooding/resources/images/restaurants/restaurantIs.png');
+	background-repeat: no-repeat;
+	background-position: -15px -8px;
+	display: block;
+	width: 31px;
+	height: 61px;
+	position: absolute;
+	left: 483px;
+	top: 100px;
+}
+.showReview{
+	padding: 30px 50px;
+}
+.rank{
+	position: relative;
+}
+.rank span{
+	position: absolute;
+	top: 3px;
+	left: 120px;
+	font-size: 14px;
+}
+.rank p{
+	font-size: 15px;
+	line-height: 1.8em;
+	margin-top: 15px;
+}
+.iconRank{
+	display: inline-block;
+	width: 19px;
+	height: 19px;
+	background-image:url('/fooding/resources/images/common/icon-rank-small.png');
+}
+.rankOff{
+	background-position-y: 19px;
+}
+.user-photo{
+	width:45px;
+	height: 45px;
+	background-size: cover;
+	background-color: gray;
+	float: left;
+	border-radius: 50%;
+}
+.review-info{
+	overflow: hidden;
+	border-bottom: 1px solid #dcdcdc;
+	padding: 0 0 15px 0;
+	margin-bottom: 15px;
+}
+.re-info{
+	float: left;
+	margin-left: 20px;
+}
+.writerId{
+	font-size: 14px;
+	color: #333;
+	line-height: 26px;
+}
+.writeDate{
+	font-size: 13px;
+}
+
+/* tabMenu */
+.no-menu{
+	text-align: center;
+    padding: 150px 0 70px 0;
+    color: #969696;
+    line-height: 1.8em;
+    position: relative;
+}
+.iconMenu{
+    background-image: url(/fooding/resources/images/restaurants/restaurantIs.png);
+    background-repeat: no-repeat;
+    background-position: -73px -8px;
+    display: block;
+    width: 52px;
+    height: 61px;
+    position: absolute;
+    left: 440px;
+    top: 70px;
+}
+.menuTheme{
+	overflow: hidden;
+	margin: 30px 0;
+}
+.menuTheme li{
+	width: 49%;
+	float: left;
+	margin-bottom: 50px;
+}
+.menuTheme > li:nth-child(odd){
+	margin-right: 2%;
+}
+.menuTheme dl{
+	overflow: hidden;
+}
+.menuTheme dd{
+	font-size: 13px;
+	color: #969696;
+	margin-top: 5px;
+}
+.menuTheme .name{
+	float: left;
+}
+.menuTheme .price{
+	float: right;
+}
+.menuTheme .menuCommon{
+	font-size: 14px;
+	color: #656565;
+	margin-top: initial;
+}
+.menuTheme .about{
+	float: left;
+	margin-top: 10px;
+	width: 100%;
+}
+.menuDescript{
+	font-size: 13px;
+	color: #969696;
+	border-top: 1px solid #ddd;
+	padding-top: 10px;
+	line-height: 1.6em;
+}
+.menuDescript p{
+	text-align: right;
+	font-size: inherit;
+	color: inherit;
 }
