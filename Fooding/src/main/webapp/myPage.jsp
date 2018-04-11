@@ -61,7 +61,7 @@
 										onclick="document.getElementById('changeCancel').style.display='none'"
 										class="w3-button w3-display-topright">&times;</span>
 									<div id="pre-reserve" class="reserve-popup"
-										style="width: 599px; height: 350px; margin-top: -203px; display: block;">
+										style="width: 599px; height: 390px; margin-top: -203px; display: block;">
 										<div class="popup-title">예약변경/취소</div>
 										<i id="reserve-close" class="icon close"
 											style="position: absolute; top: 20px; right: 20px;"></i>
@@ -81,19 +81,6 @@
 													<div
 														class="ui-datepicker-inline ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all"
 														style="display: block;">
-														<div
-															class="ui-datepicker-header ui-widget-header ui-helper-clearfix ui-corner-all">
-															<a class="ui-datepicker-prev ui-corner-all"
-																data-handler="prev" data-event="click" title="Prev"><span
-																class="ui-icon ui-icon-circle-triangle-w">Prev</span></a><a
-																class="ui-datepicker-next ui-corner-all ui-state-disabled"
-																title="Next"><span
-																class="ui-icon ui-icon-circle-triangle-e">Next</span></a>
-															<div class="ui-datepicker-title">
-																<span class="ui-datepicker-month">5월</span>&nbsp;<span
-																	class="ui-datepicker-year">2018</span>
-															</div>
-														</div>
 														
 													</div>
 												</div>
@@ -157,10 +144,20 @@
 
 										<div class="popup-row comment">
 											<textarea id="reserve_comment" rows="5"
-												placeholder="요청사항을 적어주세요."></textarea>
+												placeholder="요청사항을 적어주세요." maxlength="30"></textarea>
 											<p>
-												(<span>0</span>/30자)
+												(<span id="counter">0</span>/30자)
 											</p>
+											<script>
+											$(function() {
+											      $('#reserve_comment').keyup(function (e){
+											          var comment = $(this).val();
+											          $(this).height(((comment.split('\n').length + 1) * 1.5) + 'em');
+											          $('#counter').html(comment.length);
+											      });
+											      $('#reserve_comment').keyup();
+											});
+											</script>
 										</div>
 										<div class="popup-row notice">
 											<div>*예약 취소는 예약 시간 30분 전까지만 가능합니다.</div>

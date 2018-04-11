@@ -972,8 +972,8 @@ div.reserve-popup>div.popup-row {
 div.reserve-popup>div.popup-row>textarea {
     display: inline-block;
     resize: none;
-    width: 516px;
-    height: 35px;
+    width: 542px;;
+    height: 61px !important;
     padding: 12px;
     font-size: 13px;
     color: #444;
