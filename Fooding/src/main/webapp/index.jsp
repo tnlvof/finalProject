@@ -10,7 +10,7 @@
 
 <!-- main css -->
 <link rel="stylesheet" href="/fooding/resources/css/main.css">
-
+ 
 	<div class="container">
 		<div class="caroursel">
 			<div class="slider">
