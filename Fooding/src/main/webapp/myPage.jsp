@@ -144,9 +144,9 @@
 
 										<div class="popup-row comment">
 											<textarea id="reserve_comment" rows="5"
-												placeholder="요청사항을 적어주세요." maxlength="30"></textarea>
+												placeholder="요청사항을 적어주세요." maxlength="50"></textarea>
 											<p>
-												(<span id="counter">0</span>/30자)
+												(<span id="counter">0</span>/50자)
 											</p>
 											<script>
 											$(function() {
