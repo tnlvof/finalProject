@@ -10,6 +10,13 @@
     float: left; 
     background-color: #f1f1f1;
     width: 20%;
+    height:80%;
+    /*position: fixed;
+     z-index: 1;     
+    left: 0;
+    bottom:50; */
+    
+    
     
 }
 
@@ -24,7 +31,7 @@
     border-right: 1px solid #ccc;
     outline: none;
     text-align: center;
-    height: 130px;
+    height: 106px;
     cursor: pointer;
     transition: 0.3s;
     font-size: 17px;
@@ -43,7 +50,7 @@
 /* Style the tab content */
 .tabcontent {
     float: left;
-    padding: 0px 12px;
+    padding: 0px 12px;    
     border: 1px solid #ccc;
     width: 80%;
     border-left: none;       
@@ -129,5 +136,40 @@ select{
     padding: 0 20px;
     cursor: pointer;
 }
+
+.titles{
+	padding-bottom: 10px;
+    padding-top: 10px;
+    background-color:#ec3e43;
+    color:white;
+    
+    text-align:center;
+	
+}
+
+.profits{
+	width: 35%;
+    height: 30%;
+	background:white;
+	float: left;	
+	margin:0;
+	
+}
+#profitTable{
+	
+ width:64%;
+ float:right;
+  margin:0;
+  padding:0;
+  height: 60%;
+	
+}
+
+#profitTable td{
+	
+ width:80px;
+	
+}
+
 
 
