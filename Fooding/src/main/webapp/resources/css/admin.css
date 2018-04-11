@@ -1,3 +1,4 @@
+
 @charset "UTF-8";
 
 
@@ -9,6 +10,13 @@
     float: left; 
     background-color: #f1f1f1;
     width: 20%;
+    height:80%;
+    /*position: fixed;
+     z-index: 1;     
+    left: 0;
+    bottom:50; */
+    
+    
     
 }
 
@@ -23,7 +31,7 @@
     border-right: 1px solid #ccc;
     outline: none;
     text-align: center;
-    height: 130px;
+    height: 106px;
     cursor: pointer;
     transition: 0.3s;
     font-size: 17px;
@@ -42,22 +50,54 @@
 /* Style the tab content */
 .tabcontent {
     float: left;
-    padding: 0px 12px;
+    padding: 0px 12px;    
     border: 1px solid #ccc;
     width: 80%;
     border-left: none;       
    
 }
 
+.tableArea{
+	background-color:white;	
+	overflow:auto;
+	height: 500px;
+}
 
-.tableRow td{
-	cursor:pointer;
+h3{
+	margin-top: 30px;
+    margin-bottom: 30px;	
+}
+
+.tableList td:hover{
+	cursor:pointer !important;
+}
+
+.tableList td{
+		text-align:center;
+		
 	
 }
-#tableArea{
-	background-color:white;
-	overflow-y:scroll;
-	height: 500px;
+.tableRow td{
+	
+		overflow:hidden;	
+		width:100px ;
+		text-overflow: ellipsis;
+}
+
+.tableList tr:hover {
+	background:lightgray;
+}
+
+.tableList th {
+	background:#ec3e43;
+	padding-bottom: 20px;
+	padding-top: 20px;
+	color:white;
+	
+}
+
+.tableList input[type=text] {
+	width:80px;
 }
 
 input[type=search]{
@@ -69,6 +109,13 @@ input[type=search]{
 	line-height: 40px;
 	padding: 0 15px;
 	width: 400px;
+}
+
+input[type=date]{
+	height: 40px;
+	width: 200px;	
+	border-radius:2px;
+	border:1px solid lightgray;
 }
 
 select{
@@ -89,5 +136,40 @@ select{
     padding: 0 20px;
     cursor: pointer;
 }
+
+.titles{
+	padding-bottom: 10px;
+    padding-top: 10px;
+    background-color:#ec3e43;
+    color:white;
+    
+    text-align:center;
+	
+}
+
+.profits{
+	width: 35%;
+    height: 30%;
+	background:white;
+	float: left;	
+	margin:0;
+	
+}
+#profitTable{
+	
+ width:64%;
+ float:right;
+  margin:0;
+  padding:0;
+  height: 60%;
+	
+}
+
+#profitTable td{
+	
+ width:80px;
+	
+}
+
 
 
