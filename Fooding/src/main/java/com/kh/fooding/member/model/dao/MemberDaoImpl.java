@@ -2,6 +2,7 @@ package com.kh.fooding.member.model.dao;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Repository;
 
 import com.kh.fooding.member.model.exception.LoginException;
@@ -11,6 +12,8 @@ import com.kh.fooding.member.model.vo.Member;
 public class MemberDaoImpl implements MemberDao{
 	@Autowired
 	private SqlSessionTemplate sqlSession;
+	/*@Autowired
+	private BCryptPasswordEncoder passwordEncoder;*/
 
 	@Override
 	public Member loginCheck(Member m) throws LoginException {
@@ -23,10 +26,11 @@ public class MemberDaoImpl implements MemberDao{
 		if(member == null){
 			throw new LoginException("로그인 실패!");
 		}
-		
 		return member;
 	}
-	
-	
-	
+
+	@Override
+	public int insertMember(Member m, SqlSessionTemplate sqlSession) {
+		return sqlSession.insert("Member.insertMember",m);
+	}
 }

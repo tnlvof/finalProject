@@ -21,4 +21,8 @@ public class MemberServiceImpl implements MemberService{
 		return md.loginCheck(m);
 	}
 
+	@Override
+	public void insertMember(Member m) {
+		int result = md.insertMember(m, sqlSession);
+	}
 }

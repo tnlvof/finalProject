@@ -40,7 +40,7 @@
 
 .sb:active {
 	position: relative;
-	top: 3px
+	top: 3px;
 }
 
 .sb:hover {
@@ -206,8 +206,8 @@ input::placeholder {
 				<input type="text" name="email" placeholder="이메일" required class="a">
 				
 				<!-- 비밀번호 -->
-				<input type="password" name="password" placeholder="비밀번호 (6자이상)" pattern=".{6,}" required class="b"> 
-				<input type="password" name="password2" placeholder="비밀번호 재확인" required class="b">
+				<input type="password" name="userPwd" placeholder="비밀번호 (6자이상)" pattern=".{6,}" required class="b"> 
+				<input type="password" name="userPwd2" placeholder="비밀번호 재확인" required class="b">
 
 				<!-- 생년월일 -->
 				<p class="plz">생년월일과 성별 기입은 선택사항입니다. 개인화된 추천을 받으시려면 입력해주세요.</p>
@@ -217,8 +217,26 @@ input::placeholder {
 				
 				
 				<!-- 성별선택 -->
-				<input type="button" name="gender" value="여자" id="gender_male" class="sb">
-				<input type="button" name="gender" value="남자" id="gender_female" class="sb"> 
+				<input type="button" value="여자" id="gender_male" class="sb">
+				<input type="button" value="남자" id="gender_female" class="sb">
+				<input type="hidden" value="" name="gender" id="gender">
+				<script>
+					/* 생년월일 */	
+					${}
+					
+					/* 성별 스크립트 */
+					$("#gender_male").click(function() {
+						$("#gender_male").css({"border-color":"red","color":"red"});
+						$("#gender").val("여자");
+						$("#gender_female").css({"border-color":"gray","color":"gray"});
+					});
+					$("#gender_female").click(function() {
+						$("#gender_female").css({"border-color":"red","color":"red"});
+						$("#gender").val("남자");
+						$("#gender_male").css({"border-color":"gray","color":"gray"});
+					});
+					
+				</script>
 
 
 				<div class="agre-wrap">
