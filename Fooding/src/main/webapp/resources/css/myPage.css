@@ -33,7 +33,7 @@ a {
 	width: 970px;
 	height: 100%;
 	margin: 0 auto;
-	font-weight: 300;
+	font-weight: 500;
 }
 
 #banner.user>.inner_wrap>.inner {
@@ -351,26 +351,26 @@ button.red, button.red_fill {
     clear: both;
 }
 
-/* 리뷰내용 */
+/* 리뷰, 문의 내용 */
 #content>.list {
     overflow: hidden;
 }
 
-#content.mypage>.body.list.review_wrap>.review {
+#content.mypage>.body.list.review_wrap>.review, #content.mypage>.body.list.question_wrap>.question {
     padding: 0 44px;
     margin: 0;
 }
-.review_wrap>.review {
+.review_wrap>.review, .question_wrap>.question{
     background: #fff;
     padding: 30px 75px;
     margin-bottom: 20px;
 }
-.review_wrap>.review>.place {
+.review_wrap>.review>.place, .question_wrap>.question>.user {
     display: block;
     padding-bottom: 15px;
     overflow: auto;
 }
-.review_wrap>.review>.place>.thumbnail {
+.review_wrap>.review>.place>.thumbnail, .question_wrap>.question>.user>.userProfile {
     float: left;
     width: 45px;
     height: 45px;
@@ -379,21 +379,13 @@ button.red, button.red_fill {
     border-radius: 50%;
     margin-right: 13px;
 }
-.review_wrap>.review>.place>.favorite {
-    float: right;
-    width: 77px;
-    height: 27px;
-    background: 0;
-    border: 1px solid #969696;
-    color: #969696;
-    border-radius: 5px;
-    padding: 0;
-    line-height: 19px;
-}
 .review_wrap>.review>.place>.thumbnail~.name {
     margin-top: 7px;
 }
-.review_wrap>.review>.place>.name {
+.question_wrap>.question>.user>.userProfile~.userName {
+	margin-top: 8px;
+}
+.review_wrap>.review>.place>.name, .question_wrap>.question>.user>.userName {
     color: #323232;
     font-size: 14px;
     font-weight: 600;
@@ -408,6 +400,11 @@ button.red, button.red_fill {
     border-width: 1px 0;
     padding: 17px 0 22px;
 }
+.question_wrap>.question>.body {
+    border: solid #dcdcdc;
+    border-width: 1px 0;
+    padding: 17px 0 35px;
+}
 .review_wrap>.review>.body>.time {
     display: none;
     float: right;
@@ -415,8 +412,19 @@ button.red, button.red_fill {
     color: #969696;
     line-height: 19px;
 }
-.review_wrap>.review>.body>.text {
-    color: #666;
+.question_wrap>.question>.user>.time {
+	display: none;
+    font-size: 10px;
+    color: #969696;
+    line-height: 19px;
+}
+.review_wrap>.review>.body>.text, .question_wrap>.question>.body>.text {
+    line-height: 16px;
+    margin-bottom: 17px;
+    word-wrap: break-word;
+    font-size: 12px;
+}
+.question_wrap>.question>.reply_wrap>.reply>.text {
     line-height: 16px;
     margin-bottom: 17px;
     word-wrap: break-word;
@@ -432,30 +440,73 @@ button.red, button.red_fill {
     margin-right: 6px;
     font-size: 0;
 }
-.review_wrap>.review>.body>.action>.article {
+.review_wrap>.review>.body>.action>.article, .question_wrap>.question>.body>.action>.article {
     float: right;
 }
-.review_wrap>.review>.body>.action>.article>button {
-    font-size: 10px;
+.review_wrap>.review>.body>.action>.article>button, .question_wrap>.question>.body>.action>.article>button {
+    font-size: 11px;
     color: #969696;
     margin-right: 5px;
     border: 0;
     padding: 0;
     background: 0;
 }
-.review_wrap>.review>.body>.action>.article>button {
-    font-size: 10px;
-    color: #969696;
-    margin-right: 5px;
-    border: 0;
-    padding: 0;
-    background: 0;
-}
+
 #content, #content>.body:after, #content>.tab:after, #content_wrap:after {
     content: "";
     display: block;
     clear: both;
 }
+
+
+
+/* 문의 답변 */
+.question>.answer_list, .question_wrap>.question>.write {
+    margin-top: 20px;
+}
+.question>.answer_list.on>.comment, .question>.answer_list>.answer:first-child {
+    display: block;
+}
+.question>.answer_list>.answer {
+    display: none;
+    overflow: hidden;
+    margin-bottom: 15px;
+}
+.question>.answer_list>.answer>.author>.time {
+    display: none;
+    float: right;
+    font-size: 10px;
+    margin-right: 5px;
+}
+.question>.answer_list>.answer>.author>.name {
+    display: inline-block;
+    color: #323232;
+    font-weight: 600;
+    margin-bottom: 6px;
+    font-size:14px;
+}
+.question>.answer_list>.answer>.author>.text {
+    line-height: 14px;
+    font-size: 12px;
+    white-space: pre-wrap;
+}
+.question>.answer_list>.text {
+    line-height: 14px;
+    font-size: 12px;
+    white-space: pre-wrap;
+}
+.question>.answer_list>.answer>.author>.action {
+    text-align: right;
+}
+.question>.answer_list>.answer>.author>.action>button {
+    font-size: 11px;
+    color: #969696;
+    margin-right: 5px;
+    border: 0;
+    padding: 0;
+    background: 0;
+}
+
 
 /* 리뷰 별점 */
 .review_wrap>.review>.body>.grade {
@@ -682,7 +733,7 @@ td:last-child{
 }
 
 td.not-current {
-  color:@calendar-fade-color;;
+	color: white;
 }
 
 td.today {
@@ -732,7 +783,7 @@ thead th {
 
 
 
-
+/* 예약 변경/취소 모달창 */
 div.reserve-popup {
     display: none;
     width: 543px;
@@ -1036,6 +1087,77 @@ div.reserve-popup>div.confirm-btn>button.cancel, div.reserve-popup>div.confirm-b
     margin: 0;
 }
 div.reserve-popup>div.confirm-btn>button.edit {
+    background-color: #fff;
+    border: none;
+    border-radius: 4px;
+    color: #666;
+}
+
+
+/* 취소 또는 삭제 확인 모달 */
+div.confirmBackground {
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+div.confirmBackground, div.noticePopup {
+    z-index: 1000;
+    display: none;
+    position: fixed;
+}
+div.confirmPopup {
+    top: 50%;
+}
+div.confirmNo, div.confirmOk, div.confirmPopup {
+    z-index: 1000;
+    position: fixed;
+    border-radius: 3px;
+    left: 50%;
+    display: none;
+    font-size: 13.1px;
+}
+div.confirmOk, div.confirmPopup, div.noticePopup {
+    background-color: #666;
+    opacity:0.6;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#CB000000, endColorstr=#CB000000);
+}
+div.confirmNo {
+    background-color: #666;
+    opacity:0.6;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#CB000000, endColorstr=#CB000000);
+    top: 50%;
+}
+div.confirmNo, div.confirmOk {
+    color: #fff;
+    padding: 8px 0;
+    text-align: center;
+    cursor: pointer;
+}
+div.confirmOk {
+    top: 50%;
+}
+div.confirmMessage{
+	color:#fff
+}
+
+
+/* 문의사항 폼 */
+.submit-btn, .reset-btn {
+    font-size: 14px;
+    width: 293.5px;
+    height: 40px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    margin: 0;
+}
+.submit-btn {
+    background-color: #ff5a5f;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+}
+.reset-btn {
     background-color: #fff;
     border: none;
     border-radius: 4px;

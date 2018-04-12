@@ -13,14 +13,14 @@
 	<div id="content_wrap">
 		<div id="content" class="mypage">
 			<ul class="tab">
-				<li class="item selected"><a href="#">예약</a></li>
+				<li class="item selected"><a href="/fooding/myPage.jsp">예약</a></li>
 				<!-- <li class="item "><a href="#">티켓</a></li> -->
-				<li class="item "><a href="#">리뷰</a></li>
-				<li class="item "><a href="#">1:1 문의</a></li>
+				<li class="item "><a href="/fooding/myPageReview.jsp">리뷰</a></li>
+				<li class="item "><a href="/fooding/myPageQuestions.jsp">1:1 문의</a></li>
 			</ul>
 			<div class="body empty">
 				<div class="filter">
-					<a href="" class="">내가 쓴 리뷰</a> <a href="" class="">찜한 리뷰</a>
+					<!-- <a href="" class="">내가 쓴 리뷰</a> <a href="" class="">찜한 리뷰</a> -->
 				</div>
 				<!-- 리뷰가 없을 때 화면 -->
 				<div class="blank">
@@ -31,15 +31,14 @@
 				</div>
 			</div>
 			<div class="body review list review_wrap">
-				<div class="review" data-id="123652" data-place="28883"
-					data-place-name="브라더후드 키친">
+				<div class="review"	data-place-name="브라더후드 키친">
 					<a class="place" href=""> <span class="thumbnail"
 						style="display: block; background-image: url(&quot;http://c2.poing.co.kr/PIMAGE-default/5746a03f668a484de2000044.png&quot;);"></span>
 						<p class="name">브라더후드 키친</p>
 						<p class="info">강남역 · 술집</p>
 					</a>
 					<div class="body">
-						<div class="time  loaded" style="display: block;">몇초 전</div>
+						<div class="time  loaded" style="display: block;">2018-04-12</div>
 						<div class="grade">
 							<i class="icon star medium odd active" data-id="123652"
 								data-index="0" style=""></i><i
@@ -73,12 +72,25 @@
 							시럽이랑 치킨조합은 처음이었는데 너무 잘어울려서 깜짝놀랐어요..! 다음에 다른 메뉴도 먹어보고싶어요~~~~~</div>
 						<div class="action">
 							<div class="article">
-								<button class="edit"
-									data-type="poing.reviews.actions.auth.modify2" data-id="123652"
-									tabindex="-1">수정하기</button>
-								<button class="delete"
-									data-type="poing.reviews.actions.auth.remove" data-id="123652"
-									tabindex="-1">삭제하기</button>
+								<button class="edit" tabindex="-1">수정하기</button>
+								<button class="delete" tabindex="-1" onclick="document.getElementById('reviewDelete').style.display='block'">삭제하기</button>
+								<div id="reviewDelete" class="w3-modal">
+									<div class="w3-modal-content">
+										<div class="w3-container">
+											<div class="confirmBackground" style="display: block;"></div>
+											<div id="default" class="confirmPopup"
+												style="padding: 20px 40px; margin-left: -110.5px; margin-top: -26.5px; display: block;">
+												<div class="confirmMessage">리뷰를 삭제하시겠습니까?</div>
+											</div>
+											<div class="confirmNo"
+												style="margin-left: -110.5px; margin-top: 28.5px; width: 108.5px; display: block;"
+												onclick="document.getElementById('reviewDelete').style.display='none'">아니오</div>
+											<div class="confirmOk"
+												style="margin-left: 1px; margin-top: 28.5px; width: 108.5px; display: block;">예</div>
+
+										</div>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
