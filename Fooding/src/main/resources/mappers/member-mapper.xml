@@ -37,6 +37,8 @@
    	  	 INSERT INTO MEMBER 
     	  VALUES(SEQ_MID.NEXTVAL, #{userId} , #{userPwd} , #{userName} , #{birth} , #{phone} , #{email} , #{address}, '일반' , DEFAULT, #{repCount}, #{bizNo}, #{bizName}, ${bookCount}, #{gender}, SYSDATE)
  	</insert>
-	
+	<select id="selectMemberList" resultMap="memberResultSet" parameterType="Member" >
+		 SELECT * FROM MEMBER 
+ 	 </select>
 	
 </mapper>
