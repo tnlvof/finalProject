@@ -20,7 +20,7 @@
 			</ul>
 			<div class="body empty">
 				<div class="filter">
-					<!-- <a href="" class="">내가 쓴 리뷰</a> <a href="" class="">찜한 리뷰</a> -->
+					<a>&nbsp</a>
 				</div>
 				<!-- 리뷰가 없을 때 화면 -->
 				<div class="blank">

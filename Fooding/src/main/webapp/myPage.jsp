@@ -126,19 +126,6 @@
 												12:00</span> <span class="count">6명</span>
 										</div>
 
-										<div class="popup-row confirm" style="display: none;">
-											<div class="box">
-												<i class="icon person"></i> <input id="reserve_name"
-													type="text" class="name" placeholder="성함을 입력해주세요.">
-											</div>
-
-											<div class="box">
-												<i class="icon phone"></i> <input id="reserve_phone"
-													type="text" class="phone" placeholder="전화번호 입력해주세요.">
-											</div>
-
-										</div>
-
 										<div class="popup-row comment">
 											<textarea id="reserve_comment" rows="5"
 												placeholder="요청사항을 적어주세요." maxlength="50"></textarea>

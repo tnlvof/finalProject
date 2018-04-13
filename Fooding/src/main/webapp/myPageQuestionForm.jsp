@@ -24,12 +24,16 @@
 				</div>
 			</div>
 			<div class="body question form question_wrap">
-				<form>
-					<p class="userName">나푸딩</p>
-					<textarea></textarea>
-					<button type="submit" class="submit-btn">등록하기</button>
-					<button type="reset" class="reset-btn">취소</button>
-				</form>
+				<div class="question">
+					<div class="question_header">
+					1:1 문의하기
+					</div>
+					<form>
+						<textarea class="text" placeholder="문의사항을 적어주세요."></textarea>
+						<button type="submit" class="submit-btn">등록하기</button>
+						<button type="reset" class="reset-btn" onclick="location.href='/fooding/myPageQuestions.jsp'">취소</button>
+					</form>
+				</div>
 			</div>
 		</div>
 		<jsp:include page="WEB-INF/views/myPage/myPageSidebar.jsp" />
