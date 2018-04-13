@@ -706,7 +706,7 @@ $('#checkAll3').click(function() {
 
 $('#checkAll4').click(function() {
     var c = this.checked;
-    $('.pftCheck').prop('checked',c);
+    $('.pftCheck').prop('checked', c);
 });
 
 
