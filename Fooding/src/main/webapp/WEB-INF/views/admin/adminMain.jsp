@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <meta charset="UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -41,10 +42,39 @@
   		<option>이메일</option>
   		<option>주소</option>
   	</select>
-  	<input type="search">
-  	<button type="submit" class="searchBtn">검색</button>
+  	<input type="search" id="memberSearchBar">
+  	<button type="submit" class="searchBtn" id="searchBtn">검색</button>
   	
-  	<button class="searchBtn">수정</button>
+  	<button class="searchBtn" id="editBtn" >수정</button>
+  	<!--  -->
+  	<script type="text/javascript">
+  		$(function(){
+  			
+  			//검색 버튼
+  			$("#searchBtn").click(function(){
+  				var keyword = $("#memberSearchBar").val();  				
+  				console.log(keyword);
+  				if(keyword==""){
+  					alert('검색어를 입력해주세요.');
+  				}
+  				
+  			});
+  			
+  			//수정 버튼
+  			$("#editBtn").click(function(){  				
+  				if(! $(".memberCheck").is(":checked")){
+  					alert("수정할 회원을 선택해주세요.");
+  				}else{
+  					location.href='showEditForm.adm';
+  				}
+  			});
+  			
+  		});
+  		
+  		
+  		
+  	</script>
+  	
   	<br><br>
  	<div class="tableArea">
  	<table class="tableList" align="center" >
@@ -62,139 +92,34 @@
  	<th style="width:100px; text-align:center;height:20px;font-weight:bold;">탈퇴여부</th> 	
  	
  	</tr>
- 	
+ 	<!-- private String userId;
+	private String userPwd;
+	private String userName;
+	private String birth;
+	private String gender;
+	private String phone;
+	private String email;
+	private String address;
+	private String mCode;
+	private String status;
+	private Date enrollDate;
+	private int repCount;
+	private int bizNo;
+	private String bizName;
+	private int bookCount; -->
  	<tr class="tableRow">
  		<td><input type="checkbox" class="memberCheck"></td>
- 		 <td style="padding:10px;">tnlvof</td>
- 		 <td >이종수</td>
- 		 <td >550101</td>
- 		 <td >010-1234-5675</td>
- 		 <td >2glei@kh.or.kr</td>
- 		 <td >노량진</td>
- 		 <td>0</td>
- 		 <td >15</td>
- 		 <td >N</td>
+ 		 <td style="padding:10px;">${userId }</td>
+ 		 <td >${userName }</td>
+ 		 <td >${birth }</td>
+ 		 <td >${phone} </td>
+ 		 <td >${email }</td>
+ 		 <td >${address}</td>
+ 		 <td>${repCount }</td>
+ 		 <td >${bookCount }</td>
+ 		 <td >${status }</td>
  	</tr>
- 		<tr class="tableRow">
- 		<td><input type="checkbox"  class="memberCheck"></td>
- 		 <td style="padding:10px;">tnlvof</td>
- 		 <td >이종수</td>
- 		 <td >550101</td>
- 		 <td >010-1234-5675</td>
- 		 <td >2glei@kh.or.kr</td>
- 		 <td >노량진</td>
- 		 <td>0</td>
- 		 <td >15</td>
- 		 <td >N</td>
- 	</tr>
- 		<tr class="tableRow">
- 		<td><input type="checkbox" class="memberCheck"></td>
- 		 <td style="padding:10px;">tnlvof</td>
- 		 <td >이종수</td>
- 		 <td >550101</td>
- 		 <td >010-1234-5675</td>
- 		 <td >2glei@kh.or.kr</td>
- 		 <td >노량진</td>
- 		 <td>0</td>
- 		 <td >15</td>
- 		 <td >N</td>
- 	</tr>
- 		<tr class="tableRow">
- 		<td><input type="checkbox" class="memberCheck"></td>
- 		 <td style="padding:10px;">tnlvof</td>
- 		 <td >이종수</td>
- 		 <td >550101</td>
- 		 <td >010-1234-5675</td>
- 		 <td >2glei@kh.or.kr</td>
- 		 <td >노량진</td>
- 		 <td>0</td>
- 		 <td >15</td>
- 		 <td >N</td>
- 	</tr>
- 		<tr class="tableRow">
- 		<td><input type="checkbox" class="memberCheck"></td>
- 		 <td style="padding:10px;">tnlvof</td>
- 		 <td >이종수</td>
- 		 <td >550101</td>
- 		 <td >010-1234-5675</td>
- 		 <td >2glei@kh.or.kr</td>
- 		 <td >노량진</td>
- 		 <td>0</td>
- 		 <td >15</td>
- 		 <td >N</td>
- 	</tr>
- 		<tr class="tableRow">
- 		<td><input type="checkbox" class="memberCheck"></td>
- 		 <td style="padding:10px;">tnlvof</td>
- 		 <td >이종수</td>
- 		 <td >550101</td>
- 		 <td >010-1234-5675</td>
- 		 <td >2glei@kh.or.kr</td>
- 		 <td >노량진</td>
- 		 <td>0</td>
- 		 <td >15</td>
- 		 <td >N</td>
- 	</tr>
- 		<tr class="tableRow">
- 		<td><input type="checkbox" class="memberCheck"></td>
- 		 <td style="padding:10px;">tnlvof</td>
- 		 <td >이종수</td>
- 		 <td >550101</td>
- 		 <td >010-1234-5675</td>
- 		 <td >2glei@kh.or.kr</td>
- 		 <td >노량진</td>
- 		 <td>0</td>
- 		 <td >15</td>
- 		 <td >N</td>
- 	</tr>
- 		<tr class="tableRow">
- 		<td><input type="checkbox" class="memberCheck"></td>
- 		 <td style="padding:10px;">tnlvof</td>
- 		 <td >이종수</td>
- 		 <td >550101</td>
- 		 <td >010-1234-5675</td>
- 		 <td >2glei@kh.or.kr</td>
- 		 <td >노량진</td>
- 		 <td>0</td>
- 		 <td >15</td>
- 		 <td >N</td>
- 	</tr>
- 		<tr class="tableRow">
- 		<td><input type="checkbox" class="memberCheck"></td>
- 		 <td style="padding:10px;">tnlvof</td>
- 		 <td >이종수</td>
- 		 <td >550101</td>
- 		 <td >010-1234-5675</td>
- 		 <td >2glei@kh.or.kr</td>
- 		 <td >노량진</td>
- 		 <td>0</td>
- 		 <td >15</td>
- 		 <td >N</td>
- 	</tr>
- 		<tr class="tableRow">
- 		<td><input type="checkbox" class="memberCheck"></td>
- 		 <td style="padding:10px;">tnlvof</td>
- 		 <td >이종수</td>
- 		 <td >550101</td>
- 		 <td >010-1234-5675</td>
- 		 <td >2glei@kh.or.kr</td>
- 		 <td >노량진</td>
- 		 <td>0</td>
- 		 <td >15</td>
- 		 <td >N</td>
- 	</tr>
- 		<tr class="tableRow">
- 		<td><input type="checkbox" class="memberCheck"></td>
- 		 <td style="padding:10px;">tnlvof</td>
- 		 <td >이종수</td>
- 		 <td >550101</td>
- 		 <td >010-1234-5675</td>
- 		 <td >2glei@kh.or.kr</td>
- 		 <td >노량진</td>
- 		 <td>0</td>
- 		 <td >15</td>
- 		 <td >N</td>
- 	</tr>
+ 		
  	
  	
  	</table>
@@ -727,7 +652,7 @@ function getCue(){
 
 <script>
 //탭 메뉴 설정
-function openTab(evt, cityName) {
+function openTab(evt, tabName) {
     var i, tabcontent, tablinks;
     tabcontent = document.getElementsByClassName("tabcontent");
     for (i = 0; i < tabcontent.length; i++) {
@@ -737,8 +662,24 @@ function openTab(evt, cityName) {
     for (i = 0; i < tablinks.length; i++) {
         tablinks[i].className = tablinks[i].className.replace(" active", "");
     }
-    document.getElementById(cityName).style.display = "block";
+    document.getElementById(tabName).style.display = "block";
     evt.currentTarget.className += " active";
+    
+    
+    if(tabName=='memberList'){
+    	
+    	console.log(tabName);
+    	$.ajax({
+    		  method: "POST",
+    		  url: "selectMemberList.adm"
+    		  
+    		})
+    		  .done(function( msg ) {
+    		    alert( "Data Saved: " + msg );
+    		});
+    	
+    }
+    
 }
 
 // Get the element with id="defaultOpen" and click on it
