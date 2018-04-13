@@ -43,7 +43,7 @@ public class MemberDaoImpl implements MemberDao{
 		
 		ArrayList<Member> list =null;
 		
-		list=(ArrayList) sqlSession.selectList("Member.selectMemberList");
+		list = (ArrayList) sqlSession.selectList("Member.selectMemberList");
 					
 		
 		System.out.println("list DAO: " + list);

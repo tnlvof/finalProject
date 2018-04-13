@@ -37,7 +37,7 @@ public class AdminController {
 	// 멤버 수정 페이지로 전환
 	@RequestMapping(value = "showEditForm.adm", method = RequestMethod.GET)	
 	public String showEditForm() {
-		return "admin/memberEdit";
+		return "admin/memberEdit" ;
 	}
 	
 	
