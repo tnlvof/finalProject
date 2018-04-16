@@ -13,82 +13,82 @@
 </head>
 
 <body>
-   <c:set var="contextPath" value="${ pageContext.servletContext.contextPath }" scope="application"/>
-   
-   <div id="header" class="header">
-      <div class="wrap">
-         <h1 class="logo"><a href="#">Fooding</a></h1>
-         <form action="" method="post">
-            <input type="search" name="search" placeholder="지역,음식 종류 등 검색하세요">
-            <button type="submit" class="srch-btn">검색</button>
-         </form>
+	<c:set var="contextPath" value="${ pageContext.servletContext.contextPath }" scope="application"/>
+	
+	<div id="header" class="header">
+		<div class="wrap">
+			<h1 class="logo" onclick="location.href='goMain.me'">Fooding</h1>
+			<form action="" method="post">
+				<input type="search" name="search" placeholder="지역,음식 종류 등 검색하세요">
+				<button type="submit" class="srch-btn">검색</button>
+			</form>
          
          <div class="loginArea">
-            <c:if test="${ empty loginUser }">
-               <ul>
-                  <li onclick="document.getElementById('id01').style.display='block'">로그인</li>
-                  <li> &nbsp; | &nbsp; </li>
-                  <li>회원가입</li>
-               </ul>
-         </c:if>
-         
-         <c:if test="${ !empty loginUser }">
-               <div class="dropdown" style="display: block;">
-                  <div class="user-profile"><img src="/fooding/resources/images/common/no-image.png"></div>
-                  
-                  <ul class="dropdown-content">
-                     <li><a href="#">예약</a></li>
-                     <li><a href="#">티켓</a></li>
-                     <li><a href="#">결제</a></li>
-                     <li><a href="#">설정</a></li>
-                     <li><a href="#">로그아웃</a></li>
-                  </ul>
-               </div>
-               <!-- dropdown -->
-         </c:if>
+         	<c:if test="${ empty loginUser }">
+	            <ul>
+	               <li onclick="document.getElementById('id01').style.display='block'">로그인</li>
+	               <li> &nbsp; | &nbsp; </li>
+	               <li onclick="document.getElementById('id01').style.display='block'">회원가입</li>
+	            </ul>
+			</c:if>
+			
+			<c:if test="${ !empty loginUser }">
+	            <div class="dropdown" style="display: block;">
+	               <div class="user-profile"><img src="/fooding/resources/images/common/no-image.png"></div>
+	               <ul class="dropdown-content">
+	                  <li>예약</li>
+	                  <li>티켓</li>
+	                  <li>결제</li>
+	                  <li>설정</li>
+	                  <li onclick="location.href='logout.me'">로그아웃</li>
+	               </ul>
+	            </div>
+	            <!-- dropdown -->
+			</c:if>
          </div>
          <!-- loginArea -->
       </div>
-      <!-- wrap -->         
+      <!-- wrap -->			
 
-      
-      <div class="gnb">
-         <ul>
-            <li>이벤트</li>
-            <li>추천테마</li>
-            <li>리뷰</li>
-            <li>매거진</li>
-         </ul>
-      </div>
-      <!-- gnb -->
-   </div>
-   <!-- header -->
-   
-   <div id="id01" class="w3-modal">
+		
+		<div class="gnb">
+			<ul>
+				<li>이벤트</li>
+				<li>추천테마</li>
+				<li>리뷰</li>
+				<li>매거진</li>
+			</ul>
+		</div>
+		<!-- gnb -->
+	</div>
+	<!-- header -->
+	
+	<div id="id01" class="w3-modal">
 
       <div id="sign">
-         <img src="${contextPath }/resources/images/common/closeButton.png" width="15" height="15" align="right" class="xBtn"
-         onclick="document.getElementById('id01').style.display='none'">
-      <div class="body">
-         <div class="login active">
-            <p id="title">로그인</p>
+      	<img src="${contextPath }/resources/images/common/closeButton.png" width="15" height="15" align="right" class="xBtn"
+      	onclick="document.getElementById('id01').style.display='none'">
+		<div class="body">
+			<div class="login active">
+				<p id="title">로그인</p>
 
-            <form action="login.me" method="post">
-               <input type="text" id="userId" name="userId" placeholder="아이디" required="" class="input"> 
-               <input type="password" name="userPwd" placeholder="비밀번호" required="" class="input">
+				<form action="login.me" method="post">
+					<input type="text" id="userId" name="userId" placeholder="아이디" required="" class="input"> 
+					<input type="password" name="userPwd" placeholder="비밀번호" required="" class="input">
 
-               <button type="submit" id="loginBtn" class="button loginBtn">로그인</button>
-            </form>
-            <p class="forgot">
-               비밀번호가 기억나지 않으세요? <a>재설정하기</a>
-            </p>
+					<button type="submit" id="loginBtn" class="button loginBtn">로그인</button>
+				</form>
+				<p class="forgot">
+					비밀번호가 기억나지 않으세요? <a>재설정하기</a>
+				</p>
 
-            <hr class="hr">
-            <button id="joinBtn" type="button" class="change" onclick="location.href='goMemberJoin.me'">일반 회원가입</button>
-            <button id="joinBtn" type="button" class="change" onclick="location.href='goStoreJoin.me'">업체 회원가입</button>
-         </div><!-- login -->
-      </div>
-   </div>
-   <!-- login_body -->
+				<hr class="hr">
+				<button id="joinBtn" type="button" class="change" onclick="location.href='goMemberJoin.me'">일반 회원가입</button>
+				<button id="joinBtn" type="button" class="change" onclick="location.href='goStoreJoin.me'">업체 회원가입</button>
+			</div><!-- login -->
+		</div>
+	</div>
+	<!-- login_body -->
 
 </div>
+

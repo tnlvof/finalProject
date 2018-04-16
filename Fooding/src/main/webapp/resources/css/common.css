@@ -1,5 +1,7 @@
 @charset "UTF-8";
 
+/* mobile version */
+
 @font-face {
  font-family: 'NanumBarunGothic';
  font-style: normal;
@@ -26,6 +28,7 @@
 
 .nanumbarungothic *  {
    font-family: 'NanumBarunGothic', sans-serif;
+
 }
 
 
@@ -63,9 +66,7 @@ li span {
 .fl{ float: left; }
 .fr{ float: right; }
 
-
-
-/* header */
+/* header*/
 .header{
    width: 100%;
    background: #FF5A5F;

@@ -25,7 +25,7 @@
 #placesList .item .info{padding:10px 0 10px 55px;}
 #placesList .info .gray {color:#8a8a8a;}
 #placesList .info .jibun {padding-left:26px;background:url(http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_jibun.png) no-repeat;}
-#placesList .info .tel {color:#009900;}
+#placesList .info .tel {color:#009900; }
 #placesList .item .markerbg {float:left;position:absolute;width:36px; height:37px;margin:10px 0 0 10px;background:url(http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png) no-repeat;}
 #placesList .item .marker_1 {background-position: 0 -10px;}
 #placesList .item .marker_2 {background-position: 0 -56px;}
@@ -56,25 +56,6 @@ body{
 	height:850px;
 	width:1000px;
   	
-}
-
-.headerPic{
-    position: relative;
-    overflow: hidden;
-    width: 100%;    
-    height:100%;
-    background-size: cover;
-    background-position: center center;
-}
-
-
-.centered {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    color:white;
-    font-size:30px;
-    transform: translate(-50%, -50%);
 }
 
 .result{
@@ -138,16 +119,22 @@ margin-left:10px;
 </style>
 </head>
 <body>
-<jsp:include page="/WEB-INF/views/common/menubar.jsp"></jsp:include>
+<!-- header -->
+<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 
-<div id="container">
 
-<img alt="" src="resources/images/restaurants/sushi.png" class="headerPic">
- <div class="centered" align="center">푸딩이 추천하는 일식 맛집입니다. <br><br> 정갈한 일식으로 가벼운 외식하세요. </div>
+<!-- css or js파일 연결 시키는 곳 -->
+
+<div class="container" >
+
+<div id="map" style="width:100%;height:350px;"></div>
+
 
 <hr>
 
 <br><br>
+<h1 align="center">이태원 맛집 검색 결과입니다.</h1>
+
 
 <div id="resultArea">
 	<div class="result">
@@ -167,7 +154,8 @@ margin-left:10px;
 		 <p>멕시코 음식이 한국에 온다면? 인기메뉴인 김치 치즈 프라이를 꼭 드셔보세요</p>
 		 </div>
 	
-	
+		
+				 		
 		<div class="btns">		
 		<button class="buttons" >예약하기</button>
 		<button class="buttons" >리뷰하기</button>
@@ -330,6 +318,92 @@ margin-left:10px;
 
 </div>
 
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=82eb499cd9c011a78d1f32d273f9d2bd&libraries=services"></script>
+<div id="map" style="width:100%;height:350px;"></div>
+<script>
+// 마커를 클릭하면 장소명을 표출할 인포윈도우 입니다
+var infowindow = new daum.maps.InfoWindow({zIndex:1});
+
+var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+    mapOption = {
+        center: new daum.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
+        level: 6 // 지도의 확대 레벨
+    };  
+
+// 지도를 생성합니다    
+var map = new daum.maps.Map(mapContainer, mapOption); 
+
+// 장소 검색 객체를 생성합니다
+var ps = new daum.maps.services.Places(); 
+
+// 키워드로 장소를 검색합니다
+ps.keywordSearch('이태원역', placesSearchCB); 
+
+// 키워드 검색 완료 시 호출되는 콜백함수 입니다
+function placesSearchCB (data, status, pagination) {
+    if (status === daum.maps.services.Status.OK) {
+
+        // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
+        // LatLngBounds 객체에 좌표를 추가합니다
+        var bounds = new daum.maps.LatLngBounds();
+
+       
+       //  displayMarker(data[0]);    
+         bounds.extend(new daum.maps.LatLng(data[0].y, data[0].x));
+        
+       
+         // 식당 좌표 표시
+         var places = new daum.maps.services.Places();
+
+         var callback = function(result, status) {
+             if (status === daum.maps.services.Status.OK) {
+                 
+                 displayMarker(result[0]);    
+             }
+         };
+			
+         
+         var array = ['마이 타이', '젤렌', '타르틴'];
+         
+         for(var i =0; i<array.length;i++){
+        	 places.keywordSearch(array[i], callback);	 
+         }
+         
+         
+         
+         
+         
+         
+         
+        // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
+        map.setBounds(bounds);
+        
+    } 
+}
+
+
+
+
+// 지도에 마커를 표시하는 함수입니다
+ function displayMarker(place) {
+    
+    // 마커를 생성하고 지도에 표시합니다
+    var marker = new daum.maps.Marker({
+        map: map,
+        position: new daum.maps.LatLng(place.y, place.x) 
+    });
+
+    // 마커에 클릭이벤트를 등록합니다
+    daum.maps.event.addListener(marker, 'click', function() {
+        // 마커를 클릭하면 장소명이 인포윈도우에 표출됩니다
+        infowindow.setContent('<div style="padding:5px;font-size:12px;">' + place.place_name + '</div>');
+        infowindow.open(map, marker);
+    });
+} 
+</script>
+
+<!-- footer -->
+<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 
 </body>
 </html>

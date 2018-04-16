@@ -4,20 +4,23 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="Member">
 	<resultMap id="memberResultSet" type="Member">
-		<id property="mid" column="MID"/>
-		<result property="userId" column="USER_ID"/>
-		<result property="userPwd" column="USER_PWD"/>
-		<result property="userName" column="USER_NAME"/>
-		<result property="email" column="EMAIL"/>
-		<result property="birthDay" column="BIRTHDAY"/>
-		<result property="gender" column="GENDER"/>
-		<result property="phone" column="PHONE"/>
-		<result property="address" column="ADDRESS"/>
-		<result property="enrollDate" column="ENROLL_DATE"/>
-		<result property="modifyDate" column="MODIFY_DATE"/>
-		<result property="status" column="STATUS"/>
-	</resultMap>
-	
+		<id property="mid" column="MID"/>                                               
+		<result property="userId" column="USER_ID"/>                                    
+		<result property="userPwd" column="USER_PWD"/>                                  
+		<result property="userName" column="USER_NAME"/>                                
+		<result property="email" column="EMAIL"/>                                       
+		<result property="birth" column="BIRTH"/>                                       
+		<result property="gender" column="GENDER"/>                                     
+		<result property="phone" column="PHONE"/>                                       
+		<result property="address" column="ADDRESS"/>                                   
+		<result property="mCode" column="MCODE"/>                                       
+		<result property="enrollDate" column="ENROLL_DATE"/>                            
+		<result property="repCount" column="REP_COUNT"/>                                
+		<result property="bizNo" column="BIZ_NO"/>                                   
+		<result property="bizName" column="BIZ_NAME"/>                               
+		<result property="bookCount" column="BOOK_COUNT"/>                              
+	</resultMap>                                                                        
+	                                                                                    
 	<select id="loginCheck" resultMap="memberResultSet" parameterType="Member">
 		<!-- SELECT * FROM MEMBER 
 		WHERE USER_ID = #{userId} 
@@ -32,7 +35,11 @@
 	
 	<insert id="insertMember">
    	  	 INSERT INTO MEMBER 
-    	  VALUES(SEQ_MID.NEXTVAL, #{userId} , #{userPwd} , #{userName} , #{email} , #{birthDay} , #{gender} , #{phone}, #{address}, SYSDATE , SYSDATE, DEFAULT)
+    	  VALUES(SEQ_MID.NEXTVAL, #{userId} , #{userPwd} , #{userName} , #{birth} , #{phone} , #{email} , #{address}, '일반' , DEFAULT, #{repCount}, #{bizNo}, #{bizName}, ${bookCount}, #{gender}, SYSDATE)
  	</insert>
+	
+	<select id="selectMemberList" resultMap="memberResultSet" parameterType="Member" >
+		 SELECT * FROM MEMBER 
+ 	 </select>
 	
 </mapper>
