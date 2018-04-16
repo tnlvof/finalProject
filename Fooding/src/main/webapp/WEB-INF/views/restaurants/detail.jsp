@@ -3,7 +3,7 @@
 <meta charset="UTF-8">
 
 <!-- header -->
-<jsp:include page="WEB-INF/views/common/header.jsp"/>
+<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 
 <!-- css or js파일 연결 시키는 곳 -->
 <link rel="stylesheet" href="/fooding/resources/css/restaurants/detail.css">
@@ -93,101 +93,46 @@
 			<ul class="tab">
 				<li class="tablinks active" onclick="openTab(event, 'tabInfo')">정보</li>
 				<li class="tablinks" onclick="openTab(event, 'tabPhoto')">포토</li>
-				<li class="tablinks" onclick="openTab(event, 'tabReview')">리뷰</li>
+				<li id="reviewBtn"class="tablinks" onclick="openTab(event, 'tabReview')">리뷰</li>
 				<li class="tablinks" onclick="openTab(event, 'tabMenu')">메뉴</li>
+				<li class="tablinks" onclick="openTab(event, 'tabCoupon')">쿠폰</li>
 				<li class="tablinks" onclick="openTab(event, 'tabMap')">지도</li>
 			</ul>
 			<!-- tab -->
 			
 			<div id="tabInfo" class="tabcontent" style="display:block">
-				<div class="con-box">
-					<h4><span class="tip">Tip</span></h4>
-					<ul>
-						<li>- 선택이 불가한 날짜는 만석, 대관, 매장 휴무일 등으로 예약이 불가능한 날입니다.</li>
-						<li>- 성인 / 어린이 구분하여 요청사항에 기입 부탁드립니다.</li>
-						<li>- 스시 바(Bar)는 오미키세 이용시에만 가능합니다<br>
-						 	<span class="">
-						 		&nbsp; 스시 기본: Lunch \77,000 | Dinner \121,000 <br>
-						 		&nbsp; 사시미 기본: Lunch \110,000 | Dinner \161,000 (1인 기준)
-						 	</span>
-						</li>
-					</ul>
-				</div>
-				<!-- con-box  -->
-				
-				<div class="con-box">
-					<h4>한 줄 설명</h4>
-					<p>그랜드 앰배서더 서울 풀만의 일식 레스토랑</p>
-				</div>
-				<!-- con-box  -->
-				
-				<div class="con-box">
-					<div class="leftCon">
-						<h4>음식 종류</h4>
-						<p>일식</p>
-					</div>
-					<!-- leftCon -->
-					<div class="rightCon">
-						<h4>예산</h4>
-						<p>160,000원 이상 (2인 기준)</p>
-					</div>
-					<!-- rightCon -->
-				</div>
-				<!-- con-box  -->
-				
-				<div class="con-box">
-					<div class="leftCon">
-						<h4>테이블</h4>
-						<p>룸 테이블, 바 테이블, 홀 테이블</p>
-					</div>
-					<!-- leftCon -->
-					<div class="rightCon">
-						<h4>부가정보</h4>
-						<p>
-							코르키지가 가능한<br>
-							베이비 시트가 준비되어 있는<br>
-							런치메뉴가 있는 <br>
-							룸이 준비되어 있는<br>
-							단체석이 있는
-						</p>
-					</div>
-					<!-- rightCon -->
-				</div>
-				<!-- con-box  -->
-				
-				<div class="con-box">
-					<h4>판매 주류</h4>
-					<p>와인, 양주, 일본술, 맥주, 소주 등</p>
-				</div>
-				<!-- con-box  -->
-				
-				<div class="con-box">
-					<button type="button" class="ask-btn">정보를 수정해 주세요.</button>
-					
-					<!-- 버튼 눌렀을 때 토글로 밑에 수정창 나올 수 있도록 -->
-					<div class="ask-form">
-						
-					</div>
-					<!-- ask-form -->
-				</div>
-				<!-- con-box  -->
+				<jsp:include page="tab/tabInfo.jsp"/>
 			</div>
 			<!-- tabInfo -->
 			
 			<div id="tabPhoto" class="tabcontent">
-				
+				<jsp:include page="tab/tabPhoto.jsp"/>
 			</div>
 			<!-- tabPhoto -->
 			
-			<div id="tabReview" class="tabcontent">
+			<div id="tabReview" class="tabcontent tabReview">
+				<!-- 리뷰 작성 폼 (탭 메뉴 상단에 위치) -->
+				<jsp:include page="tab/tabReviewForm.jsp"/>
 			</div>
 			<!-- tabReview -->
 			
+			<!-- 리뷰가 있을 때 없을 때 보여지는 곳 -->
+			<jsp:include page="tab/tabReviews.jsp"/>
+			
+		
+			
 			<div id="tabMenu" class="tabcontent">
+				<jsp:include page="tab/tabMenu.jsp"/>
 			</div>
 			<!-- tabMenu -->
 			
+			<div id="tabCoupon" class="tabcontent">
+				<jsp:include page="tab/tabCoupon.jsp"/>
+			</div>
+			<!-- tabCoupon -->
+			
 			<div id="tabMap" class="tabcontent">
+				<jsp:include page="tab/tabMap.jsp"/>
 			</div>
 			<!-- tabMap -->
 		</div>
@@ -198,23 +143,9 @@
 <!-- container -->
 
 
-<script type="text/javascript">
-//tab
-function openTab(evt, tabName) {
-   var i, tabcontent, tablinks;
-   tabcontent = document.getElementsByClassName("tabcontent");
-   for (i = 0; i < tabcontent.length; i++) {
-       tabcontent[i].style.display = "none";
-   }
-   tablinks = document.getElementsByClassName("tablinks");
-   for (i = 0; i < tablinks.length; i++) {
-       tablinks[i].className = tablinks[i].className.replace(" active", "");
-   }
-   document.getElementById(tabName).style.display = "block";
-   evt.currentTarget.className += " active";
-}
-</script>
+<!-- detail에 있는 javascript -->
+<script type="text/javascript" src="/fooding/resources/js/detail.js"></script>
 
 
 <!-- footer -->
-<jsp:include page="WEB-INF/views/common/footer.jsp"/>
+<jsp:include page="/WEB-INF/views/common/footer.jsp"/>

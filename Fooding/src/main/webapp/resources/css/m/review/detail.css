@@ -1,0 +1,149 @@
+@charset "UTF-8";
+
+/* header */
+.header{
+	width: 100%;
+	max-width: 640px;
+	box-sizing: border-box;
+	position: fixed;
+}
+#go-back{
+	position: absolute;
+	left: 3%;
+	color: #fff;
+	font-weight: bold;
+	font-size: 16px;
+}
+.warn{
+    position: absolute;
+    right: 3%;
+    text-indent: -9999px;
+    top: 0;
+    margin-top: 3%;
+    background-image: url(/fooding/resources/images/common/icon-warn.png);
+    background-size: cover;
+    width: 21px;
+    height: 21px;
+}
+
+/* review detail */
+	/* modal */
+.w3-modal {
+	z-index: 3;
+	display: none;
+	padding-top: 100px;
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	background-color: rgb(0, 0, 0);
+	background-color: rgba(0, 0, 0, 0.4)
+}
+
+.w3-modal-content {
+	margin: auto;
+	background-color: #fff;
+	position: relative;
+	padding: 10% 0 0 0;
+	outline: 0;
+	width: 600px;
+	border-radius: 5px;
+	text-align: center;
+}
+.w3-modal-content p{
+	margin-bottom: 10%;
+	color: #502eff;
+}
+.w3-modal-content button{
+	width: 100%;
+	border: 0;
+	padding: 3% 0;
+}
+.w3-modal-content .ok-warn{
+	border-top: 1px solid #e5e5e5;
+	color: red;
+}
+.w3-modal-content .cancle-warn{
+	border-radius-bottom-left: 5px;
+	border-radius-bottom-right: 5px;
+	border-top: 1px solid #e5e5e5;
+	color: #502eff;
+}
+
+@media ( max-width :640px) {
+	.w3-modal-content {
+		margin: 0 10px;
+		width: auto !important
+	}
+	.w3-modal {
+		padding-top: 30px
+	}
+
+}
+
+.w3-card-4, .w3-hover-shadow:hover {
+	box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2), 0 4px 20px 0
+		rgba(0, 0, 0, 0.19)
+}
+.w3-animate-opacity {
+	animation: opac 0.8s
+}
+
+
+
+.wrap{
+	padding-top: 12%;
+}
+.rankShow{
+	text-align: center;
+	padding: 5% 0;
+	border-bottom: 1px solid #e5e5e5;
+}
+.comment{
+	color: #c91b3c;
+	font-weight: bold;
+}
+.content{
+	width: 94%;
+	padding: 3% 3% 5% 3%;
+	border-bottom: 1px solid #e5e5e5;
+	margin-bottom: 30%;
+}
+.about-writer{
+	padding: 3%;
+}
+
+.about-writer{
+	overflow: hidden;
+}
+.user{
+	float: left;
+	width: 58px;
+	height: 58px;
+	border-radius: 50%;
+	margin: 0 3% 3% 0;
+}
+.user img{
+	width: 100%;
+}
+.user-info{
+	margin-top: 3%;
+}
+.write-time{
+	font-size: 12px;
+	color: #999;
+}
+
+/* 별점 */
+.icon-star{
+	display: inline-block;
+    width: 19px;
+    height: 19px;
+    background-image: url(/fooding/resources/images/common/icon-rank-small.png);
+    margin: 0 -3px -2px 0;
+}
+.rankOff{
+	background-position-y: 19px;
+}

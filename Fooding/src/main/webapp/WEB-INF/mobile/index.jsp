@@ -132,4 +132,6 @@
 </script>
 
 <!-- footer -->
+
 <jsp:include page="/WEB-INF/mobile/views/common/gnb.jsp"/>
+
