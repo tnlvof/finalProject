@@ -15,4 +15,6 @@ public interface MemberService  {
 
 	ArrayList<Member> selectMemberList();
 
+	Member loginCheck2(Member m) throws LoginException;
+
 }

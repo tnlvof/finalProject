@@ -41,4 +41,9 @@ public class MemberServiceImpl implements MemberService{
 		
 		return list;
 	}
+
+	@Override
+	public Member loginCheck2(Member m) throws LoginException {
+		return md.loginCheck(m);
+	}
 }
