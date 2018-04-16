@@ -21,7 +21,7 @@
 
 						function changeValue(obj) {
 							alert(obj.value);
-						}
+						}		
 					</script>
 					<div class="name">
 							<span>Fooding</span>

@@ -14,15 +14,15 @@
 	<div id="content_wrap">
 		<div id="content" class="mypage">
 			<ul class="tab">
-				<li class="item selected"><a href="#">예약</a></li>
+				<li class="item selected"><a href="/fooding/myPage.jsp">예약</a></li>
 				<!-- <li class="item "><a href="#">티켓</a></li> -->
-				<li class="item "><a href="#">리뷰</a></li>
-				<li class="item "><a href="#">1:1 문의</a></li>
+				<li class="item "><a href="/fooding/myPageReview.jsp">리뷰</a></li>
+				<li class="item "><a href="/fooding/myPageQuestions.jsp">1:1 문의</a></li>
 			</ul>
 			<div id="reservation" class="body empty">
 				<div class="filter">
-					<a href="?reservation&amp;type=recent" class="">방문 예정 예약</a> <a
-						href="?reservation&amp;type=past" class="">지나간 예약</a>
+					<a href="#" class="">방문 예정 예약</a> <a
+						href="#" class="">지나간 예약</a>
 				</div>
 				<!-- 예약이 없을 때 화면 -->
 				<div class="blank">
@@ -37,11 +37,11 @@
 					<div class="reservation">
 						<div class="i_wrap image">
 							<div class="image border_radius hard"
-								style="background-image: url(resources/images/myPage/brickoven.jpeg);"></div>
+								style="background-image: url(&quot;http://c2.poing.co.kr/PIMAGE-default/5746a03f668a484de2000044.png&quot;);"></div>
 						</div>
 						<div class="info">
 							<div class="name">
-								<a href="/restaurant/detail/26150">브릭오븐</a> <span
+								<a href="#">브릭오븐</a> <span
 									class="label blue border_radius soft">예약 대기</span> <span
 									class="label green border_radius soft">예약 확정</span> <span
 									class="label blue border_radius soft">변경 대기</span>
@@ -50,21 +50,19 @@
 							<div class="party_size">인원: 6명</div>
 						</div>
 
-						<button class="red border_radius soft"
-							data-type="poing.reservation.edit" data-id="869500" tabindex="-1" onclick="document.getElementById('changeCancel').style.display='block'">변경
+						<button class="red border_radius soft" tabindex="-1" onclick="document.getElementById('changeCancel').style.display='block'">변경
 							/ 취소</button>
 						<!-- Modal -->
 						<div id="changeCancel" class="w3-modal">
 							<div class="w3-modal-content">
-								<div class="w3-container">
-									<span
-										onclick="document.getElementById('changeCancel').style.display='none'"
-										class="w3-button w3-display-topright">&times;</span>
+								<div class="w3-container">									
 									<div id="pre-reserve" class="reserve-popup"
 										style="width: 599px; height: 390px; margin-top: -203px; display: block;">
+										<img
+										src="${contextPath }/resources/images/common/closeButton.png"
+										width="15" height="15" align="right" class="xBtn"
+										onclick="document.getElementById('changeCancel').style.display='none'" style="position: absolute; top: 7px; right: 6px;">
 										<div class="popup-title">예약변경/취소</div>
-										<i id="reserve-close" class="icon close"
-											style="position: absolute; top: 20px; right: 20px;"></i>
 										<div class="popup-row box_list">
 											<div class="box">
 												<i class="icon personnel"></i>
@@ -87,8 +85,7 @@
 
 												<i class="icon calendar"></i>
 												<div class="box_text">날짜</div>
-												<span id="reserve_date" class="date first"
-													data-str="2018-05-02">2018.5.2</span> <i
+												<span id="reserve_date" class="date first">2018.5.2</span> <i
 													class="icon arrow red"></i>
 											</div>
 											<div class="box pointer" style="margin: 0;">
@@ -129,19 +126,6 @@
 												12:00</span> <span class="count">6명</span>
 										</div>
 
-										<div class="popup-row confirm" style="display: none;">
-											<div class="box">
-												<i class="icon person"></i> <input id="reserve_name"
-													type="text" class="name" placeholder="성함을 입력해주세요.">
-											</div>
-
-											<div class="box">
-												<i class="icon phone"></i> <input id="reserve_phone"
-													type="text" class="phone" placeholder="전화번호 입력해주세요.">
-											</div>
-
-										</div>
-
 										<div class="popup-row comment">
 											<textarea id="reserve_comment" rows="5"
 												placeholder="요청사항을 적어주세요." maxlength="50"></textarea>
@@ -167,9 +151,41 @@
 											<button type="text" class="reserve" tabindex="-1"
 												style="display: none;">예약 접수</button>
 											<button type="text" class="cancel" tabindex="-1"
-												style="display: inline-block;">예약 취소</button>
+												style="display: inline-block;" onclick="document.getElementById('reservCancel').style.display='block'">예약 취소</button>
 											<button type="text" class="edit" tabindex="-1"
-												style="display: inline-block;">변경</button>
+												style="display: inline-block;" onclick="document.getElementById('reservChange').style.display='block'">변경</button>
+											<div id="reservCancel" class="w3-modal">
+												<div class="w3-modal-content">
+													<div class="w3-container">
+														<div class="confirmBackground" style="display: block;"></div>
+														<div id="default" class="confirmPopup"
+															style="padding: 20px 40px; margin-left: -110.5px; margin-top: -26.5px; display: block;">
+															<div class="confirmMessage">예약을 취소하시겠습니까?</div>
+														</div>
+														<div class="confirmNo"
+															style="margin-left: -110.5px; margin-top: 28.5px; width: 108.5px; display: block;" onclick="document.getElementById('reservCancel').style.display='none'">아니오</div>
+														<div class="confirmOk"
+															style="margin-left: 1px; margin-top: 28.5px; width: 108.5px; display: block;">예</div>
+														
+													</div>
+												</div>
+											</div>
+											<div id="reservChange" class="w3-modal">
+												<div class="w3-modal-content">
+													<div class="w3-container">
+														<div class="confirmBackground" style="display: block;"></div>
+														<div id="default" class="confirmPopup"
+															style="padding: 20px 40px; margin-left: -110.5px; margin-top: -26.5px; display: block;">
+															<div class="confirmMessage">예약을 변경하시겠습니까?</div>
+														</div>
+														<div class="confirmNo"
+															style="margin-left: -110.5px; margin-top: 28.5px; width: 108.5px; display: block;" onclick="document.getElementById('reservChange').style.display='none'">아니오</div>
+														<div class="confirmOk"
+															style="margin-left: 1px; margin-top: 28.5px; width: 108.5px; display: block;">예</div>
+														
+													</div>
+												</div>
+											</div>
 										</div>
 									</div>
 								</div>
