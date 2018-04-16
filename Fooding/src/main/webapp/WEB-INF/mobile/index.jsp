@@ -1,67 +1,135 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
-<title>맛있는 발견의 즐거움 - Fooding</title>
 
-<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
-<link rel="stylesheet" href="/fooding/resources/css/main.css" />
-<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
-</head>
+<!-- header -->
+<jsp:include page="/WEB-INF/mobile/views/common/header.jsp"/>
 
-<body>
-<section id="main" data-role="page">
-	<header data-role="header" class="header">
-		<h1 class="logo">Fooding</h1>
-		<a href="#gnb" class="ui-btn-right" data-icon="gear" data-iconpos="notext">Menu</a>
+<link rel="stylesheet" href="http://idangero.us/swiper/dist/css/swiper.min.css" />
+<link rel="stylesheet" href="/fooding/resources/css/m/main/main.css" />
 
-		<nav data-role="navbar">
-			<ul>
-				<li><a class="ui-btn-active" data-icon="search" href="#">레스토랑 검색</a></li>
-				<li><a href="#" data-icon="comment">실시간 리뷰</a></li>
-				<li><a href="#" data-icon="edit">리뷰작성</a></li>
-				<li><a href="#" data-icon="star">이벤트</a></li>
-				<li><a href="#" data-icon="user">마이페이지</a></li>
-			</ul>
-		</nav>
-	</header>
+<header data-role="header" class="header">
+	<h1 class="logo">Fooding</h1>
 	
-    <div data-role="panel" id="gnb" data-position="right" data-display="overlay" data-theme="a">
-       <h3>메뉴</h3>
-       <ul data-role="listview">
-           <li></li>
-           <li data-icon="power"><a href="#">로그아웃</a></li>
-        </ul>
+	<div class="srch-area">
+		<input type="search" class="srch" placeholder="키워드 / 지역 / 음식을 검색하세요" />
+		<button type="submit" class="srch-btn">검색</button>
 	</div>
-	<!-- gnb -->
+	<!-- srch-area -->
+</header>
+
+	<!-- Swiper slider -->
+	<div class="swiper-container mainSlider">
+		<div class="swiper-wrapper">
+			<div class="swiper-slide"><img src="/fooding/resources/images/main/key_visiual01.jpg"></div>
+			<div class="swiper-slide"><img src="/fooding/resources/images/main/key_visiual02.jpg"></div>
+			<div class="swiper-slide"><img src="/fooding/resources/images/main/key_visiual03.jpg"></div>
+			<div class="swiper-slide"><img src="/fooding/resources/images/main/key_visiual04.jpg"></div>
+			<div class="swiper-slide"><img src="/fooding/resources/images/main/key_visiual05.jpg"></div>
+		</div><!-- swiper-wrapper -->
+	</div><!-- swiper-conainer -->
 
 
-	<div class="content" data-role="content">
+	<div class="container">
+		<div class="ticket">
+			<h3>다이닝 티켓</h3>
+
+			<!-- Swiper -->
+			<div class="swiper-container">
+				<div class="swiper-wrapper">
+					<div class="swiper-slide" style="background-image:url('/fooding/resources/images/main/ticket01.png')">
+						<div class="bg">
+							<p><span>호텔</span><br>당신의 특별한 하루를 위한</p>
+						</div>
+					</div>
+					
+					<div class="swiper-slide" style="background-image:url('/fooding/resources/images/main/ticket02.png')">
+						<div class="bg">
+							<p><span>디저트</span><br>나를 위한 달콤한 사치</p>
+						</div>
+					</div>
+					
+					<div class="swiper-slide" style="background-image:url('/fooding/resources/images/main/ticket03.png')">
+						<div class="bg">
+							<p><span>일식</span><br>정갈함의 미학을 담은</p>
+						</div>
+					</div>
+				
+				</div><!-- swiper-wrapper -->
+			</div><!-- swiper-container -->
+
+			<button type="button" class="more">전체보기 &gt;</button>
+		</div>
+		<!-- ticket -->
 		
+		<div class="recommend">
+			<h3>테마별 레스토랑</h3>
+
+			<!-- Swiper -->
+			<div class="swiper-container">
+				<div class="swiper-wrapper">
+					<div class="swiper-slide" style="background-image:url('/fooding/resources/images/main/recomd02.jpg')">
+						<div class="bg">
+							<p>드라이 어메이징 스테이크</p>
+						</div>
+					</div>
+					
+					<div class="swiper-slide" style="background-image:url('/fooding/resources/images/main/recomd03.jpg')">
+						<div class="bg">
+							<p>고급 디저트</p>
+						</div>
+					</div>
+					
+					<div class="swiper-slide" style="background-image:url('/fooding/resources/images/main/recomd04.jpg')">
+						<div class="bg">
+							<p>경리단길 브런치</p>
+						</div>
+					</div>
+					
+					<div class="swiper-slide" style="background-image:url('/fooding/resources/images/main/recomd05.jpg')">
+						<div class="bg">
+							<p>샤로수길 맛집</p>
+						</div>
+					</div>
+				</div><!-- swiper-wrapper -->
+			</div><!-- swiper-container -->
+			
+			<button type="button" class="more">전체보기 &gt;</button>
+		</div>
+		<!-- theme-store -->
 	</div>
-	<!-- content -->
+	<!-- container -->
+
+<footer data-role="footer" class="footer">
+	<p>
+		최고의 레스토랑을 즐기는 특별한 방법<br>
+		검색부터 예약까지 한번에, Fooding
+	</p>
+
+	<p class="copyrigt">Copyrightⓒ 2018 Fooding.,Ltd. All rights reserved</p>
+</footer>
+
+<!-- swiper.js -->
+<script src="http://idangero.us/swiper/dist/js/swiper.min.js"></script>
+
+<script>
+//auto swiper jquery
+	var swiper = new Swiper('.swiper-container.mainSlider', {
+		spaceBetween : 0,
+		centeredSlides : true,
+		autoplay : {
+			delay : 2500,
+			disableOnInteraction : false,
+		},
+
+	});
 	
-	<footer data-role="footer">
-		<p>
-			최고의 레스토랑을 즐기는 특별한 방법<br>
-			검색부터 예약까지 한번에, Fooding
-		</p>
-		<ul>
-			<li>대표이사 : 이종수</li>
-			<li>사업자등록번호 : 000-00-0000</li>
-			<li>통신판매업 신고 번호 : 2018-서울강남-0000</li>
-			<li>서울특별시 강남구 테헤란로 14길 6 남도빌딩 2-5F</li>
-			<li>대표번호 : 1544-9970</li>
-			<li>이메일 : fooding@kh.co.kr</li>
-			<li>Copyrightⓒ 2018 Fooding Final Project.,Ltd. All rights reserved</li>
-		</ul>
-	</footer>
-</section>
-	
-</body>
-</html>
+//free mode slide
+    var swiper = new Swiper('.container .swiper-container', {
+      slidesPerView: 1.4,
+      spaceBetween: 5,
+      freeMode: true,
+    });
+</script>
+
+<!-- footer -->
+<jsp:include page="/WEB-INF/mobile/views/common/gnb.jsp"/>

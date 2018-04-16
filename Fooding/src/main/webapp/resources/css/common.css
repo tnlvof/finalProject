@@ -1,4 +1,5 @@
 @charset "UTF-8";
+
 @font-face {
  font-family: 'NanumBarunGothic';
  font-style: normal;
@@ -27,32 +28,41 @@
    font-family: 'NanumBarunGothic', sans-serif;
 }
 
+
+
+/* common */
+.container{
+   padding: 97px 0 140px 0;
+}
+h3{
+   font-size: 20px;
+   margin: 80px 0 50px 0;
+   text-align: center;
+   color: #444;
+}
+.content > div {
+   position: relative;
+}
+.more{
+   position: absolute;
+   top: 30px;
+   right: 0;
+   font-size: 14px;
+   cursor: pointer;
+}
 li span {
  line-height: 1.8;
  font-size: 1.3em;
 }
-
-.overflow{ overflow: hidden; }
-.fl{ float: left; }
-.fr{ float: right; }
-
 .wrap{
    width: 1000px;
    margin: 0 auto;
    padding: 10px 0;
 }
+.overflow{ overflow: hidden; }
+.fl{ float: left; }
+.fr{ float: right; }
 
-.srch-btn{
-   color: #fff;
-    background: #ec3e43;
-    border: 0;
-    border-right: 2px solid #cc272b;
-    border-bottom: 2px solid #cc272b;
-    border-radius: 5px;
-    height: 40px;
-    padding: 0 20px;
-    cursor: pointer;
-}
 
 
 /* header */
@@ -60,7 +70,7 @@ li span {
    width: 100%;
    background: #FF5A5F;
    position: fixed;
-   z-index: 1;
+   z-index: 3;
 }
 .header .wrap{
    position: relative;
@@ -70,7 +80,6 @@ li span {
     width: 500px;
     position: relative;
 }
-
 .logo{
     width: 100px;
     height: 28px;
@@ -81,7 +90,6 @@ li span {
     margin: 0px 60px 0 0;
     cursor: pointer;
 }
-
 .gnb{
    width: 100%;
    overflow: hidden;
@@ -103,7 +111,6 @@ li span {
 .gnb li:hover{
    color: #ff5a5f;
 }
-
 input[type=search]{
    border: 0;
    padding: 4px 10px;
@@ -113,13 +120,20 @@ input[type=search]{
    padding: 0 15px;
    width: 400px;
 }
-
 .srch-btn {
    position: absolute;
    top:0;
    left: 410px;
+   color: #fff;
+   background: #ec3e43;
+   border: 0;
+   border-right: 2px solid #cc272b;
+   border-bottom: 2px solid #cc272b;
+   border-radius: 5px;
+   height: 40px;
+   padding: 0 20px;
+   cursor: pointer;
 }
-
 .loginArea{
     display: inline-block;
     position: absolute;
@@ -147,7 +161,6 @@ input[type=search]{
 .user-profile img{
    width: 100%;
 }
-
 .dropdown{
    cursor: pointer;
    position: relative;
@@ -226,26 +239,6 @@ input[type=search]{
 }
 
 
-/* common */
-.container{
-   padding: 97px 0 140px 0;
-}
-h3{
-   font-size: 20px;
-   margin: 80px 0 50px 0;
-   text-align: center;
-   color: #444;
-}
-.content > div {
-   position: relative;
-}
-.more{
-   position: absolute;
-   top: 30px;
-   right: 0;
-   font-size: 14px;
-   cursor: pointer;
-}
 
 
 
@@ -257,38 +250,31 @@ h3{
    margin:0 auto;
    background-color:white;
 }
-
 .input {
    width: 390px;
    height: 47px;
    border: 1px solid #CCCCCC;
    padding-left: 10px;
 }
-
 #userId {
    margin-top: 50px;
 }
-
 .button {
    margin: 20px;
    width: 390px;
    height: 47px;
 }
-
 .hr {
    margin-top: 20px;
    margin-bottom: 20px;
 }
-
 #title {
    font-size: 25px;
    font-weight: bold;
 }
-
 .loginBtn {
    background: #ff5a5f; 
 }
-
 #joinBtn {
    background: white;
    border: 1px solid #ff5a5f;
@@ -296,8 +282,6 @@ h3{
    width: 190px;
    height: 47px;
 }
-
-
 #sign>.body>div>.forgot {
    font-size: 12px;
    color: #969696;
@@ -305,14 +289,9 @@ h3{
    margin-top: 5px;
    margin-bottom: 39px;
 }
-
 #sign>.body>div>.forgot>a {
    color: #c91b3c;
    cursor: pointer;
-}
-
-a {
-   text-decoration: none;
 }
 .login{
    padding-top:50px;

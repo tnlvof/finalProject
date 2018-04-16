@@ -4,12 +4,17 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code,
 	form, fieldset, legend, textarea, p, blockquote, th, td, input, select,
 	textarea, button {
 	margin: 0;
-	padding: 0
+	padding: 0;
+	font-family: 'NanumBarunGothic', sans-serif;
+	color: #474747;
+	font-size: 13px;
 }
 body{
 	max-width: 640px;
+	min-width: 320px;
 	margin: 0 auto;
-	border: 1px solid #333;
+	-webkit-text-size-adjust: none;
+	background: #fff
 }
 fieldset, img {
 	border: 0 none
@@ -44,9 +49,8 @@ table {
 	border-spacing: 0
 }
 
-body {
-	-webkit-text-size-adjust: none
-} /* 뷰표트 변환시 폰트크기 자동확대 방지 */
+
+/* 뷰표트 변환시 폰트크기 자동확대 방지 */
 input[type='text'], input[type='password'], input[type='submit'], input[type='search']
 	{
 	-webkit-appearance: none;
@@ -68,25 +72,19 @@ input[type='search']::-webkit-search-cancel-button {
 	-webkit-appearance: none
 }
 
-body {
-	background: #fff
-}
 
 body, th, td, input, select, textarea, button {
-	font-size: 14px;
+	font-size: 13px;
 	line-height: 1.5;
-	font-family: 'Malgun Gothic', '맑은 고딕', sans-serif;
-	color: #333
+	font-family: 'NanumBarunGothic', sans-serif;
 } 
 a {
-	color: #333;
-	text-decoration: none
+	text-decoration: none;
+	color: #474747
 }
-
 a:active, a:hover {
 	text-decoration: none
 }
-
 address, caption, cite, code, dfn, em, var {
 	font-style: normal;
 	font-weight: normal

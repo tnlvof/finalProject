@@ -1,0 +1,35 @@
+@charset "UTF-8";
+
+.header{
+	width: 100%;
+	max-width: 640px;
+	box-sizing: border-box;
+	position: fixed;
+}
+#go-back{
+	position: absolute;
+	left: 3%;
+	color: #fff;
+	font-weight: bold;
+	font-size: 16px;
+}
+.wrap{
+	background: #
+}
+
+
+
+
+
+
+.setting-content{
+	background: #fff;
+	border-top: 1px solid #e5e5e5;
+	border-bottom: 1px solid #e5e5e5;
+	position: relative;
+}
+.setting-content h3{
+	position: absolute;
+	top: -25px;
+	color: #999;
+}
