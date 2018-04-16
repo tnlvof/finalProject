@@ -22,9 +22,8 @@ import com.kh.fooding.member.model.vo.Member;
 public class MemberController {
 	@Autowired
 	private MemberService ms;
-	
-/*	@Autowired
-	private BCryptPasswordEncoder passwordEncoder;*/
+	@Autowired
+	private BCryptPasswordEncoder passwordEncoder;
 	
 	/*@RequestMapping(value = "login.me", method = RequestMethod.POST)
 	public String loginCheck(Member m , HttpSession session, Model model) {
@@ -44,6 +43,7 @@ public class MemberController {
 		}
 	}*/
 	
+	//아이디 비밀번호 조회 성공 시 로그인
 	@RequestMapping(value = "login.me", method = RequestMethod.POST)
 	public ModelAndView loginCheck(Member m, ModelAndView mv, SessionStatus status) {
 
@@ -63,6 +63,26 @@ public class MemberController {
 			mv.setViewName("common/errorPage");
 		}
 		return mv;
+	}
+	
+	//로그인 할 때 아이디 비빌번호 일치하는지 조회
+	@RequestMapping(value = "loginCheck.me", method = RequestMethod.POST)
+	public ModelAndView loginCheck2(ModelAndView mv, String userId , String userPwd) {
+
+		Member m = new Member();
+		m.setUserId(userId);
+		m.setUserPwd(userPwd);
+		
+		try {
+			Member m2 = ms.loginCheck2(m);
+			System.out.println("controller m2 : " +m2);
+			mv.addObject("member",m2);
+		} catch (LoginException e) {
+			
+		}
+		
+		mv.setViewName("jsonView");
+		return mv;
 
 	}
 	
@@ -77,11 +97,15 @@ public class MemberController {
 		
 		return "member/storeJoin";
 	}
-	
+	 
 	@RequestMapping(value ="memberJoin.me")
 	public String memberJoin(Member m, Model model) {
 		
-//		m.setUserPwd(passwordEncoder.encode(m.getUserPwd()));
+		m.setUserPwd(passwordEncoder.encode(m.getUserPwd()));
+		
+		String[] birthArr = m.getBirth().split(",");
+		String birth = birthArr[0] + "년 " + birthArr[1] + "월 " + birthArr[2] + "일"; 
+		m.setBirth(birth);
 		
 		System.out.println("controller m : " + m );
 		

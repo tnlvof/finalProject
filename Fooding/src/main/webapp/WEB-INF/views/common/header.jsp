@@ -72,11 +72,11 @@
 			<div class="login active">
 				<p id="title">로그인</p>
 
-				<form action="login.me" method="post">
+				<form id="loginForm" action="login.me" method="post">
 					<input type="text" id="userId" name="userId" placeholder="아이디" required="" class="input"> 
-					<input type="password" name="userPwd" placeholder="비밀번호" required="" class="input">
+					<input type="password" id="userPwd" name="userPwd" placeholder="비밀번호" required="" class="input">
 
-					<button type="submit" id="loginBtn" class="button loginBtn">로그인</button>
+					<button type="button" id="loginCheck" class="button loginBtn">로그인</button>
 				</form>
 				<p class="forgot">
 					비밀번호가 기억나지 않으세요? <a>재설정하기</a>
@@ -89,6 +89,30 @@
 		</div>
 	</div>
 	<!-- login_body -->
+	
+	<script type="text/javascript">
+		$("#loginCheck").click(function(){
+			var form_data = {   userId:$("#userId").val(),
+								userPwd:$("#userPwd").val()
+							};
+		$.ajax({
+			type:"POST",
+			url:"loginCheck.me",
+			data:form_data,
+			success: function(response) {
+                  if(response != null) {
+                  	alert(response.member.userId + "\n" + response.member.userPwd);
+                  } else {
+	               alert(response.member);
+                  }
+                },
+            error: function() {
+               alert("에러 발생!");
+            }
+		});
+		});
+	
+	</script>
 
 </div>
 

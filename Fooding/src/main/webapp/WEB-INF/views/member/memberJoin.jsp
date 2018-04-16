@@ -203,7 +203,7 @@ input::placeholder {
 				<!-- 아이디/이름/이메일 -->
 				<input type="text" name="userId" placeholder="아이디" required class="a">
 				<input type="text" name="userName" placeholder="이름" class="a" required> 
-				<input type="text" name="email" placeholder="이메일" required class="a">
+				<input type="email" name="email" placeholder="이메일" required class="a">
 				
 				<!-- 비밀번호 -->
 				<input type="password" name="userPwd" placeholder="비밀번호 (6자이상)" pattern=".{6,}" required class="b"> 
@@ -211,9 +211,9 @@ input::placeholder {
 
 				<!-- 생년월일 -->
 				<p class="plz">생년월일과 성별 기입은 선택사항입니다. 개인화된 추천을 받으시려면 입력해주세요.</p>
-				<input type="number" name="birth1" min="1900" max="2018" placeholder="생년 (4자)" maxlength="4" value="" class="c"> 
-				<input type="number" name="birth2" min="01" max="12" placeholder="월" value="" maxlength="2" class="c"> 
-				<input type="number" name="birth3" min="01" max="31" placeholder="일" value="" maxlength="2" class="c">
+				<input type="number" name="birth" min="1900" max="2018" placeholder="생년 (4자)" maxlength="4" value="" class="c"> 
+				<input type="number" name="birth" min="01" max="12" placeholder="월" value="" maxlength="2" class="c"> 
+				<input type="number" name="birth" min="01" max="31" placeholder="일" value="" maxlength="2" class="c">
 				
 				
 				<!-- 성별선택 -->
@@ -221,8 +221,6 @@ input::placeholder {
 				<input type="button" value="남자" id="gender_female" class="sb">
 				<input type="hidden" value="" name="gender" id="gender">
 				<script>
-					/* 생년월일 */	
-					${}
 					
 					/* 성별 스크립트 */
 					$("#gender_male").click(function() {
@@ -275,11 +273,13 @@ input::placeholder {
 				<!-- agree-wrap --> 
 				<button class="join_done">가입완료</button>
 			</div>
-
 		</form>
 	</div>
+	<script type="text/javascript">
+		
+	
+	</script>
 
-	<!-- 여기에 코드를 작성해 주세요 -->
 
 
 </div>

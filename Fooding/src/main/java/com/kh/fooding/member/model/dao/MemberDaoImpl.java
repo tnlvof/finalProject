@@ -15,19 +15,24 @@ import com.kh.fooding.member.model.vo.Member;
 public class MemberDaoImpl implements MemberDao{
 	@Autowired
 	private SqlSessionTemplate sqlSession;
-	/*@Autowired
-	private BCryptPasswordEncoder passwordEncoder;*/
-
+	@Autowired
+	private BCryptPasswordEncoder passwordEncoder;
 	@Override
 	public Member loginCheck(Member m) throws LoginException {
 		System.out.println("dao userId : " + m.getUserId());
 		System.out.println("dao userPwd : " + m.getUserPwd());
 		System.out.println("sqlSession : " + sqlSession);
 		
-		Member member = sqlSession.selectOne("Member.loginCheck", m);
+		Member member = null;
 		
-		if(member == null){
+		String cryptPwd = sqlSession.selectOne("Member.selectPwd", m.getUserId());
+		
+		System.out.println("암호화된 비밀번호 : " + cryptPwd);
+		
+		if(!passwordEncoder.matches(m.getUserPwd(), cryptPwd)){
 			throw new LoginException("로그인 실패!");
+		}else{
+			member = sqlSession.selectOne("Member.loginCheck", m);
 		}
 		return member;
 	}
@@ -50,4 +55,5 @@ public class MemberDaoImpl implements MemberDao{
 		
 		return list;
 	}
+
 }
