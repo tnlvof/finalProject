@@ -116,5 +116,63 @@ public class MemberController {
 		
 		return "main/main";
 	}
+
+	
+	//멤버 리스트 불러오기 
+	
+		@RequestMapping(value = "selectMemberList.me", method = RequestMethod.POST)	
+		public ModelAndView selectMemberList(ModelAndView mv) {
+						
+			//System.out.println("멤버 컨트롤러");		
+				
+				try {
+					ArrayList<Member> memberlist = ms.selectMemberList();
+					System.out.println("memberlist @controller " + memberlist);
+					
+					mv.addObject("memberlist", memberlist);
+					mv.setViewName("jsonView");			
+					
+				} catch (selectMemberException e) {
+					mv.addObject("message", e.getMessage());
+					mv.setViewName("common/errorPage");				
+				}			
+				
+				
+				return mv;				
+				
+			}
+	
+
+	// 멤버 수정 페이지로 전환
+	@RequestMapping(value = "showEditForm.me", method = RequestMethod.POST)	
+		
+	public ModelAndView showEditForm(ModelAndView mv, @RequestParam("mid") ArrayList<String> midlist) {
+		//System.out.println("수정페이지");
+		//System.out.println("midlist : "+midlist);
+		
+		ArrayList<Member> editList = ms.selectEditList(midlist); 
+		
+		//System.out.println("editList @ Controller : " + editList);
+		mv.addObject("editList", editList);
+		mv.setViewName("admin/memberEdit" );
+	
+		return mv;
+	}
+	
+	@RequestMapping(value = "updateMembers.me", method = RequestMethod.POST)		
+	public ModelAndView updateMembers(ModelAndView mv, Member m,  @RequestParam("mid") ArrayList<String> midlist) {
+	
+		 ArrayList<Member> editList = ms.selectEditList(midlist); 
+		
+		//System.out.println("editList @ Controller : " + editList);
+		mv.addObject("editList", editList);
+		mv.setViewName("admin/memberEdit" );
+	
+		return mv;
+	}
+		
+
+		
+		
 	
 }
