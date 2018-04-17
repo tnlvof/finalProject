@@ -60,7 +60,7 @@ public class MemberController {
 
 			mv.addObject("loginUser", loginUser);
 			model.addAttribute("loginUser",loginUser);
-//			status.setComplete();
+			status.setComplete();
 			
 			mv.setViewName("main/main");
 
