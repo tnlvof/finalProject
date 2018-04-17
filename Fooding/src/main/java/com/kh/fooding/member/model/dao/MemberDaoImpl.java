@@ -9,12 +9,16 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Repository;
 
 import com.kh.fooding.member.model.exception.LoginException;
+import com.kh.fooding.member.model.exception.selectMemberException;
 import com.kh.fooding.member.model.vo.Member;
 
-@Repository
+@Repository("md")
+
 public class MemberDaoImpl implements MemberDao{
+	
 	@Autowired
 	private SqlSessionTemplate sqlSession;
+	
 	/*@Autowired
 	private BCryptPasswordEncoder passwordEncoder;*/
 
@@ -34,20 +38,33 @@ public class MemberDaoImpl implements MemberDao{
 
 	@Override
 	public int insertMember(Member m, SqlSessionTemplate sqlSession) {
-		return sqlSession.insert("Member.insertMember",m);
+		return sqlSession.insert("Member.insertMember", m);
 	}
 
 	@Override
-	public ArrayList<Member> selectMemberList() {
-		// TODO Auto-generated method stub
+	public ArrayList<Member> selectMemberList() throws selectMemberException {
+	//	System.out.println("Dao 옴 ");		
+	
+		ArrayList<Member> memberlist = (ArrayList) sqlSession.selectList("Member.selectMemberList");			
+				
+		if(memberlist == null) {
+			throw new selectMemberException("회원 정보 리스트 조회 실패");
+		}		
 		
-		ArrayList<Member> list =null;
+		System.out.println("list DAO: " + memberlist);
 		
-		list = (ArrayList) sqlSession.selectList("Member.selectMemberList");
-					
 		
-		System.out.println("list DAO: " + list);
-		
-		return list;
+		return memberlist;
 	}
+
+	//수정할 회원 리스트
+	@Override
+	public ArrayList<Member> selectEditList(ArrayList<String> midlist) {
+		ArrayList<Member> editList = (ArrayList) sqlSession.selectList("Member.selectEditList", midlist);
+		
+				
+		return editList;
+	}
+	
+
 }

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <meta charset="UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -61,23 +62,25 @@
   			});
   			
   			//수정 버튼
+  				
+  			
+  			 
   			$("#editBtn").click(function(){  				
   				if(! $(".memberCheck").is(":checked")){
   					alert("수정할 회원을 선택해주세요.");
-  				}else{
-  					location.href='showEditForm.adm';
-  				}
+  				} else{
+  					$("#memberForm").submit();
+  				}  			
   			});
-  			
+  		 
   		});
-  		
-  		
   		
   	</script>
   	
   	<br><br>
+  	<form id="memberForm" action="showEditForm.me" method="post">
  	<div class="tableArea">
- 	<table class="tableList" align="center" >
+ 	<table class="tableList" align="center" id="membertable">
  	
  	<tr style="border-bottom:1px solid lightgray;">
  	<th style="width:100px; text-align:center;height:20px;font-weight:bold;"><input type="checkbox" id="checkAll">&nbsp;전체선택</th>
@@ -92,34 +95,7 @@
  	<th style="width:100px; text-align:center;height:20px;font-weight:bold;">탈퇴여부</th> 	
  	
  	</tr>
- 	<!-- private String userId;
-	private String userPwd;
-	private String userName;
-	private String birth;
-	private String gender;
-	private String phone;
-	private String email;
-	private String address;
-	private String mCode;
-	private String status;
-	private Date enrollDate;
-	private int repCount;
-	private int bizNo;
-	private String bizName;
-	private int bookCount; -->
- 	<tr class="tableRow">
- 		<td><input type="checkbox" class="memberCheck"></td>
- 		 <td style="padding:10px;">${userId }</td>
- 		 <td >${userName }</td>
- 		 <td >${birth }</td>
- 		 <td >${phone} </td>
- 		 <td >${email }</td>
- 		 <td >${address}</td>
- 		 <td>${repCount }</td>
- 		 <td >${bookCount }</td>
- 		 <td >${status }</td>
- 	</tr>
- 		
+ 	
  	
  	
  	</table>
@@ -127,7 +103,7 @@
 
 </div>
 
-
+</form>
 <!--/ 회원관리 -->
 
 <!-- 업체 관리 -->
@@ -669,15 +645,37 @@ function openTab(evt, tabName) {
     if(tabName=='memberList'){
     	
     	console.log(tabName);
+    	
     	$.ajax({
     		  method: "POST",
-    		  url: "selectMemberList.adm"
-    		  
-    		})
-    		  .done(function( msg ) {
-    		    alert( "Data Saved: " + msg );
+    		  url: "selectMemberList.me", 
+    		  success:function(data){
+    			
+    			  console.log(data);
+    			  console.log(data.memberlist);
+    			  
+    			  
+    			  for(var i = 0; i<data.memberlist.length;i++){
+    				  $("#membertable").append("<tr class='tableRow' > <td ><input type='checkbox' class='memberCheck' name='checkedrow'></td>");
+    				  $(".tableRow").append("<td style='padding-top: 10px;padding-bottom:10px;' name='userId'><input type='hidden' value="+ data.memberlist[i].mid+" name='mid'>"+data.memberlist[i].userId+"</td>");
+    				  $(".tableRow").append("<td name='userName'>"+data.memberlist[i].userName+"</td>");
+    				  $(".tableRow").append("<td name='birth'>"+data.memberlist[i].birth+"</td>");
+    				  $(".tableRow").append("<td name='phone'>"+data.memberlist[i].phone+"</td>");
+    				  $(".tableRow").append("<td name='email'>"+data.memberlist[i].email+"</td>");
+    				  $(".tableRow").append("<td name='address'>"+data.memberlist[i].address+"</td>");
+    				  $(".tableRow").append("<td name='repCount'>"+data.memberlist[i].repCount+"</td>");
+    				  $(".tableRow").append("<td name='bookCount'>"+data.memberlist[i].bookCount+"</td>");
+    				  $(".tableRow").append("<td name='status'>"+data.memberlist[i].status+"</td></tr>");
+    				      				  
+    			  }
+    				
+    			  
+    		  },
+    		  error:function(){
+    			  alert('안됨');
+    		  }
     		});
-    	
+    		  
     }
     
 }

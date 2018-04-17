@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.springframework.stereotype.Service;
 
 import com.kh.fooding.member.model.exception.LoginException;
+import com.kh.fooding.member.model.exception.selectMemberException;
 import com.kh.fooding.member.model.vo.Member;
 
 public interface MemberService  {
@@ -13,6 +14,8 @@ public interface MemberService  {
 
 	void insertMember(Member m);
 
-	ArrayList<Member> selectMemberList();
+	ArrayList<Member> selectMemberList( ) throws selectMemberException;
+
+	ArrayList<Member> selectEditList(ArrayList<String> midlist);
 
 }
