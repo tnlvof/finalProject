@@ -708,10 +708,6 @@ $('#checkAll4').click(function() {
 });
 
 
-
-
-
-
 </script>
      
 

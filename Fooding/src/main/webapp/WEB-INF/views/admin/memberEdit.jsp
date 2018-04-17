@@ -19,7 +19,7 @@
 	<!-- 회원 수정 -->
 
 
-  	<h3>회원 수정</h3>
+  	<h3>회원 수정 </h3>
   	<button type="submit" id="blacklistOff" class="searchBtn" style="position:relative;left:195px;">블랙리스트 풀기</button>
   	<button type="submit" class="searchBtn" style="position:relative;left:210px;">수정완료</button>
   	<br><br>
