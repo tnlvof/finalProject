@@ -1,7 +1,11 @@
 package com.kh.fooding.member.controller;
 
+import java.io.IOException;
+
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -9,10 +13,12 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.kh.fooding.member.model.exception.LoginException;
 import com.kh.fooding.member.model.service.MemberService;
 import com.kh.fooding.member.model.vo.Member;
@@ -43,9 +49,9 @@ public class MemberController {
 		}
 	}*/
 	
-	//아이디 비밀번호 조회 성공 시 로그인
+	//로그인
 	@RequestMapping(value = "login.me", method = RequestMethod.POST)
-	public ModelAndView loginCheck(Member m, ModelAndView mv, SessionStatus status) {
+	public ModelAndView loginCheck(Member m,Model model, ModelAndView mv, SessionStatus status) {
 
 		System.out.println("controller Member : " + m);
 
@@ -53,38 +59,19 @@ public class MemberController {
 			Member loginUser = ms.loginMember(m);
 
 			mv.addObject("loginUser", loginUser);
-			status.setComplete();
-
+			model.addAttribute("loginUser",loginUser);
+//			status.setComplete();
+			
 			mv.setViewName("main/main");
 
 		} catch (LoginException e) {
-
-			mv.addObject("message", e.getMessage());
-			mv.setViewName("common/errorPage");
+			String loginFail = "로그인에 실패하였습니다.";
+			mv.addObject("loginFail", loginFail);
+			mv.setViewName("main/main");
 		}
 		return mv;
 	}
 	
-	//로그인 할 때 아이디 비빌번호 일치하는지 조회
-	@RequestMapping(value = "loginCheck.me", method = RequestMethod.POST)
-	public ModelAndView loginCheck2(ModelAndView mv, String userId , String userPwd) {
-
-		Member m = new Member();
-		m.setUserId(userId);
-		m.setUserPwd(userPwd);
-		
-		try {
-			Member m2 = ms.loginCheck2(m);
-			System.out.println("controller m2 : " +m2);
-			mv.addObject("member",m2);
-		} catch (LoginException e) {
-			
-		}
-		
-		mv.setViewName("jsonView");
-		return mv;
-
-	}
 	
 	@RequestMapping(value = "goMemberJoin.me")
 	public String goMemberJoin() {
@@ -117,7 +104,7 @@ public class MemberController {
 	@RequestMapping(value = "logout.me", method = RequestMethod.GET)
 	public String logout(/*HttpSession session,*/SessionStatus status) {
 		
-//		session.invalidate();
+		//session.invalidate();
 		
 		status.setComplete();
 		

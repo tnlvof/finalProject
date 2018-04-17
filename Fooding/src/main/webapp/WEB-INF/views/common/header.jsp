@@ -73,10 +73,11 @@
 				<p id="title">로그인</p>
 
 				<form id="loginForm" action="login.me" method="post">
-					<input type="text" id="userId" name="userId" placeholder="아이디" required="" class="input"> 
-					<input type="password" id="userPwd" name="userPwd" placeholder="비밀번호" required="" class="input">
+					<input type="text" id="userId" name="userId" placeholder="아이디" required class="input"> 
+					<input type="password" id="userPwd" name="userPwd" placeholder="비밀번호" required class="input">
 
-					<button type="button" id="loginCheck" class="button loginBtn">로그인</button>
+					<button type="submit" id="loginCheck" class="button loginBtn">로그인</button>
+					
 				</form>
 				<p class="forgot">
 					비밀번호가 기억나지 않으세요? <a>재설정하기</a>
@@ -89,30 +90,38 @@
 		</div>
 	</div>
 	<!-- login_body -->
-	
-	<script type="text/javascript">
-		$("#loginCheck").click(function(){
-			var form_data = {   userId:$("#userId").val(),
-								userPwd:$("#userPwd").val()
-							};
-		$.ajax({
-			type:"POST",
-			url:"loginCheck.me",
-			data:form_data,
-			success: function(response) {
-                  if(response != null) {
-                  	alert(response.member.userId + "\n" + response.member.userPwd);
-                  } else {
-	               alert(response.member);
-                  }
-                },
-            error: function() {
-               alert("에러 발생!");
-            }
-		});
-		});
-	
-	</script>
 
-</div>
+	</div>
 
+	<c:if test="${ !empty loginFail }">
+	
+	<div id="id02" class="w3-modal" style="display:block;">
+
+      <div id="sign">
+      	<img src="${contextPath }/resources/images/common/closeButton.png" width="15" height="15" align="right" class="xBtn"
+      	onclick="document.getElementById('id02').style.display='none'">
+		<div class="body">
+			<div class="login active">
+				<p id="title">로그인</p>
+
+				<form id="loginForm" action="login.me" method="post">
+					<input type="text" id="userId" name="userId" placeholder="아이디" required class="input"> 
+					<input type="password" id="userPwd" name="userPwd" placeholder="비밀번호" required class="input">
+					<p style="color:red;padding-top:15px;">${ loginFail }</p>
+					<button type="submit" id="loginCheck" class="button loginBtn">로그인</button>
+				</form>
+				<p class="forgot">
+					비밀번호가 기억나지 않으세요? <a>재설정하기</a>
+				</p>
+
+				<hr class="hr">
+				<button id="joinBtn" type="button" class="change" onclick="location.href='goMemberJoin.me'">일반 회원가입</button>
+				<button id="joinBtn" type="button" class="change" onclick="location.href='goStoreJoin.me'">업체 회원가입</button>
+			</div><!-- login -->
+		</div>
+	</div>
+	<!-- login_body -->
+
+	</div>	
+			
+	</c:if>	
