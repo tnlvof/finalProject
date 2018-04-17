@@ -13,8 +13,8 @@ public interface MemberService  {
 
 	void insertMember(Member m);
 
-	ArrayList<Member> selectMemberList();
+	ArrayList<Member> selectMemberList( ) throws selectMemberException;
 
-	Member loginCheck2(Member m) throws LoginException;
+	ArrayList<Member> selectEditList(ArrayList<String> midlist );
 
 }
