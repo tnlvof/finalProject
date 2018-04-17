@@ -56,4 +56,28 @@ public class MemberDaoImpl implements MemberDao{
 		return list;
 	}
 
+	@Override
+	public ArrayList<Member> selectMemberList() throws selectMemberException {
+	//	System.out.println("Dao 옴 ");		
+	
+		ArrayList<Member> memberlist = (ArrayList) sqlSession.selectList("Member.selectMemberList");			
+				
+		if(memberlist == null) {
+			throw new selectMemberException("회원 정보 리스트 조회 실패");
+		}		
+		
+		System.out.println("list DAO: " + memberlist);
+		
+		
+		return memberlist;
+	}
+
+	//수정할 회원 리스트
+	@Override
+	public ArrayList<Member> selectEditList(ArrayList<String> midlist) {
+		ArrayList<Member> editList = (ArrayList) sqlSession.selectList("Member.selectEditList", midlist);
+		
+		return editList;
+	}
+	
 }
