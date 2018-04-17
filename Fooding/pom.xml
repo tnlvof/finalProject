@@ -2,13 +2,13 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>org.kh</groupId>
-	<artifactId>firstSpring</artifactId>
-	<name>firstSpring</name>
+	<groupId>com.kh</groupId>
+	<artifactId>fooding</artifactId>
+	<name>fooding</name>
 	<packaging>war</packaging>
 	<version>1.0.0-BUILD-SNAPSHOT</version>
 	<properties>
-		<java-version>1.8</java-version>
+		<java-version>1.8</java-version> 
 		<org.springframework-version>5.0.4.RELEASE</org.springframework-version>
 		<org.aspectj-version>1.8.13</org.aspectj-version>
 		<org.slf4j-version>1.7.25</org.slf4j-version>
@@ -193,6 +193,19 @@
 			<artifactId>json-simple</artifactId>
 			<version>1.1.1</version>
 		</dependency>
+
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.9.4</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-mapper-asl</artifactId>
+			<version>1.9.13</version>
+		</dependency>
+
 
 		<!-- 스프링 시큐리티 -->
 		<dependency>

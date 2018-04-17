@@ -1,0 +1,123 @@
+@charset "UTF-8";
+/* header */
+.logo{
+	height: 30px;
+	text-indent: -9999px;
+	background-image: url('/fooding/resources/images/common/logo.png');
+	background-repeat: no-repeat;
+	background-size: contain;
+}
+.srch-area{
+	position: absolute;
+	top: 30px;
+	margin-top: 9%;
+	z-index:3;
+	background: #fff;
+	border-radius: 2px;
+	width: 94%;
+	overflow: hidden;
+}
+.srch-area *{
+	height: 30px;
+	font-size: 13px;
+	border: 0;
+	border-radius: 2px !important;
+	background-color: #fff;
+}
+.srch{
+	width: 86%;
+	padding: 0 4%;
+	box-sizing: border-box;
+	float: left;
+}
+::placeholder{
+	text-align: center;
+	text-indent: 10%;
+}
+.srch-btn{
+	width: 10%;
+	float: right;
+	text-indent: -9999px;
+	background-image: url(/fooding/resources/images/common/icon-srch.png);
+	background-position: 4px;
+	background-size: 22px;
+	background-repeat: no-repeat;
+}
+
+/* swiper */
+.swiper-container, .ticket-container {
+	width: 100%;
+	height: 100%;
+}
+.swiper-slide {
+	/* Center slide text vertically */
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	-webkit-justify-content: center;
+	justify-content: center;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	-webkit-align-items: center;
+	align-items: center;
+}
+.swiper-slide img {
+	width: 100%;
+}
+
+
+/* common */
+.container > div {
+	position: relative;
+	padding-bottom: 5%;
+}
+.container h3 {
+	font-size: 15px;
+	margin-bottom: 2%;
+}
+.container .swiper-slide{
+	border-radius: 3px;
+	backgroud-size: 100%;
+}
+.container .bg{
+	width: 100%;
+	border-radius: 3px;
+	background-color: rgba(0, 0, 0, 0.3);
+	display: table-cell;
+	vertical-align: middle;
+	text-align: center;
+	padding: 12% 0;
+}
+.container p{
+	color: #fff;
+}
+.more {
+	position: absolute;
+	right: 0;
+	top: 1%;
+}
+
+
+/* 다이닝 티켓 */
+.ticket{
+	margin-bottom: 4%;
+	border-bottom: 1px solid #ddd;
+}
+.ticket span{
+	color: inherit;
+	border: 1px solid #fff;
+	border-radius: 20px;
+	padding: 2% 5%;
+	line-height: 4em;
+	font-size: 1.1em;
+}
+
+
+/* 테마별 레스토랑 */
+.recommend p{
+	font-size: 1.1em;
+	margin: 8% 0;
+}

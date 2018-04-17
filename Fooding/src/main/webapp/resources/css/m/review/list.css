@@ -1,0 +1,255 @@
+@charset "UTF-8";
+.header{
+	width: 100%;
+	max-width: 640px;
+	box-sizing: border-box;
+	position: fixed;
+}
+#go-back{
+	position: absolute;
+	left: 3%;
+	color: #fff;
+	font-weight: bold;
+	font-size: 16px;
+}
+
+/* no-review */
+.no-review{
+	padding: 20% 0;
+	text-align: center;
+	color: #999;
+	line-height: 3em;
+	
+}
+.icon-review{
+	display: block;
+	margin: 0 auto;
+	width: 32px;
+	height: 32px;
+	background: url('/fooding/resources/images/common/mobileCommon.png') -31px 0;
+}
+
+
+/* reviews */
+.reviews{
+	background: #f7f7f7;
+	padding: 14% 0 3% 0;
+}
+.reviews li{
+	background: #fff;
+	border-top: 1px solid #ddd;
+	border-bottom: 1px solid #ddd;
+	margin-bottom: 3%;
+	padding: 3%;
+}
+.about-writer{
+	overflow: hidden;
+}
+.about-writer > *{
+	float: left;
+}
+.user{
+	width: 58px;
+	height: 58px;
+	border-radius: 50%;
+	margin: 0 3% 3% 0;
+}
+.user img{
+	width: 100%;
+}
+.user-info{
+	font-size: 15px;
+	line-height: 1.4em;
+	padding-top: 2.5%;
+}
+.icon-star{
+	display: inline-block;
+    width: 15px;
+    height: 15px;
+    background-image: url(/fooding/resources/images/common/icon-rank-small.png);
+    background-size: 15px;
+    margin: 0 -3px -2px 0;
+}
+.rankOff{
+	background-position-y: 19px;
+}
+.write-time{
+	float: right;
+	color: #999;
+	font-size: 12px;
+}
+.rank-number{
+	font-size: 14px;
+	color: #c91b3c;
+	margin-left: 5px;
+}
+.review-content{
+	padding: 3% 0;
+}
+.about-store{
+	font-size: 15px;
+	color: #333;
+	font-weight: bold;
+	border-bottom: 1px solid #e5e5e5;
+	padding-bottom: 3%;
+	margin-bottom: 4%;
+}
+.store-kind{
+	color: #999;
+	font-weight: initial;
+	font-size: 13px;
+}
+.read-more{
+	font-weight: bold;
+	color: #c91b3c;
+}
+.photo-area img{
+	width: 100%;
+}
+
+/* 리뷰작성 */
+.srchArea{
+    padding-top: 12%;
+	width: 100%;
+	background: #fff;
+	border-bottom: 1px solid #e5e5e5;
+}
+.srchArea *{
+	/* margin-top: 6%; */
+}
+.find-restaurant{
+	border: 0;
+	width: 87%;
+	height: 42px;
+	text-align: center;
+	text-indent: 12%;
+	color: #c91b3c;
+	font-weight: bold;
+}
+::placeholder{
+	font-weight: normal;
+}
+.find-btn{
+	width: 12%;
+	height: 42px;
+	background: #fff;
+	border: 0;
+	text-indent: -9999px;
+	background-image: url(/fooding/resources/images/common/icon-srch.png);
+	background-position: 4px;
+	background-size: 22px;
+	background-repeat: no-repeat;
+}
+.giveScore{
+	border-bottom: 1px solid #e5e5e5;
+	text-align: center;
+	padding: 5% 0;
+}
+.giveScore p{
+	margin-bottom: 1%;
+	color: #c91b3c;
+}
+.score{
+	font-weight: bold;
+	font-size: 16px;
+}
+.checkRank{
+	margin-top: 3%;
+	border: 0;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	color: #c91b3c;
+	font-size: 20px;
+}
+.writeArea{
+	text-align: right;
+}
+#writeReview{
+	padding: 5%;
+	border: 0;
+	width: 90%;
+	resize: none;
+}
+#counter{
+	padding-right: 3%;
+	display: block;
+	width: 97%;
+	padding-top: 3%;
+	border-top: 1px solid #e5e5e5;
+	color: #999;
+}
+.photoArea{
+	margin: 3%;
+	padding-top: 3%;
+	padding-bottom: 150px;
+}
+.update-review{
+    width: 100%;
+    background: #c91b3c;
+    color: #fff;
+    padding: 3%;
+	position: fixed;    
+	bottom: 70px;
+	margin-bottom: 2%;
+}
+
+/* 사진 업로드 */
+.filebox{
+	overflow: hidden;
+}
+.filebox input[type="file"] {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip:rect(0,0,0,0);
+	border: 0;
+}
+
+.filebox label {
+	display: table-cell;
+	vertical-align: middle;
+	width: 80px;
+	height: 80px;
+	border: 2px dashed #c91b3c;
+	background-color: #fff;
+	line-height: 1em;
+	float: left;
+}
+
+/* imaged preview */
+.filebox .upload-display {
+	float: left;
+}
+
+.filebox .upload-thumb-wrap {
+	display: inline-block;
+	width: 82px;
+	height: 82px;
+	vertical-align: middle;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+	background-color: #fff;
+}
+
+.filebox .upload-display img {
+	display: block;
+	width: 82px;
+	margin: auto;
+}
+
+.filebox.bs3-primary label {
+	color: #c91b3c;
+	text-align: center;
+	margin-right: 3%;
+}
+.addPhoto{
+	display: block;
+	font-size: 40px;
+	margin-top: 30px;
+	line-height: 5px;
+}
+
