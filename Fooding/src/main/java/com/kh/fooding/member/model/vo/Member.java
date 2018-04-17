@@ -3,22 +3,23 @@ package com.kh.fooding.member.model.vo;
 import java.sql.Date;
 
 public class Member {
-	private int mid;
-	private String userId;
-	private String userPwd;
-	private String userName;
-	private String birth;
-	private String gender;
+	private int mid;                                      
+	private String userId;                                
+	private String userPwd;                               
+	private String userName;                              
+	private String birth;                                 
 	private String phone;
-	private String email;
-	private String address;
-	private String mCode;
-	private String status;
-	private Date enrollDate;
-	private int repCount;
-	private int bizNo;
-	private String bizName;
+	private String email;                                 
+	private String address;                               
+	private String mCode;                                 
+	private String status;                                
+	private int repCount;                                 
+	private int bizNo;                                    
+	private String bizName;                               
 	private int bookCount;
+	private String gender;                                
+	private Date enrollDate;
+	
 	
 	public Member() {
 		super();
