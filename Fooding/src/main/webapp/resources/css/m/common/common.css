@@ -96,13 +96,14 @@ h2{
 	margin: 0 auto 5% auto;
 	background-image: url('/fooding/resources/images/common/mobileCommon.png');
 }
-.gnb li:hover{
+.gnb li:hover,
+.gnb li.active{
 	color: #c71d3a;
 }
-.gnb li:hover i{
+.gnb li:hover i,
+.gnb li.active i{
 	background-position-y: 32px;
 }
-
 .gnb-review i{
 	background-position-x: -31px;
 }
