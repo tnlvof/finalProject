@@ -29,21 +29,21 @@ public class MemberServiceImpl implements MemberService{
 		int result = md.insertMember(m, sqlSession);
 	}
 	
-	//관리자 페이지 회원 리스트 불러오기
+	//관리자 페이지 회원 리스트 불러오기	
 	@Override
-	public ArrayList<Member> selectMemberList() {
+	public ArrayList<Member> selectMemberList() throws selectMemberException {
 		// TODO Auto-generated method stub
-		System.out.println("옴");
+		System.out.println("서비스 옴");	
 		
-		ArrayList<Member> list = md.selectMemberList();
-		
-		System.out.println("list" + list);
-		
-		return list;
+		return md.selectMemberList();
 	}
-
+	
+	//수정할 회원 목록 불러오기
 	@Override
-	public Member loginCheck2(Member m) throws LoginException {
-		return md.loginCheck(m);
+	public ArrayList<Member> selectEditList(ArrayList<String> midlist) {
+		ArrayList<Member> editlist = md.selectEditList(midlist);
+		System.out.println("editlist @dao : " + editlist);
+		
+		return editlist;
 	}
 }
