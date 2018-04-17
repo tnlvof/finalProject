@@ -718,8 +718,6 @@ $('#checkAll4').click(function() {
 
 
 
-
-
 </div>
 <!-- container -->
 
