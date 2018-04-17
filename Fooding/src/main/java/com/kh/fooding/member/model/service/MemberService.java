@@ -16,6 +16,6 @@ public interface MemberService  {
 
 	ArrayList<Member> selectMemberList( ) throws selectMemberException;
 
-	ArrayList<Member> selectEditList(ArrayList<String> midlist);
+	ArrayList<Member> selectEditList(ArrayList<String> midlist );
 
 }

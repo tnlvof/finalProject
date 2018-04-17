@@ -151,7 +151,7 @@ public class MemberController {
 	@RequestMapping(value = "updateMembers.me", method = RequestMethod.POST)		
 	public ModelAndView updateMembers(ModelAndView mv, Member m,  @RequestParam("mid") ArrayList<String> midlist) {
 	
-		ArrayList<Member> editList = ms.selectEditList(midlist); 
+		 ArrayList<Member> editList = ms.selectEditList(midlist); 
 		
 		//System.out.println("editList @ Controller : " + editList);
 		mv.addObject("editList", editList);

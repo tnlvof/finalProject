@@ -46,6 +46,7 @@ public class MemberServiceImpl implements MemberService{
 	public ArrayList<Member> selectEditList(ArrayList<String> midlist) {
 		ArrayList<Member> editlist = md.selectEditList(midlist);
 		System.out.println("editlist @dao : " + editlist);
+		
 		return editlist;
 	}
 }

@@ -62,7 +62,6 @@ public class MemberDaoImpl implements MemberDao{
 	public ArrayList<Member> selectEditList(ArrayList<String> midlist) {
 		ArrayList<Member> editList = (ArrayList) sqlSession.selectList("Member.selectEditList", midlist);
 		
-				
 		return editList;
 	}
 	
