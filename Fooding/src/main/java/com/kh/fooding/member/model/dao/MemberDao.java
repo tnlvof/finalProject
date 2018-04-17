@@ -12,7 +12,9 @@ public interface MemberDao {
 	Member loginCheck(Member m) throws LoginException;
 
 	int insertMember(Member m, SqlSessionTemplate sqlSession);
+	
+	ArrayList<Member> selectMemberList( ) throws selectMemberException;
 
-	ArrayList<Member> selectMemberList();
+	ArrayList<Member> selectEditList(ArrayList<String> midlist);
 
 }
