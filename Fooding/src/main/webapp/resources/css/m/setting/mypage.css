@@ -1,0 +1,161 @@
+@charset "UTF-8";
+
+.header{
+	background-color: initial;
+	background-size: cover;
+	padding: 0;
+}
+
+/* 프로필 사진 배경 */
+.i_wrap {
+    display: inline-block;
+}
+#banner {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    background-size: cover;
+    background-position: center center;
+}
+#banner.user {
+    height: 200px;
+}
+#banner.user>.background {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+#banner.user>.i_wrap {
+    width: 100%;
+    height: 100%;
+}
+.i_wrap i{
+	display: block; 
+	width: 100%;
+	height: 100%;
+}
+.blur {
+    -o-filter: blur(5px);
+    -ms-filter: blur(5px);
+    -moz-filter: blur(5px);
+    -webkit-filter: blur(5px);
+    filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius='5');
+}
+.background {
+	position: absolute;
+	top: 0;
+	left: 0
+}i.image, i.profile_image {
+    background-size: cover;
+    background-position: center center;
+}
+.shading.middle {
+    filter: brightness(.5);
+    -ms-filter: brightness(.5);
+    -moz-filter: brightness(.5);
+    -webkit-filter: brightness(.5);
+}
+.background{
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.userInfo{
+	overflow: hidden;
+}
+.photo{
+	width: 97px;
+	height: 97px;
+	margin: 5%;
+	border-radius: 50%;
+	float: left;
+	position: relative;
+	background-color: #fff;
+}
+.photo img{
+	width: 100%;
+	display: block;
+}
+.info{
+	display: inline-block;
+	margin-top: 5%;
+	padding-top: 23px;
+}
+.info p:first-child{
+	color: #303030;
+	font-weight: bold;
+	font-size: 16px;
+	color: #fff;
+}
+.info p:last-child{
+	color: #6b6b6b;
+	font-size: 15px;
+	color: #fff;
+}
+.inner_wrap{
+	position: absolute;
+	width: 100%;
+}
+h2{
+	padding: 3%;
+}
+.setting{
+	position: absolute;
+	right: 3%;
+	top: 5%;
+}
+.setting i{
+	display: block;
+	width: 20px;
+	height: 20px;
+	background-image: url(/fooding/resources/images/myPage/icon-setting.png);
+	background-size: cover;
+	text-indent: -9999px;
+}
+.content{
+	padding: 3%;
+}
+
+/* tabMenu */
+.tab{
+	border-bottom: 1px solid #e5e5e5;
+}
+.tab .tablinks{
+	width: calc(98%/3);
+	padding: 0 3% 3% 3%;
+	font-size: 13px;
+}
+.tablinks.on{
+	border-bottom: 2px solid #c91b3c;
+	color: #c91b3c;
+}
+.count{
+	font-size: 16px;
+}
+.content > .tabcontent{
+	display: none;
+	margin-top: 5%;
+}
+.btns{
+	border: 1px solid #787878;
+	overflow: hidden;
+	border-radius: 5px;
+}
+.tabbtn{
+	width: calc(100%/2);
+	color: #787878;
+	padding: 1%;
+	box-sizing: border-box;
+	float: left;
+	border: none;
+	text-align: center;
+}
+.tabbtn.in{
+	background: #787878;
+	color: #fff;
+	font-weight: normal;
+}
+.reservecontent{
+	display: none;
+	margin-top: 3%;
+}

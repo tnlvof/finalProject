@@ -15,19 +15,33 @@
 
 	<div class="wrap">
 		<div class="userInfo">
-			<div class="photo">
-				<img src="/fooding/resources/images/common/no-image.png">
-				여긴 다시 작성할 것
-			</div>
+			<div class="photo filebox bs3-primary preview-image">
+				<div class="upload-display">
+					<div class="upload-thumb-wrap">
+						<img src="/fooding/resources/images/common/no-image.png">
+					</div>
+				</div>
+				
+				<!-- 현재 프로필인 사진 경로 -->
+				<input class="upload-name" value="파일선택" disabled="disabled">
+				<label for="input_file">사진<br>변경</label>
+				<input type="file" id="input_file" class="upload-hidden">
+
+			</div><!-- photo -->
+			
+			<div class="info">
+				<p>이우인</p>
+				<p>wooin@kh.or.kr</p>
+			</div><!-- info -->
 		</div>
 		<!-- userInfo -->
 		
 		<div class="user-setting setting-content">
 			<h3>계정설정</h3>
 			<ul>
-				<li>이름 변경 <span class="name">이우인</span></li>
-				<li>이메일 변경 <span class="name">wooin@kh.or.kr</span></li>
-				<li>비밀번호 변경 </li>
+				<li onclick="changeName()">이름 변경  <span class="set-btn">이우인</span></li>
+				<li onclick="changeEmail()">이메일 변경  <span class="set-btn">wooin@kh.or.kr</span></li>
+				<li onclick="changePwd()">비밀번호 변경 <span class="set-btn"></span> </li>
 			</ul>
 		</div>
 		<!-- user-setting -->
@@ -37,8 +51,8 @@
 			<ul>
 				<li>공지사항</li>
 				<li>자주 묻는 질문</li>
-				<li>1:1 문의</li>
-				<li>회원탈퇴</li>
+				<li onclick="ask()">1:1 문의</li>
+				<li onclick="leave()">회원탈퇴</li>
 			</ul>
 		</div>
 		<!-- guide -->
@@ -48,13 +62,8 @@
 		</button>
 	</div>
 	<!-- wrap -->
+	
+	<!-- modal창 -->
+	<jsp:include page="/WEB-INF/mobile/views/setting/setModal.jsp"/>
 
-<script>
-//뒤로가기
-$(document).ready(function() {
-	$('#go-back').click(function() {
-		parent.history.back();
-		return false;
-	});
-});
-</script>
+	<script src="/fooding/resources/js/setting.js"></script>

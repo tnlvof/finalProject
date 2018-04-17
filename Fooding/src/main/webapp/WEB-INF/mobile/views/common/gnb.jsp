@@ -6,7 +6,7 @@
 <!-- menubar -->
 <nav data-role="navbar" id="gnb">
 	<ul class="gnb">
-		<li class="gnb-srch">
+		<li class="gnb-srch active">
 			<i></i>레스토랑 검색
 		</li>
 		<li class="gnb-review">
@@ -24,6 +24,13 @@
 	</ul>
 </nav>
 
-
+<script>
+$(document).ready(function() {
+	$('.gnb li').click(function() {
+		$('.gnb li').removeClass("active");
+		$(this).addClass("active");
+	});
+});
+</script>
 </body>
 </html>
