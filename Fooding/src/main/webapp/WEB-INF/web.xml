@@ -34,20 +34,20 @@
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 	
-	<!-- 관리자 annotation  -->
+	<!-- 멤버 annotation  -->
 	<servlet>
-		<servlet-name>admin</servlet-name>
+		<servlet-name>member</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-		<init-param>
+		<init-param> 
 			<param-name>contextConfigLocation</param-name>
-			<param-value>/WEB-INF/config/action-servlet.xml</param-value>
+			<param-value>/WEB-INF/config/member-servlet.xml</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 		
 	<servlet-mapping>
-		<servlet-name>admin</servlet-name>
-		<url-pattern>*.adm</url-pattern>
+		<servlet-name>member</servlet-name>
+		<url-pattern>*.me</url-pattern>
 	</servlet-mapping>
 	
 	<!-- 한글 깨짐 방지 -->
