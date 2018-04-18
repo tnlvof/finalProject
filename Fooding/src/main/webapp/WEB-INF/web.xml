@@ -66,6 +66,22 @@
 		<url-pattern>*.bo</url-pattern>
 	</servlet-mapping>
 	
+	<!-- 업체 annotation  -->
+	<servlet>
+		<servlet-name>store</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param> 
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/config/store-servlet.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+		
+	<servlet-mapping>
+		<servlet-name>store</servlet-name>
+		<url-pattern>*.st</url-pattern>
+	</servlet-mapping>
+	
 	<!-- 한글 깨짐 방지 -->
 	<filter>
 		<filter-name>encodingFilter</filter-name>
