@@ -63,12 +63,11 @@
   			
   			//수정 버튼
   				
-  			
-  			 
   			$("#editBtn").click(function(){  				
   				if(! $(".memberCheck").is(":checked")){
   					alert("수정할 회원을 선택해주세요.");
   				} else{
+  					
   					$("#memberForm").submit();
   				}  			
   			});
@@ -82,7 +81,7 @@
  	<div class="tableArea">
  	<table class="tableList" align="center" id="membertable">
  	
- 	<tr style="border-bottom:1px solid lightgray;">
+ 	<tr style="border-bottom:1px solid lightgray;" id="memberHeader">
  	<th style="width:100px; text-align:center;height:20px;font-weight:bold;"><input type="checkbox" id="checkAll">&nbsp;전체선택</th>
  	<th style="width:100px; text-align:center;height:20px;font-weight:bold;">아이디</th>
  	<th style="width:100px; text-align:center;height:20px;font-weight:bold;">이름</th>
@@ -642,43 +641,46 @@ function openTab(evt, tabName) {
     evt.currentTarget.className += " active";
     
     
-    if(tabName=='memberList'){
-    	
-    	console.log(tabName);
-    	
-    	$.ajax({
-    		  method: "POST",
-    		  url: "selectMemberList.me", 
-    		  success:function(data){
-    			
-    			  console.log(data);
-    			  console.log(data.memberlist);
-    			  
-    			  
-    			  for(var i = 0; i<data.memberlist.length;i++){
-    				  $("#membertable").append("<tr class='tableRow' > <td ><input type='checkbox' class='memberCheck' name='checkedrow'></td>");
-    				  $(".tableRow").append("<td style='padding-top: 10px;padding-bottom:10px;' name='userId'><input type='hidden' value="+ data.memberlist[i].mid+" name='mid'>"+data.memberlist[i].userId+"</td>");
-    				  $(".tableRow").append("<td name='userName'>"+data.memberlist[i].userName+"</td>");
-    				  $(".tableRow").append("<td name='birth'>"+data.memberlist[i].birth+"</td>");
-    				  $(".tableRow").append("<td name='phone'>"+data.memberlist[i].phone+"</td>");
-    				  $(".tableRow").append("<td name='email'>"+data.memberlist[i].email+"</td>");
-    				  $(".tableRow").append("<td name='address'>"+data.memberlist[i].address+"</td>");
-    				  $(".tableRow").append("<td name='repCount'>"+data.memberlist[i].repCount+"</td>");
-    				  $(".tableRow").append("<td name='bookCount'>"+data.memberlist[i].bookCount+"</td>");
-    				  $(".tableRow").append("<td name='status'>"+data.memberlist[i].status+"</td></tr>");
-    				      				  
-    			  }
-    				
-    			  
-    		  },
-    		  error:function(){
-    			  alert('안됨');
-    		  }
-    		});
-    		  
-    }
+	    if(tabName=='memberList'){
+	    	 $.ajax({
+	     		  method: "POST",
+	     		  url: "selectMemberList.me", 
+	     		  success:function(data){
+	     			
+	     			  console.log(data);
+	     			  console.log(data.memberlist); 
+	     			     
+	     			 $("#memberHeader").nextAll("tr").remove();
+	     			 for(var i = 0; i<data.memberlist.length;i++){
+	     				 	  
+	     				 
+	    				  $("#membertable").append("<tr class='tableRow' > <td ><input type='checkbox' class='memberCheck' name='checkedrow'></td>");
+	    				  $("#membertable").find(".tableRow").last().append("<td style='padding-top: 10px;padding-bottom:10px;' name='userId'><input type='hidden' value="+ data.memberlist[i].mid+" name='mid'>"+data.memberlist[i].userId+"</td>");
+	    				  $("#membertable").find(".tableRow").last().append("<td name='userName'>"+data.memberlist[i].userName+"</td>");
+	    				  $("#membertable").find(".tableRow").last().append("<td name='birth'>"+data.memberlist[i].birth+"</td>");
+	    				  $("#membertable").find(".tableRow").last().append("<td name='phone'>"+data.memberlist[i].phone+"</td>");
+	    				  $("#membertable").find(".tableRow").last().append("<td name='email'>"+data.memberlist[i].email+"</td>");
+	    				  $("#membertable").find(".tableRow").last().append("<td name='address'>"+data.memberlist[i].address+"</td>");
+	    				  $("#membertable").find(".tableRow").last().append("<td name='repCount'>"+data.memberlist[i].repCount+"</td>");
+	    				  $("#membertable").find(".tableRow").last().append("<td name='bookCount'>"+data.memberlist[i].bookCount+"</td>");
+	    				  $("#membertable").find(".tableRow").last().append("<td name='status'>"+data.memberlist[i].status+"</td></tr>");
+	    				      				  				  
+	    			  }  
+	     			
+	     		  },
+	     		  error:function(){
+	     			  alert('안됨');
+	     		  }
+	     		  
+	     		  
+	     		});
+	    	
+	    }
     
 }
+
+
+
 
 // Get the element with id="defaultOpen" and click on it
 document.getElementById("defaultOpen").click();
