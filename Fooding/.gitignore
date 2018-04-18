@@ -16,6 +16,7 @@ local.properties
 .recommenders
 target/
 *.settings
+/target/
 
 # External tool builders
 .externalToolBuilders/

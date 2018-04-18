@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.kh.fooding.member.model.exception.selectMemberException;
 import com.kh.fooding.member.model.service.MemberService;
 import com.kh.fooding.member.model.service.MemberServiceImpl;
 import com.kh.fooding.member.model.vo.Member;
@@ -27,7 +28,11 @@ public class AdminController {
 		
 		MemberService ms = new MemberServiceImpl();
 		
-		list = ms.selectMemberList();		
+		try {
+			list = ms.selectMemberList();
+		} catch (selectMemberException e) {
+			e.printStackTrace();
+		}		
 		System.out.println("list @adminCntr" + list);
 		
 		return "admin/adminMain";
