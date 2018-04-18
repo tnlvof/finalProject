@@ -67,12 +67,12 @@
 												<i class="icon personnel"></i>
 												<div class="box_text">인원</div>
 												<div class="person_count">
-													<input value="-" count_range="m" type="button" id="mBtn">
-													<i class="icon minus" for="mBtn"></i>
+													<input value="-" count_range="m" type="button" id="mBtn" style="display:none;">
+													<label for="mBtn"><i class="icon minus"></i></label>
 													<!-- <span id="reserve_person_count" class="count">6</span> -->
 													<input class="count" value="1" readonly>
-													<input value="+" count_range="p" type="button" id="pBtn">
-													<i class="icon plus" for="pBtn"></i>
+													<input value="+" count_range="p" type="button" id="pBtn" style="display:none;">
+													<label for="pBtn"><i class="icon plus"></i></label>
 												</div>
 												<!-- <div class="__count_range">
 													<input value="-" count_range="m" type="button">

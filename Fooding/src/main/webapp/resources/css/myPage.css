@@ -832,7 +832,7 @@ div.reserve-popup>div.popup-row>div.box>.person_count {
     top: -11px;
     margin-left: -7px;
 }
-div.reserve-popup>div.popup-row>div.box>.person_count>i.minus {
+div.reserve-popup>div.popup-row>div.box>.person_count>label>i.minus {
     border-right: 1px solid #c8c8c8;
 }
 div.reserve-popup>div.popup-row>div.box>.person_count>i {
@@ -854,7 +854,7 @@ div.reserve-popup>div.popup-row>div.box>.person_count>.count {
     cursor: default;
     font-size:13px;
 }
-div.reserve-popup>div.popup-row>div.box>.person_count>i.plus {
+div.reserve-popup>div.popup-row>div.box>.person_count>label>i.plus {
     border-left: 1px solid #c8c8c8;
 }
 div.reserve-popup>div.popup-row>div.box>.person_count>i {
