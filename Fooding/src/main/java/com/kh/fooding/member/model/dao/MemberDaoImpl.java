@@ -34,7 +34,7 @@ public class MemberDaoImpl implements MemberDao{
 		}else{
 			member = sqlSession.selectOne("Member.loginCheck", m);
 		}
-		return member;
+		return member; 
 	}
 
 	@Override
