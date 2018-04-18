@@ -173,8 +173,28 @@ public class MemberController {
 		return mv;
 	}
 		
-
+	@RequestMapping(value ="goMyPage.me")
+	public String goMyPage() {
 		
+		return "myPage/myPage";
+	}
+	
+	@RequestMapping(value ="goMyPageReview.me")
+	public String goMyPageReview() {
 		
+		return "myPage/myPageReview";
+	}
+	
+	@RequestMapping(value ="goMyPageQuestions.me")
+	public String goMyPageQuestions() {
+		
+		return "myPage/myPageQuestions";
+	}
+	
+	@RequestMapping(value ="goMyPageQuestionForm.me")
+	public String goMyPageQuestionForm() {
+		
+		return "myPage/myPageQuestionForm";
+	}
 	
 }
