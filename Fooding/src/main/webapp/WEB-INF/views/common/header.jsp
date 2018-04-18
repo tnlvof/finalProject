@@ -21,7 +21,7 @@
 			<h1 class="logo" onclick="location.href='goMain.me'">Fooding</h1>
 			<form action="" method="post">
 				<input type="search" name="search" placeholder="지역,음식 종류 등 검색하세요">
-				<button type="submit" class="srch-btn">검색</button>
+				<button type="button" class="srch-btn" onclick="location.href='searchResult.st'">검색</button>
 			</form>
          
          <div class="loginArea">
