@@ -26,14 +26,14 @@ import com.kh.fooding.member.model.service.MemberService;
 import com.kh.fooding.member.model.vo.Member;
 
 @Controller
-@SessionAttributes("loginUser")
 public class MemberController {
 	@Autowired
 	private MemberService ms;
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
 	
-	/*@RequestMapping(value = "login.me", method = RequestMethod.POST)
+	//로그인
+	@RequestMapping(value = "login.me", method = RequestMethod.POST)
 	public String loginCheck(Member m , HttpSession session, Model model) {
 
 		System.out.println("controller Member : " + m);
@@ -49,10 +49,10 @@ public class MemberController {
 			model.addAttribute("message", e.getMessage());
 			return "common/errorPage";
 		}
-	}*/
+	}
 	
 	//로그인
-	@RequestMapping(value = "login.me", method = RequestMethod.POST)
+	/*@RequestMapping(value = "login.me", method = RequestMethod.POST)
 	public ModelAndView loginCheck(Member m,Model model, ModelAndView mv, SessionStatus status) {
 
 		System.out.println("controller Member : " + m);
@@ -72,7 +72,7 @@ public class MemberController {
 			mv.setViewName("main/main");
 		}
 		return mv;
-	}
+	}*/
 	
 	
 	@RequestMapping(value = "goMemberJoin.me")
@@ -104,11 +104,11 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "logout.me", method = RequestMethod.GET)
-	public String logout(/*HttpSession session,*/SessionStatus status) {
+	public String logout(HttpSession session/*,SessionStatus status*/) {
 		
-		//session.invalidate();
+		session.invalidate();
 		
-		status.setComplete();
+//		status.setComplete();
 		
 		return "main/main";
 	}
