@@ -34,7 +34,7 @@
 			
 			<c:if test="${ !empty loginUser }">
 	            <div class="dropdown" style="display: block;">
-	               <div class="user-profile"><img src="/fooding/resources/images/common/no-image.png"></div>
+	               <div class="user-profile" onclick="location.href='goMyPage.me'"><img src="/fooding/resources/images/common/no-image.png"></div>
 	               <ul class="dropdown-content">
 	                  <li>예약</li>
 	                  <li>티켓</li>
