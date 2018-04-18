@@ -115,7 +115,7 @@
 													class="icon arrow red calArrow"></i>
 												<script>
 												$(function(){
-													  $('.calArrow').click(function(){
+										  			  $('.calArrow').click(function(){
 													    $('#calendar').show();
 													    $(this).addClass('calShow');
 													  });

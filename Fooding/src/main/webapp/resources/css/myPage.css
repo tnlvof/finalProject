@@ -841,7 +841,7 @@ div.reserve-popup>div.popup-row>div.box>.person_count>label>i {
     height: 24px;
 }
 i.icon.minus {
-    background-position: -600px -200px;
+    background-position: -602px -200px;
 }
 i.icon.minus, i.icon.phone, i.icon.plus {
     width: 27px;
@@ -863,7 +863,7 @@ div.reserve-popup>div.popup-row>div.box>.person_count>label>i {
     height: 24px;
 }
 i.icon.plus {
-    background-position: -576px -199px;
+    background-position: -577px -199px;
 }
 div.reserve-popup>div.popup-row>div.box.pointer {
     cursor: pointer;
