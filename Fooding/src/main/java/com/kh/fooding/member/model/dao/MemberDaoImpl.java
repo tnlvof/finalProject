@@ -52,7 +52,7 @@ public class MemberDaoImpl implements MemberDao{
 			throw new selectMemberException("회원 정보 리스트 조회 실패");
 		}		
 		
-		System.out.println("list DAO: " + memberlist);
+		//System.out.println("list DAO: " + memberlist);
 		
 		
 		return memberlist;

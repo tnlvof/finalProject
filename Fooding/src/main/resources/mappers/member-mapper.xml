@@ -70,7 +70,7 @@
 		 WHERE MID IN
 		<foreach item="midlist" index="index" collection="list"
 		open="(" separator="," close=")">
-		#{midlist.mid}
+		#{midlist}
 		</foreach>
 		 		
 	</select>
