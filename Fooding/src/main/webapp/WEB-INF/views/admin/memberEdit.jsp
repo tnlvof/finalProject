@@ -52,7 +52,7 @@
  		<td class="checkTd"><input type="checkbox" class="checkboxes"></td>
  		 <td style="padding:10px; cursor:pointer;">${ e.userId} <input type="hidden" name="mid" value="${ e.mid}"> </td>
  		 <td >${ e.userName}</td>
- 		 <td >${ e.birth}</td>
+ 		 <td >${ e.birth} </td>
  		 <td >${ e.phone}</td>
  		 <td >${ e.email}</td>
  		 <td >${ e.address}</td>
