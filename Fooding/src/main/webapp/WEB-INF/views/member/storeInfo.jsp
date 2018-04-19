@@ -86,7 +86,7 @@
                <th>분위기</th>
                <td><input type="text" name="atmosphere"></td>
             </tr>      
-            <tr>
+            <tr> 
                <th>편의시설</th>
                <td>
                   <input type="checkbox" id="private" name="facilities" value="개인실"> 개인실
