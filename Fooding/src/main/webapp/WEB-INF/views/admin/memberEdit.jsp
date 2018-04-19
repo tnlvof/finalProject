@@ -19,20 +19,62 @@
 	<!-- 회원 수정 -->
 
   	<h3>회원 수정 </h3>
-  
-  	
- <form action="updateMembers.me" method="post"> 
   	
   	<button id="blacklistOff" class="searchBtn" style="position:relative;left:195px;">블랙리스트 풀기</button>
-  	<button class="searchBtn" type="submit" style="position:relative;left:210px;">수정완료</button>
+  	<button class="searchBtn" onclick="updateMember()" style="position:relative;left:210px;">수정완료</button>  	  	
+ 	
   	<br><br>
   	
+  	<script type="text/javascript">
+  		function updateMember(){
+  			  			
+  			var midArr = [];
+  			var repCountArr = [];
+  			var statusArr = [];
+  			
+  			for(var i in midArr){
+  				midArr.push( $(".mid").val() );  				
+  			}
+  			
+
+  			for(var i in repCountArr){
+  				repCountArr.push( $(".repCount").val() );
+  			}
+
+  			for(var i in statusArr){
+  				statusArr.push( $(".status").val() );
+  			}
+  			
+  			console.log(midArr);
+  			console.log(repCountArr);
+  			console.log(statusArr);
+  		/* 	
+  			$.ajax({
+  				method:"post",
+  				url:"updateMembers.me",
+  				data: {
+  					mid : midArr,
+  					repCount: repCountArr,
+  					status: statusArr
+  				},  				
+  				success:function(){
+  					alert('됨?');
+  				},
+  				error:function(){
+  					alert('안대');
+  				}
+  				
+  			}); */
+  			
+  		}
+  	</script>
   	
+    	
  	<div id="tableArea">
  	<table id="memberList" class="tableList" style="margin-left:auto;margin-right:auto;" >
  	<tr style="border-bottom:1px solid lightgray;">
  	<th style="width:100px; text-align:center;height:20px;font-weight:bold;">
- 	<input type="checkbox" id="checkAll">&nbsp;전체선택</th>
+ 	<input type="checkbox" id="checkAll" >&nbsp;전체선택</th>
  	
  	<th style="width:100px; text-align:center;height:20px;font-weight:bold;">아이디</th>
  	<th style="width:100px; text-align:center;height:20px;font-weight:bold;">이름</th>
@@ -49,24 +91,24 @@
 	
  	<c:forEach items="${editList }" var="e" >
  	<tr class="tableRow">
- 		<td class="checkTd"><input type="checkbox" class="checkboxes"></td>
- 		 <td style="padding:10px; cursor:pointer;">${ e.userId} <input type="hidden" name="mid" value="${ e.mid}"> </td>
+ 		<td class="checkTd"><input type="checkbox" name="memberCheck" class="memberCheck checkboxes" > <input type="hidden" class="mid" name="mid" value="${ e.mid}"></td>
+ 		 <td  style="padding:10px; cursor:pointer;">${ e.userId}  </td>
  		 <td >${ e.userName}</td>
  		 <td >${ e.birth} </td>
  		 <td >${ e.phone}</td>
  		 <td >${ e.email}</td>
  		 <td >${ e.address}</td>
- 		 <td name="reportNum" class="reportNum"><input type="text" value="5" ></td>
+ 		 <td  class="reportNum"><input type="text" value="${ e.repCount}" class="repCount" name="repCount" ></td>
  		 <td >${ e.bookCount}</td>
- 		 <td><input type="text" name="status" value="${e.status }"></td>
+ 		 <td><input type="text" name="status" class="status" value="${e.status }"></td>
  	</tr>
  	</c:forEach>
  
  	</table>
  	
  </div>
- </form> 
 
+ 
 
 
 	<!--/ 회원 수정 -->
@@ -79,32 +121,16 @@
 	    $('#checkAll').click(function() {
 	        var c = this.checked;	        
 	        $('.checkboxes').prop('checked',c);
-	        $('.checkedOnes').prop('checked',c);      
+	        $('.checkedOnes').prop('checked',c); 
+	        
 	    });
-	    
-	   	    	
-	    $(".checkboxes").change(function(){
-	    	
-	    	
-		     if($(this).is(':checked') ){		    
-		    	$(this).parent(".checkTd").html("<input type='checkbox' class='checkboxes checkedOnes'>");		    	
-		   	}
-		    
-		     if(!$(this).is(':checked') ){	
-		    	 $(this).parent(".checkTd").html("<input type='checkbox' class='checkboxes'>");		   		
-		   	} 
-		    
-	    }); 
+	   
+	   
 	    
     	$("#blacklistOff").click(function(){
     		if(!$(".checkboxes").is(':checked') ){
     			alert("블랙리스트 풀기 대상인 회원을 선택해주세요.");    			
-    		} else {	
-    			
-    			$(".checkedOnes").parent(".tableRow").find('.reportNum').html("<input type='text' value='0'>");  
-    		
-    			console.log('보여줘!' + $(".checkedOnes").parent(".tableRow").find('.reportNum').html());
-    		}     		
+    		} 	
     			
     	});
     </script>

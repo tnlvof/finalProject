@@ -47,6 +47,9 @@
   	<button type="submit" class="searchBtn" id="searchBtn">검색</button>
   	
   	<button class="searchBtn" id="editBtn" >수정</button>
+  	<form id="memberForm" action="showEditForm.me" method="post">
+		<input type="hidden" value="" name="editMid" id="editMid">  	
+  	</form>
   	<!--  -->
   	<script type="text/javascript">
   		$(function(){
@@ -66,23 +69,53 @@
   			$("#editBtn").click(function(){  				
   				if(! $(".memberCheck").is(":checked")){
   					alert("수정할 회원을 선택해주세요.");
-  				} else{
-  					
+  				} else{  					
   					$("#memberForm").submit();
   				}  			
   			});
-  		 
+  			
+  			
   		});
   		
+  		function checkMid(){
+  			if($(".memberCheck").is(':checked')){
+  				
+  				 //console.log($(".memberCheck:checked").parents().find('.userId').text());
+  				//console.log($('input[name="memberCheck"]:checked').serialize());
+  				
+  				
+  			    var array = [];
+  				 
+  				$('input[name="memberCheck"]:checked').each(function() {
+  					
+  					 if($(this).is(':checked')){  			
+  						 
+  						 array.push($(this).next().val());
+  						 
+					 console.log('어레이 : ' );  								     
+  					   console.log(array);
+  					 }
+  					 
+  						
+  				});
+
+  			} 
+				 $('#editMid').val(array);
+  		}
+  		
+  		
+		 
   	</script>
   	
   	<br><br>
-  	<form id="memberForm" action="showEditForm.me" method="post">
+  
+  
+  	
  	<div class="tableArea">
  	<table class="tableList" align="center" id="membertable">
  	
  	<tr style="border-bottom:1px solid lightgray;" id="memberHeader">
- 	<th style="width:100px; text-align:center;height:20px;font-weight:bold;"><input type="checkbox" id="checkAll">&nbsp;전체선택</th>
+ 	<th style="width:100px; text-align:center;height:20px;font-weight:bold;"><input type="checkbox" id="checkAll" onchange='checkMid()'>&nbsp;전체선택</th>
  	<th style="width:100px; text-align:center;height:20px;font-weight:bold;">아이디</th>
  	<th style="width:100px; text-align:center;height:20px;font-weight:bold;">이름</th>
  	<th style="width:150px; text-align:center;height:20px;font-weight:bold;">생년월일</th>
@@ -98,11 +131,12 @@
  	
  	
  	</table>
+ 	
  </div>
 
 </div>
 
-</form>
+
 <!--/ 회원관리 -->
 
 <!-- 업체 관리 -->
@@ -651,11 +685,11 @@ function openTab(evt, tabName) {
 	     			  console.log(data.memberlist); 
 	     			     
 	     			 $("#memberHeader").nextAll("tr").remove();
-	     			 for(var i = 0; i<data.memberlist.length;i++){
-	     				 	  
+	     			 
+	     			 for(var i = 0; i<data.memberlist.length;i++){	     				 	  
 	     				 
-	    				  $("#membertable").append("<tr class='tableRow' > <td ><input type='checkbox' class='memberCheck' name='checkedrow'></td>");
-	    				  $("#membertable").find(".tableRow").last().append("<td style='padding-top: 10px;padding-bottom:10px;' name='userId'><input type='hidden' value="+ data.memberlist[i].mid+" name='mid'>"+data.memberlist[i].userId+"</td>");
+	    				  $("#membertable").append("<tr class='tableRow' > <td ><input type='checkbox' name='memberCheck' class='memberCheck' onchange='checkMid()'> <input type='hidden' class='mid' value="+ data.memberlist[i].mid+"></td>");
+	    				  $("#membertable").find(".tableRow").last().append("<td style='padding-top: 10px;padding-bottom:10px;' class='userId' name='userId'>"+data.memberlist[i].userId+"</td>");
 	    				  $("#membertable").find(".tableRow").last().append("<td name='userName'>"+data.memberlist[i].userName+"</td>");
 	    				  $("#membertable").find(".tableRow").last().append("<td name='birth'>"+data.memberlist[i].birth+"</td>");
 	    				  $("#membertable").find(".tableRow").last().append("<td name='phone'>"+data.memberlist[i].phone+"</td>");
@@ -690,7 +724,13 @@ document.getElementById("defaultOpen").click();
 $('#checkAll').click(function() {
     var c = this.checked;
     $('.memberCheck').prop('checked',c);
+    /* 
+    if( $('.memberCheck').is(':checked')){
+    	alert('체크됨');
+    } */
 });
+
+
 
 
 $('#checkAll2').click(function() {

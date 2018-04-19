@@ -34,7 +34,7 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public ArrayList<Member> selectMemberList() throws selectMemberException {
 		// TODO Auto-generated method stub
-		System.out.println("서비스 옴");	
+	//	System.out.println("서비스 옴");	
 		
 		return md.selectMemberList();
 	}
@@ -43,7 +43,7 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public ArrayList<Member> selectEditList(ArrayList<String> midlist) {
 		ArrayList<Member> editlist = md.selectEditList(midlist);
-		System.out.println("editlist @dao : " + editlist);
+		//System.out.println("editlist @service : " + editlist);
 		
 		return editlist;
 	}
