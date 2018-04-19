@@ -700,7 +700,7 @@ $('#checkAll2').click(function() {
 
 $('#checkAll3').click(function() {
     var c = this.checked;
-    $('.rsvCheck').prop('checked',c);
+    $('.rsvCheck').prop('checked',c) ;
 });
 
 
