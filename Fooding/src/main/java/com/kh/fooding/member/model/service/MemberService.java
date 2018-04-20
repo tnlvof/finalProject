@@ -22,4 +22,6 @@ public interface MemberService  {
 
 	int updateMembers(ArrayList<String> midArr  );
 
+	ArrayList<Member> searchMember(String searchCon, Map<String, String> data);
+
 }

@@ -22,4 +22,6 @@ public interface MemberDao {
 
 	int updateMembers(ArrayList<String> midArr);
 
+	ArrayList<Member> searchMember(String searchCon, Map<String, String> data);
+
 }

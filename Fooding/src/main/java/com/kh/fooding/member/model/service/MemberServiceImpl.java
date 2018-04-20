@@ -58,4 +58,12 @@ public class MemberServiceImpl implements MemberService{
 		
 		return result;
 	}
+
+	@Override
+	public ArrayList<Member> searchMember(String searchCon, Map<String, String> data) {
+		
+		ArrayList<Member> searchList = md.searchMember(searchCon, data);
+		
+		return searchList;
+	}
 }
