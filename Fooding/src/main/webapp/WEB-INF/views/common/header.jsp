@@ -9,7 +9,6 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="/fooding/resources/css/reset.css">
 <link rel="stylesheet" href="/fooding/resources/css/common.css">
-<link rel="stylesheet" href="/fooding/resources/css/header.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 </head>
 

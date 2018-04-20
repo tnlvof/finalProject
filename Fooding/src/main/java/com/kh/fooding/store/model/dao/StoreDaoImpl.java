@@ -2,10 +2,12 @@ package com.kh.fooding.store.model.dao;
 
 import java.util.ArrayList;
 
+import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.kh.fooding.common.PageInfo;
 import com.kh.fooding.store.model.vo.Sam;
 import com.kh.fooding.store.model.vo.Store;
 
@@ -20,13 +22,33 @@ public class StoreDaoImpl implements StoreDao{
 		return sqlSession.insert("Store.insertStore",s);
   }
     
+	// 검색 결과
 	@Override
-	public ArrayList<Sam> searchResult(String searchKey, SqlSessionTemplate sqlSession) {
+	public ArrayList<Sam> searchResult(String searchKey,PageInfo pi, SqlSessionTemplate sqlSession) {
 		
-		System.out.println("StoreDao key : " + searchKey);
+		int offset = (pi.getCurrentPage() -1) * pi.getLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getLimit());
 		
-		return null;
+		ArrayList<Sam> sam = (ArrayList)sqlSession.selectList("Store.searchResult", searchKey , rowBounds);
+		
+		for (Sam sam2 : sam) {
+			System.out.println("dao sam : " + sam2);
+		}
+		
+		return sam;
 
+	}
+	
+	@Override
+	public int getListCount(String searchKey, SqlSessionTemplate sqlSession) {
+		
+		System.out.println("dao searchKey : " + searchKey);
+		
+		int result = sqlSession.selectOne("Store.getListCount",searchKey);
+		
+		System.out.println("dao result : " + result);
+		
+		return result;
 	}
 
 }
