@@ -1,5 +1,7 @@
 package com.kh.fooding.store.model.service;
 
-public interface StoreService {
+import com.kh.fooding.store.model.vo.Store;
 
+public interface StoreService {
+	void insertStoreInfo(Store s);
 }
