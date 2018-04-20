@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <style>
 .photo{
 	/* position: relative; */
@@ -64,6 +64,7 @@
 }
 
 </style>
+<c:set var="contextPath" value="${ pageContext.servletContext.contextPath }" scope="application" />
 <div id="banner_wrap">
 	<div id="banner" class="user">
 		<div class="inner_wrap">
@@ -92,7 +93,7 @@
 				<!-- change_user_image -->
 
 				<div class="name">
-					<span>Fooding</span>
+					<span>${ userId }</span>
 				</div>
 				<!-- name -->
 				<div class="intro">맛있는 발견의 즐거움 - Fooding</div>

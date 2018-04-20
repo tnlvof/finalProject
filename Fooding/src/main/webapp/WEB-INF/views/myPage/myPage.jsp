@@ -67,12 +67,12 @@
 												<i class="icon personnel"></i>
 												<div class="box_text">인원</div>
 												<div class="person_count">
-													<input value="-" count_range="m" type="button" id="mBtn">
-													<i class="icon minus" for="mBtn"></i>
+													<input value="-" count_range="m" type="button" id="mBtn" style="display:none;">
+													<label class="mIcon" for="mBtn"><i class="icon minus"></i></label>
 													<!-- <span id="reserve_person_count" class="count">6</span> -->
 													<input class="count" value="1" readonly>
-													<input value="+" count_range="p" type="button" id="pBtn">
-													<i class="icon plus" for="pBtn"></i>
+													<input value="+" count_range="p" type="button" id="pBtn" style="display:none;">
+													<label class="pIcon" for="pBtn"><i class="icon plus"></i></label>
 												</div>
 												<!-- <div class="__count_range">
 													<input value="-" count_range="m" type="button">
@@ -105,14 +105,22 @@
 													<div
 														class="ui-datepicker-inline ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all"
 														style="display: block;">
-														
+														보여라
 													</div>
 												</div>
 
 												<i class="icon calendar"></i>
 												<div class="box_text">날짜</div>
 												<span id="reserve_date" class="date first">2018.5.2</span> <i
-													class="icon arrow red"></i>
+													class="icon arrow red calArrow"></i>
+												<script>
+												$(function(){
+										  			  $('.calArrow').click(function(){
+													    $('#calendar').show();
+													    $(this).addClass('calShow');
+													  });
+													});
+												</script>
 											</div>
 											<div class="box pointer" style="margin: 0;">
 												<div id="timetable" class="sidemenu-content sub_popup"
@@ -192,7 +200,6 @@
 															style="margin-left: -110.5px; margin-top: 28.5px; width: 108.5px; display: block;" onclick="document.getElementById('reservCancel').style.display='none'">아니오</div>
 														<div class="confirmOk"
 															style="margin-left: 1px; margin-top: 28.5px; width: 108.5px; display: block;">예</div>
-														
 													</div>
 												</div>
 											</div>

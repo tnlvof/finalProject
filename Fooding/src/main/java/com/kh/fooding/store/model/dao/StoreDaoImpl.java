@@ -15,6 +15,15 @@ public class StoreDaoImpl implements StoreDao{
 	public int insertStoreInfo(Store s, SqlSessionTemplate sqlSession) {
 		System.out.println("storedao"+ s );
 		return sqlSession.insert("Store.insertStore",s);
+  }
+    
+	@Override
+	public ArrayList<Sam> searchResult(String searchKey, SqlSessionTemplate sqlSession) {
+		
+		System.out.println("StoreDao key : " + searchKey);
+		
+		return null;
+
 	}
 
 }

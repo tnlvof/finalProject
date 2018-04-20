@@ -363,7 +363,7 @@ function placesSearchCB (data, status, pagination) {
          };
 			
          
-         var array = ['마이 타이', '젤렌', '타르틴'];
+         var array = ['마이 타이', '젤렌', '타르틴','서울펍'];
          
          for(var i =0; i<array.length;i++){
         	 places.keywordSearch(array[i], callback);	 

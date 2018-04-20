@@ -32,7 +32,7 @@
 		<result property="phone" column="PHONE"/>                                       
 		<result property="address" column="ADDRESS"/>                                   
 		<result property="mCode" column="MCODE"/>                                       
-		<result property="enrollDate" column="ENROLL_DATE"/>                            
+		<result property="enrollDateJson" column="ENROLL_DATE"/>                            
 		<result property="repCount" column="REP_COUNT"/>                                
 		<result property="bizNo" column="BIZ_NO"/>                                   
 		<result property="bizName" column="BIZ_NAME"/>                               
@@ -59,13 +59,13 @@
 	
 	<select id="selectMemberList" resultMap="memberResultSet2">		
 		 SELECT MID, USER_ID, USER_PWD, USER_NAME, BIRTH, PHONE, EMAIL, ADDRESS, STATUS, REP_COUNT, BIZ_NO, BIZ_NAME, BOOK_COUNT, GENDER,
-		 TO_CHAR(ENROLL_DATE, 'YY/MM/DD') 
+		 ENROLL_DATE
 		 FROM MEMBER 		
 	</select>
 	
 	<select id="selectEditList" resultMap="memberResultSet2">		
 		 SELECT MID, USER_ID, USER_PWD, USER_NAME, BIRTH, PHONE, EMAIL, ADDRESS, STATUS, REP_COUNT, BIZ_NO, BIZ_NAME, BOOK_COUNT, GENDER,
-		 TO_CHAR(ENROLL_DATE, 'YY/MM/DD') 
+		 ENROLL_DATE 
 		 FROM MEMBER
 		 WHERE MID IN
 		<foreach item="midlist" index="index" collection="list"
