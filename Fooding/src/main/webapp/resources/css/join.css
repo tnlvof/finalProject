@@ -1,0 +1,136 @@
+@charset "UTF-8";
+
+.join {
+	margin: 20px;
+}
+
+.basic {
+	width: 600px;
+	margin: 0 auto;
+	padding: 50px 0;
+	border: 1px solid #e5e5e5;
+	background-color: #fff;
+}
+
+.basic h3 {
+	font-size: 24px;
+	font-weight: bold;
+	margin: initial;
+}
+
+.subtitle {
+	font-size: 16px;
+	margin: 20px;
+	text-align: center;
+}
+/******************************/
+.join_wrap{
+	width: 400px;
+	margin: 0 auto;
+}
+.join_wrap label{
+	font-size: 13px;
+	line-height: 2em;
+}
+.must::before{
+	content: '* ';
+	color: red;
+}
+.join_wrap input{
+	border: 1px solid #e5e5e5;
+	padding: 15px;
+	font-size: 13px;
+	width: 100%;
+	box-sizing: border-box;
+	margin-bottom: 10px;
+}
+
+.join_wrap input[name=birth],
+.join_wrap input[name=openDay]{
+	width: 130px;
+}
+
+.join_wrap .gender{
+	width: 198px;
+	height: 40px;
+	font-size: 13px;
+	color: #e5e5e5;
+	border: 1px solid #e5e5e5;
+	background: #fff;
+	cursor: pointer;
+	margin-bottom: 10px;
+}
+
+.join_wrap .gender:hover{
+	background: #666;
+	color: #fff;
+	border-color: #666;
+}
+
+.agree-content {
+	width: 400px;
+	height: 300px;
+	margin: 0 auto;
+	border: 1px solid #ddd;
+	padding: 15px;
+	box-sizing: border-box;
+	overflow-y: scroll;
+	font-size: 11px;
+	line-height: 1.6em;
+	text-align: left;
+	
+}
+
+.join_wrap .license{
+	width: 270px;
+}
+.license-btn{
+	width: 126px;
+	height: 47px;
+	border: 0;
+	background: #ff5a5f;
+	color: #fff;
+	font-size: 13px;
+}
+
+input::placeholder {
+	color: #999;
+}
+
+.agreetext{
+	width: 400px;
+	margin: 20px auto;
+	position: relative;
+}
+.agreetext > *{
+	font-size: 13px;
+}
+.agreetext input{
+	position: absolute;
+	right: 0;
+}
+
+.join_done{
+	background: #FF5A5F;
+    color: #fff;
+    width: 400px;
+    height: 50px;
+    border: 0;
+    margin-left: 98px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.alarm{
+	font-size: 12px;
+	line-height: 2em;
+	padding-left: 27px;
+	margin-bottom: 10px;
+}
+.overlap{
+	background: url(/fooding/resources/images/member/icon-overlap.png) 0 2px no-repeat;
+	color: red;
+}
+.usable{
+	background: url(/fooding/resources/images/member/icon-usable.png) no-repeat;
+}
