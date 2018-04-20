@@ -1,22 +1,29 @@
 package com.kh.fooding.store.controller;
 
-import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.kh.fooding.store.model.service.StoreService;
-import com.kh.fooding.store.model.vo.Sam;
+import com.kh.fooding.store.model.vo.Store;
 
 @Controller
 public class StoreController {
+	@Autowired
+	private StoreService ss;
 	
-	 @Autowired private StoreService ss;
-	 
-	
+	@RequestMapping(value="storeInfo.st")
+	public String storeInfo(Store s, Model model) {
+		
+		ss.insertStoreInfo(s);
+		
+		
+		return "main/main";
+	}
+
 	//open api 사용
 	/*@RequestMapping(value = "searchResult.st")
 	public ModelAndView searchResult(@RequestParam("searchKey") String searchKey, ModelAndView mv) {
@@ -72,4 +79,5 @@ public class StoreController {
 		
 		return mv;
 	}
+
 }
