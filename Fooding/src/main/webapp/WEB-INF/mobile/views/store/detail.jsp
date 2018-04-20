@@ -32,6 +32,29 @@
 	</div>
 	<!-- storeInfo -->
 
+	<ul class="tab">
+		<li class="tablinks on" onclick="openCity(event, 'London')">정보</li>
+		<li class="tablinks" onclick="openCity(event, 'Paris')">리뷰</li>
+		<li class="tablinks" onclick="openCity(event, 'Tokyo')">메뉴</li>
+	</ul>
+	
+	
+	<div id="London" class="tabcontent" style="display: block;">
+		<h3>London</h3>
+		<p>London is the capital city of England.</p>
+	</div>
+
+	<div id="Paris" class="tabcontent">
+		<h3>Paris</h3>
+		<p>Paris is the capital of France.</p>
+	</div>
+
+	<div id="Tokyo" class="tabcontent">
+		<h3>Tokyo</h3>
+		<p>Tokyo is the capital of Japan.</p>
+	</div>
+
+
 </div>
 <!-- wrap -->
 
@@ -46,6 +69,22 @@ $(document).ready(function() {
 		return false;
 	});
 });
+
+//tab메뉴
+function openCity(evt, cityName) {
+	var i, tabcontent, tablinks;
+	tabcontent = document.getElementsByClassName("tabcontent");
+	for (i = 0; i < tabcontent.length; i++) {
+		tabcontent[i].style.display = "none";
+	}
+	tablinks = document.getElementsByClassName("tablinks");
+	for (i = 0; i < tablinks.length; i++) {
+		tablinks[i].className = tablinks[i].className.replace(
+				" on", "");
+	}
+	document.getElementById(cityName).style.display = "block";
+	evt.currentTarget.className += " on";
+}
 </script>
 
 <!-- footer -->
