@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kh.fooding.common.PageInfo;
 import com.kh.fooding.store.model.dao.StoreDao;
 
 import com.kh.fooding.store.model.vo.Store;
@@ -26,10 +27,19 @@ public class StoreServiceImpl implements StoreService{
 	}
 
 	@Override
-	public ArrayList<Sam> searchResult(String searchKey) {
+	public ArrayList<Sam> searchResult(PageInfo pi,String searchKey) {
 		
-		ArrayList<Sam> sam = sd.searchResult(searchKey,sqlSession); 
+		ArrayList<Sam> sam = sd.searchResult(searchKey,pi,sqlSession); 
 		
 		return sam;
 	}
+
+	@Override
+	public int getListCount(String searchKey) {
+		
+		int result = sd.getListCount(searchKey,sqlSession);
+		
+		return result;
+	}
+
 }
