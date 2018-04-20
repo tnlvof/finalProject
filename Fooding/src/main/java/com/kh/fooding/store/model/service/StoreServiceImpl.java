@@ -28,7 +28,7 @@ public class StoreServiceImpl implements StoreService{
 	@Override
 	public ArrayList<Sam> searchResult(String searchKey) {
 		
-		ArrayList<Sam> sam = st.searchResult(searchKey,sqlSession); 
+		ArrayList<Sam> sam = sd.searchResult(searchKey,sqlSession); 
 		
 		return sam;
 	}
