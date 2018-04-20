@@ -27,44 +27,49 @@
   	
   	<script type="text/javascript">
   		function updateMember(){
-  			  			
+  			
+  			
   			var midArr = [];
   			var repCountArr = [];
   			var statusArr = [];
   			
-  			for(var i in midArr){
-  				midArr.push( $(".mid").val() );  				
-  			}
-  			
-
-  			for(var i in repCountArr){
-  				repCountArr.push( $(".repCount").val() );
-  			}
-
-  			for(var i in statusArr){
-  				statusArr.push( $(".status").val() );
-  			}
+  			 $(".eMid").each(function(){
+  				midArr.push( $(this).val() );  	
+  			 }) ;
+  		
+  			$(".eRepCount").each(function(){
+  				repCountArr.push( $(this).val() );
+  			 }) ;
+  		
+  			$(".eStatus").each(function(){
+  				statusArr.push( $(this).val() );
+  			 }) ;
+  		  		 				  		
   			
   			console.log(midArr);
   			console.log(repCountArr);
   			console.log(statusArr);
-  		/* 	
+  		 	
+  			var data ={
+  					'midArr' : midArr,
+  					'repCountArr': repCountArr,
+  					'statusArr': statusArr
+  				};
+  			
+  			
   			$.ajax({
   				method:"post",
   				url:"updateMembers.me",
-  				data: {
-  					mid : midArr,
-  					repCount: repCountArr,
-  					status: statusArr
-  				},  				
+  				data: JSON.stringify(data),  
+  				contentType:"application/json",
   				success:function(){
-  					alert('됨?');
+  					alert('수정 되었습니다.');
   				},
   				error:function(){
   					alert('안대');
   				}
   				
-  			}); */
+  			});
   			
   		}
   	</script>
@@ -91,24 +96,22 @@
 	
  	<c:forEach items="${editList }" var="e" >
  	<tr class="tableRow">
- 		<td class="checkTd"><input type="checkbox" name="memberCheck" class="memberCheck checkboxes" > <input type="hidden" class="mid" name="mid" value="${ e.mid}"></td>
+ 		<td class="checkTd"><input type="checkbox" name="memberCheck" class="memberCheck checkboxes" > <input type="text" class="eMid" name="mid" value="${ e.mid}"></td>
  		 <td  style="padding:10px; cursor:pointer;">${ e.userId}  </td>
  		 <td >${ e.userName}</td>
  		 <td >${ e.birth} </td>
  		 <td >${ e.phone}</td>
  		 <td >${ e.email}</td>
  		 <td >${ e.address}</td>
- 		 <td  class="reportNum"><input type="text" value="${ e.repCount}" class="repCount" name="repCount" ></td>
+ 		 <td  class="reportNum"> <input type="text" value="${ e.repCount}" class="eRepCount" name="repCount" > </td>
  		 <td >${ e.bookCount}</td>
- 		 <td><input type="text" name="status" class="status" value="${e.status }"></td>
+ 		 <td> <input type="text" name="status" class="eStatus" value="${e.status }"> </td>
  	</tr>
  	</c:forEach>
  
  	</table>
  	
  </div>
-
- 
 
 
 	<!--/ 회원 수정 -->

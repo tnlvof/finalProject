@@ -1,6 +1,8 @@
 package com.kh.fooding.member.model.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,5 +48,14 @@ public class MemberServiceImpl implements MemberService{
 		//System.out.println("editlist @service : " + editlist);
 		
 		return editlist;
+	}
+
+	@Override
+	// 회원 수정
+	public int updateMembers(ArrayList<String> midArr ) {
+		
+		int result  = md.updateMembers(midArr);
+		
+		return result;
 	}
 }

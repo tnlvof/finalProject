@@ -1,6 +1,8 @@
 package com.kh.fooding.member.model.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
@@ -16,6 +18,8 @@ public interface MemberService  {
 
 	ArrayList<Member> selectMemberList( ) throws selectMemberException;
 
-	ArrayList<Member> selectEditList(ArrayList<String> midlist );
+	ArrayList<Member> selectEditList(ArrayList<String> midlist);
+
+	int updateMembers(ArrayList<String> midArr  );
 
 }

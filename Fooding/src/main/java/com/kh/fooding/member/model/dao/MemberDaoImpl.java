@@ -1,6 +1,8 @@
 package com.kh.fooding.member.model.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,6 +66,17 @@ public class MemberDaoImpl implements MemberDao{
 		ArrayList<Member> editList = (ArrayList) sqlSession.selectList("Member.selectEditList", midlist);
 		
 		return editList;
+	}
+
+	@Override
+	// 회원 수정 메소드
+	public int updateMembers(ArrayList<String> mid) {
+		//탈퇴여부 변경 - Y N
+		//신고 횟수 초기화.
+		
+		int result = sqlSession.update("Member.updateMembers", mid);
+		System.out.println( "update Results : " + result);
+		return result;
 	}
 	
 }
