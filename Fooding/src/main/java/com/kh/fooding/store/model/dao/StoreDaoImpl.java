@@ -1,9 +1,12 @@
 package com.kh.fooding.store.model.dao;
 
+import java.util.ArrayList;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.kh.fooding.store.model.vo.Sam;
 import com.kh.fooding.store.model.vo.Store;
 
 @Repository

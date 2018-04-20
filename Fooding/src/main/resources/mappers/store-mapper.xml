@@ -26,7 +26,8 @@
 		<result property="subPhoto" column="SUB_PHOTO"/>    
 		<result property="mid" column="MID"/>    
 	</resultMap>                                                                        
-
+	
+	
 	<insert id="insertStore">
 <!--    	  	 INSERT INTO STORE 
     	  VALUES(SEQ_MID.NEXTVAL, #{sName} , #{sCode}, #{phone} ,#{bookYN} ,#{address} ,#{sLocation}
