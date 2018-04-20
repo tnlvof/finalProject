@@ -1,0 +1,80 @@
+@charset "UTF-8";
+.header{
+	width: 100%;
+	max-width: 640px;
+	box-sizing: border-box;
+	position: fixed;
+}
+#go-back{
+	position: absolute;
+	left: 3%;
+	color: #fff;
+	font-weight: bold;
+	font-size: 16px;
+}
+
+/* no-result */
+.no-result{
+	padding: 20% 0;
+	text-align: center;
+	color: #999;
+	line-height: 3em;
+	
+}
+.icon-search{
+	display: block;
+	margin: 0 auto;
+	width: 32px;
+	height: 32px;
+    background-image: url(/fooding/resources/images/common/mobileCommon.png);
+}
+
+
+/* 검색결과 */
+.srch-rset{
+	background: #f7f7f7;
+	padding: 14% 0 3% 0;
+	margin-bottom: 25%;
+}
+
+.srch-rset li{
+	padding: 30% 3% 3% 3%;
+	height: 53px;
+	margin-bottom: 1%;
+	position: relative;
+}
+.srch-rset *{
+	color: #fff;
+	font-size: 11px;
+}
+.srch-rset p:first-child{
+	font-size: 14px;
+}
+.srch-rset li > *{
+	position: absolute;
+	padding: 30% 3% 3% 3%;
+	width: 100%;
+	height: 53px;
+	top:0;
+	left:0;
+}
+.bg{
+	background-size: cover;
+	filter: brightness(40%);
+}
+.rank{
+	margin-top: 3px;
+}
+
+.icon-star{
+	display: inline-block;
+    width: 15px;
+    height: 15px;
+    background-image: url(/fooding/resources/images/common/icon-rank-small.png);
+    background-size: 15px;
+    margin: 0 -3px -2px 0;
+}
+
+.rankOff{
+	background-position-y: 14px;
+}
