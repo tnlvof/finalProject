@@ -1,25 +1,21 @@
 package com.kh.fooding.member.controller;
 
-import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Map;
 
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.kh.fooding.member.model.exception.LoginException;
 import com.kh.fooding.member.model.exception.selectMemberException;
 import com.kh.fooding.member.model.service.MemberService;
@@ -162,13 +158,42 @@ public class MemberController {
 	}
 	
 	// 멤버 정보 수정하기
-	@RequestMapping(value = "updateMembers.me", method = RequestMethod.POST)		
-	public ModelAndView updateMembers(ModelAndView mv) {
+	@RequestMapping(value = "updateMembers.me", method = RequestMethod.POST)
+	@ResponseBody
+	public void updateMembers(@RequestBody Map<String, Object> data ) {
 		System.out.println("온다");
+		System.out.println("미드 : " + data);
+			
+		ArrayList<String> midArr = (ArrayList<String>) data.get("midArr");
+		ArrayList<String> repCountArr = (ArrayList<String>) data.get("repCountArr");
+		ArrayList<String> statusArr = (ArrayList<String>) data.get("statusArr");
 		
-		mv.setViewName("admin/memberEdit");
-	
-		return mv;
+		System.out.println(midArr);
+		System.out.println(repCountArr);
+		System.out.println(statusArr);
+		
+			
+/*		ArrayList<Member> list = new ArrayList<Member>();		
+		Member m = null; 
+		
+		//맵 <String, Object>넣기
+		
+		for(int i = 0; i<midArr.size();i++) {
+			
+			m = new Member();
+			
+			m.setMid( Integer.valueOf(midArr.get(i)));			
+			m.setRepCount(Integer.valueOf(repCountArr.get(i)));			
+			m.setStatus(statusArr.get(i));
+			
+			
+			list.add(m);
+		}
+		System.out.println("컨트롤러 리스트 : " +  list);*/
+		
+		
+		int result = ms.updateMembers(midArr);
+		
 	}
 	
 		

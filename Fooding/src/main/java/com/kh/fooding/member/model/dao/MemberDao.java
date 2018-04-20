@@ -1,6 +1,8 @@
 package com.kh.fooding.member.model.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 
@@ -17,5 +19,7 @@ public interface MemberDao {
 	ArrayList<Member> selectMemberList( ) throws selectMemberException;
 
 	ArrayList<Member> selectEditList(ArrayList<String> midlist);
+
+	int updateMembers(ArrayList<String> midArr);
 
 }
