@@ -78,5 +78,23 @@ public class MemberDaoImpl implements MemberDao{
 		System.out.println( "update Results : " + result);
 		return result;
 	}
+
+	// 회원 검색
+	@Override
+	public ArrayList<Member> searchMember(String searchCon, Map<String, String> data) {
+		
+		String statement = "";
+		
+		switch(searchCon) {
+			case "아이디": statement = "Member.searchId";break;
+			case "이름":statement = "Member.searchName";break;
+			case "연락처":statement = "Member.searchPhone";break;
+		}
+		
+		
+		ArrayList<Member> searchMember = (ArrayList) sqlSession.selectList(statement, data);
+		
+		return searchMember;
+	}
 	
 }

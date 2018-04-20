@@ -142,8 +142,7 @@ public class MemberController {
 	
 
 	// 멤버 수정 페이지로 전환
-	@RequestMapping(value = "showEditForm.me", method = RequestMethod.POST)	
-		
+	@RequestMapping(value = "showEditForm.me", method = RequestMethod.POST)			
 	public ModelAndView showEditForm(ModelAndView mv, @RequestParam("editMid") ArrayList<String> midlist) {
 		/*System.out.println("수정페이지");
 		System.out.println("midlist : "+midlist);*/
@@ -172,29 +171,28 @@ public class MemberController {
 		System.out.println(repCountArr);
 		System.out.println(statusArr);
 		
-			
-/*		ArrayList<Member> list = new ArrayList<Member>();		
-		Member m = null; 
-		
-		//맵 <String, Object>넣기
-		
-		for(int i = 0; i<midArr.size();i++) {
-			
-			m = new Member();
-			
-			m.setMid( Integer.valueOf(midArr.get(i)));			
-			m.setRepCount(Integer.valueOf(repCountArr.get(i)));			
-			m.setStatus(statusArr.get(i));
-			
-			
-			list.add(m);
-		}
-		System.out.println("컨트롤러 리스트 : " +  list);*/
-		
-		
+	
 		int result = ms.updateMembers(midArr);
 		
 	}
+	
+	//멤버 검색
+	@RequestMapping(value = "searchMembers.me", method = RequestMethod.POST)
+	public ModelAndView searchMembers(ModelAndView mv, @RequestBody Map<String, String> data) {
+		System.out.println("넘어옴?");
+		System.out.println(data);
+		
+		String searchCon = data.get("key");
+				
+		ArrayList<Member> searchList = ms.searchMember(searchCon, data);
+		
+		mv.addObject(searchList);
+		
+		return mv;
+	}
+	
+	
+	
 	
 		
 	@RequestMapping(value ="goMyPage.me")

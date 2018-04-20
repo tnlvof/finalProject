@@ -34,14 +34,12 @@
 
 <div id="memberList" class="tabcontent">
   	<h3>회원 조회</h3>
-  	<select>
-  		
+  	<select id="memberSelect">  		
   		<option>아이디</option>
-  		<option>이름</option>
-  		<option>생년월일</option>
+  		<option>이름</option>  		
   		<option>연락처</option>
-  		<option>이메일</option>
-  		<option>주소</option>
+  		
+  		
   	</select>
   	<input type="search" id="memberSearchBar">
   	<button type="submit" class="searchBtn" id="searchBtn">검색</button>
@@ -60,6 +58,43 @@
   				console.log(keyword);
   				if(keyword==""){
   					alert('검색어를 입력해주세요.');
+  				} else {
+  					
+  				// 아이디, 이름, 연락처 검색
+  				var search ;
+  				var key ;
+  				
+  				switch($("#memberSelect option:selected" ).text()){  				
+	  				case '아이디': key = '아이디'; break;
+	  				case '이름': key = '이름'; break;
+	  				case '연락처': key ='연락처';break;
+  				}
+  				
+  				search = $("#memberSearchBar").val();
+  				
+  				/* console.log("키" + key);
+  				console.log("값" + search); */
+  				
+  				
+  				var data = {key , search };
+  				
+				  	$.ajax({
+				 		
+  		  				method:"post",
+  		  				url:"searchMembers.me",
+  		  				data: JSON.stringify(data),  
+  		  				contentType:"application/json",
+  		  				success:function(){
+  		  					alert('넘어감.');
+  		  				},
+  		  				error:function(){
+  		  					alert('ㅡㅡ');
+  		  				}
+  		  				
+  		  			}); 
+				
+  		  		 
+  					
   				}
   				
   			});
