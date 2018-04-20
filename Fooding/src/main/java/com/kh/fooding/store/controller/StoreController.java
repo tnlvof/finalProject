@@ -1,26 +1,24 @@
 package com.kh.fooding.store.controller;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.ProtocolException;
-import java.net.URL;
-import java.net.URLEncoder;
+import java.util.ArrayList;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kh.fooding.store.model.service.StoreService;
+import com.kh.fooding.store.model.vo.Sam;
+
 @Controller
 public class StoreController {
-	/*
-	 * @Autowired private StoreService ss;
-	 */
-
-	@RequestMapping(value = "searchResult.st")
+	
+	 @Autowired private StoreService ss;
+	 
+	
+	//open api 사용
+	/*@RequestMapping(value = "searchResult.st")
 	public ModelAndView searchResult(@RequestParam("searchKey") String searchKey, ModelAndView mv) {
 
 		try {
@@ -49,20 +47,29 @@ public class StoreController {
 		        }
 		        br.close();
 		        System.out.println(response.toString());
-			
+		        
 		} catch (ProtocolException e) {
 			e.printStackTrace();
 		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
 		mv.setViewName("store/searchList");
 
 		return mv;
-	}
+	}*/
 
+	@RequestMapping(value = "searchResult.st")
+	public ModelAndView searchResult(@RequestParam("searchKey") String searchKey, ModelAndView mv) {
+		
+		System.out.println("controller sK : " + searchKey);
+		
+		ArrayList<Sam> sam = ss.searchResult(searchKey);
+		
+		mv.setViewName("store/searchList");
+		
+		return mv;
+	}
 }
