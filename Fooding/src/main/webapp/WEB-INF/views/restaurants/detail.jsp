@@ -15,6 +15,77 @@
 		background로 들어가는 것
 		그래서 인라인 스타일로 지정해줌
 	-->
+	<div class="banner-wrap">
+		<div class="i_wrap background">
+			<!-- 프로필사진 배경 넣어주세요 -->
+			<i class="image profile_image shading middle"
+				style="background-image: url(/fooding/resources/images/main/key_visiual01.jpg)"></i>
+		</div>
+	
+		<div class="i_wrap blur background">
+			<!-- 프로필사진 배경 넣어주세요 -->
+			<i class="image profile_image shading middle"
+				style="background-image: url(/fooding/resources/images/main/key_visiual01.jpg)"></i>
+		</div>
+		
+		<div class="inner_wrap">
+			<div class="banner">
+				<div class="title">
+					<span class="restaurant-name">가게이름</span>
+					<span class="restuarant-info">장충동 / 금호동 / 일식</span>
+					<span class="reservation-info">예약 802건 / 리뷰 23건 / 조회 7028건</span>
+				</div>
+				<!-- title -->
+				
+				<ul class="ban-con">
+					<li class="rank-wrap">
+						<label>별점</label>
+						<div class="rank-box">
+							<i class="fa fa-star"></i>
+							<i class="fa fa-star"></i>
+							<i class="fa fa-star"></i>
+							<i class="fa fa-star"></i>
+							<i class="fa fa-star no-star"></i>
+						</div>
+						<span class="num-rank">4.0</span>
+						<!-- rank-box -->
+					</li>
+					
+					<li>
+						<label>전화번호</label>
+						02-2270-3292
+					</li>
+					
+					<li>
+						<label>주소</label>
+						서울시 중구 장충동 2가 286-54 그랜드 앰배서더 서울 풀만 2층
+					</li>
+					
+					<li>
+						<label>영업시간</label>
+						12:00-15:00 (L.O 14:00), 18:00-22:00(L.0 21:00)
+					</li>
+					
+					<li>
+						<label>휴무일</label>
+						일요일, 명절
+					</li>
+					
+					<li>
+						<label>예산(2인 기준)</label>
+						16만원 이상
+					</li>
+					
+					<li><button type="button" class="asap-reservation">즉시 예약하기</button></li>
+				</ul>
+				
+			</div>
+			<!-- banner -->
+		</div>
+		<!-- inner_wrap -->
+	</div>
+	<!-- banner-wrap -->
+	<%-- 	
 	<div class="banner-wrap" style="background-image:url('/fooding/resources/images/restaurants/restaurant-photo01.jpeg')">
 		<div class="bg">
 			<div class="banner">
@@ -86,13 +157,13 @@
 		<!-- bg -->
 	</div>
 	<!-- banner-wrap -->
-	
+--%>	
 	<div class="detail-wrap">
 		<div class="detail-content">
 			<!-- 탭메뉴 버튼 -->
 			<ul class="tab">
 				<li class="tablinks active" onclick="openTab(event, 'tabInfo')">정보</li>
-				<li class="tablinks" onclick="openTab(event, 'tabPhoto')">포토</li>
+				<!-- <li class="tablinks" onclick="openTab(event, 'tabPhoto')">포토</li> -->
 				<li id="reviewBtn"class="tablinks" onclick="openTab(event, 'tabReview')">리뷰</li>
 				<li class="tablinks" onclick="openTab(event, 'tabMenu')">메뉴</li>
 				<li class="tablinks" onclick="openTab(event, 'tabCoupon')">쿠폰</li>
@@ -105,9 +176,9 @@
 			</div>
 			<!-- tabInfo -->
 			
-			<div id="tabPhoto" class="tabcontent">
+			<%-- <div id="tabPhoto" class="tabcontent">
 				<jsp:include page="tab/tabPhoto.jsp"/>
-			</div>
+			</div> --%>
 			<!-- tabPhoto -->
 			
 			<div id="tabReview" class="tabcontent tabReview">

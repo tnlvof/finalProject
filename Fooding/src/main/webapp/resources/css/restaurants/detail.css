@@ -1,16 +1,73 @@
 @charset "UTF-8";
-@charset "UTF-8";
+
+/* 프로필 사진 배경 */
 .banner-wrap{
-   background-size: cover;
+	position: relative;
+    overflow: hidden;
+    width: 100%;
+    background-size: cover;
+    background-position: center center;
+}
+.banner-wrap >.background {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.banner-wrap >.i_wrap {
+    width: 100%;
+    height: 100%;
+}
+.i_wrap {
+    display: inline-block;
+}
+.i_wrap i{
+   display: block; 
+   width: 100%;
+   height: 100%;
+}
+.blur {
+    -o-filter: blur(5px);
+    -ms-filter: blur(5px);
+    -moz-filter: blur(5px);
+    -webkit-filter: blur(5px);
+    filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius='5');
+}
+.background {
+   position: absolute;
+   top: 0;
+   left: 0
+}
+i.image, i.profile_image {
+    background-size: cover;
+    background-position: center center;
+}
+.shading.middle {
+    filter: brightness(.5);
+    -ms-filter: brightness(.5);
+    -moz-filter: brightness(.5);
+    -webkit-filter: brightness(.5);
+}
+.background{
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.inner-wrap {
+    position: absolute;
+	width: 100%;
+	height: 100%;
+	border: 10px solid red;
 }
 .banner{
    width: 1000px;
    margin: 0 auto;
    color: #fff;
+   z-index: 2;
 }
+/* 
 .bg{
    background-color: rgba(0,0,0, 0.7);
-}
+} */
 .title{
    border-bottom: 1px solid #fff;
    padding: 35px 25px 0 25px;
@@ -52,6 +109,7 @@
    color: #fff;
    font-size: 14px;
 }
+
 .rank-wrap{
    overflow: hidden;
 }
@@ -74,6 +132,7 @@
 .rank-wrap .num-rank{
    line-height: 28px;
 }
+
 .asap-reservation{
    background: transparent;
    color: #fff;
@@ -87,11 +146,20 @@
 }
 
 
+
+
+
+
 .detail-wrap{
    width: 1000px;
    margin: 0 auto;
    margin-top: 22px;
 }
+
+
+
+
+
 /* tab menu */
 .tab{
    overflow: hidden;
