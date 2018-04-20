@@ -1,5 +1,8 @@
 package com.kh.fooding.store.controller;
 
+import java.io.File;
+import java.io.IOException;
+
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
@@ -10,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.fooding.common.PageInfo;
@@ -22,12 +26,26 @@ public class StoreController {
 	@Autowired
 	private StoreService ss;
 
-	@RequestMapping(value = "storeInfo.st")
-	public String storeInfo(Store s, Model model) {
-
+	
+	@RequestMapping(value="storeInfo.st")
+	public String storeInfo(Store s, Model model,
+			@RequestParam(name="mainPhoto", required=false)MultipartFile photo,
+			HttpServletRequest request) {
+		System.out.println("controller : " + s);
+		
+		String root = request.getSession().getServletContext().getRealPath("resources");
+		String filePath = root + "\\uploadFiles";
+		
+		try {
+			photo.transferTo(new File(filePath + "\\" + photo.getOriginalFilename()));
+		} catch (IllegalStateException | IOException e1) {
+			e1.printStackTrace();
+    }
 		ss.insertStoreInfo(s);
 
 		return "main/main";
+		
+		
 	}
 
 	// open api 사용

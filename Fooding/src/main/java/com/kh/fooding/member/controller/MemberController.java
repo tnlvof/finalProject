@@ -1,25 +1,21 @@
 package com.kh.fooding.member.controller;
 
-import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Map;
 
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.kh.fooding.member.model.exception.LoginException;
 import com.kh.fooding.member.model.exception.selectMemberException;
 import com.kh.fooding.member.model.service.MemberService;
@@ -146,8 +142,7 @@ public class MemberController {
 	
 
 	// 멤버 수정 페이지로 전환
-	@RequestMapping(value = "showEditForm.me", method = RequestMethod.POST)	
-		
+	@RequestMapping(value = "showEditForm.me", method = RequestMethod.POST)			
 	public ModelAndView showEditForm(ModelAndView mv, @RequestParam("editMid") ArrayList<String> midlist) {
 		/*System.out.println("수정페이지");
 		System.out.println("midlist : "+midlist);*/
@@ -162,14 +157,42 @@ public class MemberController {
 	}
 	
 	// 멤버 정보 수정하기
-	@RequestMapping(value = "updateMembers.me", method = RequestMethod.POST)		
-	public ModelAndView updateMembers(ModelAndView mv) {
+	@RequestMapping(value = "updateMembers.me", method = RequestMethod.POST)
+	@ResponseBody
+	public void updateMembers(@RequestBody Map<String, Object> data ) {
 		System.out.println("온다");
+		System.out.println("미드 : " + data);
+			
+		ArrayList<String> midArr = (ArrayList<String>) data.get("midArr");
+		ArrayList<String> repCountArr = (ArrayList<String>) data.get("repCountArr");
+		ArrayList<String> statusArr = (ArrayList<String>) data.get("statusArr");
 		
-		mv.setViewName("admin/memberEdit");
+		System.out.println(midArr);
+		System.out.println(repCountArr);
+		System.out.println(statusArr);
+		
 	
+		int result = ms.updateMembers(midArr);
+		
+	}
+	
+	//멤버 검색
+	@RequestMapping(value = "searchMembers.me", method = RequestMethod.POST)
+	public ModelAndView searchMembers(ModelAndView mv, @RequestBody Map<String, String> data) {
+		System.out.println("넘어옴?");
+		System.out.println(data);
+		
+		String searchCon = data.get("key");
+				
+		ArrayList<Member> searchList = ms.searchMember(searchCon, data);
+		
+		mv.addObject(searchList);
+		
 		return mv;
 	}
+	
+	
+	
 	
 		
 	@RequestMapping(value ="goMyPage.me")

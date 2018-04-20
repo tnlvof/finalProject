@@ -75,4 +75,14 @@
 		 		
 	</select>
 	
+	<update id="updateMembers">
+			UPDATE MEMBER									
+			SET REP_COUNT = 0
+			WHERE MID IN 
+		<foreach item="mid" index="index" collection="list" open="(" separator="," close=")">
+			#{mid}
+		</foreach>
+		
+	</update>
+	
 </mapper>
