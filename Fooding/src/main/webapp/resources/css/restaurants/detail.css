@@ -8,7 +8,7 @@
     background-size: cover;
     background-position: center center;
 }
-.banner-wrap >.background {
+.banner-wrap > .background {
     position: absolute;
     top: 0;
     left: 0;
@@ -16,6 +16,7 @@
 .banner-wrap >.i_wrap {
     width: 100%;
     height: 100%;
+    z-index: -1;
 }
 .i_wrap {
     display: inline-block;
@@ -62,13 +63,8 @@ i.image, i.profile_image {
    width: 1000px;
    margin: 0 auto;
    color: #fff;
-   z-index: 2;
 }
-/* 
-.bg{
-   background-color: rgba(0,0,0, 0.7);
-} */
-.title{
+.banner .title{
    border-bottom: 1px solid #fff;
    padding: 35px 25px 0 25px;
    line-height: 3em;
@@ -86,7 +82,7 @@ i.image, i.profile_image {
 }
 .title .reservation-info{
    font-size: 15px;
-   background: rgba(255, 255, 255, 0.3);
+   background: rgba(255, 255, 255, 0.2);
    border-radius: 3px;
    padding: 5px 8px;
 }
@@ -118,7 +114,7 @@ i.image, i.profile_image {
    line-height: 28px;
 }
 .rank-box{
-   width: 200px;
+   width: 160px;
    float: left;
    line-height: 28px;
 }
