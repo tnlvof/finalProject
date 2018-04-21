@@ -6,7 +6,7 @@
 	<typeAliases>
 		<typeAlias alias="Member" type="com.kh.fooding.member.model.vo.Member"/>
 		<typeAlias alias="Store" type="com.kh.fooding.store.model.vo.Store"/>
-		<typeAlias alias="Store" type="com.kh.fooding.store.model.vo.Sam"/>
+		<typeAlias alias="Sam" type="com.kh.fooding.store.model.vo.Sam"/>
 	</typeAliases>
 	<mappers>
 		<mapper resource="mappers/member-mapper.xml"/>
