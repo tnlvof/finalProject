@@ -22,9 +22,9 @@
   <button class="tablinks" onclick="openTab(event, 'memberList')" id="defaultOpen">회원관리</button>
   <button class="tablinks" onclick="openTab(event, 'storeList')">업체관리</button>
   <button class="tablinks" onclick="openTab(event, 'rsvList')">예약관리</button>
-  <button class="tablinks" onclick="openTab(event, 'Tokyo')">광고현황</button>
+  <button class="tablinks" onclick="openTab(event, 'adList')">광고현황</button>
   <button class="tablinks" onclick="openTab(event, 'profitTab')">수익관리</button>
-  <button class="tablinks" onclick="openTab(event, 'Tokyo')">1:1 문의</button>
+  <button class="tablinks" onclick="openTab(event, 'qnaBoard')">1:1 문의</button>
 </div>
 
 <!--  /메뉴 -->
@@ -714,6 +714,82 @@ function getCue(){
 
 <!-- 1:1문의 -->
 
+<div id="qnaBoard" class="tabcontent">
+	
+	<h3>1 : 1  문의 게시판</h3>  
+	<script type="text/javascript">
+	
+	function getCue2(){
+		var searchSelect = document.getElementById("qnaSelect");
+		var str2 = searchSelect.options[searchSelect.selectedIndex].value;
+		
+		console.log(str2);
+		
+	 	if(str2=="처리여부"){
+	 		$("#qnaSearchBar").toggle();
+			$("#qnaSelect2").toggle();		
+		} else {			
+			$("#qnaSearchBar").show();
+			$("#qnaSelect2").hide();	
+		} 
+	}
+	
+		$(function(){
+			$("#qnaSelect2").hide();
+			
+		});
+		
+		
+		$(".qnaRow").click(function(){
+			location.href="showQnaDetail.me";
+		});
+		
+		
+		
+	</script>
+	<select id="qnaSelect" onclick="getCue2();">
+  		<option>제목</option>
+  		<option>글쓴이</option>
+  		<option>처리여부</option>
+  	</select>
+  	
+  	<input type="search" id="qnaSearchBar">
+  	<select id="qnaSelect2">
+  		<option>처리됨</option>
+  		<option>처리 안 됨</option>
+  	</select>
+  	
+  	<button type="submit" class="searchBtn">검색</button>
+	<div class="tableArea" id="qnaTable">
+ 	
+ 	<table class="tableList" align="center" >
+ 	
+ 	<tr style="border-bottom:1px solid lightgray;">
+ 	<th style="width:50px;  text-align:center;height:20px;font-weight:bold;">
+ 		<input type="checkbox" id="checkAll4">&nbsp;전체선택
+ 	</th>
+ 	<th style="width:50px; text-align:center;height:20px;font-weight:bold;">글번호</th>
+ 	<th style="width:300px; text-align:center;height:20px;font-weight:bold;">제목</th>
+ 	<th style="width:120px; text-align:center;height:20px;font-weight:bold;">글쓴이</th>
+ 	<th style="width:150px; text-align:center;height:20px;font-weight:bold;">날짜</th>
+	<th style="width:100px; text-align:center;height:20px;font-weight:bold;">처리여부</th>
+ 	
+ 	</tr>
+ 	
+ 	<tr class="tableRow qnaRow">
+ 		<td><input class="pftCheck" type="checkbox"></td>
+ 		 <td style="padding:10px;">강지은</td>
+ 		 <td>마녀김밥</td> 		 
+ 		 <td>신용카드</td>
+ 		 <td >100,000</td>
+ 		 <td >2018-05-01</td>
+ 		 <td >Y</td>
+ 	</tr>
+ 
+ 	
+ 	</table>
+ </div>
+	
 
 <!-- /1:1문의 -->
 
@@ -769,6 +845,8 @@ function openTab(evt, tabName) {
 	    	
 	    }
     
+	    
+	    
 }
 
 

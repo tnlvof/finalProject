@@ -196,8 +196,6 @@ public class MemberController {
 	}
 	
 	
-
-	
 		
 	@RequestMapping(value ="goMyPage.me")
 	public String goMyPage() {
@@ -221,6 +219,11 @@ public class MemberController {
 	public String goMyPageQuestionForm() {
 		
 		return "myPage/myPageQuestionForm";
+	}
+	
+	@RequestMapping(value="showQnaDetail.me")
+	public String goQnaDetail() {
+		return "admin/qnaDetail";
 	}
 	
 }
