@@ -22,10 +22,18 @@
 
   	<h3>1 : 1 문의 </h3>
   	
-  	<button id="blacklistOff" class="searchBtn" style="position:relative;left:195px;">글 삭제하기</button>
+  	<button id="blacklistOff" class="searchBtn" style="position:relative;left:195px;" onclick="deleteQna();">글 삭제하기</button>
   	
   	<br><br>
-  
+  <script type="text/javascript">
+  	function deleteQna(){
+  		var c = confirm('정말 글을 삭제하시겠습니까?');
+  		
+  		if (c == true){
+  			location.href="deleteQna.bo";
+  		}
+  	}
+  </script>
     	
  	<div id="tableArea">
  	<table id="qnaList" class="tableList" style="margin-left:auto;margin-right:auto;" >
