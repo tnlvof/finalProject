@@ -244,7 +244,7 @@ margin-left:10px;
 
 
 </div>
-
+<input type="hidden" id="searchKey" value="${searchKey}" >
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=82eb499cd9c011a78d1f32d273f9d2bd&libraries=services"></script>
 <div id="map" style="width:100%;height:350px;"></div>
 <script>
@@ -264,7 +264,7 @@ var map = new daum.maps.Map(mapContainer, mapOption);
 var ps = new daum.maps.services.Places(); 
 
 // 키워드로 장소를 검색합니다
-ps.keywordSearch('이태원역', placesSearchCB); 
+ps.keywordSearch($("#searchKey"), placesSearchCB); 
 
 // 키워드 검색 완료 시 호출되는 콜백함수 입니다
 function placesSearchCB (data, status, pagination) {

@@ -24,4 +24,6 @@ public interface MemberService  {
 
 	ArrayList<Member> searchMember(String searchCon, Map<String, String> data);
 
+	int idCheck(String checkId);
+
 }
