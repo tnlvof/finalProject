@@ -66,4 +66,11 @@ public class MemberServiceImpl implements MemberService{
 		
 		return searchList;
 	}
+
+	@Override
+	public int idCheck(String checkId) {
+		int result = md.idCheck(checkId,sqlSession);
+		
+		return result;
+	}
 }

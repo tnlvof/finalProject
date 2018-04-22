@@ -96,5 +96,15 @@ public class MemberDaoImpl implements MemberDao{
 		
 		return searchMember;
 	}
+
+	@Override
+	public int idCheck(String checkId, SqlSessionTemplate sqlSession) {
+		
+		int result = sqlSession.selectOne("Member.idCheck",checkId);
+		
+		System.out.println("dao idCheck : " + result);
+		
+		return result;
+	}
 	
 }

@@ -85,4 +85,8 @@
 		
 	</update>
 	
+	<select id="idCheck" resultType="_int">
+		SELECT COUNT(*) FROM MEMBER WHERE USER_ID=#{checkId}
+	</select>
+	
 </mapper>
