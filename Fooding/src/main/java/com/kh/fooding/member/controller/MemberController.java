@@ -178,6 +178,7 @@ public class MemberController {
 	
 	//멤버 검색
 	@RequestMapping(value = "searchMembers.me", method = RequestMethod.POST)
+	@ResponseBody
 	public ModelAndView searchMembers(ModelAndView mv, @RequestBody Map<String, String> data) {
 		System.out.println("넘어옴?");
 		System.out.println(data);
@@ -186,13 +187,16 @@ public class MemberController {
 				
 		ArrayList<Member> searchList = ms.searchMember(searchCon, data);
 		
-		mv.addObject(searchList);
+		mv.addObject("searchList", searchList);
+		mv.setViewName("jsonView");	
+		
+		System.out.println("searchList : " + searchList);
 		
 		return mv;
 	}
 	
 	
-	
+
 	
 		
 	@RequestMapping(value ="goMyPage.me")

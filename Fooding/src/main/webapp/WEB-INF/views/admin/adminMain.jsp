@@ -75,8 +75,9 @@
   				/* console.log("키" + key);
   				console.log("값" + search); */
   				
-  				
-  				var data = {key , search };
+  				var data = {key : key, search:search };
+  				console.log("맵 : ");
+  				console.log( data);
   				
 				  	$.ajax({
 				 		
@@ -84,8 +85,30 @@
   		  				url:"searchMembers.me",
   		  				data: JSON.stringify(data),  
   		  				contentType:"application/json",
-  		  				success:function(){
-  		  					alert('넘어감.');
+  		  				success:function(data){
+  		  					/* alert('넘어감.'); */
+  		  					
+  		  					console.log(data);
+  		  					
+  		  				 $("#memberHeader").nextAll("tr").remove();
+  		     			 
+  		     			 for(var i = 0; i<data.searchList.length ; i++){	     				 	  
+  		     				 
+  		    				  $("#membertable").append("<tr class='tableRow' > <td ><input type='checkbox' name='memberCheck' class='memberCheck' onchange='checkMid()'> <input type='hidden' class='mid' value="+ data.searchList[i].mid+"></td>");
+  		    				  $("#membertable").find(".tableRow").last().append("<td style='padding-top: 10px;padding-bottom:10px;' class='userId' name='userId'>"+data.searchList[i].userId+"</td>");
+  		    				  $("#membertable").find(".tableRow").last().append("<td name='userName'>"+data.searchList[i].userName+"</td>");
+  		    				  $("#membertable").find(".tableRow").last().append("<td name='birth'>"+data.searchList[i].birth+"</td>");
+  		    				  $("#membertable").find(".tableRow").last().append("<td name='phone'>"+data.searchList[i].phone+"</td>");
+  		    				  $("#membertable").find(".tableRow").last().append("<td name='email'>"+data.searchList[i].email+"</td>");
+  		    				  $("#membertable").find(".tableRow").last().append("<td name='address'>"+data.searchList[i].address+"</td>");
+  		    				  $("#membertable").find(".tableRow").last().append("<td name='repCount'>"+data.searchList[i].repCount+"</td>");
+  		    				  $("#membertable").find(".tableRow").last().append("<td name='bookCount'>"+data.searchList[i].bookCount+"</td>");
+  		    				  $("#membertable").find(".tableRow").last().append("<td name='status'>"+data.searchList[i].status+"</td></tr>");
+  		    				      				  				  
+  		    			  } 
+  		  					
+  		  					
+  		  					
   		  				},
   		  				error:function(){
   		  					alert('ㅡㅡ');
