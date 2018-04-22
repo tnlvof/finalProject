@@ -40,7 +40,7 @@ public class StoreController {
 			photo.transferTo(new File(filePath + "\\" + photo.getOriginalFilename()));
 		} catch (IllegalStateException | IOException e1) {
 			e1.printStackTrace();
-    }
+		}
 		ss.insertStoreInfo(s);
 
 		return "main/main";
@@ -104,7 +104,7 @@ public class StoreController {
 			currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		}
 
-		int listCount = 100;
+		int listCount = ss.getListCount(searchKey);
 		
 		maxPage = (int) ((double) listCount / limit + 0.9);
 
@@ -129,6 +129,12 @@ public class StoreController {
 		mv.setViewName("store/searchList");
 
 		return mv;
+	}
+	
+	@RequestMapping(value="goDetail.st")
+	public String goDatail() {
+
+		return "store/detail";
 	}
 
 }

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -144,7 +145,7 @@ margin-left:10px;
 <div id="resultArea">
 	<c:forEach var="s" items="${ sam }" >
 	<div class="result">
-		<img alt="" src="resources/images/restaurants/nothing.png" class="profilePic">
+		<img alt="" src="resources/images/restaurants/nothing.png" class="profilePic" onclick="location.href='goDetail.st'">
 		 <div class="nameAndPricesArea">
 		
 			 <h1 class="text">${ s.restName }</h1>
@@ -162,8 +163,8 @@ margin-left:10px;
 		
 				 		
 		<div class="btns">		
-		<button class="buttons" >예약하기</button>
-		<button class="buttons" >리뷰하기</button>
+		<!-- <button class="buttons" >예약하기</button> -->
+		<button class="buttons" >리뷰쓰기</button>
 		</div>
 	</div>	
 	
@@ -264,7 +265,7 @@ var map = new daum.maps.Map(mapContainer, mapOption);
 var ps = new daum.maps.services.Places(); 
 
 // 키워드로 장소를 검색합니다
-ps.keywordSearch($("#searchKey"), placesSearchCB); 
+ps.keywordSearch($("#searchKey").val(), placesSearchCB); 
 
 // 키워드 검색 완료 시 호출되는 콜백함수 입니다
 function placesSearchCB (data, status, pagination) {
@@ -278,7 +279,6 @@ function placesSearchCB (data, status, pagination) {
        //  displayMarker(data[0]);    
          bounds.extend(new daum.maps.LatLng(data[0].y, data[0].x));
         
-       
          // 식당 좌표 표시
          var places = new daum.maps.services.Places();
 
@@ -290,10 +290,17 @@ function placesSearchCB (data, status, pagination) {
          };
 			
          
+         //마커 찍을 식당 이름
+         var sam = [];
+         <c:forEach var="s" items="${ sam }" >
+         sam.push('${fn:replace(s.restName," ","")}');
+         </c:forEach>
+         console.log(sam);
+         
          var array = ['마이 타이', '젤렌', '타르틴','서울펍'];
          
-         for(var i =0; i<array.length;i++){
-        	 places.keywordSearch(array[i], callback);	 
+         for(var i =0; i<sam.length;i++){
+        	 places.keywordSearch(sam[i], callback);	 
          }
          
          
@@ -327,6 +334,7 @@ function placesSearchCB (data, status, pagination) {
         infowindow.open(map, marker);
     });
 } 
+
 </script>
 
 <!-- footer -->
