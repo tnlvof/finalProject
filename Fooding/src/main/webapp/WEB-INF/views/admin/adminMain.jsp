@@ -22,9 +22,9 @@
   <button class="tablinks" onclick="openTab(event, 'memberList')" id="defaultOpen">회원관리</button>
   <button class="tablinks" onclick="openTab(event, 'storeList')">업체관리</button>
   <button class="tablinks" onclick="openTab(event, 'rsvList')">예약관리</button>
-  <button class="tablinks" onclick="openTab(event, 'Tokyo')">광고현황</button>
+  <button class="tablinks" onclick="openTab(event, 'adList')">광고현황</button>
   <button class="tablinks" onclick="openTab(event, 'profitTab')">수익관리</button>
-  <button class="tablinks" onclick="openTab(event, 'Tokyo')">1:1 문의</button>
+  <button class="tablinks" onclick="openTab(event, 'qnaBoard')">1:1 문의</button>
 </div>
 
 <!--  /메뉴 -->
@@ -34,19 +34,20 @@
 
 <div id="memberList" class="tabcontent">
   	<h3>회원 조회</h3>
-  	<select>
-  		
+  	<select id="memberSelect">  		
   		<option>아이디</option>
-  		<option>이름</option>
-  		<option>생년월일</option>
+  		<option>이름</option>  		
   		<option>연락처</option>
-  		<option>이메일</option>
-  		<option>주소</option>
+  		
+  		
   	</select>
   	<input type="search" id="memberSearchBar">
   	<button type="submit" class="searchBtn" id="searchBtn">검색</button>
   	
   	<button class="searchBtn" id="editBtn" >수정</button>
+  	<form id="memberForm" action="showEditForm.me" method="post">
+		<input type="hidden" value="" name="editMid" id="editMid">  	
+  	</form>
   	<!--  -->
   	<script type="text/javascript">
   		$(function(){
@@ -57,33 +58,122 @@
   				console.log(keyword);
   				if(keyword==""){
   					alert('검색어를 입력해주세요.');
+  				} else {
+  					
+  				// 아이디, 이름, 연락처 검색
+  				var search ;
+  				var key ;
+  				
+  				switch($("#memberSelect option:selected" ).text()){  				
+	  				case '아이디': key = '아이디'; break;
+	  				case '이름': key = '이름'; break;
+	  				case '연락처': key ='연락처';break;
+  				}
+  				
+  				search = $("#memberSearchBar").val();
+  				
+  				/* console.log("키" + key);
+  				console.log("값" + search); */
+  				
+  				var data = {key : key, search:search };
+  				console.log("맵 : ");
+  				console.log( data);
+  				
+				  	$.ajax({
+				 		
+  		  				method:"post",
+  		  				url:"searchMembers.me",
+  		  				data: JSON.stringify(data),  
+  		  				contentType:"application/json",
+  		  				success:function(data){
+  		  					/* alert('넘어감.'); */
+  		  					
+  		  					console.log(data);
+  		  					
+  		  				 $("#memberHeader").nextAll("tr").remove();
+  		     			 
+  		     			 for(var i = 0; i<data.searchList.length ; i++){	     				 	  
+  		     				 
+  		    				  $("#membertable").append("<tr class='tableRow' > <td ><input type='checkbox' name='memberCheck' class='memberCheck' onchange='checkMid()'> <input type='hidden' class='mid' value="+ data.searchList[i].mid+"></td>");
+  		    				  $("#membertable").find(".tableRow").last().append("<td style='padding-top: 10px;padding-bottom:10px;' class='userId' name='userId'>"+data.searchList[i].userId+"</td>");
+  		    				  $("#membertable").find(".tableRow").last().append("<td name='userName'>"+data.searchList[i].userName+"</td>");
+  		    				  $("#membertable").find(".tableRow").last().append("<td name='birth'>"+data.searchList[i].birth+"</td>");
+  		    				  $("#membertable").find(".tableRow").last().append("<td name='phone'>"+data.searchList[i].phone+"</td>");
+  		    				  $("#membertable").find(".tableRow").last().append("<td name='email'>"+data.searchList[i].email+"</td>");
+  		    				  $("#membertable").find(".tableRow").last().append("<td name='address'>"+data.searchList[i].address+"</td>");
+  		    				  $("#membertable").find(".tableRow").last().append("<td name='repCount'>"+data.searchList[i].repCount+"</td>");
+  		    				  $("#membertable").find(".tableRow").last().append("<td name='bookCount'>"+data.searchList[i].bookCount+"</td>");
+  		    				  $("#membertable").find(".tableRow").last().append("<td name='status'>"+data.searchList[i].status+"</td></tr>");
+  		    				      				  				  
+  		    			  } 
+  		  					
+  		  					
+  		  					
+  		  				},
+  		  				error:function(){
+  		  					alert('ㅡㅡ');
+  		  				}
+  		  				
+  		  			}); 
+				
+  		  		 
+  					
   				}
   				
   			});
   			
   			//수정 버튼
   				
-  			
-  			 
   			$("#editBtn").click(function(){  				
   				if(! $(".memberCheck").is(":checked")){
   					alert("수정할 회원을 선택해주세요.");
-  				} else{
+  				} else{  					
   					$("#memberForm").submit();
   				}  			
   			});
-  		 
+  			
+  			
   		});
   		
+  		function checkMid(){
+  			if($(".memberCheck").is(':checked')){
+  				
+  				 //console.log($(".memberCheck:checked").parents().find('.userId').text());
+  				//console.log($('input[name="memberCheck"]:checked').serialize());
+  				
+  				
+  			    var array = [];
+  				 
+  				$('input[name="memberCheck"]:checked').each(function() {
+  					
+  					 if($(this).is(':checked')){  			
+  						 
+  						 array.push($(this).next().val());
+  						 
+					 console.log('어레이 : ' );  								     
+  					   console.log(array);
+  					 }
+  					 
+  						
+  				});
+
+  			} 
+				 $('#editMid').val(array);
+  		}
+  		
+  		
+		 
   	</script>
   	
   	<br><br>
-  	<form id="memberForm" action="showEditForm.me" method="post">
+  
+  
+  	
  	<div class="tableArea">
  	<table class="tableList" align="center" id="membertable">
  	
- 	<tr style="border-bottom:1px solid lightgray;">
- 	<th style="width:100px; text-align:center;height:20px;font-weight:bold;"><input type="checkbox" id="checkAll">&nbsp;전체선택</th>
+ 	<tr style="border-bottom:1px solid lightgray;" id="memberHeader">
+ 	<th style="width:100px; text-align:center;height:20px;font-weight:bold;"><input type="checkbox" id="checkAll" onchange='checkMid()'>&nbsp;전체선택</th>
  	<th style="width:100px; text-align:center;height:20px;font-weight:bold;">아이디</th>
  	<th style="width:100px; text-align:center;height:20px;font-weight:bold;">이름</th>
  	<th style="width:150px; text-align:center;height:20px;font-weight:bold;">생년월일</th>
@@ -99,11 +189,12 @@
  	
  	
  	</table>
+ 	
  </div>
 
 </div>
 
-</form>
+
 <!--/ 회원관리 -->
 
 <!-- 업체 관리 -->
@@ -623,6 +714,82 @@ function getCue(){
 
 <!-- 1:1문의 -->
 
+<div id="qnaBoard" class="tabcontent">
+	
+	<h3>1 : 1  문의 게시판</h3>  
+	<script type="text/javascript">
+	
+	function getCue2(){
+		var searchSelect = document.getElementById("qnaSelect");
+		var str2 = searchSelect.options[searchSelect.selectedIndex].value;
+		
+		console.log(str2);
+		
+	 	if(str2=="처리여부"){
+	 		$("#qnaSearchBar").toggle();
+			$("#qnaSelect2").toggle();		
+		} else {			
+			$("#qnaSearchBar").show();
+			$("#qnaSelect2").hide();	
+		} 
+	}
+	
+		$(function(){
+			$("#qnaSelect2").hide();
+			
+		});
+		
+		
+		$(".qnaRow").click(function(){
+			location.href="showQnaDetail.me";
+		});
+		
+		
+		
+	</script>
+	<select id="qnaSelect" onclick="getCue2();">
+  		<option>제목</option>
+  		<option>글쓴이</option>
+  		<option>처리여부</option>
+  	</select>
+  	
+  	<input type="search" id="qnaSearchBar">
+  	<select id="qnaSelect2">
+  		<option>처리됨</option>
+  		<option>처리 안 됨</option>
+  	</select>
+  	
+  	<button type="submit" class="searchBtn">검색</button>
+	<div class="tableArea" id="qnaTable">
+ 	
+ 	<table class="tableList" align="center" >
+ 	
+ 	<tr style="border-bottom:1px solid lightgray;">
+ 	<th style="width:50px;  text-align:center;height:20px;font-weight:bold;">
+ 		<input type="checkbox" id="checkAll4">&nbsp;전체선택
+ 	</th>
+ 	<th style="width:50px; text-align:center;height:20px;font-weight:bold;">글번호</th>
+ 	<th style="width:300px; text-align:center;height:20px;font-weight:bold;">제목</th>
+ 	<th style="width:120px; text-align:center;height:20px;font-weight:bold;">글쓴이</th>
+ 	<th style="width:150px; text-align:center;height:20px;font-weight:bold;">날짜</th>
+	<th style="width:100px; text-align:center;height:20px;font-weight:bold;">처리여부</th>
+ 	
+ 	</tr>
+ 	
+ 	<tr class="tableRow qnaRow">
+ 		<td><input class="pftCheck" type="checkbox"></td>
+ 		 <td style="padding:10px;">강지은</td>
+ 		 <td>마녀김밥</td> 		 
+ 		 <td>신용카드</td>
+ 		 <td >100,000</td>
+ 		 <td >2018-05-01</td>
+ 		 <td >Y</td>
+ 	</tr>
+ 
+ 	
+ 	</table>
+ </div>
+	
 
 <!-- /1:1문의 -->
 
@@ -642,43 +809,48 @@ function openTab(evt, tabName) {
     evt.currentTarget.className += " active";
     
     
-    if(tabName=='memberList'){
-    	
-    	console.log(tabName);
-    	
-    	$.ajax({
-    		  method: "POST",
-    		  url: "selectMemberList.me", 
-    		  success:function(data){
-    			
-    			  console.log(data);
-    			  console.log(data.memberlist);
-    			  
-    			  
-    			  for(var i = 0; i<data.memberlist.length;i++){
-    				  $("#membertable").append("<tr class='tableRow' > <td ><input type='checkbox' class='memberCheck' name='checkedrow'></td>");
-    				  $(".tableRow").append("<td style='padding-top: 10px;padding-bottom:10px;' name='userId'><input type='hidden' value="+ data.memberlist[i].mid+" name='mid'>"+data.memberlist[i].userId+"</td>");
-    				  $(".tableRow").append("<td name='userName'>"+data.memberlist[i].userName+"</td>");
-    				  $(".tableRow").append("<td name='birth'>"+data.memberlist[i].birth+"</td>");
-    				  $(".tableRow").append("<td name='phone'>"+data.memberlist[i].phone+"</td>");
-    				  $(".tableRow").append("<td name='email'>"+data.memberlist[i].email+"</td>");
-    				  $(".tableRow").append("<td name='address'>"+data.memberlist[i].address+"</td>");
-    				  $(".tableRow").append("<td name='repCount'>"+data.memberlist[i].repCount+"</td>");
-    				  $(".tableRow").append("<td name='bookCount'>"+data.memberlist[i].bookCount+"</td>");
-    				  $(".tableRow").append("<td name='status'>"+data.memberlist[i].status+"</td></tr>");
-    				      				  
-    			  }
-    				
-    			  
-    		  },
-    		  error:function(){
-    			  alert('안됨');
-    		  }
-    		});
-    		  
-    }
+	    if(tabName=='memberList'){
+	    	 $.ajax({
+	     		  method: "POST",
+	     		  url: "selectMemberList.me", 
+	     		  success:function(data){
+	     			
+	     			  console.log(data);
+	     			  console.log(data.memberlist); 
+	     			     
+	     			 $("#memberHeader").nextAll("tr").remove();
+	     			 
+	     			 for(var i = 0; i<data.memberlist.length;i++){	     				 	  
+	     				 
+	    				  $("#membertable").append("<tr class='tableRow' > <td ><input type='checkbox' name='memberCheck' class='memberCheck' onchange='checkMid()'> <input type='hidden' class='mid' value="+ data.memberlist[i].mid+"></td>");
+	    				  $("#membertable").find(".tableRow").last().append("<td style='padding-top: 10px;padding-bottom:10px;' class='userId' name='userId'>"+data.memberlist[i].userId+"</td>");
+	    				  $("#membertable").find(".tableRow").last().append("<td name='userName'>"+data.memberlist[i].userName+"</td>");
+	    				  $("#membertable").find(".tableRow").last().append("<td name='birth'>"+data.memberlist[i].birth+"</td>");
+	    				  $("#membertable").find(".tableRow").last().append("<td name='phone'>"+data.memberlist[i].phone+"</td>");
+	    				  $("#membertable").find(".tableRow").last().append("<td name='email'>"+data.memberlist[i].email+"</td>");
+	    				  $("#membertable").find(".tableRow").last().append("<td name='address'>"+data.memberlist[i].address+"</td>");
+	    				  $("#membertable").find(".tableRow").last().append("<td name='repCount'>"+data.memberlist[i].repCount+"</td>");
+	    				  $("#membertable").find(".tableRow").last().append("<td name='bookCount'>"+data.memberlist[i].bookCount+"</td>");
+	    				  $("#membertable").find(".tableRow").last().append("<td name='status'>"+data.memberlist[i].status+"</td></tr>");
+	    				      				  				  
+	    			  }  
+	     			
+	     		  },
+	     		  error:function(){
+	     			  alert('안됨');
+	     		  }
+	     		  
+	     		  
+	     		});
+	    	
+	    }
     
+	    
+	    
 }
+
+
+
 
 // Get the element with id="defaultOpen" and click on it
 document.getElementById("defaultOpen").click();
@@ -688,7 +860,13 @@ document.getElementById("defaultOpen").click();
 $('#checkAll').click(function() {
     var c = this.checked;
     $('.memberCheck').prop('checked',c);
+    /* 
+    if( $('.memberCheck').is(':checked')){
+    	alert('체크됨');
+    } */
 });
+
+
 
 
 $('#checkAll2').click(function() {
@@ -698,7 +876,7 @@ $('#checkAll2').click(function() {
 
 $('#checkAll3').click(function() {
     var c = this.checked;
-    $('.rsvCheck').prop('checked',c);
+    $('.rsvCheck').prop('checked',c) ;
 });
 
 

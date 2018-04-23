@@ -2,243 +2,77 @@
 	pageEncoding="UTF-8"%>
 <meta charset="UTF-8">
 
-<style>
-.basic {
-	width: 600px;
-	height: 1000px;
-	border: 1px solid lightgray;
-	margin: 0 auto;
-	text-align: center;
-	background-color: white;
-}
 
-.join {
-	text-align: center;
-	margin: 20px;
-}
-
-.sb {
-	text-decoration: none;
-	text-indent: 0px;
-	line-height: 23px;
-	-moz-border-radius: 0px 0 0px 0;
-	-webkit-border-radius: 0px 0 0px 0;
-	border-radius: 0px 0 0px 0;
-	text-align: center;
-	vertical-align: middle;
-	display: inline-block;
-	font-size: 15px;
-	color: grey;
-	width: 202px;
-	height: 40px;
-	padding: 11px;
-	border-color: grey;
-	border-width: 1px;
-	border-style: solid;
-	background: white;
-}
-
-.sb:active {
-	position: relative;
-	top: 3px;
-}
-
-.sb:hover {
-	cursor: pointer;
-}
-
-.submit {
-	color: red;
-	border: 1px solid red;
-	width: 100px;
-	height: 30px;
-	background: white;
-}
-
-.title {
-	font-size: 25px;
-	font-weight: bold;
-	margin-top: 50px;
-}
-
-.subtitle {
-	font-weight: bold;
-	font-size: 18px;
-	margin-top: 15px;
-
-}
-
-.title_sub{
-	font-size: 18px;
-	font-weight: bold;
-	margin-top: 30px;
-    margin-bottom: 10px;
-}
-
-
-INPUT.a {
-	border: 1px solid grey;
-	width: 402;
-	height: 40px;
-}
-
-INPUT.b {
-	border: 1px solid grey;
-	width: 201;
-	height: 40px;
-}
-
-iNPUT.c {
-	border: 1px solid grey;
-	width: 132;
-	height: 40px;
-}
-
-.textarea {
-	text-align: center;
-}
-
-.checkBox {
-	width: 20px;
-	height: 20px;
-	vertical-align: middle;
-	-webkit-appearnace: none;
-	border-radius: 0;
-	border: 0;
-	margin: 0;
-	padding: 0;
-	cursor: pointer;
-}
-
-
-.agre-wrap h3 {
-	margin: 50px 0 30px 0;
-}
-
-.agree-content {
-	width: 400px;
-	height: 300px;
-	margin: 0 auto;
-	border: 1px solid #ddd;
-	padding: 15px;
-	box-sizing: border-box;
-	overflow-y: scroll;
-	font-size: 11px;
-	line-height: 1.6em;
-	text-align: left;
-	
-}
-
-input::placeholder {
-	color: gray;
-	font-style: normal;
-}
-
-
-.a{
-	padding: 15px;
-	margin: 10px;
-}
-
-.plz{
-	font-size: 11px;
-	color: #969696;
-	margin-top: 20px;
-	margin-bottom: 10px;
-}
-
-.agreetext{
-	margin: 10px;
-}
-
-.agreetext1{
-	font-size: 11px;
-	color: #3a3a3a;
-}
-
-.agreetext2{
-	font-size: 11px;
-	color: #c91b3c;
-	font-weight: bold;
-
-}
-
-.b{
-	padding: 15px;
-	margin: 10px 0px;
-}
-
-.c{
-	padding: 15px;
-	margin: 0px 0px 15px 0px;
-}
-
-.join_done{
-	background: #ff5a5f;
-	color : #3a3a3a;
-	margin: 10px;
-	width: 100px;
-	height: 35px;
-	border:0px;
-	cursor: pointer;
-}
-
-
-
-</style>
 <!-- header -->
 <jsp:include page="/WEB-INF/views/common/header.jsp" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-<!-- css or js파일 연결 시키는 곳 -->
+<link rel="stylesheet" href="/fooding/resources/css/join.css">
 
 <div class="container">
 	<div class="join">
-		<form class="join_form" action="memberJoin.me" method="post">
-			<br>
+		<form id="joinForm" class="join_form" action="memberJoin.me" method="post">
 			<div class="basic">
 
-				<p class="title">일반 회원가입</p>
+				<h3>일반 회원가입</h3>
 				<p class="subtitle">가입 정보 입력</p>
 
-				<!-- 아이디/이름/이메일 -->
-				<input type="text" name="userId" placeholder="아이디" required class="a">
-				<input type="text" name="userName" placeholder="이름" class="a" required> 
-				<input type="email" name="email" placeholder="이메일" required class="a">
-				
-				<!-- 비밀번호 -->
-				<input type="password" name="userPwd" placeholder="비밀번호 (6자이상)" pattern=".{6,}" required class="b"> 
-				<input type="password" name="userPwd2" placeholder="비밀번호 재확인" required class="b">
-
-				<!-- 생년월일 -->
-				<p class="plz">생년월일과 성별 기입은 선택사항입니다. 개인화된 추천을 받으시려면 입력해주세요.</p>
-				<input type="number" name="birth" min="1900" max="2018" placeholder="생년 (4자)" maxlength="4" value="" class="c"> 
-				<input type="number" name="birth" min="01" max="12" placeholder="월" value="" maxlength="2" class="c"> 
-				<input type="number" name="birth" min="01" max="31" placeholder="일" value="" maxlength="2" class="c">
-				
-				
-				<!-- 성별선택 -->
-				<input type="button" value="여자" id="gender_male" class="sb">
-				<input type="button" value="남자" id="gender_female" class="sb">
-				<input type="hidden" value="" name="gender" id="gender">
-				<script>
+				<div class="join_wrap">
 					
-					/* 성별 스크립트 */
-					$("#gender_male").click(function() {
-						$("#gender_male").css({"border-color":"red","color":"red"});
-						$("#gender").val("여자");
-						$("#gender_female").css({"border-color":"gray","color":"gray"});
-					});
-					$("#gender_female").click(function() {
-						$("#gender_female").css({"border-color":"red","color":"red"});
-						$("#gender").val("남자");
-						$("#gender_male").css({"border-color":"gray","color":"gray"});
-					});
+					<!-- 아이디 -->
+					<label class="must">아이디</label>
+					<input type="text" name="userId" id="id" class="userId" placeholder="아이디를 입력하세요" required />
+					<div class="idCheck">
+						<!-- 
+							정규식 조건에 맞춰 아래의 내용 변경할 것 
+						 -->
+						<p class="alarm overlap" id="idDis">아이디는 영어 소문자로 시작하고 6~20자 영문자 또는 숫자이어야합니다.</p>
+						<p class="alarm overlap" id="idDupl">아이디가 중복됩니다.</p>
+						<p class="alarm usable" id="idUse">사용할 수 있는 아이디입니다.</p>
+					</div>
 					
-				</script>
+					<!-- 비밀번호/비밀번호 확인 -->
+					<label class="must">비밀번호</label>
+					<input type="password" id="pwd" name="userPwd" placeholder="비밀번호를 입력하세요" required />
+					<label class="must">비밀번호 확인</label>
+					<input type="password" id="pwd2" name="userPwd2" placeholder="비밀번호를 다시 입력하세요" required />
+					<div class="pwdCheck">
+						<!-- 
+							정규식 조건에 맞춰 아래의 내용 변경할 것 
+						 -->
+						<p class="alarm overlap" id="pwdDis">비밀번호는 8자 이상, 하나 이상의 숫자를 포함해야합니다.</p>
+						<p class="alarm overlap" id="pwdDupl">비밀번호가 일치하지 않습니다.</p>
+						<p class="alarm usable" id="pwdUse">비밀번호가 일치합니다.</p>
+					</div>
+					
+					<!-- 이름 -->
+					<label class="must">이름</label>
+					<input type="text" name="userName" id="userName" placeholder="이름을 입력하세요" required />
+					
+					<!-- 생년월일 -->
+					<label class="must">생년월일</label>
+					<br>
+					<input type="number" name="birth" id="birth1" min="1900" max="2018" placeholder="생년 (4자)" maxlength="4" required /> 
+					<input type="number" name="birth" id="birth2" min="01" max="12" placeholder="월" value="" maxlength="2"  required/> 
+					<input type="number" name="birth" id="birth3" min="01" max="31" placeholder="일" value="" maxlength="2" required />
+					
+					<!-- 성별 -->
+					<label>성별</label>
+					<br>
+					<button type="button" id="gender_female" class="gender">여자</button>
+					<button type="button" id="gender_male" class="gender">남자</button>
+					<input type="hidden" value="" name="gender" id="gender">
+					
+					<!-- 이메일 -->
+					<label>이메일</label>
+					<input type="text" name="email" placeholder="이메일을 입력하세요"/>
+					
+				</div>
+				<!-- join_wrap -->
 
 
 				<div class="agre-wrap">
-					<p class="title_sub">약관동의</p>
+					<p class="subtitle">약관동의</p>
 					<div class="agree-content">
 						가. 수집하는 개인정보의 항목첫째, Fooding은 회원가 입, 원활한 고객상담, 각종 서비스의 제공을 위해 최초 회원가입 당시
 						아래와 같은 최소한의 개인정보를 필수항목으로 수집하고 있습니다.<br> <br> 회원가입<br>
@@ -264,28 +98,123 @@ input::placeholder {
 					<!-- agree-content -->
 
 					<div class="agreetext">
+						<input type="checkbox" name="req" class="checkBox" id="ok">
+						<label for="ok">개인정보 수집 및 이용에 동의합니다. <span style="color:red">(필수)</span></label>
+						<!-- 
 						<input type="checkbox" name="req" class="checkBox" style="width:15px;height:15px;">
 						<a class="agreetext1">개인정보 수집 및 이용에 동의합니다.</a><a class="agreetext2">(필수)</a>
+						 -->
 					</div>
-					
 					
 				</div>
 				<!-- agree-wrap --> 
-				<button class="join_done">가입완료</button>
+				<br>
+				<button class="join_done" onclick="return insertMember()">가입완료</button>
 			</div>
+			<!-- basic -->
 		</form>
 	</div>
-	<script type="text/javascript">
-		
-	
-	</script>
-
-
+	<!-- join -->
 
 </div>
 <!-- container -->
 
 
+<script>
+
+	/* 성별 스크립트 */
+	$("#gender_male").click(function() {
+		$("#gender_male").css({"background":"#666","color":"#fff","border-color":"#666"});
+		$("#gender").val("여자");
+		$("#gender_female").css({"background":"#fff","color":"#e5e5e5","border-color":"#e5e5e5"});
+	});
+	$("#gender_female").click(function() {
+		$("#gender_female").css({"background":"#666","color":"#fff","border-color":"#666"});
+		$("#gender").val("남자");
+		$("#gender_male").css({"background":"#fff","color":"#e5e5e5","border-color":"#e5e5e5"});
+	});
+	
+	/* 가입버튼 */
+	
+	$(function(){
+		var id = $("#id");
+		var pa = $("#pwd");
+		var paco = $("#pwd2");
+		
+		var idRegExp = /^[a-z][a-z0-9_-]{5,19}$/
+		var paRegExp = /^[A-Za-z0-9_-]{6,18}$/;
+		var paRegExp2 = /\d/g;
+		
+			$("#id").focusout(function(){
+				var checkId = $("#id").val();
+				if (idRegExp.test(id.val())) {
+					$("#idDis").css({"display":"none"});
+				    $.ajax({                                                                                       
+				    	url:'idCheck.me',                                                                          
+				    	method:'post',                                                                             
+				    	data:{checkId:checkId},                                                                    
+				    	dataType:"text",                                                                           
+				    	success:function(data){                                                                    
+				    		console.log(data);                                                                     
+				    		if(jQuery.trim(data) =="false"){                                                                      
+				    			$("#idUse").css({"display":"block"});                                              
+				    			$("#idDupl").css({"display":"none"});                                              
+				    		}else{                                                                                 
+				    			$("#idDupl").css({"display":"block"});                                             
+				    			$("#idUse").css({"display":"none"});                                               
+				    		}                                                                                      
+				    	},                                                                                         
+				    	error:function(request,status,error){                                                      
+			        	    alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+				        }                                                                                          
+				    });                                                                                            
+			    }else{                                                                                         
+				    $("#idDis").css({"display":"block"});   
+				    $("#idUse").css({"display":"none"});
+			    }                                                                                              
+			});
+			
+			$("#pwd2").focusout(function(){
+				if (!paRegExp.test(pa.val()) || !(paRegExp2.test(pa.val()))) {
+					$("#pwdDis").css({"display":"block"});
+				    $("#pwdUse").css({"display":"none"});
+				    $("#pwdDupl").css({"display":"none"});
+				}else{
+					$("#pwdDis").css({"display":"none"});
+					if (pa.val() != paco.val()) {
+						$("#pwdDupl").css({"display":"block"});
+						$("#pwdUse").css({"display":"none"});
+					}else{
+						$("#pwdDupl").css({"display":"none"});
+						$("#pwdUse").css({"display":"block"});
+					}
+				}
+			});
+	});
+	
+	function insertMember() {
+		var na=$("#userName");
+		
+			if(na.val()==""){
+				na.select();
+			}else if($("#birth1").val()=="" ||$("#birth2").val()=="" ||$("#birth3").val()==""){
+				$("#birth1").select();
+			}else{						
+				if($("#ok").prop("checked")){
+					$("#joinForm").submit();
+					return true;
+				}else{
+					alert('약관에 동의해주세요');
+					return false;
+				}
+			}
+		
+		
+	
+		
+	}
+
+</script>
 
 <!-- footer -->
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />

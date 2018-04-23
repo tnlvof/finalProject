@@ -19,33 +19,51 @@ public class Member {
 	private int bookCount;
 	private String gender;                                
 	private Date enrollDate;
+	private String enrollDateJson;
 	
 	
 	public Member() {
 		super();
 	}
 
-	public Member(int mid, String userId, String userPwd, String userName, String birth, String gender, String phone,
-			String email, String address, String mCode, String status, Date enrollDate, int repCount, int bizNo,
-			String bizName, int bookCount) {
+	
+
+	public Member(int mid, String userId, String userPwd, String userName, String birth, String phone, String email,
+			String address, String mCode, String status, int repCount, int bizNo, String bizName, int bookCount,
+			String gender, Date enrollDate, String enrollDateJson) {
 		super();
 		this.mid = mid;
 		this.userId = userId;
 		this.userPwd = userPwd;
 		this.userName = userName;
 		this.birth = birth;
-		this.gender = gender;
 		this.phone = phone;
 		this.email = email;
 		this.address = address;
 		this.mCode = mCode;
 		this.status = status;
-		this.enrollDate = enrollDate;
 		this.repCount = repCount;
 		this.bizNo = bizNo;
 		this.bizName = bizName;
 		this.bookCount = bookCount;
+		this.gender = gender;
+		this.enrollDate = enrollDate;
+		this.enrollDateJson = enrollDateJson;
 	}
+
+
+
+	public String getEnrollDateJson() {
+		return enrollDateJson;
+	}
+
+
+
+	public void setEnrollDateJson(String enrollDateJson) {
+		this.enrollDateJson = enrollDateJson;
+	}
+
+
 
 	public int getMid() {
 		return mid;

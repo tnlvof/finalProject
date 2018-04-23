@@ -1,17 +1,70 @@
 @charset "UTF-8";
-@charset "UTF-8";
+
+/* 프로필 사진 배경 */
 .banner-wrap{
-   background-size: cover;
+	position: relative;
+    overflow: hidden;
+    width: 100%;
+    background-size: cover;
+    background-position: center center;
+}
+.banner-wrap > .background {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.banner-wrap >.i_wrap {
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+.i_wrap {
+    display: inline-block;
+}
+.i_wrap i{
+   display: block; 
+   width: 100%;
+   height: 100%;
+}
+.blur {
+    -o-filter: blur(5px);
+    -ms-filter: blur(5px);
+    -moz-filter: blur(5px);
+    -webkit-filter: blur(5px);
+    filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius='5');
+}
+.background {
+   position: absolute;
+   top: 0;
+   left: 0
+}
+i.image, i.profile_image {
+    background-size: cover;
+    background-position: center center;
+}
+.shading.middle {
+    filter: brightness(.5);
+    -ms-filter: brightness(.5);
+    -moz-filter: brightness(.5);
+    -webkit-filter: brightness(.5);
+}
+.background{
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.inner-wrap {
+    position: absolute;
+	width: 100%;
+	height: 100%;
+	border: 10px solid red;
 }
 .banner{
    width: 1000px;
    margin: 0 auto;
    color: #fff;
 }
-.bg{
-   background-color: rgba(0,0,0, 0.7);
-}
-.title{
+.banner .title{
    border-bottom: 1px solid #fff;
    padding: 35px 25px 0 25px;
    line-height: 3em;
@@ -29,7 +82,7 @@
 }
 .title .reservation-info{
    font-size: 15px;
-   background: rgba(255, 255, 255, 0.3);
+   background: rgba(255, 255, 255, 0.2);
    border-radius: 3px;
    padding: 5px 8px;
 }
@@ -52,6 +105,7 @@
    color: #fff;
    font-size: 14px;
 }
+
 .rank-wrap{
    overflow: hidden;
 }
@@ -60,7 +114,7 @@
    line-height: 28px;
 }
 .rank-box{
-   width: 200px;
+   width: 160px;
    float: left;
    line-height: 28px;
 }
@@ -74,6 +128,7 @@
 .rank-wrap .num-rank{
    line-height: 28px;
 }
+
 .asap-reservation{
    background: transparent;
    color: #fff;
@@ -87,11 +142,20 @@
 }
 
 
+
+
+
+
 .detail-wrap{
    width: 1000px;
    margin: 0 auto;
    margin-top: 22px;
 }
+
+
+
+
+
 /* tab menu */
 .tab{
    overflow: hidden;

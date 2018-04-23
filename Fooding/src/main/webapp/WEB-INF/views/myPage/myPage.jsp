@@ -4,20 +4,19 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
 <!-- header -->
-<jsp:include page="WEB-INF/views/common/header.jsp"/>
+<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 
 <!-- css or js파일 연결 시키는 곳 -->
 <link rel="stylesheet" href="/fooding/resources/css/myPage.css">
 
 <div class="container" id="container">
-	<jsp:include page="WEB-INF/views/myPage/myPageBanner.jsp" />
+	<jsp:include page="/WEB-INF/views/myPage/myPageBanner.jsp" />
 	<div id="content_wrap">
 		<div id="content" class="mypage">
 			<ul class="tab">
-				<li class="item selected"><a href="/fooding/myPage.jsp">예약</a></li>
-				<!-- <li class="item "><a href="#">티켓</a></li> -->
-				<li class="item "><a href="/fooding/myPageReview.jsp">리뷰</a></li>
-				<li class="item "><a href="/fooding/myPageQuestions.jsp">1:1 문의</a></li>
+				<li class="item" onclick="location.href='goMyPage.me'">예약</li>
+				<li class="item" onclick="location.href='goMyPageReview.me'">리뷰</li>
+				<li class="item" onclick="location.href='goMyPageQuestions.me'">1:1 문의</li>
 			</ul>
 			<div id="reservation" class="body empty">
 				<div class="filter">
@@ -68,9 +67,36 @@
 												<i class="icon personnel"></i>
 												<div class="box_text">인원</div>
 												<div class="person_count">
-													<i class="icon minus"></i><span id="reserve_person_count"
-														class="count">6</span><i class="icon plus"></i>
+													<input value="-" count_range="m" type="button" id="mBtn" style="display:none;">
+													<label class="mIcon" for="mBtn"><i class="icon minus"></i></label>
+													<!-- <span id="reserve_person_count" class="count">6</span> -->
+													<input class="count" value="1" readonly>
+													<input value="+" count_range="p" type="button" id="pBtn" style="display:none;">
+													<label class="pIcon" for="pBtn"><i class="icon plus"></i></label>
 												</div>
+												<!-- <div class="__count_range">
+													<input value="-" count_range="m" type="button">
+													<input class="count" value="1" readonly>
+													<input value="+" count_range="p" type="button">
+												</div> -->
+												<script>
+												$(document).ready(function(){
+												    $('.person_count input[count_range]').click(function(e){
+												        e.preventDefault();
+												        var type = $(this).attr('count_range');
+												        var $count = $(this).parent().children('input.count');
+												        var count_val = $count.val(); // min 1
+												        if(type=='m'){
+												            if(count_val<1){
+												                return;
+												            }
+												            $count.val(parseInt(count_val)-1);
+												        }else if(type=='p'){
+												            $count.val(parseInt(count_val)+1);
+												        }
+												    });
+												});
+												</script>
 											</div>
 											<div class="box pointer">
 												<div id="calendar"
@@ -79,14 +105,22 @@
 													<div
 														class="ui-datepicker-inline ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all"
 														style="display: block;">
-														
+														보여라
 													</div>
 												</div>
 
 												<i class="icon calendar"></i>
 												<div class="box_text">날짜</div>
 												<span id="reserve_date" class="date first">2018.5.2</span> <i
-													class="icon arrow red"></i>
+													class="icon arrow red calArrow"></i>
+												<script>
+												$(function(){
+										  			  $('.calArrow').click(function(){
+													    $('#calendar').show();
+													    $(this).addClass('calShow');
+													  });
+													});
+												</script>
 											</div>
 											<div class="box pointer" style="margin: 0;">
 												<div id="timetable" class="sidemenu-content sub_popup"
@@ -166,7 +200,6 @@
 															style="margin-left: -110.5px; margin-top: 28.5px; width: 108.5px; display: block;" onclick="document.getElementById('reservCancel').style.display='none'">아니오</div>
 														<div class="confirmOk"
 															style="margin-left: 1px; margin-top: 28.5px; width: 108.5px; display: block;">예</div>
-														
 													</div>
 												</div>
 											</div>
@@ -195,10 +228,10 @@
 				</div>
 			</div>
 		</div>
-		<jsp:include page="WEB-INF/views/myPage/myPageSidebar.jsp" />
+		<jsp:include page="/WEB-INF/views/myPage/myPageSidebar.jsp" />
 	</div>
 </div>
 <!-- container -->
 
 <!-- footer -->
-<jsp:include page="WEB-INF/views/common/footer.jsp"/>
+<jsp:include page="/WEB-INF/views/common/footer.jsp"/>

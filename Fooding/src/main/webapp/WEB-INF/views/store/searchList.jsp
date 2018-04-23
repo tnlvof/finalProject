@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -53,7 +55,7 @@ body{
 	margin-top:50px;
 	margin-left:auto;
 	margin-right:auto; 
-	height:850px;
+	height:1200px;
 	width:1000px;
   	
 }
@@ -116,6 +118,10 @@ margin-left:10px;
 	margin-right:10px;
 }
 
+#pageIngArea{
+	margin-top:30px;
+}
+
 </style>
 </head>
 <body>
@@ -133,136 +139,82 @@ margin-left:10px;
 <hr>
 
 <br><br>
-<h1 align="center">이태원 맛집 검색 결과입니다.</h1>
+<h1 align="center">${ searchKey } 맛집 검색 결과입니다.</h1>
 
 
 <div id="resultArea">
+	<c:forEach var="s" items="${ sam }" >
 	<div class="result">
-		<img alt="" src="resources/images/restaurants/vatos.jpg" class="profilePic">
+		<img alt="" src="resources/images/restaurants/nothing.png" class="profilePic" onclick="location.href='goDetail.st'">
 		 <div class="nameAndPricesArea">
 		
-			 <h1 class="text">바토스 Vatos</h1>
+			 <h1 class="text">${ s.restName }</h1>
 			
 		
-		 <span class="fa fa-star checked"></span>
+		<!--  <span class="fa fa-star checked"></span>
 		<span class="fa fa-star checked"></span>
 		<span class="fa fa-star checked"></span>
 		<span class="fa fa-star"></span>
-		<span class="fa fa-star"></span>
+		<span class="fa fa-star"></span> -->
 		<br><br>
-		 <h5 class="prices">1-2만원대</h5><br>
-		 <p>멕시코 음식이 한국에 온다면? 인기메뉴인 김치 치즈 프라이를 꼭 드셔보세요</p>
+		 <h5 class="prices">${ s.restUpstream }</h5><br>
 		 </div>
 	
 		
 				 		
 		<div class="btns">		
-		<button class="buttons" >예약하기</button>
-		<button class="buttons" >리뷰하기</button>
+		<!-- <button class="buttons" >예약하기</button> -->
+		<button class="buttons" >리뷰쓰기</button>
 		</div>
 	</div>	
-
-	<div class="result">
-		<img alt="" src="resources/images/restaurants/vatos.jpg" class="profilePic">
-		 <div class="nameAndPricesArea">
-		
-			 <h1 class="text">바토스 Vatos</h1>
-			
-		
-		 <span class="fa fa-star checked"></span>
-		<span class="fa fa-star checked"></span>
-		<span class="fa fa-star checked"></span>
-		<span class="fa fa-star"></span>
-		<span class="fa fa-star"></span>
-		<br><br>
-		 <h5 class="prices">1-2만원대</h5><br>
-		 <p>멕시코 음식이 한국에 온다면? 인기메뉴인 김치 치즈 프라이를 꼭 드셔보세요</p>
-		 </div>
 	
+	</c:forEach>
+	
+	<div id="pageIngArea" align="center">
+		<c:if test="${ pi.currentPage <= 1 }">
+			[이전] &nbsp;
+			
+		</c:if>
+		<c:if test="${ pi.currentPage > 1 }">
+			<c:url var="bListBack" value="/searchResult.st">
+				<c:param name="currentPage" value="${ pi.currentPage -1 }"/>
+				<c:param name="searchKey" value="${searchKey}">
+					</c:param>
+			</c:url>
+			<a href="${ bListBack }">[이전]</a> &nbsp;
+		</c:if>
 		
-				 		
-		<div class="btns">		
-		<button class="buttons" >예약하기</button>
-		<button class="buttons" >리뷰하기</button>
-		</div>
+		<c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
+			<c:if test="${ p eq pi.currentPage }">
+				<font color="red" size="4"><b>[${ p }]</b></font>
+			</c:if>
+			<c:if test="${ p ne pi.currentPage }">
+				<c:url var="bListCheck" value="searchResult.st">
+					<c:param name="currentPage" value="${ p }">
+					</c:param>				
+					<c:param name="searchKey" value="${searchKey}">
+					</c:param>				
+												
+				</c:url>
+				<a href="${ bListCheck }">${ p }</a>
+			</c:if>
+		</c:forEach>
+		
+		<c:if test="${ pi.currentPage >= pi.maxPage }">
+		 &nbsp; [다음]
+		</c:if>
+		<c:if test="${ pi.currentPage < pi.maxPage }">
+			<c:url var="bListEnd" value="searchResult.st">
+				<c:param name="currentPage" value="${ pi.currentPage + 1 }"/>
+				<c:param name="searchKey" value="${searchKey}">
+					</c:param>
+			</c:url>
+			<a href="${ bListEnd }">&nbsp; [다음]</a>
+		</c:if>
+		
 	</div>
-	
-	<div class="result">
-		<img alt="" src="resources/images/restaurants/vatos.jpg" class="profilePic">
-		 <div class="nameAndPricesArea">
-		
-			 <h1 class="text">바토스 Vatos</h1>
-			
-		
-		 <span class="fa fa-star checked"></span>
-		<span class="fa fa-star checked"></span>
-		<span class="fa fa-star checked"></span>
-		<span class="fa fa-star"></span>
-		<span class="fa fa-star"></span>
-		<br><br>
-		 <h5 class="prices">1-2만원대</h5><br>
-		 <p>멕시코 음식이 한국에 온다면? 인기메뉴인 김치 치즈 프라이를 꼭 드셔보세요</p>
-		 </div>
-	
-		
-				 		
-		<div class="btns">		
-		<button  class="buttons">예약하기</button>
-		<button class="buttons" >리뷰하기</button>
-		</div>
-	</div>	
 
-<div class="result">
-		<img alt="" src="resources/images/restaurants/vatos.jpg" class="profilePic">
-		 <div class="nameAndPricesArea">
-		
-			 <h1 class="text">바토스 Vatos</h1>
-			
-		
-		 <span class="fa fa-star checked"></span>
-		<span class="fa fa-star checked"></span>
-		<span class="fa fa-star checked"></span>
-		<span class="fa fa-star"></span>
-		<span class="fa fa-star"></span>
-		<br><br>
-		 <h5 class="prices">1-2만원대</h5><br>
-		 <p>멕시코 음식이 한국에 온다면? 인기메뉴인 김치 치즈 프라이를 꼭 드셔보세요</p>
-		 </div>
-	
-		
-				 		
-		<div class="btns">		
-		
-		<button class="buttons" >리뷰하기</button>
-		</div>
-	</div>	
-	
-	<div class="result">
-		<img alt="" src="resources/images/restaurants/vatos.jpg" class="profilePic">
-		 <div class="nameAndPricesArea">
-		
-			 <h1 class="text">바토스 Vatos</h1>
-			
-		
-		 <span class="fa fa-star checked"></span>
-		<span class="fa fa-star checked"></span>
-		<span class="fa fa-star checked"></span>
-		<span class="fa fa-star"></span>
-		<span class="fa fa-star"></span>
-		<br><br>
-		 <h5 class="prices">1-2만원대</h5><br>
-		 <p>멕시코 음식이 한국에 온다면? 인기메뉴인 김치 치즈 프라이를 꼭 드셔보세요</p>
-		 </div>
-	
-		
-				 		
-		<div class="btns">		
-		<button  class="buttons">예약하기</button>
-		<button class="buttons" >리뷰하기</button>
-		</div>
-	</div>	
-	
-	<div class="result">
+	<!-- <div class="result">
 		<img alt="" src="resources/images/restaurants/vatos.jpg" class="profilePic">
 		 <div class="nameAndPricesArea">
 		
@@ -283,41 +235,17 @@ margin-left:10px;
 				 		
 		<div class="btns">		
 		<button class="buttons" >예약하기</button>
-		<button  class="buttons">리뷰하기</button>
+		<button class="buttons" >리뷰하기</button>
 		</div>
-	</div>	
+	</div> -->
 	
-	<div class="result">
-		<img alt="" src="resources/images/restaurants/vatos.jpg" class="profilePic">
-		 <div class="nameAndPricesArea">
-		
-			 <h1 class="text">바토스 Vatos</h1>
-			
-		
-		 <span class="fa fa-star checked"></span>
-		<span class="fa fa-star checked"></span>
-		<span class="fa fa-star checked"></span>
-		<span class="fa fa-star"></span>
-		<span class="fa fa-star"></span>
-		<br><br>
-		 <h5 class="prices">1-2만원대</h5><br>
-		 <p>멕시코 음식이 한국에 온다면? 인기메뉴인 김치 치즈 프라이를 꼭 드셔보세요</p>
-		 </div>
-	
-		
-				 		
-		<div class="btns">		
-		<button class="buttons" >예약하기</button>
-		<button  class="buttons">리뷰하기</button>
-		</div>
-	</div>	
 </div>
 
 
 
 
 </div>
-
+<input type="hidden" id="searchKey" value="${searchKey}" >
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=82eb499cd9c011a78d1f32d273f9d2bd&libraries=services"></script>
 <div id="map" style="width:100%;height:350px;"></div>
 <script>
@@ -337,7 +265,7 @@ var map = new daum.maps.Map(mapContainer, mapOption);
 var ps = new daum.maps.services.Places(); 
 
 // 키워드로 장소를 검색합니다
-ps.keywordSearch('이태원역', placesSearchCB); 
+ps.keywordSearch($("#searchKey").val(), placesSearchCB); 
 
 // 키워드 검색 완료 시 호출되는 콜백함수 입니다
 function placesSearchCB (data, status, pagination) {
@@ -351,7 +279,6 @@ function placesSearchCB (data, status, pagination) {
        //  displayMarker(data[0]);    
          bounds.extend(new daum.maps.LatLng(data[0].y, data[0].x));
         
-       
          // 식당 좌표 표시
          var places = new daum.maps.services.Places();
 
@@ -363,10 +290,17 @@ function placesSearchCB (data, status, pagination) {
          };
 			
          
-         var array = ['마이 타이', '젤렌', '타르틴'];
+         //마커 찍을 식당 이름
+         var sam = [];
+         <c:forEach var="s" items="${ sam }" >
+         sam.push('${fn:replace(s.restName," ","")}');
+         </c:forEach>
+         console.log(sam);
          
-         for(var i =0; i<array.length;i++){
-        	 places.keywordSearch(array[i], callback);	 
+         var array = ['마이 타이', '젤렌', '타르틴','서울펍'];
+         
+         for(var i =0; i<sam.length;i++){
+        	 places.keywordSearch(sam[i], callback);	 
          }
          
          
@@ -400,6 +334,7 @@ function placesSearchCB (data, status, pagination) {
         infowindow.open(map, marker);
     });
 } 
+
 </script>
 
 <!-- footer -->

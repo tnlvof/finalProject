@@ -258,7 +258,6 @@ input[type=search]{
    padding-left: 10px;
 }
 #userId {
-   margin-top: 50px;
 }
 .button {
    margin: 20px;
@@ -274,7 +273,9 @@ input[type=search]{
    font-weight: bold;
 }
 .loginBtn {
-   background: #ff5a5f; 
+   background: #ff5a5f;
+   border: 0;
+   color: #fff;
 }
 #joinBtn {
    background: white;
@@ -282,6 +283,12 @@ input[type=search]{
    color: #ff5a5f;
    width: 190px;
    height: 47px;
+   cursor: pointer;
+}
+
+#joinBtn:hover{
+	background: #ff5a5f;
+	color: #fff;
 }
 #sign>.body>div>.forgot {
    font-size: 12px;
@@ -293,6 +300,9 @@ input[type=search]{
 #sign>.body>div>.forgot>a {
    color: #c91b3c;
    cursor: pointer;
+}
+#sign>.body>div>.forgot>a:hover{
+	text-decoration: underline;
 }
 .login{
    padding-top:50px;

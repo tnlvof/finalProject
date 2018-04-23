@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="/fooding/resources/css/reset.css">
 <link rel="stylesheet" href="/fooding/resources/css/common.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 
 <body>
@@ -18,8 +18,9 @@
 	<div id="header" class="header">
 		<div class="wrap">
 			<h1 class="logo" onclick="location.href='goMain.me'">Fooding</h1>
-			<form action="" method="post">
-				<input type="search" name="search" placeholder="지역,음식 종류 등 검색하세요">
+			
+			<form action="searchResult.st" method="get">
+				<input type="search" name="searchKey" placeholder="지역을 검색하세요">
 				<button type="submit" class="srch-btn">검색</button>
 			</form>
          
@@ -34,7 +35,7 @@
 			
 			<c:if test="${ !empty loginUser }">
 	            <div class="dropdown" style="display: block;">
-	               <div class="user-profile"><img src="/fooding/resources/images/common/no-image.png"></div>
+	               <div class="user-profile" onclick="location.href='goMyPage.me'"><img src="/fooding/resources/images/common/no-image.png"></div>
 	               <ul class="dropdown-content">
 	                  <li>예약</li>
 	                  <li>티켓</li>
@@ -125,3 +126,21 @@
 	</div>	
 			
 	</c:if>	
+
+	<!-- 로그아웃 확인창 -->
+	<!-- <div id="reservCancel" class="w3-modal">
+		<div class="w3-modal-content">
+			<div class="w3-container">
+				<div class="confirmBackground" style="display: block;"></div>
+				<div id="default" class="confirmPopup"
+					style="padding: 20px 40px; margin-left: -110.5px; margin-top: -26.5px; display: block;">
+					<div class="confirmMessage">예약을 취소하시겠습니까?</div>
+				</div>
+				<div class="confirmNo"
+					style="margin-left: -110.5px; margin-top: 28.5px; width: 108.5px; display: block;"
+					onclick="document.getElementById('reservCancel').style.display='none'">아니오</div>
+				<div class="confirmOk"
+					style="margin-left: 1px; margin-top: 28.5px; width: 108.5px; display: block;">예</div>
+			</div>
+		</div>
+	</div> -->

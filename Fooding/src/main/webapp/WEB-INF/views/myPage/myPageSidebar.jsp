@@ -10,7 +10,7 @@
 						<button id="btnNext" type="button">다음 ></button>
 						<div id="divCal"></div>
 					</div>
-					<script>
+					<script> 
 					var Cal = function(divId) {
 
 						  //Store div id

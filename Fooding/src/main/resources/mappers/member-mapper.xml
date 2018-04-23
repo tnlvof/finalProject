@@ -32,7 +32,7 @@
 		<result property="phone" column="PHONE"/>                                       
 		<result property="address" column="ADDRESS"/>                                   
 		<result property="mCode" column="MCODE"/>                                       
-		<result property="enrollDate" column="ENROLL_DATE"/>                            
+		<result property="enrollDateJson" column="ENROLL_DATE"/>                            
 		<result property="repCount" column="REP_COUNT"/>                                
 		<result property="bizNo" column="BIZ_NO"/>                                   
 		<result property="bizName" column="BIZ_NAME"/>                               
@@ -59,13 +59,13 @@
 	
 	<select id="selectMemberList" resultMap="memberResultSet2">		
 		 SELECT MID, USER_ID, USER_PWD, USER_NAME, BIRTH, PHONE, EMAIL, ADDRESS, STATUS, REP_COUNT, BIZ_NO, BIZ_NAME, BOOK_COUNT, GENDER,
-		 TO_CHAR(ENROLL_DATE, 'YY/MM/DD') 
+		 ENROLL_DATE
 		 FROM MEMBER 		
 	</select>
 	
 	<select id="selectEditList" resultMap="memberResultSet2">		
 		 SELECT MID, USER_ID, USER_PWD, USER_NAME, BIRTH, PHONE, EMAIL, ADDRESS, STATUS, REP_COUNT, BIZ_NO, BIZ_NAME, BOOK_COUNT, GENDER,
-		 TO_CHAR(ENROLL_DATE, 'YY/MM/DD') 
+		 ENROLL_DATE 
 		 FROM MEMBER
 		 WHERE MID IN
 		<foreach item="midlist" index="index" collection="list"
@@ -73,6 +73,37 @@
 		#{midlist}
 		</foreach>
 		 		
+	</select>
+	
+	<update id="updateMembers">
+			UPDATE MEMBER									
+			SET REP_COUNT = 0
+			WHERE MID IN 
+		<foreach item="mid" index="index" collection="list" open="(" separator="," close=")">
+			#{mid}
+		</foreach>
+	</update>
+	
+
+	<select id="Member.searchId" resultMap="memberResultSet2" parameterType="map">
+		 SELECT MID, USER_ID, USER_PWD, USER_NAME, BIRTH, PHONE, EMAIL, ADDRESS, STATUS, REP_COUNT, BIZ_NO, BIZ_NAME, BOOK_COUNT, GENDER,
+		 ENROLL_DATE 
+		 FROM MEMBER
+		 WHERE USER_ID LIKE '%' || #{search} || '%'
+	</select>
+	
+	<select id="Member.searchName" resultMap="memberResultSet2" parameterType="map">
+		 SELECT MID, USER_ID, USER_PWD, USER_NAME, BIRTH, PHONE, EMAIL, ADDRESS, STATUS, REP_COUNT, BIZ_NO, BIZ_NAME, BOOK_COUNT, GENDER,
+		 ENROLL_DATE 
+		 FROM MEMBER
+		 WHERE USER_NAME LIKE '%' || #{search} || '%'
+	</select>
+	
+	<select id="Member.searchPhone" resultMap="memberResultSet2" parameterType="map">
+		 SELECT MID, USER_ID, USER_PWD, USER_NAME, BIRTH, PHONE, EMAIL, ADDRESS, STATUS, REP_COUNT, BIZ_NO, BIZ_NAME, BOOK_COUNT, GENDER,
+		 ENROLL_DATE 
+		 FROM MEMBER
+		 WHERE PHONE LIKE '%' || #{search} || '%'
 	</select>
 	
 </mapper>

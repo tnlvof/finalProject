@@ -1,9 +1,12 @@
 package com.kh.fooding.member.model.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.codec.multipart.SynchronossPartHttpMessageReader;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Repository;
 
@@ -34,7 +37,7 @@ public class MemberDaoImpl implements MemberDao{
 		}else{
 			member = sqlSession.selectOne("Member.loginCheck", m);
 		}
-		return member;
+		return member; 
 	}
 
 	@Override
@@ -52,7 +55,7 @@ public class MemberDaoImpl implements MemberDao{
 			throw new selectMemberException("회원 정보 리스트 조회 실패");
 		}		
 		
-		System.out.println("list DAO: " + memberlist);
+		//System.out.println("list DAO: " + memberlist);
 		
 		
 		return memberlist;
@@ -64,6 +67,63 @@ public class MemberDaoImpl implements MemberDao{
 		ArrayList<Member> editList = (ArrayList) sqlSession.selectList("Member.selectEditList", midlist);
 		
 		return editList;
+	}
+
+	@Override
+	// 회원 수정 메소드
+	public int updateMembers(ArrayList<String> mid) {
+		//탈퇴여부 변경 - Y N
+		//신고 횟수 초기화.
+		
+		int result = sqlSession.update("Member.updateMembers", mid);
+		System.out.println( "update Results : " + result);
+		return result;
+	}
+
+	// 회원 검색
+	@Override
+	public ArrayList<Member> searchMember(String searchCon, Map<String, String> data) {
+		
+		String statement = "";
+		
+		switch(searchCon) {
+			case "아이디": statement = "Member.searchId";break;
+			case "이름":statement = "Member.searchName";break;
+			case "연락처":statement = "Member.searchPhone";break;
+		}
+		
+		
+		ArrayList<Member> searchMember = (ArrayList) sqlSession.selectList(statement, data);
+		
+		return searchMember;
+	}
+
+	@Override
+	public int idCheck(String checkId, SqlSessionTemplate sqlSession) {
+		
+		int result = sqlSession.selectOne("Member.idCheck",checkId);
+		
+		System.out.println("dao idCheck : " + result);
+		
+		return result;
+	}
+
+	@Override
+	public int selectRcount(int mid) {
+		int rcount = sqlSession.selectOne("Reservation.selectRcount", mid);
+		
+		System.out.println("mid : " + mid);
+		System.out.println("rcount : " + rcount);
+		return rcount;
+	}
+
+	@Override
+	public int selectReviewCount(int mid) {
+		int reviewCount = sqlSession.selectOne("Review.selectReviewCount", mid);
+		
+		System.out.println("reviewCount : " + reviewCount);
+		
+		return reviewCount;
 	}
 	
 }
