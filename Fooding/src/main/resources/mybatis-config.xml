@@ -5,6 +5,7 @@
 <configuration>
 	<typeAliases>
 		<typeAlias alias="Member" type="com.kh.fooding.member.model.vo.Member"/>
+		<typeAlias alias="Board" type="com.kh.fooding.board.model.vo.Board"/>
 		<typeAlias alias="Store" type="com.kh.fooding.store.model.vo.Store"/>
 		<typeAlias alias="Sam" type="com.kh.fooding.store.model.vo.Sam"/>
 		<typeAlias alias="Reservation" type="com.kh.fooding.reservation.model.vo.Reservation"/>
@@ -12,6 +13,7 @@
 	</typeAliases>
 	<mappers>
 		<mapper resource="mappers/member-mapper.xml"/>
+		<mapper resource="mappers/board-mapper.xml"/>
 		<mapper resource="mappers/store-mapper.xml"/>
 		<mapper resource="mappers/reservation-mapper.xml"/>
 		<mapper resource="mappers/review-mapper.xml"/>

@@ -22,7 +22,7 @@
 
   	<h3>1 : 1 문의 </h3>
   	
-  	<button id="blacklistOff" class="searchBtn" style="position:relative;left:195px;" onclick="deleteQna();">글 삭제하기</button>
+  	<button id="blacklistOff" class="searchBtn" style="     position: relative;   left: 300px;" onclick="deleteQna();">글 삭제하기</button>
   	
   	<br><br>
   <script type="text/javascript">
@@ -65,12 +65,12 @@
  	
  	<div id="replyArea">
  		<div style="display:inline-block;">
- 		<textarea rows="11" cols="100" style="font-size: 16px;   padding: 12px 8px; margin-bottom: -100; margin-left: 140px;resize:none;">
+ 		<textarea rows="11" cols="100" style="font-size: 16px;     position: relative;   left: 200px;  padding: 12px 8px; margin-bottom: -100; margin-left: 140px;resize:none;">
  		
  		</textarea>
  		</div>
  		<div style="display:inline-block;">
- 		 		<button class="searchBtn" style="height:200px;"> 답변 달기 </button>
+ 		 		<button class="searchBtn" style="height:200px;  position: relative;   left: 200px;"> 답변 달기 </button>
  		</div>
 
  	</div>

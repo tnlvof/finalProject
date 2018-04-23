@@ -762,7 +762,7 @@ function getCue(){
   	<button type="submit" class="searchBtn">검색</button>
 	<div class="tableArea" id="qnaTable">
  	
- 	<table class="tableList" align="center" >
+ 	<table class="tableList" align="center" id="boardList">
  	
  	<tr style="border-bottom:1px solid lightgray;">
  	<th style="width:50px;  text-align:center;height:20px;font-weight:bold;">
@@ -778,7 +778,7 @@ function getCue(){
  	
  	<tr class="tableRow qnaRow">
  		<td><input class="pftCheck" type="checkbox"></td>
- 		 <td style="padding:10px;">강지은</td>
+ 		 <td style="padding:10px;">1</td>
  		 <td>마녀김밥</td> 		 
  		 <td>신용카드</td>
  		 <td >100,000</td>
@@ -794,6 +794,9 @@ function getCue(){
 <!-- /1:1문의 -->
 
 <script>
+
+
+
 //탭 메뉴 설정
 function openTab(evt, tabName) {
     var i, tabcontent, tablinks;
@@ -846,8 +849,22 @@ function openTab(evt, tabName) {
 	    }
     
 	    
-	    
 }
+
+		$(function(){
+			$("#boardList").find("td").mouseenter(function(){
+				$(this).parents("tr").css({"background":"lightgray", "cursor":"pointer"});
+			}).mouseout(function(){
+				$(this).parents("tr").css({"background":"white"});
+			}).click(function(){
+				var bid = $(this).parents().children("td").eq(1).text();
+				console.log(bid);		
+				location.href="selectOne.bo?bid="+bid;
+			});
+			
+		});
+
+
 
 
 

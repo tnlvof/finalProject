@@ -258,6 +258,8 @@ input[type=search]{
    padding-left: 10px;
 }
 #userId {
+   margin-top: 50px;
+   border-bottom: 0;
 }
 .button {
    margin: 20px;
@@ -287,8 +289,8 @@ input[type=search]{
 }
 
 #joinBtn:hover{
-	background: #ff5a5f;
-	color: #fff;
+   background: #ff5a5f;
+   color: #fff;
 }
 #sign>.body>div>.forgot {
    font-size: 12px;
@@ -302,7 +304,7 @@ input[type=search]{
    cursor: pointer;
 }
 #sign>.body>div>.forgot>a:hover{
-	text-decoration: underline;
+   text-decoration: underline;
 }
 .login{
    padding-top:50px;
