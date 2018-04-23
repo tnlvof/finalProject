@@ -12,6 +12,7 @@ import com.kh.fooding.member.model.dao.MemberDao;
 import com.kh.fooding.member.model.exception.LoginException;
 import com.kh.fooding.member.model.exception.selectMemberException;
 import com.kh.fooding.member.model.vo.Member;
+import com.kh.fooding.reservation.model.vo.Reservation;
 
 @Service
 public class MemberServiceImpl implements MemberService{
@@ -84,5 +85,11 @@ public class MemberServiceImpl implements MemberService{
 	public int selectReviewCount(int mid) {
 		int reviewCount = md.selectReviewCount(mid);
 		return reviewCount;
+	}
+
+	@Override
+	public ArrayList<Reservation> selectReservList(int mid) {
+		ArrayList<Reservation> reservList = md.selectReservList(mid);
+		return null;
 	}
 }

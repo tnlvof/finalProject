@@ -22,6 +22,7 @@ import com.kh.fooding.member.model.exception.LoginException;
 import com.kh.fooding.member.model.exception.selectMemberException;
 import com.kh.fooding.member.model.service.MemberService;
 import com.kh.fooding.member.model.vo.Member;
+import com.kh.fooding.reservation.model.vo.Reservation;
 
 @Controller
 public class MemberController {
@@ -216,10 +217,17 @@ public class MemberController {
 	@RequestMapping(value ="goMyPage.me")
 	public String goMyPage(HttpSession session) {
 		Member m = (Member) session.getAttribute("loginUser");
+		
 		int rcount = ms.selectRcount(m.getMid());
 		int reviewCount = ms.selectReviewCount(m.getMid());
+		
 		session.setAttribute("rcount", rcount);
 		session.setAttribute("reviewCount", reviewCount);
+		
+		ArrayList<Reservation> reservList = ms.selectReservList(m.getMid());
+		
+		session.setAttribute("reservList", reservList);
+		
 		return "myPage/myPage";
 	}
 

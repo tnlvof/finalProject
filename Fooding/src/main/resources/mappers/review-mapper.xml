@@ -5,9 +5,9 @@
 <mapper namespace="Review">
     <resultMap type="Review" id="reviewResultSet">
         <id property="rid" column="RID"/>
-        <result property="enrolldate" column="ENROLL_DATEID" />
-        <result property="rtitle" column="RTITLE" />
-        <result property="rcontent" column="RCONTENT" />
+        <result property="enrollDate" column="ENROLL_DATEID" />
+        <result property="rTitle" column="RTITLE" />
+        <result property="rContent" column="RCONTENT" />
         <result property="sid" column="SID" />
         <result property="rpeople" column="STATUS" />
         <result property="status" column="STAR" />
