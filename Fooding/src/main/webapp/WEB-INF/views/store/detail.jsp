@@ -42,7 +42,7 @@
 				<ul class="ban-con">
 					<li class="rank-wrap">
 						<label>별점</label>
-						
+						<c:if test="">
 						<div class="rank-box">
 							<i class="fa fa-star"></i>
 							<i class="fa fa-star"></i>
@@ -51,6 +51,7 @@
 							<i class="fa fa-star no-star"></i>
 						</div>
 						<span class="num-rank">0.0</span>
+						</c:if>
 						<!-- rank-box -->
 					</li>
 					
