@@ -17,6 +17,16 @@ local.properties
 target/
 *.settings
 /target/
+*/target/*
+*/target
+*/target/
+/target/
+*target*
+/target/*
+*/target/**
+.project 
+.classpath 
+.settings 
 
 # External tool builders
 .externalToolBuilders/
@@ -62,6 +72,25 @@ target/
 
 # JDT-specific (Eclipse Java Development Tools)		
 .classpath
+
+# Created by https://www.gitignore.io/api/maven
+
+### Maven ###
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+
+# Avoid ignoring Maven wrapper jar file (.jar files are usually ignored)
+!/.mvn/wrapper/maven-wrapper.jar
+
+
+# End of https://www.gitignore.io/api/maven
 
 ### Java ###
 # Compiled class file
