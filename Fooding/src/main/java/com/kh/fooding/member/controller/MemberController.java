@@ -40,33 +40,35 @@ public class MemberController {
 			Member loginUser = ms.loginMember(m);
 
 			session.setAttribute("loginUser", loginUser);
+			session.removeAttribute("loginFail");
 
 			return "main/main";
 
 		} catch (LoginException e) {
-			model.addAttribute("message", e.getMessage());
-			return "common/errorPage";
+			String loginFail = "로그인에 실패하였습니다.";
+			session.setAttribute("loginFail", loginFail);
+			return "main/main";
 		}
 	}
 
 	// 로그인
 	/*
-	 * @RequestMapping(value = "login.me", method = RequestMethod.POST) public
-	 * ModelAndView loginCheck(Member m,Model model, ModelAndView mv, SessionStatus
-	 * status) {
-	 * 
-	 * System.out.println("controller Member : " + m);
-	 * 
-	 * try { Member loginUser = ms.loginMember(m);
-	 * 
-	 * mv.addObject("loginUser", loginUser);
-	 * model.addAttribute("loginUser",loginUser); status.setComplete();
-	 * 
-	 * mv.setViewName("main/main");
-	 * 
-	 * } catch (LoginException e) { String loginFail = "로그인에 실패하였습니다.";
-	 * mv.addObject("loginFail", loginFail); mv.setViewName("main/main"); } return
-	 * mv; }
+	  @RequestMapping(value = "login.me", method = RequestMethod.POST) public
+	  ModelAndView loginCheck(Member m,Model model, ModelAndView mv, SessionStatus
+	  status) {
+	  
+	  System.out.println("controller Member : " + m);
+	  
+	  try { Member loginUser = ms.loginMember(m);
+	  
+	  mv.addObject("loginUser", loginUser);
+	  model.addAttribute("loginUser",loginUser); status.setComplete();
+	  
+	  mv.setViewName("main/main");
+	  
+	  } catch (LoginException e) { String loginFail = "로그인에 실패하였습니다.";
+	  mv.addObject("loginFail", loginFail); mv.setViewName("main/main"); } return
+	  mv; }
 	 */
 
 	@RequestMapping(value = "goMemberJoin.me")
