@@ -13,6 +13,7 @@ import org.springframework.stereotype.Repository;
 import com.kh.fooding.member.model.exception.LoginException;
 import com.kh.fooding.member.model.exception.selectMemberException;
 import com.kh.fooding.member.model.vo.Member;
+import com.kh.fooding.reservation.model.vo.Reservation;
 
 @Repository
 public class MemberDaoImpl implements MemberDao{
@@ -124,6 +125,15 @@ public class MemberDaoImpl implements MemberDao{
 		System.out.println("reviewCount : " + reviewCount);
 		
 		return reviewCount;
+	}
+
+	@Override
+	public ArrayList<Reservation> selectReservList(int mid) {
+		ArrayList<Reservation> reservList = (ArrayList)sqlSession.selectList("Reservation.selectReservList", mid);
+		
+		System.out.println(reservList);
+		
+		return null;
 	}
 	
 }

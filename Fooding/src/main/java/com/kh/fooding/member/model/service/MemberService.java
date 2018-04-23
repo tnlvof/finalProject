@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.kh.fooding.member.model.exception.LoginException;
 import com.kh.fooding.member.model.exception.selectMemberException;
 import com.kh.fooding.member.model.vo.Member;
+import com.kh.fooding.reservation.model.vo.Reservation;
 
 public interface MemberService  {
 
@@ -29,5 +30,7 @@ public interface MemberService  {
 	int selectRcount(int mid);
 
 	int selectReviewCount(int mid);
+
+	ArrayList<Reservation> selectReservList(int mid);
 
 }

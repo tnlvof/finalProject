@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
@@ -24,14 +25,17 @@
 						href="#" class="">지나간 예약</a>
 				</div>
 				<!-- 예약이 없을 때 화면 -->
+				<c:if test="${ empty reservList }">
 				<div class="blank">
 					<div class="message">
 						예약이 없습니다.<br>지금 레스토랑에 예약해보시겠어요?
 					</div>
 					<button class="disable" onclick="" tabindex="-1"></button>
 				</div>
-
+				</c:if>
+				
 				<!-- 예약화면 -->
+				<c:forEach var="list" items="${ reservList }">
 				<div class="list">
 					<div class="reservation">
 						<div class="i_wrap image">
@@ -40,13 +44,13 @@
 						</div>
 						<div class="info">
 							<div class="name">
-								<a href="#">브릭오븐</a> <span
+								<a href="#">${ list.sid }</a> <span
 									class="label blue border_radius soft">예약 대기</span> <span
 									class="label green border_radius soft">예약 확정</span> <span
 									class="label blue border_radius soft">변경 대기</span>
 							</div>
 							<div class="date">예약정보: 2018.5.2 (수) 오후 12:00</div>
-							<div class="party_size">인원: 6명</div>
+							<div class="party_size">인원: ${ list.rPeople }명</div>
 						</div>
 
 						<button class="red border_radius soft" tabindex="-1" onclick="document.getElementById('changeCancel').style.display='block'">변경
@@ -226,6 +230,7 @@
 						</div>
 					</div>
 				</div>
+				</c:forEach>
 			</div>
 		</div>
 		<jsp:include page="/WEB-INF/views/myPage/myPageSidebar.jsp" />
