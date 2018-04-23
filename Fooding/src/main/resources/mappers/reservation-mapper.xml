@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Reservation">
+    <resultMap type="Reservation" id="reservationResultSet">
+        <id property="" column=""/>
+        <result property="rvid" column="RVID" />
+        <result property="rdate" column="R_DATE" />
+        <result property="rtime" column="R_TIME" />
+        <result property="rcontent" column="R_CONTENT" />
+        <result property="rpeople" column="R_PEOPLE" />
+        <result property="status" column="STATUS" />
+        <result property="mid" column="MID" />
+        <result property="sid" column="SID" />
+    </resultMap>
+    
+    
+</mapper>
