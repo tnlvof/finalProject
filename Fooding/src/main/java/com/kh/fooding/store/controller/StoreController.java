@@ -132,8 +132,18 @@ public class StoreController {
 	}
 	
 	@RequestMapping(value="goDetail.st")
-	public String goDatail() {
-
+	public String goDatail(HttpServletRequest request) {
+		
+		String restName = request.getParameter("restName");
+		
+		System.out.println("controller restName = " + restName);
+		
+		Sam s = ss.selectOneSam(restName);
+		
+		request.setAttribute("s", s);
+		
+		
+		
 		return "store/detail";
 	}
 

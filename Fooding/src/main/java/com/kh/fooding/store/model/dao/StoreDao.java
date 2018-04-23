@@ -16,4 +16,6 @@ public interface StoreDao {
 	ArrayList<Sam> searchResult(String searchKey, PageInfo pi, SqlSessionTemplate sqlSession);
 
 	int getListCount(String searchKey, SqlSessionTemplate sqlSession);
+
+	Sam selectOneSam(String restName, SqlSessionTemplate sqlSession);
 }

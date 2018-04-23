@@ -84,6 +84,9 @@
 		</foreach>
 	</update>
 	
+	<select id="idCheck" resultType="_int">
+		SELECT COUNT(*) FROM MEMBER WHERE USER_ID=#{checkId}
+	</select>
 
 	<select id="Member.searchId" resultMap="memberResultSet2" parameterType="map">
 		 SELECT MID, USER_ID, USER_PWD, USER_NAME, BIRTH, PHONE, EMAIL, ADDRESS, STATUS, REP_COUNT, BIZ_NO, BIZ_NAME, BOOK_COUNT, GENDER,

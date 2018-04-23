@@ -42,4 +42,12 @@ public class StoreServiceImpl implements StoreService{
 		return result;
 	}
 
+	@Override
+	public Sam selectOneSam(String restName) {
+		
+		Sam s = sd.selectOneSam(restName,sqlSession);
+		
+		return s;
+	}
+
 }
