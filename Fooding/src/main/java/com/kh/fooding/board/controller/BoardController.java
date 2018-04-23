@@ -1,5 +1,7 @@
 package com.kh.fooding.board.controller;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -10,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.fooding.board.model.exception.insertException;
 import com.kh.fooding.board.model.service.BoardService;
+import com.kh.fooding.board.model.service.BoardServiceImpl;
 import com.kh.fooding.board.model.vo.Board;
 import com.kh.fooding.member.model.vo.Member;
 
@@ -18,6 +21,24 @@ public class BoardController {
 	
 	@Autowired
 	private BoardService bs;
+	
+	@RequestMapping(value = "goMyPageQuestions.bo")
+	public ModelAndView goMyPageQuestions(ModelAndView mv, HttpSession session ) {
+		
+		//문의 게시판 리스트 불러오기
+	
+		Board b = new Board ();
+		Member m = (Member) session.getAttribute("loginUser");
+		b.setMid(m.getMid());
+		
+		
+		ArrayList<Board> boardList = bs.selectBoardList( b );
+		
+		//mv.addObject("boardList", boardList);
+		mv.setViewName("myPage/myPageQuestions");
+		
+		return mv;
+	}
 	
 	//게시글 올리기
 	@RequestMapping(value="insertBoard.bo")

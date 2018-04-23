@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <meta charset="UTF-8">
 
 <!-- header -->
@@ -33,11 +34,11 @@
 				<div class="question">
 				    <a class="user" href=""> <span class="userProfile"
 						style="display: block; background-image: url('/fooding/resources/images/myPage/default_image.png');"></span>
-						<p class="userName">나푸딩</p>
-						<div class="time loaded" style="display: block;">2018-04-12</div>
+						<p class="userName">	<c:out value="${mCode }"></c:out></p>
+						<div class="time loaded" style="display: block;"> <c:out value="${enrollDate }"></c:out></div>
 					</a>
 					<div class="body">
-						<div class="text" data-truncated="">예약을 했는데 예약리스트가 안보여요ㅠㅠㅠㅠㅠㅠ<br>예약을 했는데 예약리스트가 안보여요ㅠㅠㅠㅠㅠㅠ<br>예약을 했는데 예약리스트가 안보여요ㅠㅠㅠㅠㅠㅠ</div>
+						<div class="text" data-truncated=""><c:out value="${bTitle }"></c:out></div>
 						<div class="action">
 							<div class="article">
 								<button class="edit" tabindex="-1">수정하기</button>
