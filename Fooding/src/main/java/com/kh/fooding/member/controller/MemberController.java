@@ -101,7 +101,7 @@ public class MemberController {
 	public String logout(HttpSession session/* ,SessionStatus status */) {
 
 		session.invalidate();
-
+		
 		// status.setComplete();
 
 		return "main/main";
@@ -214,8 +214,12 @@ public class MemberController {
 	
 		
 	@RequestMapping(value ="goMyPage.me")
-	public String goMyPage() {
-
+	public String goMyPage(HttpSession session) {
+		Member m = (Member) session.getAttribute("loginUser");
+		int rcount = ms.selectRcount(m.getMid());
+		int reviewCount = ms.selectReviewCount(m.getMid());
+		session.setAttribute("rcount", rcount);
+		session.setAttribute("reviewCount", reviewCount);
 		return "myPage/myPage";
 	}
 

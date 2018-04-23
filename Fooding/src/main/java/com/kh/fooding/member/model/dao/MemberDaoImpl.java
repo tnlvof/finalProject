@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.codec.multipart.SynchronossPartHttpMessageReader;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Repository;
 
@@ -105,6 +106,24 @@ public class MemberDaoImpl implements MemberDao{
 		System.out.println("dao idCheck : " + result);
 		
 		return result;
+	}
+
+	@Override
+	public int selectRcount(int mid) {
+		int rcount = sqlSession.selectOne("Reservation.selectRcount", mid);
+		
+		System.out.println("mid : " + mid);
+		System.out.println("rcount : " + rcount);
+		return rcount;
+	}
+
+	@Override
+	public int selectReviewCount(int mid) {
+		int reviewCount = sqlSession.selectOne("Review.selectReviewCount", mid);
+		
+		System.out.println("reviewCount : " + reviewCount);
+		
+		return reviewCount;
 	}
 	
 }

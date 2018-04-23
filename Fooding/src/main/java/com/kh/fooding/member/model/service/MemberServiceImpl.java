@@ -73,4 +73,16 @@ public class MemberServiceImpl implements MemberService{
 		
 		return result;
 	}
+
+	@Override
+	public int selectRcount(int mid) {
+		int rcount = md.selectRcount(mid);
+		return rcount;
+	}
+
+	@Override
+	public int selectReviewCount(int mid) {
+		int reviewCount = md.selectReviewCount(mid);
+		return reviewCount;
+	}
 }

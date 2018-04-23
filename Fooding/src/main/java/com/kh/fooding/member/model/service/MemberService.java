@@ -26,4 +26,8 @@ public interface MemberService  {
 
 	int idCheck(String checkId);
 
+	int selectRcount(int mid);
+
+	int selectReviewCount(int mid);
+
 }

@@ -26,4 +26,8 @@ public interface MemberDao {
 
 	int idCheck(String checkId, SqlSessionTemplate sqlSession);
 
+	int selectRcount(int mid);
+
+	int selectReviewCount(int mid);
+
 }
