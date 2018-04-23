@@ -17,6 +17,12 @@ local.properties
 target/
 *.settings
 /target/
+*/target
+*/target/*
+*target
+target*
+*target/
+*target/*
 
 # External tool builders
 .externalToolBuilders/
