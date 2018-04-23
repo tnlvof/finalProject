@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
 <meta charset="UTF-8">
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!-- header -->
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 
@@ -32,14 +34,15 @@
 			<div class="banner">
 				<div class="title">
 					<span class="restaurant-name">${ s.restName }</span>
-					<span class="restuarant-info">장충동 / 금호동 / 일식</span>
-					<span class="reservation-info">예약 802건 / 리뷰 23건 / 조회 7028건</span>
+					<span class="restuarant-info">${ s.restUpstream }</span>
+					<!-- <span class="reservation-info">예약 802건 / 리뷰 23건 / 조회 7028건</span> -->
 				</div>
 				<!-- title -->
 				
 				<ul class="ban-con">
 					<li class="rank-wrap">
 						<label>별점</label>
+						<c:if test="">
 						<div class="rank-box">
 							<i class="fa fa-star"></i>
 							<i class="fa fa-star"></i>
@@ -47,18 +50,19 @@
 							<i class="fa fa-star"></i>
 							<i class="fa fa-star no-star"></i>
 						</div>
-						<span class="num-rank">4.0</span>
+						<span class="num-rank">0.0</span>
+						</c:if>
 						<!-- rank-box -->
 					</li>
 					
 					<li>
 						<label>전화번호</label>
-						02-2270-3292
+						${ s.restNumber }
 					</li>
 					
 					<li>
 						<label>주소</label>
-						서울시 중구 장충동 2가 286-54 그랜드 앰배서더 서울 풀만 2층
+						${ s.restAddress }
 					</li>
 					
 					<li>
