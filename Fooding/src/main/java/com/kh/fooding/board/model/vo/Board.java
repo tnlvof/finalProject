@@ -15,6 +15,8 @@ public class Board {
 	private int bLevel;
 	private Date modifyDate;
 	private int bno;
+	private int bCount;
+	
 	
 	
 	public Board() {
@@ -22,7 +24,7 @@ public class Board {
 		// TODO Auto-generated constructor stub
 	}
 	public Board(int bid, String mCode, int mid, String bTitle, String bContent, Date enrollDate, String status,
-			String refYN, int pno, int bLevel, Date modifyDate, int bno) {
+			String refYN, int pno, int bLevel, Date modifyDate, int bno, int bCount) {
 		super();
 		this.bid = bid;
 		this.mCode = mCode;
@@ -36,6 +38,15 @@ public class Board {
 		this.bLevel = bLevel;
 		this.modifyDate = modifyDate;
 		this.bno = bno;
+		this.bCount = bCount;
+	}
+	
+	
+	public int getbCount() {
+		return bCount;
+	}
+	public void setbCount(int bCount) {
+		this.bCount = bCount;
 	}
 	public int getBid() {
 		return bid;
@@ -113,6 +124,6 @@ public class Board {
 	public String toString() {
 		return "Board [bid=" + bid + ", mCode=" + mCode + ", mid=" + mid + ", bTitle=" + bTitle + ", bContent="
 				+ bContent + ", enrollDate=" + enrollDate + ", status=" + status + ", refYN=" + refYN + ", pno=" + pno
-				+ ", bLevel=" + bLevel + ", modifyDate=" + modifyDate + ", bno=" + bno + "]";
+				+ ", bLevel=" + bLevel + ", modifyDate=" + modifyDate + ", bno=" + bno + "bCount : "+bCount +"]";
 	}
 }

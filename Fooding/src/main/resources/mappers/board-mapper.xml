@@ -3,34 +3,22 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="Board">
-	<!-- BID
-BCODE
-MID
-BTITLE
-BCONTENT
-ENROLL_DATE
-STATUS
-REF_YN
-PNO
-B_LEVEL
-MODIFY_DATE
-BNO
-B_COUNT
+	 
 	<resultMap id="boardResultSet" type="Board">
 		<id property="bid" column="BID"/>                                               
 		<result property="mCode" column="USER_ID"/>                                    
 		<result property="mid" column="MID"/>                                  
 		<result property="bTitle" column="BTITLE"/>                                
-		<result property="bContent" column="EMAIL"/>                                       
-		<result property="enrollDate" column="BIRTH"/>                                       
-		<result property="status" column="GENDER"/>                                     
-		<result property="refYN" column="PHONE"/>                                       
-		<result property="pno" column="ADDRESS"/>                                   
-		<result property="bLevel" column="MCODE"/>                                       
-		<result property="modifyDate" column="ENROLL_DATE"/>                            
-		<result property="bno" column="REP_COUNT"/>                                
-		               
-	</resultMap> -->
+		<result property="bContent" column="BCONTENT"/>                                       
+		<result property="enrollDate" column="ENROLL_DATE"/>                                       
+		<result property="status" column="STATUS"/>                                     
+		<result property="refYN" column="REF_YN"/>                                       
+		<result property="pno" column="PNO"/>                                   
+		<result property="bLevel" column="B_LEVEL"/>                                       
+		<result property="modifyDate" column="MODIFY_DATE"/>                            
+		<result property="bno" column="BNO"/>                                
+		<result property="bCount" column="B_COUNT"/>
+	</resultMap> 
 	                                                                                    
 	<insert id="insertBoard" parameterType="Board">
 		INSERT INTO BOARD(BID, BCODE, MID, BTITLE, BCONTENT, ENROLL_DATE, STATUS, REF_YN, PNO, B_LEVEL, MODIFY_DATE, BNO, B_COUNT)
@@ -38,6 +26,14 @@ B_COUNT
 	
 	</insert>
 	
+	<select id="selectBoardList" parameterType="Board" resultMap="boardResultSet">
+	SELECT B.BID, B.BCODE, B.MID, B.BTITLE, B.BCONTENT, M.USER_ID, B.ENROLL_DATE, B.STATUS, B.REF_YN, B.PNO, B.B_LEVEL, B.MODIFY_DATE, B.BNO, B.B_COUNT
+	FROM BOARD B 
+	JOIN MEMBER M ON(M.MID = B.MID)
+	WHERE B.MID=#{mid}
+	AND B.STATUS = 'Y'
+	ORDER BY B.ENROLL_DATE DESC
+	</select>
 	
 	
 </mapper>
