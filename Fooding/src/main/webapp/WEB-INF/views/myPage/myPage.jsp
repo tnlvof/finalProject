@@ -33,7 +33,7 @@
 					<button class="disable" onclick="" tabindex="-1"></button>
 				</div>
 				</c:if>
-				
+				<c:if test="${ !empty reservList }">
 				<!-- 예약화면 -->
 				<c:forEach var="list" items="${ reservList }">
 				<div class="list">
@@ -231,6 +231,7 @@
 					</div>
 				</div>
 				</c:forEach>
+				</c:if>
 			</div>
 		</div>
 		<jsp:include page="/WEB-INF/views/myPage/myPageSidebar.jsp" />

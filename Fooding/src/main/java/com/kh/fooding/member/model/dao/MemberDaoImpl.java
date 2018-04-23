@@ -131,9 +131,9 @@ public class MemberDaoImpl implements MemberDao{
 	public ArrayList<Reservation> selectReservList(int mid) {
 		ArrayList<Reservation> reservList = (ArrayList)sqlSession.selectList("Reservation.selectReservList", mid);
 		
-		System.out.println(reservList);
+		System.out.println("reservList : " + reservList);
 		
-		return null;
+		return reservList;
 	}
 	
 }
