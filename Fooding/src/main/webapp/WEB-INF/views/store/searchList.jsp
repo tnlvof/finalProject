@@ -145,7 +145,11 @@ margin-left:10px;
 <div id="resultArea">
 	<c:forEach var="s" items="${ sam }" >
 	<div class="result">
-		<img alt="" src="resources/images/restaurants/nothing.png" class="profilePic" onclick="location.href='goDetail.st'">
+		<c:set var="restN" value="${ s.restName}"></c:set>
+		<c:url var="goDetail" value="/goDetail.st">
+				<c:param name="restName" value="${ restN }"/>
+		</c:url>
+		<img alt="" src="resources/images/restaurants/nothing.png" class="profilePic" onclick="location.href='${goDetail}'">
 		 <div class="nameAndPricesArea">
 		
 			 <h1 class="text">${ s.restName }</h1>
@@ -178,15 +182,14 @@ margin-left:10px;
 		<c:if test="${ pi.currentPage > 1 }">
 			<c:url var="bListBack" value="/searchResult.st">
 				<c:param name="currentPage" value="${ pi.currentPage -1 }"/>
-				<c:param name="searchKey" value="${searchKey}">
-					</c:param>
+				<c:param name="searchKey" value="${searchKey}"/>
 			</c:url>
 			<a href="${ bListBack }">[이전]</a> &nbsp;
 		</c:if>
 		
 		<c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
 			<c:if test="${ p eq pi.currentPage }">
-				<font color="red" size="4"><b>[${ p }]</b></font>
+				<b style="color:red; font-size:20px;">${ p }</b>
 			</c:if>
 			<c:if test="${ p ne pi.currentPage }">
 				<c:url var="bListCheck" value="searchResult.st">

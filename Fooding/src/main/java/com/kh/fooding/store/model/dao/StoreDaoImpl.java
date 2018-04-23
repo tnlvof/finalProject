@@ -51,4 +51,16 @@ public class StoreDaoImpl implements StoreDao{
 		return result;
 	}
 
+	@Override
+	public Sam selectOneSam(String restName, SqlSessionTemplate sqlSession) {
+		
+		System.out.println("dao restName = " + restName);
+		
+		Sam s = sqlSession.selectOne("Store.selectOneSam", restName);
+		
+		System.out.println("dao s = "+s);
+		
+		return s;
+	}
+
 }
