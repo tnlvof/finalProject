@@ -15,33 +15,24 @@
 				<h3>업체 회원가입</h3>
 				<p class="subtitle">가입 정보 입력</p>
 
-				<div class="join_wrap">
+				<div class="join_wrap storeJoin">
 					
 					<!-- 아이디 -->
 					<label class="must">아이디</label>
-					<input type="text" name="storeId" class="storeId" placeholder="아이디를 입력하세요" required />
-					<div class="idCheck">
-						<!-- 
-							정규식 조건에 맞춰 아래의 내용 변경할 것 
-						 -->
-						<p class="alarm overlap">아이디는 영어 소문자로 시작하고 6~20자 영문자 또는 숫자이어야합니다.</p>
-						<p class="alarm overlap">아이디가 중복됩니다.</p>
-						<p class="alarm usable">사용할 수 있는 아이디입니다.</p>
-					</div>
+					<input type="text" name="storeId" id="storeId" class="storeId" placeholder="아이디를 입력하세요" onkeyup="regId()" required />
+					<div class="idCheck"></div>
 					
 					<!-- 비밀번호/비밀번호 확인 -->
 					<label class="must">비밀번호</label>
-					<input type="text" name="storePwd" id="pwd1" placeholder="비밀번호를 입력하세요" required />
+					<input type="password" name="storePwd" id="pwd" placeholder="비밀번호를 입력하세요" onkeyup="regPwd()" required />
+					
 					<label class="must">비밀번호 확인</label>
-					<input type="text" name="storePwd2" id="pwd2" placeholder="비밀번호를 다시 입력하세요" required />
-					<div class="pwdCheck">
-						<!-- 
-							정규식 조건에 맞춰 아래의 내용 변경할 것 
-						 -->
-						<p class="alarm overlap">비밀번호는 8자 이상, 하나 이상의 숫자 및 특수문자를 포함해야합니다.</p>
-						<p class="alarm overlap">비밀번호가 일치하지 않습니다.</p>
-						<p class="alarm usable">비밀번호가 일치합니다.</p>
-					</div>
+					<input type="password" name="storePwd2" id="pwd2" placeholder="비밀번호를 다시 입력하세요" required />
+					<div class="pwdCheck"></div>
+					
+					<!-- 상호명 -->
+					<label class="must">상호명</label>
+					<input type="text" name="storeName" id="storeName" placeholder="상호명을 입력하세요" required />
 					
 					<!-- 사업자 등록 번호 인증 -->
 					<label class="must">사업자 등록 번호</label>
@@ -49,20 +40,16 @@
 					<input type="text" name="licenseNo" class="license" placeholder="사업자등록번호" required />
 					<button class="license-btn">인증확인</button>
 					
-					<!-- 상호명 -->
-					<label class="must">상호명</label>
-					<input type="text" name="storeName" id="storeName" placeholder="상호명을 입력하세요" required />
-					
 					<!-- 대표자명 -->
 					<label class="must">대표자명</label>
 					<input type="text" name="bossName" id="bossName" placeholder="대표명을 입력하세요" required />
 					
 					<!-- 개업일 -->
-					<label class="must">개업일</label>
+					<!-- <label class="must">개업일</label>
 					<br>
 					<input type="number" name="openDay" placeholder="년도(4자)" maxlength="4" /> 
 					<input type="number" name="openDay" max="12" placeholder="월" value="" maxlength="2" /> 
-					<input type="number" name="openDay" max="31" placeholder="일" value="" maxlength="2" />
+					<input type="number" name="openDay" max="31" placeholder="일" value="" maxlength="2" /> -->
 					
 				
 				</div>
@@ -117,6 +104,7 @@
 </div>
 <!-- container -->
 
+<script src="/fooding/resources/js/regex.js"></script>
 
 
 <!-- footer -->
