@@ -22,6 +22,7 @@
 	font-size: 16px;
 	margin: 20px;
 	text-align: center;
+	margin-bottom: 50px;
 }
 /******************************/
 .join_wrap{
@@ -126,6 +127,7 @@ input::placeholder {
 	line-height: 2em;
 	padding-left: 27px;
 	margin-bottom: 10px;
+	display:none;
 }
 .overlap{
 	background: url(/fooding/resources/images/member/icon-overlap.png) 0 2px no-repeat;
@@ -133,4 +135,6 @@ input::placeholder {
 }
 .usable{
 	background: url(/fooding/resources/images/member/icon-usable.png) no-repeat;
+	
 }
+

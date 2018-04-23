@@ -5,12 +5,13 @@
 
 <!-- header -->
 <jsp:include page="/WEB-INF/views/common/header.jsp" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 <link rel="stylesheet" href="/fooding/resources/css/join.css">
 
 <div class="container">
 	<div class="join">
-		<form class="join_form" action="memberJoin.me" method="post">
+		<form id="joinForm" class="join_form" action="memberJoin.me" method="post">
 			<div class="basic">
 
 				<h3>일반 회원가입</h3>
@@ -20,28 +21,28 @@
 					
 					<!-- 아이디 -->
 					<label class="must">아이디</label>
-					<input type="text" name="userId" class="userId" placeholder="아이디를 입력하세요" required />
+					<input type="text" name="userId" id="id" class="userId" placeholder="아이디를 입력하세요" required />
 					<div class="idCheck">
 						<!-- 
 							정규식 조건에 맞춰 아래의 내용 변경할 것 
 						 -->
-						<p class="alarm overlap">아이디는 영어 소문자로 시작하고 6~20자 영문자 또는 숫자이어야합니다.</p>
-						<p class="alarm overlap">아이디가 중복됩니다.</p>
-						<p class="alarm usable">사용할 수 있는 아이디입니다.</p>
+						<p class="alarm overlap" id="idDis">아이디는 영어 소문자로 시작하고 6~20자 영문자 또는 숫자이어야합니다.</p>
+						<p class="alarm overlap" id="idDupl">아이디가 중복됩니다.</p>
+						<p class="alarm usable" id="idUse">사용할 수 있는 아이디입니다.</p>
 					</div>
 					
 					<!-- 비밀번호/비밀번호 확인 -->
 					<label class="must">비밀번호</label>
-					<input type="text" name="userPwd" id="pwd1" placeholder="비밀번호를 입력하세요" required />
+					<input type="password" id="pwd" name="userPwd" placeholder="비밀번호를 입력하세요" required />
 					<label class="must">비밀번호 확인</label>
-					<input type="text" name="userPwd2" id="pwd2" placeholder="비밀번호를 다시 입력하세요" required />
+					<input type="password" id="pwd2" name="userPwd2" placeholder="비밀번호를 다시 입력하세요" required />
 					<div class="pwdCheck">
 						<!-- 
 							정규식 조건에 맞춰 아래의 내용 변경할 것 
 						 -->
-						<p class="alarm overlap">비밀번호는 8자 이상, 하나 이상의 숫자 및 특수문자를 포함해야합니다.</p>
-						<p class="alarm overlap">비밀번호가 일치하지 않습니다.</p>
-						<p class="alarm usable">비밀번호가 일치합니다.</p>
+						<p class="alarm overlap" id="pwdDis">비밀번호는 8자 이상, 하나 이상의 숫자를 포함해야합니다.</p>
+						<p class="alarm overlap" id="pwdDupl">비밀번호가 일치하지 않습니다.</p>
+						<p class="alarm usable" id="pwdUse">비밀번호가 일치합니다.</p>
 					</div>
 					
 					<!-- 이름 -->
@@ -51,9 +52,9 @@
 					<!-- 생년월일 -->
 					<label class="must">생년월일</label>
 					<br>
-					<input type="number" name="birth" placeholder="생년 (4자)" maxlength="4" /> 
-					<input type="number" name="birth" max="12" placeholder="월" value="" maxlength="2" /> 
-					<input type="number" name="birth" max="31" placeholder="일" value="" maxlength="2" />
+					<input type="number" name="birth" id="birth1" min="1900" max="2018" placeholder="생년 (4자)" maxlength="4" required /> 
+					<input type="number" name="birth" id="birth2" min="01" max="12" placeholder="월" value="" maxlength="2"  required/> 
+					<input type="number" name="birth" id="birth3" min="01" max="31" placeholder="일" value="" maxlength="2" required />
 					
 					<!-- 성별 -->
 					<label>성별</label>
@@ -64,7 +65,7 @@
 					
 					<!-- 이메일 -->
 					<label>이메일</label>
-					<input type="text" name="email" placeholder="이메일을 입력하세요" required />
+					<input type="text" name="email" placeholder="이메일을 입력하세요"/>
 					
 				</div>
 				<!-- join_wrap -->
@@ -108,7 +109,7 @@
 				</div>
 				<!-- agree-wrap --> 
 				<br>
-				<button class="join_done">가입완료</button>
+				<button class="join_done" onclick="return insertMember()">가입완료</button>
 			</div>
 			<!-- basic -->
 		</form>
@@ -120,6 +121,7 @@
 
 
 <script>
+
 	/* 성별 스크립트 */
 	$("#gender_male").click(function() {
 		$("#gender_male").css({"background":"#666","color":"#fff","border-color":"#666"});
@@ -132,6 +134,86 @@
 		$("#gender_male").css({"background":"#fff","color":"#e5e5e5","border-color":"#e5e5e5"});
 	});
 	
+	/* 가입버튼 */
+	
+	$(function(){
+		var id = $("#id");
+		var pa = $("#pwd");
+		var paco = $("#pwd2");
+		
+		var idRegExp = /^[a-z][a-z0-9_-]{5,19}$/
+		var paRegExp = /^[A-Za-z0-9_-]{6,18}$/;
+		var paRegExp2 = /\d/g;
+		
+			$("#id").focusout(function(){
+				var checkId = $("#id").val();
+				if (idRegExp.test(id.val())) {
+					$("#idDis").css({"display":"none"});
+				    $.ajax({                                                                                       
+				    	url:'idCheck.me',                                                                          
+				    	method:'post',                                                                             
+				    	data:{checkId:checkId},                                                                    
+				    	dataType:"text",                                                                           
+				    	success:function(data){                                                                    
+				    		console.log(data);                                                                     
+				    		if(jQuery.trim(data) =="false"){                                                                      
+				    			$("#idUse").css({"display":"block"});                                              
+				    			$("#idDupl").css({"display":"none"});                                              
+				    		}else{                                                                                 
+				    			$("#idDupl").css({"display":"block"});                                             
+				    			$("#idUse").css({"display":"none"});                                               
+				    		}                                                                                      
+				    	},                                                                                         
+				    	error:function(request,status,error){                                                      
+			        	    alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+				        }                                                                                          
+				    });                                                                                            
+			    }else{                                                                                         
+				    $("#idDis").css({"display":"block"});   
+				    $("#idUse").css({"display":"none"});
+			    }                                                                                              
+			});
+			
+			$("#pwd2").focusout(function(){
+				if (!paRegExp.test(pa.val()) || !(paRegExp2.test(pa.val()))) {
+					$("#pwdDis").css({"display":"block"});
+				    $("#pwdUse").css({"display":"none"});
+				    $("#pwdDupl").css({"display":"none"});
+				}else{
+					$("#pwdDis").css({"display":"none"});
+					if (pa.val() != paco.val()) {
+						$("#pwdDupl").css({"display":"block"});
+						$("#pwdUse").css({"display":"none"});
+					}else{
+						$("#pwdDupl").css({"display":"none"});
+						$("#pwdUse").css({"display":"block"});
+					}
+				}
+			});
+	});
+	
+	function insertMember() {
+		var na=$("#userName");
+		
+			if(na.val()==""){
+				na.select();
+			}else if($("#birth1").val()=="" ||$("#birth2").val()=="" ||$("#birth3").val()==""){
+				$("#birth1").select();
+			}else{						
+				if($("#ok").prop("checked")){
+					$("#joinForm").submit();
+					return true;
+				}else{
+					alert('약관에 동의해주세요');
+					return false;
+				}
+			}
+		
+		
+	
+		
+	}
+
 </script>
 
 <!-- footer -->
