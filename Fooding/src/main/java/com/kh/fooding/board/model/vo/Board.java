@@ -15,6 +15,8 @@ public class Board {
 	private int bLevel;
 	private Date modifyDate;
 	private int bno;
+	
+	
 	public Board() {
 		super();
 		// TODO Auto-generated constructor stub
