@@ -59,6 +59,11 @@
 		WHERE REST_ADDRESS LIKE '%' || #{searchKey} || '%' 
 		AND ROWNUM &lt;= 100
 	</select>
+	
+	<select id="selectOneSam" resultMap="samResultSet">
+		SELECT DISTINCT REST_ADDRESS ,REST_MENU ,REST_NAME, REST_NUMBER, REST_UPSTREAM, REST_X, REST_Y FROM SAM 
+		WHERE REST_NAME = #{restName}
+	</select>
 </mapper>
 
 
