@@ -90,6 +90,6 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public ArrayList<Reservation> selectReservList(int mid) {
 		ArrayList<Reservation> reservList = md.selectReservList(mid);
-		return null;
+		return reservList;
 	}
 }

@@ -217,7 +217,7 @@ public class MemberController {
 	
 		
 	@RequestMapping(value ="goMyPage.me")
-	public String goMyPage(HttpSession session) {
+	public ModelAndView goMyPage(HttpSession session, ModelAndView mv) {
 		Member m = (Member) session.getAttribute("loginUser");
 		
 		int rcount = ms.selectRcount(m.getMid());
@@ -228,9 +228,12 @@ public class MemberController {
 		
 		ArrayList<Reservation> reservList = ms.selectReservList(m.getMid());
 		
-		session.setAttribute("reservList", reservList);
+		System.out.println("Controller reservList : " + reservList);
 		
-		return "myPage/myPage";
+		mv.addObject("reservList", reservList);
+		mv.setViewName("myPage/myPage");
+		
+		return mv;
 	}
 
 	@RequestMapping(value = "goMyPageReview.me")
