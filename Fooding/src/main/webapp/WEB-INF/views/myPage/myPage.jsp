@@ -25,15 +25,16 @@
 						href="#" class="">지나간 예약</a>
 				</div>
 				<!-- 예약이 없을 때 화면 -->
-				<c:if test="${ empty reservList }">
+				<c:choose>
+				<c:when test="${ empty reservList }">
 				<div class="blank">
 					<div class="message">
 						예약이 없습니다.<br>지금 레스토랑에 예약해보시겠어요?
 					</div>
 					<button class="disable" onclick="" tabindex="-1"></button>
 				</div>
-				</c:if>
-				<c:if test="${ !empty reservList }">
+				</c:when>
+				<c:otherwise>
 				<!-- 예약화면 -->
 				<c:forEach var="list" items="${ reservList }">
 				<div class="list">
@@ -49,13 +50,14 @@
 									class="label green border_radius soft">예약 확정</span> <span
 									class="label blue border_radius soft">변경 대기</span>
 							</div>
-							<div class="date">예약정보: 2018.5.2 (수) 오후 12:00</div>
+							<div class="date">예약정보: ${ list.rDate } / ${ list.rTime }</div>
 							<div class="party_size">인원: ${ list.rPeople }명</div>
 						</div>
 
 						<button class="red border_radius soft" tabindex="-1" onclick="document.getElementById('changeCancel').style.display='block'">변경
 							/ 취소</button>
 						<!-- Modal -->
+						<c:forEach var="mlist" items="${ reservList }">
 						<div id="changeCancel" class="w3-modal">
 							<div class="w3-modal-content">
 								<div class="w3-container">									
@@ -74,15 +76,10 @@
 													<input value="-" count_range="m" type="button" id="mBtn" style="display:none;">
 													<label class="mIcon" for="mBtn"><i class="icon minus"></i></label>
 													<!-- <span id="reserve_person_count" class="count">6</span> -->
-													<input class="count" value="1" readonly>
+													<input class="count" value="${ mlist.rPeople }" readonly>
 													<input value="+" count_range="p" type="button" id="pBtn" style="display:none;">
 													<label class="pIcon" for="pBtn"><i class="icon plus"></i></label>
 												</div>
-												<!-- <div class="__count_range">
-													<input value="-" count_range="m" type="button">
-													<input class="count" value="1" readonly>
-													<input value="+" count_range="p" type="button">
-												</div> -->
 												<script>
 												$(document).ready(function(){
 												    $('.person_count input[count_range]').click(function(e){
@@ -115,7 +112,7 @@
 
 												<i class="icon calendar"></i>
 												<div class="box_text">날짜</div>
-												<span id="reserve_date" class="date first">2018.5.2</span> <i
+												<span id="reserve_date" class="date first">${ mlist.rDate }</span> <i
 													class="icon arrow red calArrow"></i>
 												<script>
 												$(function(){
@@ -154,8 +151,7 @@
 
 												<i class="icon clock"></i>
 												<div class="box_text">시간</div>
-												<span id="reserve_time" class="time first" time="12:00">오후
-													12:00</span> <i class="icon arrow red"></i>
+												<span id="reserve_time" class="time first" time="12:00">${ mlist.rTime }</span> <i class="icon arrow red"></i>
 											</div>
 										</div>
 
@@ -228,10 +224,12 @@
 								</div>
 							</div>
 						</div>
+						</c:forEach>
 					</div>
 				</div>
 				</c:forEach>
-				</c:if>
+				</c:otherwise>
+				</c:choose>
 			</div>
 		</div>
 		<jsp:include page="/WEB-INF/views/myPage/myPageSidebar.jsp" />
