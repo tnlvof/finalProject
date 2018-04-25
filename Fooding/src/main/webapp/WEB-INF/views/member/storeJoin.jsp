@@ -41,16 +41,16 @@
 					<!-- 사업자 등록 번호 인증 -->
 					<label class="must">사업자 등록 번호</label>
 					<br>
-					<input type="text" name="bizNo" id="licenseNo" class="license" placeholder="'-'를 제외하고 사업자등록번호를 적어주세요" required />
+					<input type="text" name="bizNo" id="bizNo" class="license" placeholder="'-'를 제외하고 사업자등록번호를 적어주세요" required />
 					<button class="license-btn" onclick="checkBizNo()">인증확인</button>
 					
 					<!-- 상호명 -->
 					<label class="must">상호명</label>
-					<input type="text" name="bizName" id="storeName" placeholder="상호명을 입력하세요" required />
+					<input type="text" name="bizName" id="bizName" placeholder="상호명을 입력하세요" required />
 					
 					<!-- 대표자명 -->
 					<label class="must">대표자명</label>
-					<input type="text" name="userName" id="userName" placeholder="대표명을 입력하세요" required />
+					<input type="text" name="userName" id="sbRname" placeholder="대표명을 입력하세요" required />
 					
 				</div>
 				<!-- join_wrap -->

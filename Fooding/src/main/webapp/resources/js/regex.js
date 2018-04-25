@@ -54,6 +54,9 @@ $(function(){
 				}
 			}
 		});
+		
+
+
 });
 
 function insertMember() {
@@ -75,17 +78,30 @@ function insertMember() {
 }
 
 function checkBizNo(){
-    $.ajax({
-    	url: 'checkBizNo.me',
-    	method:'post',
-    	data:{checkId:checkId},
-    	dataType:"json",
-    	success:function(data){
-    		console.log(data);
-    	},
-    	error:function(request,status,error){
+
+	var bizNo = $("#bizNo").val();
+
+	
+	 
+	$.ajax({                                                                                       
+    	url:'bizNo.sp',                                                                          
+    	type:'post',                                                                             
+    	data:{bizNo:bizNo},                                                                    
+    	success:function(data){       
+    		var s = data.sample;
+
+    		$("#bizName").val(s.sbName);
+    		$("#sbRname").val(s.sbRname);
+    		
+    		
+    	},                                                                                         
+    	error:function(request,status,error){                                                      
     	    alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-        }
+        }                                                                                          
     });
 
+
 }
+
+
+
