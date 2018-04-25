@@ -719,6 +719,79 @@ function getCue(){
 	<h3>1 : 1  문의 게시판</h3>  
 	<script type="text/javascript">
 	
+	
+	$(function(){
+		
+		//검색 버튼
+			$("#searchBtnQ").click(function(){
+				var keyword = $("#qnaSearchBar").val();  
+				
+				console.log(keyword);
+				
+				if(keyword==""){
+					alert('검색어를 입력해주세요.');
+				} else {
+					
+				// 아이디, 이름, 연락처 검색
+				var search ;
+				var key ;
+				
+				switch($("#memberSelect option:selected" ).text()){  				
+  				case '제목': key = '제목'; break;
+  				case '글쓴이': key = '글쓴이'; break;
+  				case '처리여부': key ='처리여부';break;
+				}
+				
+				search = $("#qnaSearchBar").val();
+				
+				/* console.log("키" + key);
+				console.log("값" + search); */
+				
+				var data = {key : key, search:search };
+				console.log("맵 : ");
+				console.log( data);
+				
+			  	$.ajax({
+			 		
+		  				method:"post",
+		  				url:"searchQuestions.bo",
+		  				data: JSON.stringify(data),  
+		  				contentType:"application/json",
+		  				success:function(data){
+		  					/* alert('넘어감.'); */
+		  					
+		  					console.log(data);
+		  					
+		  					 $("#questionHeader").nextAll("tr").remove();
+			     			 
+			     			 for(var i = 0; i<data.searchQList.length;i++){	     				 	  
+			     				 
+			    				  $("#boardList").append("<tr class='tableRow' > <td ><input type='checkbox' name='memberCheck' class='memberCheck' onchange='checkMid()'> <input type='hidden' class='mid' value="+ data.searchQList[i].bid+"></td>");
+			    				  $("#boardList").find(".tableRow").last().append("<td style='padding-top: 10px;padding-bottom:10px;' class='userId' name='userId'>"+data.searchQList[i].bno+"</td>");
+			    				  $("#boardList").find(".tableRow").last().append("<td name='userName'>"+data.searchQList[i].bTitle+"</td>");
+			    				  $("#boardList").find(".tableRow").last().append("<td name='birth'>"+data.searchQList[i].mCode+"</td>");
+			    				  $("#boardList").find(".tableRow").last().append("<td name='phone'>"+data.searchQList[i].enrollDateJson+"</td>");
+			    				  $("#boardList").find(".tableRow").last().append("<td name='email'>"+data.searchQList[i].refYN+"</td>");	    			
+			    				      				  				  
+			    			  }  
+		  					
+		  					
+		  					
+		  				},
+		  				error:function(){
+		  					alert('ㅡㅡ');
+		  				}
+		  				
+		  			}); 
+			
+		  		 
+					
+				}
+				
+			});
+		
+	});
+	
 	function getCue2(){
 		var searchSelect = document.getElementById("qnaSelect");
 		var str2 = searchSelect.options[searchSelect.selectedIndex].value;
@@ -759,19 +832,19 @@ function getCue(){
   		<option>처리 안 됨</option>
   	</select>
   	
-  	<button type="submit" class="searchBtn">검색</button>
+  	<button type="submit" class="searchBtn" id="searchBtnQ">검색</button>
 	<div class="tableArea" id="qnaTable">
  	
+ 	<br><br>
  	<table class="tableList" align="center" id="boardList">
- 	
- 	<tr style="border-bottom:1px solid lightgray;">
+ 	<tr style="border-bottom:1px solid lightgray;" id="questionHeader">
  	<th style="width:50px;  text-align:center;height:20px;font-weight:bold;">
  		<input type="checkbox" id="checkAll4">&nbsp;전체선택
  	</th>
  	<th style="width:50px; text-align:center;height:20px;font-weight:bold;">글번호</th>
  	<th style="width:300px; text-align:center;height:20px;font-weight:bold;">제목</th>
  	<th style="width:120px; text-align:center;height:20px;font-weight:bold;">글쓴이</th>
- 	<th style="width:150px; text-align:center;height:20px;font-weight:bold;">날짜</th>
+ 	<th style="width:300px; text-align:center;height:20px;font-weight:bold;">등록시간</th>
 	<th style="width:100px; text-align:center;height:20px;font-weight:bold;">처리여부</th>
  	
  	</tr>
@@ -780,16 +853,14 @@ function getCue(){
  		<td><input class="pftCheck" type="checkbox"></td>
  		 <td style="padding:10px;">1</td>
  		 <td>마녀김밥</td> 		 
- 		 <td>신용카드</td>
- 		 <td >100,000</td>
+ 		 <td>신용카드</td> 	
  		 <td >2018-05-01</td>
  		 <td >Y</td>
  	</tr>
  
  	
- 	</table>
- </div>
-	
+ 	</table><br><br>
+ 		
 
 <!-- /1:1문의 -->
 
@@ -835,6 +906,38 @@ function openTab(evt, tabName) {
 	    				  $("#membertable").find(".tableRow").last().append("<td name='repCount'>"+data.memberlist[i].repCount+"</td>");
 	    				  $("#membertable").find(".tableRow").last().append("<td name='bookCount'>"+data.memberlist[i].bookCount+"</td>");
 	    				  $("#membertable").find(".tableRow").last().append("<td name='status'>"+data.memberlist[i].status+"</td></tr>");
+	    				      				  				  
+	    			  }  
+	     			
+	     		  },
+	     		  error:function(){
+	     			  alert('안됨');
+	     		  }
+	     		  
+	     		  
+	     		});
+	    	
+	    } else if (tabName == 'qnaBoard') {
+	    	
+	    	 $.ajax({
+	     		  method: "POST",
+	     		  url: "selectAllBoard.bo", 
+	     		  success:function(data){
+	     			
+	     			  console.log(data);
+	     			  console.log(data.boardList); 
+	     			  console.log(data.pi);
+	     			     
+	     			 $("#questionHeader").nextAll("tr").remove();
+	     			 
+	     			 for(var i = 0; i<data.boardList.length;i++){	     				 	  
+	     				 
+	    				  $("#boardList").append("<tr class='tableRow' > <td ><input type='checkbox' name='memberCheck' class='memberCheck' onchange='checkMid()'> <input type='hidden' class='mid' value="+ data.boardList[i].bid+"></td>");
+	    				  $("#boardList").find(".tableRow").last().append("<td style='padding-top: 10px;padding-bottom:10px;' class='userId' name='userId'>"+data.boardList[i].bno+"</td>");
+	    				  $("#boardList").find(".tableRow").last().append("<td name='userName'>"+data.boardList[i].bTitle+"</td>");
+	    				  $("#boardList").find(".tableRow").last().append("<td name='birth'>"+data.boardList[i].mCode+"</td>");
+	    				  $("#boardList").find(".tableRow").last().append("<td name='phone'>"+data.boardList[i].enrollDateJson+"</td>");
+	    				  $("#boardList").find(".tableRow").last().append("<td name='email'>"+data.boardList[i].refYN+"</td>");	    			
 	    				      				  				  
 	    			  }  
 	     			

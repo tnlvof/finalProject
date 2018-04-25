@@ -14,6 +14,6 @@ public interface StoreService {
 	ArrayList<Sam> searchResult(PageInfo pi, String searchKey);
 
 	int getListCount(String searchKey);
-
+	
 	Sam selectOneSam(String restName);
 }

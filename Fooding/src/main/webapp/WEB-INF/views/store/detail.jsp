@@ -42,7 +42,7 @@
 				<ul class="ban-con">
 					<li class="rank-wrap">
 						<label>별점</label>
-						
+						<c:if test="">
 						<div class="rank-box">
 							<i class="fa fa-star"></i>
 							<i class="fa fa-star"></i>
@@ -51,6 +51,7 @@
 							<i class="fa fa-star no-star"></i>
 						</div>
 						<span class="num-rank">0.0</span>
+						</c:if>
 						<!-- rank-box -->
 					</li>
 					
@@ -65,19 +66,23 @@
 					</li>
 					
 					<li>
+						<label>파는 음식</label>
+						${ s.restMenu }
+					</li>
+					<!-- <li>
 						<label>영업시간</label>
 						12:00-15:00 (L.O 14:00), 18:00-22:00(L.0 21:00)
-					</li>
+					</li> -->
 					
-					<li>
+					<!-- <li>
 						<label>휴무일</label>
 						일요일, 명절
-					</li>
+					</li> -->
 					
-					<li>
+					<!-- <li>
 						<label>예산(2인 기준)</label>
 						16만원 이상
-					</li>
+					</li> -->
 					
 					<li><button type="button" class="asap-reservation">즉시 예약하기</button></li>
 				</ul>

@@ -15,12 +15,21 @@ public class Board {
 	private int bLevel;
 	private Date modifyDate;
 	private int bno;
+	private int bCount;
+	private String enrollDateJson;
+	private String modifyDateJson;
+	
+	
+	
 	public Board() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
+	
 	public Board(int bid, String mCode, int mid, String bTitle, String bContent, Date enrollDate, String status,
-			String refYN, int pno, int bLevel, Date modifyDate, int bno) {
+			String refYN, int pno, int bLevel, Date modifyDate, int bno, int bCount, String enrollDateJson,
+			String modifyDateJson) {
 		super();
 		this.bid = bid;
 		this.mCode = mCode;
@@ -34,6 +43,37 @@ public class Board {
 		this.bLevel = bLevel;
 		this.modifyDate = modifyDate;
 		this.bno = bno;
+		this.bCount = bCount;
+		this.enrollDateJson = enrollDateJson;
+		this.modifyDateJson = modifyDateJson;
+	}
+
+
+	public String getEnrollDateJson() {
+		return enrollDateJson;
+	}
+
+
+	public void setEnrollDateJson(String enrollDateJson) {
+		this.enrollDateJson = enrollDateJson;
+	}
+
+
+	public String getModifyDateJson() {
+		return modifyDateJson;
+	}
+
+
+	public void setModifyDateJson(String modifyDateJson) {
+		this.modifyDateJson = modifyDateJson;
+	}
+
+
+	public int getbCount() {
+		return bCount;
+	}
+	public void setbCount(int bCount) {
+		this.bCount = bCount;
 	}
 	public int getBid() {
 		return bid;
@@ -107,10 +147,16 @@ public class Board {
 	public void setBno(int bno) {
 		this.bno = bno;
 	}
+
+
 	@Override
 	public String toString() {
 		return "Board [bid=" + bid + ", mCode=" + mCode + ", mid=" + mid + ", bTitle=" + bTitle + ", bContent="
 				+ bContent + ", enrollDate=" + enrollDate + ", status=" + status + ", refYN=" + refYN + ", pno=" + pno
-				+ ", bLevel=" + bLevel + ", modifyDate=" + modifyDate + ", bno=" + bno + "]";
+				+ ", bLevel=" + bLevel + ", modifyDate=" + modifyDate + ", bno=" + bno + ", bCount=" + bCount
+				+ ", enrollDateJson=" + enrollDateJson + ", modifyDateJson=" + modifyDateJson + "]";
 	}
+	
+	
+	
 }

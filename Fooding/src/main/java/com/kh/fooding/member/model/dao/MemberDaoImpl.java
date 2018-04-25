@@ -6,12 +6,14 @@ import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.codec.multipart.SynchronossPartHttpMessageReader;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Repository;
 
 import com.kh.fooding.member.model.exception.LoginException;
 import com.kh.fooding.member.model.exception.selectMemberException;
 import com.kh.fooding.member.model.vo.Member;
+import com.kh.fooding.reservation.model.vo.Reservation;
 
 @Repository
 public class MemberDaoImpl implements MemberDao{
@@ -39,7 +41,6 @@ public class MemberDaoImpl implements MemberDao{
 		return member; 
 	}
 
-	//회원가입
 	@Override
 	public int insertMember(Member m, SqlSessionTemplate sqlSession) {
 		return sqlSession.insert("Member.insertMember",m);
@@ -50,7 +51,6 @@ public class MemberDaoImpl implements MemberDao{
 	public int insertStore(Member m, SqlSessionTemplate sqlSession) {
 		return sqlSession.insert("Member.insertStore", m);
 	}
-	
 
 	@Override
 	public ArrayList<Member> selectMemberList() throws selectMemberException {
@@ -115,5 +115,31 @@ public class MemberDaoImpl implements MemberDao{
 		return result;
 	}
 
+	@Override
+	public int selectRcount(int mid) {
+		int rcount = sqlSession.selectOne("Reservation.selectRcount", mid);
+		
+		System.out.println("mid : " + mid);
+		System.out.println("rcount : " + rcount);
+		return rcount;
+	}
 
+	@Override
+	public int selectReviewCount(int mid) {
+		int reviewCount = sqlSession.selectOne("Review.selectReviewCount", mid);
+		
+		System.out.println("reviewCount : " + reviewCount);
+		
+		return reviewCount;
+	}
+
+	@Override
+	public ArrayList<Reservation> selectReservList(int mid) {
+		ArrayList<Reservation> reservList = (ArrayList)sqlSession.selectList("Reservation.selectReservList", mid);
+		
+		System.out.println("reservList : " + reservList);
+		
+		return reservList;
+	}
+	
 }

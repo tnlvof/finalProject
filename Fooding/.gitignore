@@ -1,5 +1,5 @@
 
-# Created by https://www.gitignore.io/api/java,eclipse
+# Created by https://www.gitignore.io/api/java,maven,eclipse
 
 ### Eclipse ###
 
@@ -14,15 +14,8 @@ local.properties
 .settings/
 .loadpath
 .recommenders
-target/
-*.settings
-/target/
-*/target
 */target/*
-*target
-target*
-*target/
-*target/*
+/target/
 
 # External tool builders
 .externalToolBuilders/
@@ -69,6 +62,9 @@ target*
 # JDT-specific (Eclipse Java Development Tools)		
 .classpath
 
+# Annotation Processing
+.apt_generated
+
 ### Java ###
 # Compiled class file
 *.class
@@ -83,6 +79,7 @@ target*
 .mtj.tmp/
 
 # Package Files #
+*.jar
 *.war
 *.ear
 *.zip
@@ -92,5 +89,19 @@ target*
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 
+### Maven ###
+target/ 
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
 
-# End of https://www.gitignore.io/api/java,eclipse
+# Avoid ignoring Maven wrapper jar file (.jar files are usually ignored)
+!/.mvn/wrapper/maven-wrapper.jar
+
+
+# End of https://www.gitignore.io/api/java,maven,eclipse

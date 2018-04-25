@@ -27,10 +27,13 @@
 					<div class="question_header">
 					1:1 문의하기
 					</div>
-					<form>
-						<textarea class="text" placeholder="문의사항을 적어주세요."></textarea>
-						<button type="submit" class="submit-btn">등록하기</button>
-						<button type="reset" class="reset-btn" onclick="location.href='goMyPageQuestions.me'">취소</button>
+					<form action="insertBoard.bo" method="post">
+						<textarea class="text" placeholder="문의사항을 적어주세요." name="bContent"></textarea>
+						<button type="submit" class="submit-btn" >등록하기</button>
+						<button type="reset" class="reset-btn" >취소</button>
+						<script type="text/javascript">					
+
+						</script>
 					</form>
 				</div>
 			</div>
@@ -38,6 +41,7 @@
 		<jsp:include page="/WEB-INF/views/myPage/myPageSidebar.jsp" />
 	</div>
 </div>
+
 <!-- container -->
 
 <!-- footer -->

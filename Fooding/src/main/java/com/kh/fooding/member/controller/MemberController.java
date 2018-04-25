@@ -23,6 +23,7 @@ import com.kh.fooding.member.model.exception.selectMemberException;
 import com.kh.fooding.member.model.service.MemberService;
 import com.kh.fooding.member.model.vo.Member;
 import com.kh.fooding.sample.model.vo.Sample;
+import com.kh.fooding.reservation.model.vo.Reservation;
 
 @Controller
 public class MemberController {

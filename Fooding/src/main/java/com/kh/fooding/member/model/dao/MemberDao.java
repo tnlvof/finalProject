@@ -9,6 +9,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import com.kh.fooding.member.model.exception.LoginException;
 import com.kh.fooding.member.model.exception.selectMemberException;
 import com.kh.fooding.member.model.vo.Member;
+import com.kh.fooding.reservation.model.vo.Reservation;
 
 public interface MemberDao {
 
@@ -27,6 +28,11 @@ public interface MemberDao {
 	int idCheck(String checkId, SqlSessionTemplate sqlSession);
 
 	int insertStore(Member m, SqlSessionTemplate sqlSession);
+	
+	int selectRcount(int mid);
 
+	int selectReviewCount(int mid);
+
+	ArrayList<Reservation> selectReservList(int mid);
 
 }

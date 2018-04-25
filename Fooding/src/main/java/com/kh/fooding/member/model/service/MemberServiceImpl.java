@@ -12,6 +12,7 @@ import com.kh.fooding.member.model.dao.MemberDao;
 import com.kh.fooding.member.model.exception.LoginException;
 import com.kh.fooding.member.model.exception.selectMemberException;
 import com.kh.fooding.member.model.vo.Member;
+import com.kh.fooding.reservation.model.vo.Reservation;
 
 @Service
 public class MemberServiceImpl implements MemberService{
@@ -31,7 +32,6 @@ public class MemberServiceImpl implements MemberService{
 	public void insertMember(Member m) {
 		int result = md.insertMember(m, sqlSession);
 	}
-	
 	//업체회원가입
 	@Override
 	public void insertStore(Member m) {
@@ -74,7 +74,6 @@ public class MemberServiceImpl implements MemberService{
 		return searchList;
 	}
 
-	//아이디 중복확인
 	@Override
 	public int idCheck(String checkId) {
 		int result = md.idCheck(checkId,sqlSession);
@@ -82,6 +81,21 @@ public class MemberServiceImpl implements MemberService{
 		return result;
 	}
 
+	@Override
+	public int selectRcount(int mid) {
+		int rcount = md.selectRcount(mid);
+		return rcount;
+	}
 
+	@Override
+	public int selectReviewCount(int mid) {
+		int reviewCount = md.selectReviewCount(mid);
+		return reviewCount;
+	}
 
+	@Override
+	public ArrayList<Reservation> selectReservList(int mid) {
+		ArrayList<Reservation> reservList = md.selectReservList(mid);
+		return reservList;
+	}
 }

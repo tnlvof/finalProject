@@ -146,5 +146,4 @@ public class StoreController {
 		
 		return "store/detail";
 	}
-
 }

@@ -50,7 +50,7 @@ public class StoreDaoImpl implements StoreDao{
 		
 		return result;
 	}
-
+	
 	@Override
 	public Sam selectOneSam(String restName, SqlSessionTemplate sqlSession) {
 		
@@ -62,5 +62,6 @@ public class StoreDaoImpl implements StoreDao{
 		
 		return s;
 	}
+
 
 }

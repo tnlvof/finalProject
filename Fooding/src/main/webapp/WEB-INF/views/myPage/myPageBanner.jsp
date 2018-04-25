@@ -98,7 +98,7 @@
 				<!-- name -->
 				<div class="intro">맛있는 발견의 즐거움 - Fooding</div>
 				<div class="info">
-					<a>예약 <span></span></a> &nbsp; <a>리뷰 <span></span></a>
+					<a>예약 <span>${ rcount }</span></a> &nbsp; <a>리뷰 <span>${ reviewCount }</span></a>
 				</div>
 				<!-- info -->
 			</div>
