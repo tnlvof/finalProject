@@ -14,6 +14,7 @@ import com.kh.fooding.member.model.exception.LoginException;
 import com.kh.fooding.member.model.exception.selectMemberException;
 import com.kh.fooding.member.model.vo.Member;
 import com.kh.fooding.reservation.model.vo.Reservation;
+import com.kh.fooding.review.model.vo.Review;
 
 @Repository
 public class MemberDaoImpl implements MemberDao{
@@ -140,6 +141,13 @@ public class MemberDaoImpl implements MemberDao{
 		System.out.println("reservList : " + reservList);
 		
 		return reservList;
+	}
+
+	@Override
+	public ArrayList<Review> selectReviewList(int mid) {
+		ArrayList<Review> reviewList = (ArrayList)sqlSession.selectList("Review.selectReviewList", mid);
+		
+		return reviewList;
 	}
 	
 }

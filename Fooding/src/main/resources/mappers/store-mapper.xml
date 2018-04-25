@@ -51,12 +51,14 @@
 	<select id="searchResult" resultMap="samResultSet">
 		SELECT DISTINCT REST_ADDRESS ,REST_MENU ,REST_NAME, REST_NUMBER, REST_UPSTREAM, REST_X, REST_Y FROM SAM 
 		WHERE REST_ADDRESS LIKE '%' || #{searchKey} || '%' 
+		OR REST_NAME LIKE '%' || #{searchKey} || '%' 
 		AND ROWNUM &lt;= 100
 	</select>
 	
 	<select id="getListCount" resultType="_int">
 		SELECT COUNT(DISTINCT REST_ADDRESS) FROM SAM 
-		WHERE REST_ADDRESS LIKE '%' || #{searchKey} || '%' 
+		WHERE REST_ADDRESS LIKE '%' || #{searchKey} || '%'
+		OR REST_NAME LIKE '%' || #{searchKey} || '%'  
 		AND ROWNUM &lt;= 100
 	</select>
 	

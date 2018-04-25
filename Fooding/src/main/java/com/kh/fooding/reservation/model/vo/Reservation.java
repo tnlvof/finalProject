@@ -11,12 +11,14 @@ public class Reservation {
 	private String status;
 	private int mid;
 	private int sid;
+	private String sName;
+	
 	public Reservation() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	public Reservation(int rvid, Date rDate, String rTime, String rContent, String rPeople, String status, int mid,
-			int sid) {
+			int sid, String sName) {
 		super();
 		this.rvid = rvid;
 		this.rDate = rDate;
@@ -26,6 +28,7 @@ public class Reservation {
 		this.status = status;
 		this.mid = mid;
 		this.sid = sid;
+		this.sName = sName;
 	}
 	public int getRvid() {
 		return rvid;
@@ -75,10 +78,16 @@ public class Reservation {
 	public void setSid(int sid) {
 		this.sid = sid;
 	}
+	public String getsName() {
+		return sName;
+	}
+	public void setsName(String sName) {
+		this.sName = sName;
+	}
 	@Override
 	public String toString() {
 		return "Reservation [rvid=" + rvid + ", rDate=" + rDate + ", rTime=" + rTime + ", rContent=" + rContent
-				+ ", rPeople=" + rPeople + ", status=" + status + ", mid=" + mid + ", sid=" + sid + "]";
+				+ ", rPeople=" + rPeople + ", status=" + status + ", mid=" + mid + ", sid=" + sid + ", sName=" + sName + "]";
 	}
 	
 	

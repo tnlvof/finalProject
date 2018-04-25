@@ -13,6 +13,7 @@ import com.kh.fooding.member.model.exception.LoginException;
 import com.kh.fooding.member.model.exception.selectMemberException;
 import com.kh.fooding.member.model.vo.Member;
 import com.kh.fooding.reservation.model.vo.Reservation;
+import com.kh.fooding.review.model.vo.Review;
 
 @Service
 public class MemberServiceImpl implements MemberService{
@@ -97,5 +98,12 @@ public class MemberServiceImpl implements MemberService{
 	public ArrayList<Reservation> selectReservList(int mid) {
 		ArrayList<Reservation> reservList = md.selectReservList(mid);
 		return reservList;
+	}
+
+	@Override
+	public ArrayList<Review> selectReviewList(int mid) {
+		ArrayList<Review> reviewList = md.selectReviewList(mid);
+		
+		return reviewList;
 	}
 }

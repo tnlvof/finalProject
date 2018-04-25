@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
+<!-- 등록된 가게일 경우 -->
+<c:if test="${ sList != null}">
 <div class="con-box">
 	<h4><span class="tip">Tip</span></h4>
 	<ul>
@@ -78,3 +81,15 @@
 	
 </div>
 <!-- con-box  -->
+</c:if>
+
+<!-- 등록되지 않은 가게일 경우 -->
+<c:if test="${ sList == null}">
+
+<div class="con-box">
+	<p style="padding:100px; font-size:20px;">아직 가게 정보가 등록되지 않았습니다.</p>
+</div>
+<!-- con-box  -->
+</c:if>
+
+
