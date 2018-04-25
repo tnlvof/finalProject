@@ -24,7 +24,6 @@
 	text-align: center;
 	margin-bottom: 50px;
 }
-/******************************/
 .join_wrap{
 	width: 400px;
 	margin: 0 auto;
@@ -121,12 +120,12 @@ input::placeholder {
     cursor: pointer;
     font-size: 12px;
 }
-.storeJoin > div > p{
+/* .storeJoin > div > p{
 	font-size: 12px;
 	line-height: 2em;
 	padding-left: 27px;
 	margin-bottom: 10px;
-}
+} */
 .alarm{
 	font-size: 12px;
 	line-height: 2em;

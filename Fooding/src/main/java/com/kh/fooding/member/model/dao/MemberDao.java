@@ -26,4 +26,7 @@ public interface MemberDao {
 
 	int idCheck(String checkId, SqlSessionTemplate sqlSession);
 
+	int insertStore(Member m, SqlSessionTemplate sqlSession);
+
+
 }

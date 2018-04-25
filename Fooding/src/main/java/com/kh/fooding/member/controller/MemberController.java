@@ -22,6 +22,7 @@ import com.kh.fooding.member.model.exception.LoginException;
 import com.kh.fooding.member.model.exception.selectMemberException;
 import com.kh.fooding.member.model.service.MemberService;
 import com.kh.fooding.member.model.vo.Member;
+import com.kh.fooding.sample.model.vo.Sample;
 
 @Controller
 public class MemberController {
@@ -94,6 +95,17 @@ public class MemberController {
 
 		ms.insertMember(m);
 
+		return "main/main";
+	}
+	
+	//업체회원가입
+	@RequestMapping(value = "storeJoin.me")
+	public String storeJoin(Member m, Model model) {
+		
+		m.setUserPwd(passwordEncoder.encode(m.getUserPwd()));
+		
+		ms.insertStore(m);
+		
 		return "main/main";
 	}
 
@@ -242,5 +254,12 @@ public class MemberController {
 		return "admin/qnaDetail";
 	}
 	
+
+	
+	
+	
+
+
+
 
 }

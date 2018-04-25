@@ -1,57 +1,91 @@
-// 아이디 정규식
-function regId() {
-	var regId = /^[a-z][a-z0-9_-]{5,11}$/;
+/* 가입버튼 */
 
-	if(regId.test($("#storeId").val())) $(".idCheck").html(" ");
-	else $(".idCheck").html('<p class="overlap isDis">아이디는 영어 소문자로 시작하고 6~20자 영문자 또는 숫자이어야합니다.</p>');
-}
-
-//아이디 중복체크
 $(function(){
-	$("#storeId").focusout(function(){
-		var checkId = $('#storeId').val();
-		
-		$.ajax({
-			url: 'idCheck.me',
-			method: 'post',
-			data: {checkId:checkId},
-			dataType:'text',
-			success: function(data){
-				console.log(data);
-				if(jQuery.trim(data) == "false") $(".idCheck").html('<p class="overlap">아이디가 중복됩니다.</p>');
-				else $(".idCheck").html('<p class="usable">사용할 수 있는 아이디입니다.</p>');
-				
-			},
-			error:function(request,status,error){                                                      
-        	    alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-	        }   
+	var id = $("#storeId");
+	var pa = $("#pwd");
+	var paco = $("#pwd2");
+	
+	var idRegExp = /^[a-z][a-z0-9_-]{5,19}$/
+	var paRegExp = /^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
+	var paRegExp2 = /\d/g;
+	
+		$("#storeId").focusout(function(){
+			var checkId = $("#storeId").val();
+			if (idRegExp.test(id.val())) {
+				$("#idDis").css({"display":"none"});
+			    $.ajax({                                                                                       
+			    	url:'idCheck.me',                                                                          
+			    	method:'post',                                                                             
+			    	data:{checkId:checkId},                                                                    
+			    	dataType:"text",                                                                           
+			    	success:function(data){                                                                    
+			    		console.log(data);                                                                     
+			    		if(jQuery.trim(data) =="false"){                                                                      
+			    			$("#idUse").css({"display":"block"});                                              
+			    			$("#idDupl").css({"display":"none"});                                              
+			    		}else{                                                                                 
+			    			$("#idDupl").css({"display":"block"});                                             
+			    			$("#idUse").css({"display":"none"});                                               
+			    		}                                                                                      
+			    	},                                                                                         
+			    	error:function(request,status,error){                                                      
+		        	    alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+			        }                                                                                          
+			    });                                                                                            
+		    }else{                                                                                         
+			    $("#idDis").css({"display":"block"});   
+			    $("#idUse").css({"display":"none"});
+		    }                                                                                              
 		});
-	});
+		
+		$("#pwd2").focusout(function(){
+			if (!paRegExp.test(pa.val()) || !(paRegExp2.test(pa.val()))) {
+				$("#pwdDis").css({"display":"block"});
+			    $("#pwdUse").css({"display":"none"});
+			    $("#pwdDupl").css({"display":"none"});
+			}else{
+				$("#pwdDis").css({"display":"none"});
+				if (pa.val() != paco.val()) {
+					$("#pwdDupl").css({"display":"block"});
+					$("#pwdUse").css({"display":"none"});
+				}else{
+					$("#pwdDupl").css({"display":"none"});
+					$("#pwdUse").css({"display":"block"});
+				}
+			}
+		});
 });
-	
 
-
-//비밀번호 정규식
-function regPwd() {
-	var regPwd = /^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
-
-	if(regPwd.test($("#pwd").val())){
-		$('.pwdCheck').html(" ");
-	} else{
-		$('.pwdCheck').html("<p class='overlap'>비밀번호는 8자 이상, 하나 이상의 숫자 및 특수문자를 포함해야합니다.</p>");
+function insertMember() {
+	if($('#licenseNo').val()== ''){
+		$('#licenseNo').select();
+	}else if($('#storeName').val()== ''){
+		$('#storeName').select();
+	}else{
+		
+		if($("#ok").prop("checked")){
+			$("#joinForm").submit();
+			return true;
+		}else{
+			alert('약관에 동의해주세요');
+			return false;
+		}
+		
 	}
-	
 }
 
-//비밀번화 일치 여부
-$(function() {
-	$('#pwd2').keyup(function() {
-		if($('#pwd').val() != $('#pwd2').val()){
-			$('.pwdCheck').text('');
-			$('.pwdCheck').html("<p class='overlap'>비밀번호가 일치하지 않습니다.</p>");
-		} else{
-			$('.pwdCheck').text('');
-			$('.pwdCheck').html("<p class='usable'>비밀번호가 일치합니다.</p>");
-		} 
-	});
-});
+function checkBizNo(){
+    $.ajax({
+    	url: 'checkBizNo.me',
+    	method:'post',
+    	data:{checkId:checkId},
+    	dataType:"json",
+    	success:function(data){
+    		console.log(data);
+    	},
+    	error:function(request,status,error){
+    	    alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+        }
+    });
+
+}

@@ -9,7 +9,7 @@
 
 <div class="container">
 	<div class="join">
-		<form class="join_form" action="#">
+		<form id="joinForm" class="join_form" action="storeJoin.me" method="post">
 			<div class="basic">
 
 				<h3>업체 회원가입</h3>
@@ -19,39 +19,39 @@
 					
 					<!-- 아이디 -->
 					<label class="must">아이디</label>
-					<input type="text" name="storeId" id="storeId" class="storeId" placeholder="아이디를 입력하세요" onkeyup="regId()" required />
-					<div class="idCheck"></div>
+					<input type="text" name="userId" id="storeId" class="storeId" placeholder="아이디를 입력하세요" required />
+					<div class="idCheck">
+						<p class="alarm overlap" id="idDis">아이디는 영어 소문자로 시작하고 6~20자 영문자 또는 숫자이어야합니다.</p>
+						<p class="alarm overlap" id="idDupl">아이디가 중복됩니다.</p>
+						<p class="alarm usable" id="idUse">사용할 수 있는 아이디입니다.</p>					
+					</div>
 					
 					<!-- 비밀번호/비밀번호 확인 -->
 					<label class="must">비밀번호</label>
-					<input type="password" name="storePwd" id="pwd" placeholder="비밀번호를 입력하세요" onkeyup="regPwd()" required />
+					<input type="password" name="userPwd" id="pwd" placeholder="비밀번호를 입력하세요" required />
 					
 					<label class="must">비밀번호 확인</label>
-					<input type="password" name="storePwd2" id="pwd2" placeholder="비밀번호를 다시 입력하세요" required />
-					<div class="pwdCheck"></div>
-					
-					<!-- 상호명 -->
-					<label class="must">상호명</label>
-					<input type="text" name="storeName" id="storeName" placeholder="상호명을 입력하세요" required />
+					<input type="password" name="userPwd2" id="pwd2" placeholder="비밀번호를 다시 입력하세요" required />
+					<div class="pwdCheck">
+						<p class="alarm overlap" id="pwdDis">비밀번호는 8자 이상, 하나 이상의 숫자 및 특수문자를 포함해야합니다.</p>
+						<p class="alarm overlap" id="pwdDupl">비밀번호가 일치하지 않습니다.</p>
+						<p class="alarm usable" id="pwdUse">비밀번호가 일치합니다.</p>
+					</div>
 					
 					<!-- 사업자 등록 번호 인증 -->
 					<label class="must">사업자 등록 번호</label>
 					<br>
-					<input type="text" name="licenseNo" class="license" placeholder="사업자등록번호" required />
-					<button class="license-btn">인증확인</button>
+					<input type="text" name="bizNo" id="licenseNo" class="license" placeholder="'-'를 제외하고 사업자등록번호를 적어주세요" required />
+					<button class="license-btn" onclick="checkBizNo()">인증확인</button>
+					
+					<!-- 상호명 -->
+					<label class="must">상호명</label>
+					<input type="text" name="bizName" id="storeName" placeholder="상호명을 입력하세요" required />
 					
 					<!-- 대표자명 -->
 					<label class="must">대표자명</label>
-					<input type="text" name="bossName" id="bossName" placeholder="대표명을 입력하세요" required />
+					<input type="text" name="userName" id="userName" placeholder="대표명을 입력하세요" required />
 					
-					<!-- 개업일 -->
-					<!-- <label class="must">개업일</label>
-					<br>
-					<input type="number" name="openDay" placeholder="년도(4자)" maxlength="4" /> 
-					<input type="number" name="openDay" max="12" placeholder="월" value="" maxlength="2" /> 
-					<input type="number" name="openDay" max="31" placeholder="일" value="" maxlength="2" /> -->
-					
-				
 				</div>
 				<!-- join_wrap -->
 
@@ -85,16 +85,12 @@
 					<div class="agreetext">
 						<input type="checkbox" name="req" class="checkBox" id="ok">
 						<label for="ok">개인정보 수집 및 이용에 동의합니다. <span style="color:red">(필수)</span></label>
-						<!-- 
-						<input type="checkbox" name="req" class="checkBox" style="width:15px;height:15px;">
-						<a class="agreetext1">개인정보 수집 및 이용에 동의합니다.</a><a class="agreetext2">(필수)</a>
-						 -->
 					</div>
 					
 				</div>
 				<!-- agree-wrap --> 
 				<br>
-				<button class="join_done">가입완료</button>
+				<button class="join_done" onclick="return insertMember()">가입완료</button>
 			</div>
 			<!-- basic -->
 		</form>

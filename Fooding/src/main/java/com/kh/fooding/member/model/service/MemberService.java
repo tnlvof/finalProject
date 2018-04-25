@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.kh.fooding.member.model.exception.LoginException;
 import com.kh.fooding.member.model.exception.selectMemberException;
 import com.kh.fooding.member.model.vo.Member;
+import com.kh.fooding.sample.model.vo.Sample;
 
 public interface MemberService  {
 
@@ -25,5 +26,9 @@ public interface MemberService  {
 	ArrayList<Member> searchMember(String searchCon, Map<String, String> data);
 
 	int idCheck(String checkId);
+
+	void insertStore(Member m);
+
+
 
 }

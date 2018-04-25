@@ -39,10 +39,18 @@ public class MemberDaoImpl implements MemberDao{
 		return member; 
 	}
 
+	//회원가입
 	@Override
 	public int insertMember(Member m, SqlSessionTemplate sqlSession) {
 		return sqlSession.insert("Member.insertMember",m);
 	}
+	
+	//업체회원가입
+	@Override
+	public int insertStore(Member m, SqlSessionTemplate sqlSession) {
+		return sqlSession.insert("Member.insertStore", m);
+	}
+	
 
 	@Override
 	public ArrayList<Member> selectMemberList() throws selectMemberException {
@@ -106,5 +114,6 @@ public class MemberDaoImpl implements MemberDao{
 		
 		return result;
 	}
-	
+
+
 }

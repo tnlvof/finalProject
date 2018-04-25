@@ -32,6 +32,13 @@ public class MemberServiceImpl implements MemberService{
 		int result = md.insertMember(m, sqlSession);
 	}
 	
+	//업체회원가입
+	@Override
+	public void insertStore(Member m) {
+		int result = md.insertStore(m, sqlSession);
+		
+	}
+	
 	//관리자 페이지 회원 리스트 불러오기	
 	@Override
 	public ArrayList<Member> selectMemberList() throws selectMemberException {
@@ -67,10 +74,14 @@ public class MemberServiceImpl implements MemberService{
 		return searchList;
 	}
 
+	//아이디 중복확인
 	@Override
 	public int idCheck(String checkId) {
 		int result = md.idCheck(checkId,sqlSession);
 		
 		return result;
 	}
+
+
+
 }
