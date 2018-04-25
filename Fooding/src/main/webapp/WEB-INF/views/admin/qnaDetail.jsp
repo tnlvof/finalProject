@@ -36,7 +36,7 @@
   </script>
     	
  	<div id="tableArea">
- 	<table id="qnaList" class="tableList" style="margin-left:auto;margin-right:auto;" >
+ 	<table id="qnaDetail" class="tableList" style="margin-left:auto;margin-right:auto;" >
  	<tr style="border-bottom:1px solid lightgray;">
  	
  	<th style="width:100px; padding:20px;text-align:center;height:20px;font-weight:bold;">글번호</th>
@@ -47,16 +47,17 @@
  	
  	</tr>
   
+   
 	  <tr >
-	  	 <td style=" padding-top: 20px; padding-bottom: 20px;">01</td>
-	  	 <td>신고 풀어죠</td>
-	  	 <td>내말들어라</td>
-	  	 <td>sysdate</td>
-	  	 <td>N</td>
+	  	 <td style=" padding-top: 20px; padding-bottom: 20px;"><c:out value="${b.bno }"/><input id="bid" name="bid" type="hidden" value="${b.bid }"></td>
+	  	 <td><c:out value="${b.bTitle }"></c:out></td>
+	  	 <td><c:out value="${b.mCode }"></c:out></td>
+	  	 <td><c:out value="${b.enrollDateJson }"></c:out></td>
+	  	 <td><c:out value="${b.refYN }"></c:out></td>
 	  </tr>
 	<tr>
  		<td colspan="5" style=" padding: 20px;  text-align:left; width:100px;">
-			힝ㅜ힝ㅜ힝ㅜ힝ㅜ힝ㅜ힝ㅜ힝ㅜ힝ㅜ힝ㅜ힝ㅜ힝ㅜ힝ㅜ힝ㅜ힝ㅜ힝ㅜ힝ㅜ힝ㅜ힝ㅜ힝ㅜ힝ㅜ힝ㅜ힝ㅜ힝ㅜ힝ㅜ힝ㅜ힝ㅜ힝ㅜ힝ㅜ힝ㅜ힝ㅜ힝ㅜ힝ㅜ힝ㅜ힝ㅜ힝ㅜ힝ㅜ힝ㅜ힝ㅜ힝ㅜ힝ㅜ힝ㅜ힝ㅜ힝ㅜ힝ㅜ힝ㅜ힝ㅜ힝ㅜ힝ㅜ힝ㅜ힝ㅜ힝ㅜ힝ㅜ힝ㅜ힝ㅜ힝ㅜ
+			<c:out value="${b.bContent }"/>
 		</td>
  	</tr>
  	
@@ -65,16 +66,47 @@
  	
  	<div id="replyArea">
  		<div style="display:inline-block;">
- 		<textarea rows="11" cols="100" style="font-size: 16px;     position: relative;   left: 200px;  padding: 12px 8px; margin-bottom: -100; margin-left: 140px;resize:none;">
- 		
- 		</textarea>
+ 		<textarea id="replyArea" rows="11" cols="100" style="font-size: 16px;     position: relative;   left: 200px;  padding: 12px 8px; margin-bottom: -100; margin-left: 140px;resize:none;" autofocus></textarea>
  		</div>
  		<div style="display:inline-block;">
- 		 		<button class="searchBtn" style="height:200px;  position: relative;   left: 200px;"> 답변 달기 </button>
+ 		 		<button class="searchBtn" id="replyBtn" style="height:200px;  position: relative;   left: 200px;" onclick="submitReply();"> 답변 달기 </button>
  		</div>
-
  	</div>
  	
+ 	<script type="text/javascript">
+ 	function submitReply(){
+ 		
+ 		if($("#replyArea").is(":empty")){ 			
+ 			alert('답변을 입력해주세요.');
+ 		} else {
+ 			var bid = $("#bid").val(); 		
+ 			var reply = $("textarea").val(); 
+ 				
+ 			var replyMap = {bid:bid, reply:reply };
+ 			console.log('replyMap : ');
+ 			console.log(replyMap);
+ 			 			
+ 			
+ 			 $.ajax({
+	     		  method: "POST",
+	     		  url: "insertReply.bo",
+	     		  data:	JSON.stringify(replyMap),
+	     		 contentType: "application/json; charset=UTF-8",
+	     		  success:function(data){
+	     			alert('답변을 완료했습니다.');
+	     		  },
+	     		  error:function(){
+	     			  alert('안됨');
+	     		  }
+	     		  
+	     		  
+	     		});
+	    	
+ 		}
+ 		
+ 	}
+ 	
+ 	</script>
  	
  </div>
 

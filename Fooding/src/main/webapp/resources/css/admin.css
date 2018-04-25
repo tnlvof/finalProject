@@ -74,8 +74,6 @@ h3{
 
 .tableList td{
 		text-align:center;
-		
-	
 }
 .tableRow td{
 	
@@ -170,6 +168,16 @@ select{
  width:80px;
 	
 }
-
+#qnaDetail td{
+	border-bottom:1px solid lightgray;
+}
+#qnaDetail td:hover{
+	cursor:auto !important;	
+}
+#qnaDetail tr:hover{
+	background:#f9f9f9; 
+	cursor:auto !important; 
+	
+}
 
 

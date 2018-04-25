@@ -6,6 +6,7 @@ import java.util.Map;
 import org.mybatis.spring.SqlSessionTemplate;
 
 import com.kh.fooding.board.model.exception.insertException;
+import com.kh.fooding.board.model.exception.searchException;
 import com.kh.fooding.board.model.vo.Board;
 
 public interface BoardDao {
@@ -20,6 +21,12 @@ public interface BoardDao {
 
 	ArrayList<Board> getAllQuestions(SqlSessionTemplate sqlSession);
 
-	ArrayList<Board> searchQList(SqlSessionTemplate sqlSession, String searchCon, Map<String, String> data);
+	ArrayList<Board> searchQList(SqlSessionTemplate sqlSession, String searchCon, Map<String, String> data) ;
+
+	Board searchOneQuestion(SqlSessionTemplate sqlSession, String bid)  throws searchException;
+
+	int insertReply(SqlSessionTemplate sqlSession, Board b);
+
+	ArrayList<Board> selectAnwerList(Board b, SqlSessionTemplate sqlSession);
 
 }

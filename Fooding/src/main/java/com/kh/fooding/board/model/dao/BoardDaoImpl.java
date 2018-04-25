@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kh.fooding.board.model.exception.insertException;
+import com.kh.fooding.board.model.exception.searchException;
 import com.kh.fooding.board.model.vo.Board;
 import com.kh.fooding.member.model.vo.Member;
 
@@ -67,24 +68,72 @@ public class BoardDaoImpl implements BoardDao{
 		return boardList ;
 	}
 
-	// 게시글 조회
+	// 게시글 검색 조회
 	@Override
 	public ArrayList<Board> searchQList(SqlSessionTemplate sqlSession, String searchCon,Map<String, String> data) {
-				
-
+		System.out.println("DAO data " + data);	
+	
 		String statement = "";
 		
 		switch(searchCon) {
 			case "제목": statement = "Board.searchTitle";break;
 			case "글쓴이":statement = "Board.searchWriter";break;
-			case "처리여부":statement = "Board.searchAnswered";break;
+			case "처리여부":System.out.println("처리여부 : " + data.get("처리여부"));
+						if(data.get("search").equals("처리됨") ) {
+							
+							statement = "Board.searchAnswered";
+							
+							System.out.println("처리됨");
+							
+						} else if( ! data.get("search").equals("처리됨")) {
+							
+							statement="Board.searchUnanswered";
+							System.out.println("처리안됨");
+						}
+						break;
 		}
+		
+		
 		
 		ArrayList<Board> searchQList = (ArrayList) sqlSession.selectList(statement, data);
 		
 		
 		
 		return searchQList;
+	}
+
+	// 문의 게시판 상세 조회
+	@Override
+	public Board searchOneQuestion(SqlSessionTemplate sqlSession, String bid) throws searchException {
+		Board b = sqlSession.selectOne("Board.selectOneQuestion",bid);
+		
+		if(b == null) {
+			throw new searchException("조회 실패");
+		}
+		
+		return b;
+	}
+
+	// 답변 등록
+	@Override
+	public int insertReply(SqlSessionTemplate sqlSession, Board b) {
+		
+		int result = sqlSession.insert("Board.insertReply", b);
+		int result2 = sqlSession.update("Board.updateQuestion", b);
+		
+		
+		
+		return result;
+	}
+
+	// 답변 리스트 가져오기
+	@Override
+	public ArrayList<Board> selectAnwerList(Board b, SqlSessionTemplate sqlSession) {
+		
+		ArrayList<Board> answerList = (ArrayList)sqlSession.selectList("Board.selectAnswerList", b);
+		
+		
+		return answerList;
 	}
 
 	
