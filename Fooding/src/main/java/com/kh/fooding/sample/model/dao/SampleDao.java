@@ -1,5 +1,9 @@
 package com.kh.fooding.sample.model.dao;
 
-public class SampleDao {
+import com.kh.fooding.sample.model.vo.Sample;
+
+public interface SampleDao {
+
+	Sample searchSample(String bizNo);
 
 }

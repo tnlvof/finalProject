@@ -59,7 +59,7 @@
 	
 	<insert id="insertStore">
 		INSERT INTO MEMBER
-		VALUES(SEQ_MID.NEXTVAL, #{userId}, #{userPwd}, #{userName}, NULL, NULL, NULL, NULL, '업체', DEFAULT, NULL, #{bizNo}, #{bizName}, NULL, NULL, SYSDATE)
+		VALUES(SEQ_MID.NEXTVAL, #{userId}, #{userPwd}, #{bizName}, NULL, NULL, NULL, NULL, '업체', DEFAULT, NULL, #{bizNo}, #{bizName}, NULL, NULL, SYSDATE)
  	</insert>
 	
 	<select id="selectMemberList" resultMap="memberResultSet2">		
@@ -112,10 +112,6 @@
 		 ENROLL_DATE 
 		 FROM MEMBER
 		 WHERE PHONE LIKE '%' || #{search} || '%'
-	</select>
-	
-	<select id="idCheck" resultType="_int">
-		SELECT COUNT(*) FROM MEMBER WHERE USER_ID=#{checkId}
 	</select>
 	
 </mapper>
