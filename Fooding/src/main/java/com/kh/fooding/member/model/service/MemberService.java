@@ -10,6 +10,7 @@ import com.kh.fooding.member.model.exception.LoginException;
 import com.kh.fooding.member.model.exception.selectMemberException;
 import com.kh.fooding.member.model.vo.Member;
 import com.kh.fooding.reservation.model.vo.Reservation;
+import com.kh.fooding.review.model.vo.Review;
 
 public interface MemberService  {
 
@@ -34,5 +35,7 @@ public interface MemberService  {
 	ArrayList<Reservation> selectReservList(int mid);
 	
 	void insertStore(Member m);
+
+	ArrayList<Review> selectReviewList(int mid);
 
 }

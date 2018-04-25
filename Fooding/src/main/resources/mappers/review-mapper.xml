@@ -24,5 +24,11 @@
     WHERE M.MID=#{ mid }
     </select>
     
+    <select id="selectReviewList" resultMap="reviewResultSet">
+    SELECT *
+    FROM REVIEW R
+    JOIN MEMBER M ON (M.MID = R.MID)
+    WHERE M.MID=#{ mid }
+    </select>   
     
 </mapper>

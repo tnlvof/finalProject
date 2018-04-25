@@ -13,6 +13,17 @@
         <result property="mid" column="MID" />
         <result property="sid" column="SID" />
     </resultMap>
+    <resultMap type="Reservation" id="reservationResultSet2">
+        <id property="rvid" column="RVID"/>
+        <result property="rDate" column="R_DATE" />
+        <result property="rTime" column="R_TIME" />
+        <result property="rContent" column="R_CONTENT" />
+        <result property="rPeople" column="R_PEOPLE" />
+        <result property="status" column="STATUS" />
+        <result property="mid" column="MID" />
+        <result property="sid" column="SID" />
+        <result property="sName" column="SNAME" />
+    </resultMap>
     
     <select id="selectRcount" parameterType="_int" resultType="_int">
     SELECT COUNT(*)
@@ -21,11 +32,18 @@
     WHERE M.MID=#{ mid }
     </select> 
     
-    <select id="selectReservList" resultMap="reservationResultSet">
+    <select id="selectReservList" resultMap="reservationResultSet2">
     SELECT *
     FROM RESERVATION R
     JOIN MEMBER M ON (M.MID = R.MID)
-    WHERE M.MID=#{ mid }
+    JOIN STORE S ON (S.SID = R.SID)
+    WHERE M.MID=#{ mid } AND R.STATUS = 'Y'
     </select>   
+    
+    <update id="cancelReserv">
+    UPDATE RESERVATION
+    SET STATUS='N'
+    WHERE MID = #{ mid } AND RVID = #{ rvid }
+    </update>
     
 </mapper>
