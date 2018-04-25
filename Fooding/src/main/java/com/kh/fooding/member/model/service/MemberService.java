@@ -32,5 +32,7 @@ public interface MemberService  {
 	int selectReviewCount(int mid);
 
 	ArrayList<Reservation> selectReservList(int mid);
+	
+	void insertStore(Member m);
 
 }

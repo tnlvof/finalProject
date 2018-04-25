@@ -57,6 +57,11 @@
     	  VALUES(SEQ_MID.NEXTVAL, #{userId} , #{userPwd} , #{userName} , #{birth} , NULL , #{email} ,NULL, '일반' , DEFAULT, NULL, NULL, NULL, NULL, #{gender}, SYSDATE)
  	</insert>
 	
+	<insert id="insertStore">
+		INSERT INTO MEMBER
+		VALUES(SEQ_MID.NEXTVAL, #{userId}, #{userPwd}, #{userName}, NULL, NULL, NULL, NULL, '업체', DEFAULT, NULL, #{bizNo}, #{bizName}, NULL, NULL, SYSDATE)
+ 	</insert>
+	
 	<select id="selectMemberList" resultMap="memberResultSet2">		
 		 SELECT MID, USER_ID, USER_PWD, USER_NAME, BIRTH, PHONE, EMAIL, ADDRESS, STATUS, REP_COUNT, BIZ_NO, BIZ_NAME, BOOK_COUNT, GENDER,
 		 ENROLL_DATE
@@ -84,6 +89,9 @@
 		</foreach>
 	</update>
 	
+	<select id="idCheck" resultType="_int">
+		SELECT COUNT(*) FROM MEMBER WHERE USER_ID=#{checkId}
+	</select>
 
 	<select id="Member.searchId" resultMap="memberResultSet2" parameterType="map">
 		 SELECT MID, USER_ID, USER_PWD, USER_NAME, BIRTH, PHONE, EMAIL, ADDRESS, STATUS, REP_COUNT, BIZ_NO, BIZ_NAME, BOOK_COUNT, GENDER,

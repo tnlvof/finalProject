@@ -45,6 +45,12 @@ public class MemberDaoImpl implements MemberDao{
 	public int insertMember(Member m, SqlSessionTemplate sqlSession) {
 		return sqlSession.insert("Member.insertMember",m);
 	}
+	
+	//업체회원가입
+	@Override
+	public int insertStore(Member m, SqlSessionTemplate sqlSession) {
+		return sqlSession.insert("Member.insertStore", m);
+	}
 
 	@Override
 	public ArrayList<Member> selectMemberList() throws selectMemberException {

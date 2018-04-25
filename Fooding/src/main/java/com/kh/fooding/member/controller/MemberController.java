@@ -22,6 +22,7 @@ import com.kh.fooding.member.model.exception.LoginException;
 import com.kh.fooding.member.model.exception.selectMemberException;
 import com.kh.fooding.member.model.service.MemberService;
 import com.kh.fooding.member.model.vo.Member;
+import com.kh.fooding.sample.model.vo.Sample;
 import com.kh.fooding.reservation.model.vo.Reservation;
 
 @Controller
@@ -41,14 +42,12 @@ public class MemberController {
 			Member loginUser = ms.loginMember(m);
 
 			session.setAttribute("loginUser", loginUser);
-			session.removeAttribute("loginFail");
 
 			return "main/main";
 
 		} catch (LoginException e) {
-			String loginFail = "로그인에 실패하였습니다.";
-			session.setAttribute("loginFail", loginFail);
-			return "main/main";
+			model.addAttribute("message", e.getMessage());
+			return "common/errorPage";
 		}
 	}
 
@@ -99,12 +98,23 @@ public class MemberController {
 
 		return "main/main";
 	}
+	
+	//업체회원가입
+	@RequestMapping(value = "storeJoin.me")
+	public String storeJoin(Member m, Model model) {
+		
+		m.setUserPwd(passwordEncoder.encode(m.getUserPwd()));
+		
+		ms.insertStore(m);
+		
+		return "main/main";
+	}
 
 	@RequestMapping(value = "logout.me", method = RequestMethod.GET)
 	public String logout(HttpSession session/* ,SessionStatus status */) {
 
 		session.invalidate();
-		
+
 		// status.setComplete();
 
 		return "main/main";
@@ -217,23 +227,9 @@ public class MemberController {
 	
 		
 	@RequestMapping(value ="goMyPage.me")
-	public ModelAndView goMyPage(HttpSession session, ModelAndView mv) {
-		Member m = (Member) session.getAttribute("loginUser");
-		
-		int rcount = ms.selectRcount(m.getMid());
-		int reviewCount = ms.selectReviewCount(m.getMid());
-		
-		session.setAttribute("rcount", rcount);
-		session.setAttribute("reviewCount", reviewCount);
-		
-		ArrayList<Reservation> reservList = ms.selectReservList(m.getMid());
-		
-		System.out.println("Controller reservList : " + reservList);
-		
-		mv.addObject("reservList", reservList);
-		mv.setViewName("myPage/myPage");
-		
-		return mv;
+	public String goMyPage() {
+
+		return "myPage/myPage";
 	}
 
 	@RequestMapping(value = "goMyPageReview.me")
@@ -259,5 +255,12 @@ public class MemberController {
 		return "admin/qnaDetail";
 	}
 	
+
+	
+	
+	
+
+
+
 
 }

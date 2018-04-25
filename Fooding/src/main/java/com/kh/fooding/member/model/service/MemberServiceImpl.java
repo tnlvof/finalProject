@@ -32,6 +32,12 @@ public class MemberServiceImpl implements MemberService{
 	public void insertMember(Member m) {
 		int result = md.insertMember(m, sqlSession);
 	}
+	//업체회원가입
+	@Override
+	public void insertStore(Member m) {
+		int result = md.insertStore(m, sqlSession);
+		
+	}
 	
 	//관리자 페이지 회원 리스트 불러오기	
 	@Override
