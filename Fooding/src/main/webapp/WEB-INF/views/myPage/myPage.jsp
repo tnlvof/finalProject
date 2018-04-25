@@ -45,20 +45,52 @@
 						</div>
 						<div class="info">
 							<div class="name">
-								<a href="#">${ list.sid }</a> <span
+								<a href="#">${ list.sName }</a> <!-- <span
 									class="label blue border_radius soft">예약 대기</span> <span
 									class="label green border_radius soft">예약 확정</span> <span
-									class="label blue border_radius soft">변경 대기</span>
+									class="label blue border_radius soft">변경 대기</span> -->
 							</div>
+							<input type="hidden" value="${ list.rvid }" class="reservId">
 							<div class="date">예약정보: ${ list.rDate } / ${ list.rTime }</div>
 							<div class="party_size">인원: ${ list.rPeople }명</div>
 						</div>
 
-						<button class="red border_radius soft" tabindex="-1" onclick="document.getElementById('changeCancel').style.display='block'">변경
-							/ 취소</button>
+						<!-- <button class="ccBtn red border_radius soft" tabindex="-1" id="ccBtn">변경
+							/ 취소</button> -->
+							<button class="ccBtn red border_radius soft" tabindex="-1" id="ccBtn" onclick="document.getElementById('reservCancel').style.display='block'">예약 취소</button>
+							<div id="reservCancel" class="w3-modal">
+												<div class="w3-modal-content">
+													<div class="w3-container">
+														<div class="confirmBackground" style="display: block;"></div>
+														<div id="default" class="confirmPopup"
+															style="padding: 20px 40px; margin-left: -110.5px; margin-top: -26.5px; display: block;">
+															<div class="confirmMessage">예약을 취소하시겠습니까?</div>
+														</div>
+														<div class="confirmNo"
+															style="margin-left: -110.5px; margin-top: 28.5px; width: 108.5px; display: block;" onclick="document.getElementById('reservCancel').style.display='none'">아니오</div>
+														<div class="confirmOk"
+															style="margin-left: 1px; margin-top: 28.5px; width: 108.5px; display: block;" onclick="location.href='cancelReserv.rv'">예</div>
+													</div>
+												</div>
+											</div>
+							
+							<script>
+							$(".ccBtn").click(function(){
+								var rvid = $(this).parent().find('.reservId').val();
+								console.log(rvid);
+								<c:forEach var="l" items="${ reservList }">
+									if(rvid == ${l.rvid}){
+										$(".rPeople").val('${l.rPeople}');
+										$(".rDate").text('${l.rDate}');
+										$(".rTime").text('${l.rTime}');
+										
+									}
+								</c:forEach>
+							    		/* document.getElementById('changeCancel').style.display='block'; */
+							});
+							</script>
 						<!-- Modal -->
-						<c:forEach var="mlist" items="${ reservList }">
-						<div id="changeCancel" class="w3-modal">
+						<%-- <div id="changeCancel" class="w3-modal">
 							<div class="w3-modal-content">
 								<div class="w3-container">									
 									<div id="pre-reserve" class="reserve-popup"
@@ -76,7 +108,7 @@
 													<input value="-" count_range="m" type="button" id="mBtn" style="display:none;">
 													<label class="mIcon" for="mBtn"><i class="icon minus"></i></label>
 													<!-- <span id="reserve_person_count" class="count">6</span> -->
-													<input class="count" value="${ mlist.rPeople }" readonly>
+													<input class="count rPeople" value="${ list.rPeople }" readonly>
 													<input value="+" count_range="p" type="button" id="pBtn" style="display:none;">
 													<label class="pIcon" for="pBtn"><i class="icon plus"></i></label>
 												</div>
@@ -87,6 +119,7 @@
 												        var type = $(this).attr('count_range');
 												        var $count = $(this).parent().children('input.count');
 												        var count_val = $count.val(); // min 1
+												        console.log(count_val);
 												        if(type=='m'){
 												            if(count_val<1){
 												                return;
@@ -112,7 +145,7 @@
 
 												<i class="icon calendar"></i>
 												<div class="box_text">날짜</div>
-												<span id="reserve_date" class="date first">${ mlist.rDate }</span> <i
+												<span id="reserve_date" class="date first rDate">${ list.rDate }</span> <i
 													class="icon arrow red calArrow"></i>
 												<script>
 												$(function(){
@@ -126,38 +159,17 @@
 											<div class="box pointer" style="margin: 0;">
 												<div id="timetable" class="sidemenu-content sub_popup"
 													style="display: none;">
-													<ul>
-														<li class="disable-block" data-time="12:00">오후 12:00</li>
-														<li class="disable-block" data-time="12:30">오후 12:30</li>
-														<li class="disable-block" data-time="13:00">오후 1:00</li>
-														<li class="disable-block" data-time="13:30">오후 1:30</li>
-														<li class="disable-block" data-time="14:00">오후 2:00</li>
-														<li class="disable-block" data-time="14:30">오후 2:30</li>
-														<li class="disable-block" data-time="15:00">오후 3:00</li>
-														<li class="disable-block" data-time="15:30">오후 3:30</li>
-														<li class="disable-block" data-time="16:00">오후 4:00</li>
-														<li class="disable-block" data-time="16:30">오후 4:30</li>
-														<li class="disable-block" data-time="17:00">오후 5:00</li>
-														<li class="disable-block" data-time="17:30">오후 5:30</li>
-														<li class="disable-block" data-time="18:00">오후 6:00</li>
-														<li class="disable-block" data-time="18:30">오후 6:30</li>
-														<li class="disable-block" data-time="19:00">오후 7:00</li>
-														<li class="disable-block" data-time="19:30">오후 7:30</li>
-														<li class="disable-block" data-time="20:00">오후 8:00</li>
-														<li class="disable-block" data-time="20:30">오후 8:30</li>
-														<li class="disable-block" data-time="21:00">오후 9:00</li>
-													</ul>
 												</div>
 
 												<i class="icon clock"></i>
 												<div class="box_text">시간</div>
-												<span id="reserve_time" class="time first" time="12:00">${ mlist.rTime }</span> <i class="icon arrow red"></i>
+												<span id="reserve_time" class="time first rTime" time="12:00">${ list.rTime }</span> <i class="icon arrow red"></i>
 											</div>
 										</div>
 
 										<div class="popup-row comment result">
-											<span class="date">18년 5월 2일 (수)</span> <span class="time">오후
-												12:00</span> <span class="count">6명</span>
+											<span class="date rDate">${ list.rDate } (수)</span> <span class="time rTime">
+												${ list.rTime }</span> <span class="count rPeople">${ list.rPeople }명</span>
 										</div>
 
 										<div class="popup-row comment">
@@ -223,8 +235,7 @@
 									</div>
 								</div>
 							</div>
-						</div>
-						</c:forEach>
+						</div> --%>
 					</div>
 				</div>
 				</c:forEach>

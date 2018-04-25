@@ -23,6 +23,7 @@ import com.kh.fooding.member.model.exception.selectMemberException;
 import com.kh.fooding.member.model.service.MemberService;
 import com.kh.fooding.member.model.vo.Member;
 import com.kh.fooding.reservation.model.vo.Reservation;
+import com.kh.fooding.review.model.vo.Review;
 
 @Controller
 public class MemberController {
@@ -235,7 +236,10 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "goMyPageReview.me")
-	public String goMyPageReview() {
+	public String goMyPageReview(HttpSession session) {
+		Member m = (Member) session.getAttribute("loginUser");
+		
+		ArrayList<Review> reviewList = ms.selectReviewList(m.getMid());
 
 		return "myPage/myPageReview";
 	}
