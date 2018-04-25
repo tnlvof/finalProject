@@ -77,7 +77,7 @@
 	
 	</select>
 	
-	<select id="Board.searchTitle" resultMap="boardResultSet2" parameterType="map">
+	<select id="searchTitle" resultMap="boardResultSet2" parameterType="map">
 		SELECT B.BID, B.BCODE, B.MID, B.BTITLE, B.BCONTENT, M.USER_ID, B.ENROLL_DATE, B.STATUS, B.REF_YN, B.PNO, B.B_LEVEL, B.MODIFY_DATE, B.BNO, B.B_COUNT
 		FROM BOARD B 
 		JOIN MEMBER M ON(M.MID = B.MID)
@@ -97,7 +97,7 @@
 		ORDER BY B.ENROLL_DATE DESC
 	</select>
 	
-	<select id="Board.searchAnswered" resultMap="boardResultSet2" parameterType="map">
+	<select id="searchAnswered" resultMap="boardResultSet2" parameterType="map">
 		SELECT B.BID, B.BCODE, B.MID, B.BTITLE, B.BCONTENT, M.USER_ID, B.ENROLL_DATE, B.STATUS, B.REF_YN, B.PNO, B.B_LEVEL, B.MODIFY_DATE, B.BNO, B.B_COUNT
 		FROM BOARD B 
 		JOIN MEMBER M ON(M.MID = B.MID)
@@ -107,5 +107,40 @@
 		ORDER BY B.ENROLL_DATE DESC
 	</select>
 	
+	<select id="searchUnanswered" resultMap="boardResultSet2" parameterType="map">
+		SELECT B.BID, B.BCODE, B.MID, B.BTITLE, B.BCONTENT, M.USER_ID, B.ENROLL_DATE, B.STATUS, B.REF_YN, B.PNO, B.B_LEVEL, B.MODIFY_DATE, B.BNO, B.B_COUNT
+		FROM BOARD B 
+		JOIN MEMBER M ON(M.MID = B.MID)
+		WHERE B.STATUS = 'Y'
+		AND BCODE='1'
+		AND B.REF_YN = 'N'
+		ORDER BY B.ENROLL_DATE DESC
+	</select>
+	
+	<select id="selectOneQuestion" resultMap="boardResultSet2" parameterType="String">
+		SELECT B.BID, B.BCODE, B.MID, B.BTITLE, B.BCONTENT, M.USER_ID, B.ENROLL_DATE, B.STATUS, B.REF_YN, B.PNO, B.B_LEVEL, B.MODIFY_DATE, B.BNO, B.B_COUNT
+		FROM BOARD B
+		JOIN MEMBER M ON(M.MID = B.MID)
+		WHERE B.STATUS = 'Y'  
+		AND B.BID=#{bid}
+	</select>
+	
+	<insert id="insertReply" >
+		INSERT INTO BOARD(BID, BCODE,  BTITLE, BCONTENT, ENROLL_DATE, STATUS, REF_YN, PNO, B_LEVEL, MODIFY_DATE, BNO, B_COUNT)
+		VALUES(SEQ_BID.NEXTVAL, '3' ,  '답변입니다.', #{bContent} ,SYSDATE, DEFAULT, DEFAULT, #{pno}, 1, SYSDATE, SEQ_BNO3.NEXTVAL, DEFAULT)	
+	</insert>
+	
+	<update id="updateQuestion" parameterType="Board">
+		UPDATE BOARD									
+		SET REF_YN = 'Y'
+		WHERE BID = #{pno}		
+	</update>
+	
+	<select id="selectAnswerList" parameterType="Board" resultMap="boardResultSet2">
+	 SELECT * FROM BOARD
+	  WHERE BCODE='3'
+	  AND PNO IN (SELECT BID FROM BOARD WHERE MID =#{mid})
+	  AND STATUS ='Y'
+	</select>
 	
 </mapper>

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.kh.fooding.board.model.dao.BoardDao;
 import com.kh.fooding.board.model.exception.insertException;
+import com.kh.fooding.board.model.exception.searchException;
 import com.kh.fooding.board.model.vo.Board;
 import com.kh.fooding.member.model.vo.Member;
 
@@ -70,6 +71,33 @@ public class BoardServiceImpl implements BoardService {
 		ArrayList<Board> searchQList = bd.searchQList(sqlSession, searchCon, data);
 		
 		return searchQList;
+	}
+
+	// 게시판 상세 조회
+	@Override
+	public Board selectOneQuestion(String bid) throws searchException {
+	
+		Board b = bd.searchOneQuestion(sqlSession, bid);
+		return b;
+		
+	}
+
+	// 문의글 답변 등록
+	@Override
+	public int insertReply(Board b) {
+		
+		int result = bd.insertReply(sqlSession, b);
+		
+		return result;
+	}
+
+	// 문의글 답변 리스트 가져오기
+	@Override
+	public ArrayList<Board> selectAnswerList(Board b) {
+		
+		ArrayList<Board> answerList = bd.selectAnwerList(b, sqlSession);
+		
+		return answerList;
 	}
 	
 	

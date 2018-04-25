@@ -31,8 +31,7 @@
 						<textarea class="text" placeholder="문의사항을 적어주세요." name="bContent"></textarea>
 						<button type="submit" class="submit-btn" >등록하기</button>
 						<button type="reset" class="reset-btn" >취소</button>
-						<script type="text/javascript">					
-
+						<script type="text/javascript">		
 						</script>
 					</form>
 				</div>

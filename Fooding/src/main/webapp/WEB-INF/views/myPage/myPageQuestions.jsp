@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <meta charset="UTF-8">
 
 <!-- header -->
@@ -66,17 +67,19 @@
 							</div>
 						</div>
 					</div>
-					
+					<c:choose>
+					<c:when test="${empty e.answer }">
 						<div class="answer_list">
 						<p class="text">아직 답변이 등록되지 않았습니다.</p>
 						</div>
-					
+					</c:when> 
+					<c:otherwise>
 					<div class="answer_list on">
 						<div class="answer">
 							<div class="author">
-								<p class="time loaded" style="display: block;">2018-04-12</p>
+								<p class="time loaded" style="display: block;">  <c:out value=" ${e.answerDate }"></c:out>  </p>
 								<a class="name">관리자</a>
-								<p class="text">죄송합니다 고객님<br>시스템 오류로 인하여 예약이 등록되지 않은 것 같습니다. 번거로우시겠지만 다시 예약 부탁드립니다.</p>
+								<p class="text"><c:out value="${e.answer }"></c:out></p>
 
 								<div class="action">
 									<button type="button" class="edit">수정하기</button>
@@ -102,6 +105,8 @@
 							</div>
 						</div>
 					</div>
+					</c:otherwise>
+					</c:choose>
 				</div>
 			</div>
 			</c:forEach>

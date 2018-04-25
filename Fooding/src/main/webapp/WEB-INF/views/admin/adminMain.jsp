@@ -728,26 +728,41 @@ function getCue(){
 				
 				console.log(keyword);
 				
-				if(keyword==""){
+				if( $("#qnaSearchBar").is(":visible") && keyword==""){
+										
 					alert('검색어를 입력해주세요.');
 				} else {
 					
 				// 아이디, 이름, 연락처 검색
 				var search ;
-				var key ;
+				var key;
+			
+					
+				switch($("#qnaSelect option:selected" ).text()){			
+	  					case '제목': key = '제목';  console.log(key); break;
+	  					case '글쓴이': key = '글쓴이'; console.log(key); break;  						
+				}	
 				
-				switch($("#memberSelect option:selected" ).text()){  				
-  				case '제목': key = '제목'; break;
-  				case '글쓴이': key = '글쓴이'; break;
-  				case '처리여부': key ='처리여부';break;
+					search = $("#qnaSearchBar").val();
+				
+				
+				console.log("키" + key);
+				console.log("값" + search); 
+				
+				if( !$("#qnaSearchBar").is(":visible")){
+					console.log('still here');
+					
+					switch($("#qnaSelect2 option:selected").text()){					
+					case '처리됨': key='처리여부';search='처리됨'; break;
+					case '처리 안 됨' : key='처리여부';search='처리 안 됨'; break;
+					}
+					
 				}
 				
-				search = $("#qnaSearchBar").val();
-				
-				/* console.log("키" + key);
-				console.log("값" + search); */
+		
 				
 				var data = {key : key, search:search };
+				
 				console.log("맵 : ");
 				console.log( data);
 				
@@ -774,8 +789,6 @@ function getCue(){
 			    				  $("#boardList").find(".tableRow").last().append("<td name='email'>"+data.searchQList[i].refYN+"</td>");	    			
 			    				      				  				  
 			    			  }  
-		  					
-		  					
 		  					
 		  				},
 		  				error:function(){
@@ -849,16 +862,7 @@ function getCue(){
  	
  	</tr>
  	
- 	<tr class="tableRow qnaRow">
- 		<td><input class="pftCheck" type="checkbox"></td>
- 		 <td style="padding:10px;">1</td>
- 		 <td>마녀김밥</td> 		 
- 		 <td>신용카드</td> 	
- 		 <td >2018-05-01</td>
- 		 <td >Y</td>
- 	</tr>
- 
- 	
+ 	 	
  	</table><br><br>
  		
 
@@ -891,8 +895,13 @@ function openTab(evt, tabName) {
 	     			
 	     			  console.log(data);
 	     			  console.log(data.memberlist); 
-	     			     
+	     			 
+	     			  
+	     			  
+	     			  
 	     			 $("#memberHeader").nextAll("tr").remove();
+	     			 
+	     			 
 	     			 
 	     			 for(var i = 0; i<data.memberlist.length;i++){	     				 	  
 	     				 
@@ -932,14 +941,30 @@ function openTab(evt, tabName) {
 	     			 
 	     			 for(var i = 0; i<data.boardList.length;i++){	     				 	  
 	     				 
-	    				  $("#boardList").append("<tr class='tableRow' > <td ><input type='checkbox' name='memberCheck' class='memberCheck' onchange='checkMid()'> <input type='hidden' class='mid' value="+ data.boardList[i].bid+"></td>");
-	    				  $("#boardList").find(".tableRow").last().append("<td style='padding-top: 10px;padding-bottom:10px;' class='userId' name='userId'>"+data.boardList[i].bno+"</td>");
+	    				  $("#boardList").append("<tr class='tableRow' > <td ><input type='checkbox' name='memberCheck' class='memberCheck' onchange='checkMid()'> <input type='hidden' name='bid' class='bid' value="+ data.boardList[i].bid+"></td>");
+	    				  $("#boardList").find(".tableRow").last().append("<td style='padding-top: 10px;padding-bottom:10px;'  >"+data.boardList[i].bno+"</td>");
 	    				  $("#boardList").find(".tableRow").last().append("<td name='userName'>"+data.boardList[i].bTitle+"</td>");
 	    				  $("#boardList").find(".tableRow").last().append("<td name='birth'>"+data.boardList[i].mCode+"</td>");
 	    				  $("#boardList").find(".tableRow").last().append("<td name='phone'>"+data.boardList[i].enrollDateJson+"</td>");
 	    				  $("#boardList").find(".tableRow").last().append("<td name='email'>"+data.boardList[i].refYN+"</td>");	    			
 	    				      				  				  
-	    			  }  
+	    			  } 
+	     			 
+	     			 
+	     			$(function(){
+	     				$("#boardList").find("td").mouseenter(function(){
+	     					$(this).parents("tr").css({"background":"lightgray", "cursor":"pointer"});
+	     				}).mouseout(function(){
+	     					$(this).parents("tr").css({"background":"white"});
+	     				}).click(function(){
+	     					var bid = $(this).parents().children("td").eq(1).text();
+	     					console.log(bid);		
+	     					location.href="selectOne.bo?bid="+bid;
+	     				});
+	     				
+	     			});
+
+	     			 
 	     			
 	     		  },
 	     		  error:function(){
@@ -954,23 +979,7 @@ function openTab(evt, tabName) {
 	    
 }
 
-		$(function(){
-			$("#boardList").find("td").mouseenter(function(){
-				$(this).parents("tr").css({"background":"lightgray", "cursor":"pointer"});
-			}).mouseout(function(){
-				$(this).parents("tr").css({"background":"white"});
-			}).click(function(){
-				var bid = $(this).parents().children("td").eq(1).text();
-				console.log(bid);		
-				location.href="selectOne.bo?bid="+bid;
-			});
-			
-		});
-
-
-
-
-
+		
 
 // Get the element with id="defaultOpen" and click on it
 document.getElementById("defaultOpen").click();
