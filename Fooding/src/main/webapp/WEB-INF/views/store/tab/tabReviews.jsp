@@ -1,16 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <div id="reviews" class="reviews">
 	<h4>리뷰</h4>
-	
+	<c:if test="${ review == null}">
 	<!-- 리뷰 無 -->
 	<div class="noReview">
 		<i class="iconReview"></i>
 		&quot;식당이름&quot; 매장의 첫번째 리뷰를 작성해 보세요!
 	</div>
 	<!-- no-review -->
+	</c:if>
 	
+	<c:if test="${ review != null}">
 	<!-- 리뷰 有 -->
 	<div class="showReview">
 		<div class="review-info">
@@ -41,5 +44,6 @@
 		<!-- rank -->
 	</div>
 	<!-- showReview -->
+	</c:if>
 </div>
 <!-- reviews -->	

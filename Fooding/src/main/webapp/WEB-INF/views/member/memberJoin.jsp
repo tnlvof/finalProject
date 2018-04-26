@@ -40,7 +40,7 @@
 						<!-- 
 							정규식 조건에 맞춰 아래의 내용 변경할 것 
 						 -->
-						<p class="alarm overlap" id="pwdDis">비밀번호는 8자 이상, 하나 이상의 숫자를 포함해야합니다.</p>
+						<p class="alarm overlap" id="pwdDis">비밀번호는 8자 이상, 하나 이상의 숫자 및 특수문자를 포함해야합니다.</p>
 						<p class="alarm overlap" id="pwdDupl">비밀번호가 일치하지 않습니다.</p>
 						<p class="alarm usable" id="pwdUse">비밀번호가 일치합니다.</p>
 					</div>
