@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,7 +18,9 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.fooding.common.PageInfo;
+import com.kh.fooding.member.model.vo.Member;
 import com.kh.fooding.store.model.service.StoreService;
+import com.kh.fooding.store.model.vo.Place;
 import com.kh.fooding.store.model.vo.Sam;
 import com.kh.fooding.store.model.vo.Store;
 
@@ -25,18 +28,26 @@ import com.kh.fooding.store.model.vo.Store;
 public class StoreController {
 	@Autowired
 	private StoreService ss;
-
+ 
 	
 	@RequestMapping(value="storeInfo.st")
 	public String storeInfo(Store s, Model model,
-			@RequestParam(name="mainPhoto", required=false)MultipartFile photo,
-			HttpServletRequest request) {
+			@RequestParam(name="Photo", required=false)MultipartFile photo,
+			HttpServletRequest request ,HttpSession session) {
+		
+		System.out.println("gdgdgdgdgd");
+		
 		System.out.println("controller : " + s);
+		
+		Member m = (Member) session.getAttribute("loginUser");
 		
 		String root = request.getSession().getServletContext().getRealPath("resources");
 		String filePath = root + "\\uploadFiles";
+		s.setMainPhoto(filePath);
+		s.setMid(m.getMid());
 		
-		try {
+		System.out.println(photo);
+		try {	
 			photo.transferTo(new File(filePath + "\\" + photo.getOriginalFilename()));
 		} catch (IllegalStateException | IOException e1) {
 			e1.printStackTrace();

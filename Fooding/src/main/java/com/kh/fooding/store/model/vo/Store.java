@@ -1,6 +1,9 @@
 package com.kh.fooding.store.model.vo;
 
-public class Store {
+import org.springframework.stereotype.Component;
+ 
+@Component
+public class Store implements java.io.Serializable{
 	private int sid;
 	private String sName;
 	private String phone;
@@ -22,6 +25,7 @@ public class Store {
 	private String mainPhoto;
 	private String subPhoto;
 	private int mid;
+	
 	public Store() {
 		super();
 		// TODO Auto-generated constructor stub
