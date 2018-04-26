@@ -29,7 +29,7 @@
     SELECT COUNT(*)
     FROM RESERVATION R
     JOIN MEMBER M ON (M.MID = R.MID)
-    WHERE M.MID=#{ mid }
+    WHERE M.MID=#{ mid } AND R.STATUS = 'Y'
     </select> 
     
     <select id="selectReservList" resultMap="reservationResultSet2">
@@ -38,6 +38,7 @@
     JOIN MEMBER M ON (M.MID = R.MID)
     JOIN STORE S ON (S.SID = R.SID)
     WHERE M.MID=#{ mid } AND R.STATUS = 'Y'
+    ORDER BY R.R_DATE ASC
     </select>   
     
     <update id="cancelReserv">
