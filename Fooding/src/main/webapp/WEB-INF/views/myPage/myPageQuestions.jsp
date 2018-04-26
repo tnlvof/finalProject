@@ -14,11 +14,7 @@
 	<jsp:include page="/WEB-INF/views/myPage/myPageBanner.jsp" />
 	<div id="content_wrap">
 		<div id="content" class="mypage">
-			<ul class="tab">
-				<li class="item" onclick="location.href='goMyPage.me'">예약</li>
-				<li class="item" onclick="location.href='goMyPageReview.me'">리뷰</li>
-				<li class="item" onclick="location.href='goMyPageQuestions.me'">1:1 문의</li>
-			</ul>
+			<jsp:include page="/WEB-INF/views/myPage/myPageTab.jsp"/>
 			<div id="reservation" class="body empty">
 				<div class="filter" onclick="location.href='goMyPageQuestionForm.me'">
 				    1:1문의 작성하기 <input type="hidden" name="key" value="memberMypage">

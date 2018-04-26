@@ -12,11 +12,7 @@
 	<jsp:include page="/WEB-INF/views/myPage/myPageBanner.jsp" />
 	<div id="content_wrap">
 		<div id="content" class="mypage">
-			<ul class="tab">
-				<li class="item" onclick="location.href='goMyPage.me'">예약</li>
-				<li class="item" onclick="location.href='goMyPageReview.me'">리뷰</li>
-				<li class="item" onclick="location.href='goMyPageQuestions.me'">1:1 문의</li>
-			</ul>
+			<jsp:include page="/WEB-INF/views/myPage/myPageTab.jsp"/>
 			<div id="reservation" class="body empty">
 				<div class="filter">
 				    
@@ -30,7 +26,7 @@
 					<form action="insertBoard.bo" method="post">
 						<textarea class="text" placeholder="문의사항을 적어주세요." name="bContent"></textarea>
 						<button type="submit" class="submit-btn" >등록하기</button>
-						<button type="reset" class="reset-btn" >취소</button>
+						<button type="reset" class="reset-btn" onclick="location.href='goMyPageQuestions.me'">취소</button>
 						<script type="text/javascript">		
 						</script>
 					</form>

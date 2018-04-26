@@ -13,11 +13,7 @@
 	<jsp:include page="/WEB-INF/views/myPage/myPageBanner.jsp"/>
 	<div id="content_wrap">
 		<div id="content" class="mypage">
-			<ul class="tab">
-				<li class="item" onclick="location.href='goMyPage.me'">예약</li>
-				<li class="item" onclick="location.href='goMyPageReview.me'">리뷰</li>
-				<li class="item" onclick="location.href='goMyPageQuestions.bo'">1:1 문의</li>
-			</ul>
+			<jsp:include page="/WEB-INF/views/myPage/myPageTab.jsp"/>
 			<div class="body empty">
 				<div class="filter">
 					<a>&nbsp;</a>
