@@ -1,0 +1,31 @@
+@charset "UTF-8";
+
+.title-box{
+	width: 100%;
+	height: 520px;
+	background-image: url(/fooding/resources/images/main/dining.png);
+	background-size: cover;
+	text-align: center;
+	vertical-align: middle;
+}
+.bg-black{
+	padding-top: 100px;
+	background: rgba(0,0,0,0.4);
+	height: 520px;
+}
+.title-box *{
+	color: #fff;
+}
+.title-box p{
+	font-size: 21px;
+	line-height: 1.8em;
+	margin-top: 130px;
+}
+.title-box span{
+	font-size: 14px;
+	display: inline-block;
+	margin: 0 auto;
+	border-top: 1px solid #fff;
+	padding-top: 40px;
+	margin-top: 30px;
+}

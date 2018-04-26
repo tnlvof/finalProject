@@ -1,0 +1,54 @@
+@charset "UTF-8";
+
+.coupon-each li{
+	border: 1px solid #e5e5e5;
+	border-radius: 5px;
+	margin-bottom: 15px;
+	overflow: hidden;
+}
+.coupons{
+	float: left;
+	height: 160px;
+	box-sizing: border-box;
+}
+.coupons, .coupons *{
+	font-size: 13px;
+}
+.coupon-head{
+	background-color: #cc272b;
+	width: 14%;
+	color: #fff;
+	text-align: center;
+	line-height: 160px;
+}
+.coupon-body{
+	width: 62%;
+	padding: 30px;
+	border-left: 1px solid #e5e5e5;
+	border-right: 2px dotted #e5e5e5;
+}
+.coupon-body label{
+	margin-right: 10px;
+}
+.coupon-body input{
+	border: 1px solid #e5e5e5;
+	padding: 5px 8px;
+}
+.cname{
+	font-size: 18px;
+	font-weight: bold;
+	color: #333;
+}
+.coupon-foot{
+	width: 24%;
+	padding: 60px 30px;
+	text-align: center;
+}
+.coupon-foot label{
+	margin-top: 30px;
+	background-color: #e5e5e5;
+	padding: 4px 8px;
+}
+.cdate{
+	margin-top: 15px;
+}

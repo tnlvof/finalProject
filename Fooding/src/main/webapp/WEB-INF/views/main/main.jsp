@@ -45,34 +45,25 @@
 				         다른 스타일은 main.css에 포함되어 있음  
 				-->
 				<ul>
-					<li style="background-image:url('resources/images/main/ticket01.png')">
+					<li style="background-image:url(http://c1.poing.co.kr/original/images/main/kind.png)">
 						<div class="bg">
-							<p>
-								<span>호텔</span><br>
-								당신의 특별한 하루를 위한
-							</p>
+							<p>신규 등록 쿠폰</p>
 						</div>
 					</li>
-					<li style="background-image:url('resources/images/main/ticket02.png')">
+					<li style="background-image:url(http://c1.poing.co.kr/original/images/main/location.png)">
 						<div class="bg">
-							<p>
-								<span>디저트</span><br>
-								나를 위한 달콤한 사치
-							</p>
+							<p>Fooding's choice</p>
 						</div>
 					</li>
-					<li style="background-image:url('resources/images/main/ticket03.png')">
+					<li style="background-image:url(http://c1.poing.co.kr/original/images/main/hotel.png)">
 						<div class="bg">
-							<p>
-								<span>일식</span><br>
-								정갈함의 미학을 담은
-							</p>
+							<p>마감임박 쿠폰</p>
 						</div>
 					</li>
 				</ul>
-				<div class="more">더보기 &nbsp;&gt;</div>
+				<div class="more" onclick="locaiton.href='couponList.st'">더보기 &nbsp;&gt;</div>
 			</div>
-			<!-- dining-ticket -->
+			<!-- coupon-wrap -->
 			
 			
 			<div class="recommend">
