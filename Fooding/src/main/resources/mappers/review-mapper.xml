@@ -5,7 +5,7 @@
 <mapper namespace="Review">
     <resultMap type="Review" id="reviewResultSet">
         <id property="rid" column="RID"/>
-        <result property="enrollDate" column="ENROLL_DATEID" />
+        <result property="enrollDate" column="ENROLL_DATE" />
         <result property="rTitle" column="RTITLE" />
         <result property="rContent" column="RCONTENT" />
         <result property="sid" column="SID" />
@@ -16,6 +16,20 @@
         <result property="service" column="SERVICE" />
         <result property="price" column="PRICE" />
     </resultMap>
+    <resultMap type="Review" id="reviewResultSet2">
+        <id property="rid" column="RID"/>
+        <result property="enrollDate" column="ENROLL_DATE" />
+        <result property="rTitle" column="RTITLE" />
+        <result property="rContent" column="RCONTENT" />
+        <result property="sid" column="SID" />
+        <result property="status" column="STATUS" />
+        <result property="star" column="STAR" />
+        <result property="mid" column="MID" />
+        <result property="taste" column="TASTE" />
+        <result property="service" column="SERVICE" />
+        <result property="price" column="PRICE" />
+        <result property="sName" column="SNAME" />
+    </resultMap>
     
     <select id="selectReviewCount" parameterType="_int" resultType="_int">
     SELECT COUNT(*)
@@ -24,10 +38,11 @@
     WHERE M.MID=#{ mid }
     </select>
     
-    <select id="selectReviewList" resultMap="reviewResultSet">
+    <select id="selectReviewList" resultMap="reviewResultSet2">
     SELECT *
     FROM REVIEW R
     JOIN MEMBER M ON (M.MID = R.MID)
+    JOIN STORE S ON (S.SID = R.SID)
     WHERE M.MID=#{ mid } AND R.STATUS = 'Y'
     </select>   
     

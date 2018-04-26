@@ -14,6 +14,8 @@ public class Review {
 	private int taste;
 	private int service;
 	private int price;
+	private String sName;
+	private String sCode;
 	
 	public Review() {
 		super();
@@ -21,7 +23,7 @@ public class Review {
 	}
 
 	public Review(int rid, Date enrollDate, String rTitle, String rContent, int sid, String status, int star, int mid,
-			int taste, int service, int price) {
+			int taste, int service, int price, String sName, String sCode) {
 		super();
 		this.rid = rid;
 		this.enrollDate = enrollDate;
@@ -34,6 +36,8 @@ public class Review {
 		this.taste = taste;
 		this.service = service;
 		this.price = price;
+		this.sName = sName;
+		this.sCode = sCode;
 	}
 
 	public int getRid() {
@@ -124,11 +128,27 @@ public class Review {
 		this.price = price;
 	}
 
+	public String getsName() {
+		return sName;
+	}
+
+	public void setsName(String sName) {
+		this.sName = sName;
+	}
+
+	public String getsCode() {
+		return sCode;
+	}
+
+	public void setsCode(String sCode) {
+		this.sCode = sCode;
+	}
+
 	@Override
 	public String toString() {
 		return "Review [rid=" + rid + ", enrollDate=" + enrollDate + ", rTitle=" + rTitle + ", rContent=" + rContent
 				+ ", sid=" + sid + ", status=" + status + ", star=" + star + ", mid=" + mid + ", taste=" + taste
-				+ ", service=" + service + ", price=" + price + "]";
+				+ ", service=" + service + ", price=" + price + ", sName=" + sName + ", sCode=" + sCode + "]";
 	}
-	
+
 }
