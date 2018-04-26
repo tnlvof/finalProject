@@ -163,5 +163,11 @@
 	WHERE BID = #{bid}	
 	</update>
 	
+	<update id="deleteAnswer" parameterType="String">
+	UPDATE BOARD
+	SET STATUS = 'N'
+	WHERE BID=#{bid}
+	</update>
+	
 	
 </mapper>

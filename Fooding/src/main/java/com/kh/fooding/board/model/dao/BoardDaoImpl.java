@@ -162,7 +162,7 @@ public class BoardDaoImpl implements BoardDao{
 		return result;
 	}
 
-	// updating an answer
+	// 답변 수정 admin
 	@Override
 	public int updateAnswer(String bid, SqlSessionTemplate sqlSession, String answer) {
 		
@@ -173,6 +173,15 @@ public class BoardDaoImpl implements BoardDao{
 				
 		int result = sqlSession.update("Board.updateAnswer", b); 
 				
+		return result;
+	}
+
+	// 답변 삭제 admin
+	@Override
+	public int deleteAnswer(String bid, SqlSessionTemplate sqlSession) {
+		
+		int result = sqlSession.update("Board.deleteAnswer", bid);
+		
 		return result;
 	}
 

@@ -125,6 +125,14 @@ public class BoardServiceImpl implements BoardService {
 	
 		return result;
 	}
+
+	// 답변 삭제
+	@Override
+	public int deleteAnswer(String bid) {
+		int result = bd.deleteAnswer(bid, sqlSession);
+		
+		return result;
+	}
 	
 	
 }

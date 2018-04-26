@@ -35,4 +35,6 @@ public interface BoardService {
 
 	int updateAnswer(String bid, String answer);
 
+	int deleteAnswer(String bid);
+
 }

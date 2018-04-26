@@ -43,8 +43,12 @@
   		if (c == true){
   			var bid = document.getElementById('answerBid').value;
   			var answer = document.getElementById('replyArea').value;
+  			
+  			
   			console.log(bid);
-  			location.href="updateAnswer.bo?bid="+bid+"&answer"+answer;
+  			console.log(answer);
+  			
+  			location.href="updateAnswer.bo?bid="+bid+"&answer="+answer;
   		}
   		
   		
@@ -57,7 +61,7 @@
   		if (c == true){
   			var bid = document.getElementById('answerBid').value;
   			console.log(bid);
-  			//location.href="deleteAnswer.bo?bid="+bid;
+  			location.href="deleteAnswer.bo?bid="+bid;
   		}
   	}
   	
@@ -104,7 +108,7 @@
  		
  		<c:if test="${! empty b.answer }">
  		<p style="position: relative; left: 1020px; font-size: 15px;"><c:out value="${b.answerDate }"> </c:out> <input type="text" value="${b.answerBid }" id="answerBid"></p>
- 		<textarea id="replyArea" rows="11" cols="100" style="font-size: 16px;     position: relative;   left: 200px;  padding: 12px 8px;    margin-bottom: -50; margin-left: 140px;resize:none;" autofocus> ${b.answer } </textarea>
+ 		<textarea id="replyArea" rows="11" cols="100" style="font-size: 16px;     position: relative;   left: 200px;  padding: 12px 8px;    margin-bottom: -50; margin-left: 140px;resize:none;" autofocus>${b.answer } </textarea>
  		</div>
  		<div style="display:inline-block;">
  		<ul>
@@ -121,11 +125,14 @@
  	<script type="text/javascript">
  	function submitReply(){
  		
- 		if($("#replyArea").is(":empty")){ 			
+ 		if($("#replyArea").val() == ""){
+ 			
  			alert('답변을 입력해주세요.');
+ 			var reply = $("#replyArea").val(); 
+ 			console.log(reply);
  		} else {
  			var bid = $("#bid").val(); 		
- 			var reply = $("textarea").val(); 
+ 			var reply = $("#replyArea").val(); 
  				
  			var replyMap = {bid:bid, reply:reply };
  			console.log('replyMap : ');

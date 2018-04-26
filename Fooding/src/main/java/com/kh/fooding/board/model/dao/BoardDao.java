@@ -36,4 +36,6 @@ public interface BoardDao {
 
 	int updateAnswer(String bid, SqlSessionTemplate sqlSession, String answer);
 
+	int deleteAnswer(String bid, SqlSessionTemplate sqlSession);
+
 }
