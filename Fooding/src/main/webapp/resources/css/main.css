@@ -60,6 +60,7 @@
 	background: url(/fooding/resources/images/common/common.png) -898px -184px;
 }
 
+
 /* 다이닝 티켓 */
 .dining-ticket ul{
 	overflow: hidden;
@@ -70,7 +71,7 @@
 	border-radius: 6px;
 	margin-right: 20px;
 	width: 320px;
-	height: 320px;
+	height: 166px;
 	text-align: center;
 	box-sizing: border-box;
 	background-size: cover;
@@ -81,7 +82,7 @@
 }
 .dining-ticket .bg{
 	width: 320px;
-	height: 320px;
+	height: 166px;
 	border-radius: 6px;
 	background-color: rgba(0, 0, 0, 0.3);
 	display: table-cell;
@@ -140,3 +141,4 @@
 	line-height: 230px;
 	color: #fff;
 }
+
