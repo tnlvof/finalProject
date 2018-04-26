@@ -90,7 +90,10 @@
 		<init-param> 
 			<param-name>contextConfigLocation</param-name>
 			<param-value>/WEB-INF/config/sample-servlet.xml</param-value>
-    </init-param>  
+    	</init-param>  
+    </servlet>
+    
+    <servlet-mapping>
     <servlet-name>sample</servlet-name>
 		<url-pattern>*.sp</url-pattern>
 	</servlet-mapping> 
@@ -106,11 +109,11 @@
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
+	<servlet-mapping>
 	<servlet-name>reservation</servlet-name>
 		<url-pattern>*.rv</url-pattern>
 	</servlet-mapping>
       
-	<servlet-mapping>
 
 	<!-- 한글 깨짐 방지 -->
 	<filter>
