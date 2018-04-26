@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <meta charset="UTF-8">
 
 <!-- header -->
@@ -103,10 +104,7 @@
 							</div>
 						</div>
 						</c:forEach>
-						</c:otherwise>
-				</c:choose>
-			</div>
-			<div id="review_pagination">
+						<div id="review_pagination">
 				<div class="page-list">
 					<ul class="pagination" onselectstart="return false;">
 						<li class="prevAll">&lt;&lt;</li>
@@ -117,6 +115,10 @@
 					</ul>
 				</div>
 			</div>
+						</c:otherwise>
+				</c:choose>
+			</div>
+			
 		</div>
 		<jsp:include page="/WEB-INF/views/myPage/myPageSidebar.jsp" />
 	</div>
