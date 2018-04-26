@@ -20,8 +20,8 @@
 
   	<h3>회원 수정 </h3>
   	
-  	<button id="blacklistOff" class="searchBtn" style="position:relative;left:195px;">블랙리스트 풀기</button>
-  	<button class="searchBtn" onclick="updateMember()" style="position:relative;left:210px;">수정완료</button>  	  	
+  	<button id="blacklistOff" class="searchBtn" style="position:relative;left:195px;"  onclick="updateMember()" >블랙리스트 풀기</button>
+  	
  	
   	<br><br>
   	
