@@ -41,12 +41,8 @@
 		<result property="restY" column="REST_Y"/>                                            
 	</resultMap>                                                                        
 	
-	<insert id="insertStore">
-<!--    	  	 INSERT INTO STORE 
-    	  VALUES(SEQ_MID.NEXTVAL, #{sName} , #{sCode}, #{phone} ,#{bookYN} ,#{address} ,#{sLocation}
-    	  , #{sHours} ,#{dayoff} ,#{sTable} , #{budget},#{atmosphere},#{facilities},#{description}
-    	  , 7,7,7,7,7,7,7) -->
- 	</insert>
+ 	<insert id="insertStore" parameterType="Store">INSERT INTO STORE VALUES(SEQ_SID.NEXTVAL, #{sName} , #{phone} , #{sCode}, #{bookYN} ,#{address} ,#{sLocation}, #{sHours} , #{dayoff} ,#{sTable} , #{budget},#{atmosphere},#{facilities},#{description} ,DEFAULT, DEFAULT,DEFAULT,DEFAULT,#{mainPhoto},DEFAULT, #{mid})</insert> 
+
 
 	<select id="searchResult" resultMap="samResultSet">
 		SELECT DISTINCT REST_ADDRESS ,REST_MENU ,REST_NAME, REST_NUMBER, REST_UPSTREAM, REST_X, REST_Y FROM SAM 

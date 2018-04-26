@@ -20,7 +20,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.kh.fooding.common.PageInfo;
 import com.kh.fooding.member.model.vo.Member;
 import com.kh.fooding.store.model.service.StoreService;
-import com.kh.fooding.store.model.vo.Place;
 import com.kh.fooding.store.model.vo.Sam;
 import com.kh.fooding.store.model.vo.Store;
 
@@ -34,8 +33,7 @@ public class StoreController {
 	public String storeInfo(Store s, Model model,
 			@RequestParam(name="Photo", required=false)MultipartFile photo,
 			HttpServletRequest request ,HttpSession session) {
-		
-		System.out.println("gdgdgdgdgd");
+
 		
 		System.out.println("controller : " + s);
 		
