@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.fooding.board.model.exception.insertException;
 import com.kh.fooding.board.model.exception.searchException;
+import com.kh.fooding.board.model.exception.updateException;
 import com.kh.fooding.board.model.service.BoardService;
 import com.kh.fooding.board.model.vo.Board;
 import com.kh.fooding.common.PageInfo;
@@ -129,6 +130,9 @@ public class BoardController {
 		
 		System.out.println("boardList 전부 : " + boardList);
 		
+		
+		
+		
 			
 		
 		mv.addObject("boardList", boardList);
@@ -214,7 +218,7 @@ public class BoardController {
 	}
 	
 	
-	//게시판 상세 조회
+	//게시판 상세 조회 admin 전용
 	@RequestMapping(value="selectOne.bo")
 	public ModelAndView selectOneBoard(HttpServletRequest request, ModelAndView mv) {
 		String bid = request.getParameter("bid");
@@ -223,6 +227,18 @@ public class BoardController {
 		try {
 			Board b = bs.selectOneQuestion(bid);
 			System.out.println("상세 조회 : " + b);
+			
+			
+			Board answer = bs.selectAnswer(bid);
+			System.out.println(answer);
+			
+			if(answer!=null) {
+				b.setAnswer(answer.getbContent());
+				b.setAnswerBid(answer.getBid());
+				b.setAnswerDate(answer.getEnrollDateJson());
+			}			
+		
+			System.out.println( "보드 리스트 수정 : "+ b);
 			
 			mv.addObject("b",b);
 			mv.setViewName("admin/qnaDetail");
@@ -279,6 +295,38 @@ public class BoardController {
 	}
 	
 	
+	
+	@RequestMapping(value="deleteQna.bo")
+	public ModelAndView deleteQuestion(ModelAndView mv, HttpServletRequest request) {
+		String bid = request.getParameter("bid");
+		
+		
+		try {
+			int result = bs.deleteQuestion(bid);
+		} catch (updateException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		mv.setViewName("admin/adminMain");
+		
+		return mv;
+	}
+	
+	@RequestMapping(value="updateAnswer.bo")
+	public ModelAndView updateAnswer(ModelAndView mv, HttpServletRequest request) {
+		String bid = request.getParameter("bid");		
+		String answer = request.getParameter("answer");
+		
+		System.out.println(answer);
+		
+		//int result = bs.updateAnswer(bid, answer);
+		
+		
+		mv.setViewName("admin/adminMain");
+		
+		return mv;
+	}
 	
 
 }

@@ -34,6 +34,7 @@
 		<result property="modifyDateJson" column="MODIFY_DATE"/>                            
 		<result property="bno" column="BNO"/>                                
 		<result property="bCount" column="B_COUNT"/>
+		
 	</resultMap> 
 	                                                                                    
 	<insert id="insertQuestion" parameterType="Board">
@@ -142,5 +143,25 @@
 	  AND PNO IN (SELECT BID FROM BOARD WHERE MID =#{mid})
 	  AND STATUS ='Y'
 	</select>
+	
+	<select id="selectAnswer"  parameterType="String" resultMap="boardResultSet2">
+	 SELECT * FROM BOARD
+	 WHERE BCODE='3'
+	 AND PNO = #{bid}
+	 AND STATUS ='Y'
+	</select>
+	
+	<update id="deleteQuestion" parameterType="String">
+	UPDATE BOARD
+	SET STATUS ='N'
+	WHERE BID = #{bid}
+	</update>
+	
+	<update id="updateAnswer" parameterType="Board">
+	UPDATE BOARD
+	SET BCONTENT = #{bContent}
+	WHERE BID = #{bid}	
+	</update>
+	
 	
 </mapper>

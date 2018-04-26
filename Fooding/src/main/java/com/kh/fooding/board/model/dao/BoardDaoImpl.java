@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.fooding.board.model.exception.insertException;
 import com.kh.fooding.board.model.exception.searchException;
+import com.kh.fooding.board.model.exception.updateException;
 import com.kh.fooding.board.model.vo.Board;
 import com.kh.fooding.member.model.vo.Member;
 
@@ -134,6 +135,45 @@ public class BoardDaoImpl implements BoardDao{
 		
 		
 		return answerList;
+	}
+
+	// 답변 가져오기
+	@Override
+	public Board selectAnswer(String bid, SqlSessionTemplate sqlSession) {
+		System.out.println("dao온당");
+		Board b = sqlSession.selectOne("Board.selectAnswer", bid);
+				
+		System.out.println("answer : " + b);
+		return b;
+	}
+
+	// 질문 삭제하기 
+	@Override
+	public int deleteQuestion(String bid, SqlSessionTemplate sqlSession) throws updateException {
+		int result = sqlSession.update("Board.deleteQuestion", bid);
+		
+		System.out.println("삭제 리절트 : " + result);
+		
+		if(result <= 0) {
+			throw new updateException("업데이트 실패");
+		}
+		
+		
+		return result;
+	}
+
+	// updating an answer
+	@Override
+	public int updateAnswer(String bid, SqlSessionTemplate sqlSession, String answer) {
+		
+		Board b = new Board();
+		
+		b.setBid(Integer.parseInt(bid));
+		b.setbContent(answer);
+				
+		int result = sqlSession.update("Board.updateAnswer", b); 
+				
+		return result;
 	}
 
 	
