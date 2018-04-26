@@ -41,10 +41,10 @@
     ORDER BY R.R_DATE ASC
     </select>   
     
-    <update id="cancelReserv">
+    <update id="cancelReservation">
     UPDATE RESERVATION
     SET STATUS='N'
-    WHERE MID = #{ mid } AND RVID = #{ rvid }
+    WHERE MID = #{ mid }
     </update>
     
 </mapper>
