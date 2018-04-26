@@ -228,18 +228,37 @@ public class MemberController {
 	
 		
 	@RequestMapping(value ="goMyPage.me")
-	public String goMyPage() {
-
-		return "myPage/myPage";
-	}
+ 	public ModelAndView goMyPage(HttpSession session, ModelAndView mv) {
+ 		Member m = (Member) session.getAttribute("loginUser");
+ 		
+ 		int rcount = ms.selectRcount(m.getMid());
+ 		int reviewCount = ms.selectReviewCount(m.getMid());
+ 		
+ 		session.setAttribute("rcount", rcount);
+ 		session.setAttribute("reviewCount", reviewCount);
+ 		
+ 		ArrayList<Reservation> reservList = ms.selectReservList(m.getMid());
+ 		
+ 		System.out.println("Controller reservList : " + reservList);
+ 		
+ 		mv.addObject("reservList", reservList);
+ 		mv.setViewName("myPage/myPage");
+ 		
+ 		return mv;
+ 	}
 
 	@RequestMapping(value = "goMyPageReview.me")
-	public String goMyPageReview(HttpSession session) {
+	public ModelAndView goMyPageReview(HttpSession session, ModelAndView mv) {
 		Member m = (Member) session.getAttribute("loginUser");
 		
 		ArrayList<Review> reviewList = ms.selectReviewList(m.getMid());
+		
+		System.out.println("Controller reviewList : " + reviewList);
 
-		return "myPage/myPageReview";
+		mv.addObject("reviewList", reviewList);
+ 		mv.setViewName("myPage/myPageReview");
+ 		
+ 		return mv;
 	}
 
 	@RequestMapping(value = "goMyPageQuestions.me")

@@ -9,8 +9,8 @@
         <result property="rTitle" column="RTITLE" />
         <result property="rContent" column="RCONTENT" />
         <result property="sid" column="SID" />
-        <result property="rpeople" column="STATUS" />
-        <result property="status" column="STAR" />
+        <result property="status" column="STATUS" />
+        <result property="star" column="STAR" />
         <result property="mid" column="MID" />
         <result property="taste" column="TASTE" />
         <result property="service" column="SERVICE" />
@@ -28,7 +28,7 @@
     SELECT *
     FROM REVIEW R
     JOIN MEMBER M ON (M.MID = R.MID)
-    WHERE M.MID=#{ mid }
+    WHERE M.MID=#{ mid } AND R.STATUS = 'Y'
     </select>   
     
 </mapper>

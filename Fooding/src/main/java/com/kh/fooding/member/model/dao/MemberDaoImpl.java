@@ -147,6 +147,8 @@ public class MemberDaoImpl implements MemberDao{
 	public ArrayList<Review> selectReviewList(int mid) {
 		ArrayList<Review> reviewList = (ArrayList)sqlSession.selectList("Review.selectReviewList", mid);
 		
+		System.out.println("reviewList : " + reviewList);
+		
 		return reviewList;
 	}
 	
