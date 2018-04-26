@@ -9,84 +9,108 @@
 <link rel="stylesheet" href="resources/css/reset.css">
 <link rel="stylesheet" href="resources/css/common.css">
 <style>
-table {
-	width: 900px;
+ table {
+   width: 900px;
 }
 
 tr {
-	border: 1px solid #CCCCCC;
+   border: 1px solid #CCCCCC;
 }
 
 th {
-	width: 100px;
-	background: #faf8f5;
-	text-align: left;
-	padding: 15px;
-	border: 20px;
+   width: 100px;
+   background: #faf8f5;
+   text-align: left;
+   padding: 15px;
+   border: 20px;
 }
 
 #facilities {
-	margin: 15px 20px;
+   margin: 15px 20px;
 }
 
 button {
-	background: #ff5a5f;
-	margin: 20px 10px;
+   background: #ff5a5f;
+   margin: 20px 10px;
 }
 
 #menutextarea {
-	margin: 15px;
-	align: center;
+   margin: 15px;
+   align: center;
 }
 
 #storeInfotable {
-	font-size: 15px;
+   font-size: 15px;
+} 
+
+tr {
+   border: 1px solid #CCCCCC;
 }
 
+th {
+   width: 100px;
+   background: #faf8f5;
+   text-align: left;
+   padding: 15px;
+   border: 20px;
+}
+
+#facilities {
+   margin: 15px 20px;
+}
+
+#storeInfotable {
+   font-size: 15px;
+
+
 .filebox input[type="file"] {
-	position: absolute;
-	width: 1px;
-	height: 1px;
-	padding: 0;
-	margin: -1px;
-	overflow: hidden;
-	clip: rect(0, 0, 0, 0);
-	border: 0;
+   position: absolute;
+   width: 1px;
+   height: 1px;
+   padding: 0;
+   margin: -1px;
+   overflow: hidden;
+   clip: rect(0, 0, 0, 0);
+   border: 0;
 }
 
 .filebox label {
-	display: inline-block;
-	padding: .5em .75em;
-	color: #999;
-	font-size: inherit;
-	line-height: normal;
-	vertical-align: middle;
-	background-color: #fdfdfd;
-	cursor: pointer;
-	border: 1px solid #ebebeb;
-	border-bottom-color: #e2e2e2;
-	border-radius: .25em;
+   display: inline-block;
+   padding: .5em .75em;
+   color: #999;
+   font-size: inherit;
+   line-height: normal;
+   vertical-align: middle;
+   background-color: #fdfdfd;
+   cursor: pointer;
+   border: 1px solid #ebebeb;
+   border-bottom-color: #e2e2e2;
+   border-radius: .25em;
 } /* named upload */
 .filebox .upload-name {
-	display: inline-block;
-	padding: .5em .75em; /* label의 패딩값과 일치 */
-	font-size: inherit;
-	font-family: inherit;
-	line-height: normal;
-	vertical-align: middle;
-	background-color: #f5f5f5;
-	border: 1px solid #ebebeb;
-	border-bottom-color: #e2e2e2;
-	border-radius: .25em;
-	-webkit-appearance: none; /* 네이티브 외형 감추기 */
-	-moz-appearance: none;
-	appearance: none;
+   display: inline-block;
+   padding: .5em .75em; /* label의 패딩값과 일치 */
+   font-size: inherit;
+   font-family: inherit;
+   line-height: normal;
+   vertical-align: middle;
+   background-color: #f5f5f5;
+   border: 1px solid #ebebeb;
+   border-bottom-color: #e2e2e2;
+   border-radius: .25em;
+   -webkit-appearance: none; /* 네이티브 외형 감추기 */
+   -moz-appearance: none;
+   appearance: none;
 }
 </style>
 </head>
 <body>
+
+<!-- header -->
+<jsp:include page="/WEB-INF/views/common/header.jsp"/>
    <div class="storeInfo" align="center">
    <form class="storeInfo_form" action="storeInfo.st" method="post"  enctype="multipart/form-data">
+   
       <table id="storeInfotable">
          <tbody>
             <tr>
@@ -151,39 +175,42 @@ button {
                <td><textarea id="menutextarea" cols="100" rows="15" style="resize:none;" name="description"></textarea></td>
             </tr>
             <tr>
-            	<td>대표 이미지</td>
-            	<td>
-            	  <div class="filebox preview-image"> 
-    			  		<input class="upload-name" value="파일선택" disabled="disabled"> 
-  			    		<label for="input-file">업로드</label> 
-			      		<input type="file" id="input-file" class="upload-hidden" name="mainPhoto"> 
-   				   </div>
-            	</td>
+               <td>대표 이미지</td>
+               <td>
+                 <div class="filebox preview-image"> 
+                     <input class="upload-name" value="파일선택" disabled="disabled"> 
+                     <label for="input-file">업로드</label> 
+                     <input type="file" id="input-file" class="upload-hidden" name="Photo"> 
+                  </div>
+               </td>
             </tr>
          </tbody>
       </table>
      
 
-	<div align="center">
-		<button type="submit">수정하기</button>
-		<button type="reset">목록으로</button>   
- 	</div>
- 	</form>
+   <div align="center">
+      <button type="submit">수정하기</button>
+      <button type="reset">목록으로</button>   
+    </div>
+    </form>
   </div>
-  			 <script>
-				$(document).ready(
-						function() {
-							var fileTarget = $('.filebox .upload-hidden');
-							fileTarget.on('change', function() { // 값이 변경되면 
-								if (window.FileReader) { // modern browser 
-									var filename = $(this)[0].files[0].name;
-								} else { // old IE 
-									var filename = $(this).val().split('/')
-											.pop().split('\\').pop(); // 파일명만 추출 
-								} // 추출한 파일명 삽입 
-								$(this).siblings('.upload-name').val(filename);
-							});
-						});
-			</script>
+  <!-- footer -->
+<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
+  
+            <script>
+            $(document).ready(
+                  function() {
+                     var fileTarget = $('.filebox .upload-hidden');
+                     fileTarget.on('change', function() { // 값이 변경되면 
+                        if (window.FileReader) { // modern browser 
+                           var filename = $(this)[0].files[0].name;
+                        } else { // old IE 
+                           var filename = $(this).val().split('/')
+                                 .pop().split('\\').pop(); // 파일명만 추출 
+                        } // 추출한 파일명 삽입 
+                        $(this).siblings('.upload-name').val(filename);
+                     });
+                  });
+         </script>
 </body>
 </html>
