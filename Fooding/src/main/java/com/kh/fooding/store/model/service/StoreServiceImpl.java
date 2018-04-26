@@ -21,7 +21,7 @@ public class StoreServiceImpl implements StoreService{
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 
-	@Override
+	@Override 
 	public void insertStoreInfo(Store s) {
 		sd.insertStoreInfo(s, sqlSession);
 		

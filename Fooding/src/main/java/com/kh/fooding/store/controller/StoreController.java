@@ -28,7 +28,7 @@ import com.kh.fooding.store.model.vo.Store;
 public class StoreController {
 	@Autowired
 	private StoreService ss;
-
+ 
 	
 	@RequestMapping(value="storeInfo.st")
 	public String storeInfo(Store s, Model model,

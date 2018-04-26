@@ -1,7 +1,7 @@
 package com.kh.fooding.store.model.vo;
 
 import org.springframework.stereotype.Component;
-
+ 
 @Component
 public class Store implements java.io.Serializable{
 	private int sid;
