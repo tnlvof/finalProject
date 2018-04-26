@@ -35,7 +35,7 @@
     SELECT COUNT(*)
     FROM REVIEW R
     JOIN MEMBER M ON (M.MID = R.MID)
-    WHERE M.MID=#{ mid }
+    WHERE M.MID=#{ mid } AND R.STATUS = 'Y'
     </select>
     
     <select id="selectReviewList" resultMap="reviewResultSet2">
@@ -44,6 +44,7 @@
     JOIN MEMBER M ON (M.MID = R.MID)
     JOIN STORE S ON (S.SID = R.SID)
     WHERE M.MID=#{ mid } AND R.STATUS = 'Y'
+    ORDER BY R.ENROLL_DATE DESC
     </select>   
     
 </mapper>

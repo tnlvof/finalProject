@@ -9,6 +9,10 @@ a {
 	text-decoration: none;
 }
 
+.w3-modal-content{
+	background:none;
+}
+
 /* 마이페이지 배너(프로필 사진, 이름, 소개 등) */
 #banner_wrap {
 	width: 100%;
