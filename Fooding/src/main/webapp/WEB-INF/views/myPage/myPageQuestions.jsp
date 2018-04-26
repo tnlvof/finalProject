@@ -130,7 +130,7 @@
 			</c:forEach>
 			
 			<c:if test="${pi.currentPage <= pi.maxPage}">
-				&nbsp; [다음!]
+				&nbsp; [다음]
 			</c:if>
 			<c:if test="${pi.currentPage < pi.maxPage} ">
 				<c:url var="blistEnd" value="goMyPageQuestions.bo">
