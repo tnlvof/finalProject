@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 
 import com.kh.fooding.board.model.exception.insertException;
 import com.kh.fooding.board.model.exception.searchException;
+import com.kh.fooding.board.model.exception.updateException;
 import com.kh.fooding.board.model.vo.Board;
 
 public interface BoardDao {
@@ -28,5 +29,11 @@ public interface BoardDao {
 	int insertReply(SqlSessionTemplate sqlSession, Board b);
 
 	ArrayList<Board> selectAnwerList(Board b, SqlSessionTemplate sqlSession);
+
+	Board selectAnswer(String bid, SqlSessionTemplate sqlSession);
+
+	int deleteQuestion(String bid, SqlSessionTemplate sqlSession)  throws updateException ;
+
+	int updateAnswer(String bid, SqlSessionTemplate sqlSession, String answer);
 
 }

@@ -30,9 +30,37 @@
   		var c = confirm('정말 글을 삭제하시겠습니까?');
   		
   		if (c == true){
-  			location.href="deleteQna.bo";
+  			var bid = document.getElementById('bid').value;
+  			console.log(bid);
+  			location.href="deleteQna.bo?bid="+bid;
   		}
   	}
+  	
+  	function updateReply(){
+  		
+  		var c = confirm('답변을 수정하시겠습니까?');
+  		
+  		if (c == true){
+  			var bid = document.getElementById('answerBid').value;
+  			var answer = document.getElementById('replyArea').value;
+  			console.log(bid);
+  			location.href="updateAnswer.bo?bid="+bid+"&answer"+answer;
+  		}
+  		
+  		
+  	}
+  	
+  	function deleteReply(){
+  		
+  		var c = confirm('답변을 삭제하시겠습니까?');
+  		
+  		if (c == true){
+  			var bid = document.getElementById('answerBid').value;
+  			console.log(bid);
+  			//location.href="deleteAnswer.bo?bid="+bid;
+  		}
+  	}
+  	
   </script>
     	
  	<div id="tableArea">
@@ -64,13 +92,30 @@
  	</table>
  	<hr>
  	
- 	<div id="replyArea">
- 		<div style="display:inline-block;">
+ 	<div id="replyDiv" style="display:inline-block;">
+ 	
+ 		<c:if test="${empty b.answer }">
  		<textarea id="replyArea" rows="11" cols="100" style="font-size: 16px;     position: relative;   left: 200px;  padding: 12px 8px; margin-bottom: -100; margin-left: 140px;resize:none;" autofocus></textarea>
- 		</div>
+ 		
  		<div style="display:inline-block;">
  		 		<button class="searchBtn" id="replyBtn" style="height:200px;  position: relative;   left: 200px;" onclick="submitReply();"> 답변 달기 </button>
  		</div>
+ 		</c:if>
+ 		
+ 		<c:if test="${! empty b.answer }">
+ 		<p style="position: relative; left: 1020px; font-size: 15px;"><c:out value="${b.answerDate }"> </c:out> <input type="text" value="${b.answerBid }" id="answerBid"></p>
+ 		<textarea id="replyArea" rows="11" cols="100" style="font-size: 16px;     position: relative;   left: 200px;  padding: 12px 8px;    margin-bottom: -50; margin-left: 140px;resize:none;" autofocus> ${b.answer } </textarea>
+ 		</div>
+ 		<div style="display:inline-block;">
+ 		<ul>
+ 			<li><button class="searchBtn" id="replyBtn" style="height:100px;  position: relative;  margin:5px; left: 200px;" onclick="updateReply();"> 답변 수정 </button></li>
+ 		 	<li><button class="searchBtn" id="replyBtn" style="height:100px;  position: relative;  margin:5px;  left: 200px;" onclick="deleteReply();"> 답변 삭제 </button></li>
+ 		 </ul>	
+ 		</div>
+ 		
+ 		</c:if>
+ 		
+ 		
  	</div>
  	
  	<script type="text/javascript">

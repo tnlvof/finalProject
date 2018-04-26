@@ -957,7 +957,7 @@ function openTab(evt, tabName) {
 	     				}).mouseout(function(){
 	     					$(this).parents("tr").css({"background":"white"});
 	     				}).click(function(){
-	     					var bid = $(this).parents().children("td").eq(1).text();
+	     					var bid = $(this).parents().children("td").eq(0).children("input").eq(1).val();
 	     					console.log(bid);		
 	     					location.href="selectOne.bo?bid="+bid;
 	     				});
