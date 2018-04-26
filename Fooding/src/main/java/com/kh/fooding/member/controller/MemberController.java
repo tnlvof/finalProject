@@ -43,12 +43,14 @@ public class MemberController {
 			Member loginUser = ms.loginMember(m);
 
 			session.setAttribute("loginUser", loginUser);
+			session.removeAttribute("loginFail");
 
 			return "main/main";
 
 		} catch (LoginException e) {
-			model.addAttribute("message", e.getMessage());
-			return "common/errorPage";
+			String loginFail = "로그인에 실패하였습니다.";
+			session.setAttribute("loginFail", loginFail);
+			return "main/main";
 		}
 	}
 
