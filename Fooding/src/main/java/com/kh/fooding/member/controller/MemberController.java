@@ -228,7 +228,7 @@ public class MemberController {
 	}
 	
 	
-		
+	//마이페이지 - 예약,리뷰 카운트 / 예약리스트 불러오기	
 	@RequestMapping(value ="goMyPage.me")
  	public ModelAndView goMyPage(HttpSession session, ModelAndView mv) {
  		Member m = (Member) session.getAttribute("loginUser");
@@ -249,6 +249,7 @@ public class MemberController {
  		return mv;
  	}
 
+	//마이페이지 - 리뷰리스트 불러오기
 	@RequestMapping(value = "goMyPageReview.me")
 	public ModelAndView goMyPageReview(HttpSession session, ModelAndView mv) {
 		Member m = (Member) session.getAttribute("loginUser");
