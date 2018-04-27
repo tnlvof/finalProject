@@ -29,18 +29,19 @@
 					</div>
 				</c:if>
 			</div>
+						
 			<c:forEach  items="${boardList}" var="e">
 			<div class="body question list question_wrap">
 				<div class="question">
 				    <a class="user" href=""> <span class="userProfile"
 						style="display: block; background-image: url('/fooding/resources/images/myPage/default_image.png');"></span>
-						<p class="userName">	<c:out value="${e.mCode }"> </c:out> </p>
+						<p class="userName">	<c:out value="${e.mCode }"/> <input type="text" value="${e.bid }" > </p>
 						<div class="time loaded" style="display: block;"> <c:out value="${e.enrollDate }"></c:out></div>
 					</a>
 					<div class="body">
 						<div class="text" data-truncated=""><c:out value="${e.bTitle }"></c:out></div>
 						<div class="action">
-							<div class="article">
+							<!-- <div class="article">
 								<button class="edit" tabindex="-1">수정하기</button>
 								<button class="delete" tabindex="-1" onclick="document.getElementById('questionDelete').style.display='block'">삭제하기</button>
 								<div id="questionDelete" class="w3-modal">
@@ -55,12 +56,13 @@
 												style="margin-left: -110.5px; margin-top: 28.5px; width: 108.5px; display: block;"
 												onclick="document.getElementById('questionDelete').style.display='none'">아니오</div>
 											<div class="confirmOk"
-												style="margin-left: 1px; margin-top: 28.5px; width: 108.5px; display: block;">예</div>
+												style="margin-left: 1px; margin-top: 28.5px; width: 108.5px; display: block;" onclick="deleteQuestion()">예</div>
 
+											
 										</div>
 									</div>
 								</div>
-							</div>
+							</div> -->
 						</div>
 					</div>
 					<c:choose>
@@ -77,27 +79,8 @@
 								<a class="name">관리자</a>
 								<p class="text"><c:out value="${e.answer }"></c:out></p>
 
-								<div class="action">
-									<button type="button" class="edit">수정하기</button>
-									<button type="button" class="delete" onclick="document.getElementById('answerDelete').style.display='block'">삭제하기</button>
-								</div>
-								<div id="answerDelete" class="w3-modal">
-									<div class="w3-modal-content">
-										<div class="w3-container">
-											<div class="confirmBackground" style="display: block;"></div>
-											<div id="default" class="confirmPopup"
-												style="padding: 20px 40px; margin-left: -110.5px; margin-top: -26.5px; display: block;">
-												<div class="confirmMessage">답변을 삭제하시겠습니까?</div>
-											</div>
-											<div class="confirmNo"
-												style="margin-left: -110.5px; margin-top: 28.5px; width: 108.5px; display: block;"
-												onclick="document.getElementById('answerDelete').style.display='none'">아니오</div>
-											<div class="confirmOk"
-												style="margin-left: 1px; margin-top: 28.5px; width: 108.5px; display: block;">예</div>
-
-										</div>
-									</div>
-								</div>
+								
+								
 							</div>
 						</div>
 					</div>
@@ -130,7 +113,7 @@
 			</c:forEach>
 			
 			<c:if test="${pi.currentPage <= pi.maxPage}">
-				&nbsp; [다음!]
+				&nbsp; [다음]
 			</c:if>
 			<c:if test="${pi.currentPage < pi.maxPage} ">
 				<c:url var="blistEnd" value="goMyPageQuestions.bo">

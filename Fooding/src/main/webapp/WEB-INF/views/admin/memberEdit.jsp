@@ -20,8 +20,8 @@
 
   	<h3>회원 수정 </h3>
   	
-  	<button id="blacklistOff" class="searchBtn" style="position:relative;left:195px;">블랙리스트 풀기</button>
-  	<button class="searchBtn" onclick="updateMember()" style="position:relative;left:210px;">수정완료</button>  	  	
+  	<button id="blacklistOff" class="searchBtn" style="position:relative;left:195px;"  onclick="updateMember()" >블랙리스트 풀기</button>
+  	
  	
   	<br><br>
   	
@@ -89,7 +89,7 @@
  	<th style="width:150px; text-align:center;height:20px;font-weight:bold;">주소</th>
  	<th style="width:100px; text-align:center;height:20px;font-weight:bold;">신고횟수</th>
  	<th style="width:100px; text-align:center;height:20px;font-weight:bold;">예약 누적 횟수</th>
- 	<th style="width:100px; text-align:center;height:20px;font-weight:bold;">탈퇴여부</th> 	
+ 	<th style="width:100px; text-align:center;height:20px;font-weight:bold;">회원여부</th> 	
  	
  	</tr>
   

@@ -53,11 +53,20 @@ public class StoreServiceImpl implements StoreService{
 		return s;
 	}
 
+
 	@Override
 	public int getCouponListCount() {
 	int result = sd.getCouponListCount(sqlSession);
 		
 		return result;
+
+	// 업체 조회 admin
+	@Override
+	public ArrayList<Store> selectAllStores() {
+		ArrayList<Store> storeList = sd.selectAllStores(sqlSession);
+		
+		return storeList;
+
 	}
 
 }

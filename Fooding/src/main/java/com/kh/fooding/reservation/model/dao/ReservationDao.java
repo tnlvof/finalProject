@@ -1,6 +1,7 @@
 package com.kh.fooding.reservation.model.dao;
 
-public class ReservationDao {
+public interface ReservationDao {
 
-
+	int cancelReservation(int mid);
+ 
 }
