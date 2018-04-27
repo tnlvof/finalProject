@@ -63,5 +63,13 @@ public class StoreDaoImpl implements StoreDao{
 		return s;
 	}
 
+	// 업체 조회
+	@Override
+	public ArrayList<Store> selectAllStores(SqlSessionTemplate sqlSession) {
+		
+		ArrayList<Store> storeList =(ArrayList) sqlSession.selectList("Store.selectAllStores");
+		return storeList;
+	}
+
 
 }

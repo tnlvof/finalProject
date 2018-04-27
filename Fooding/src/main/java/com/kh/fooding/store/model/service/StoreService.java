@@ -16,4 +16,6 @@ public interface StoreService {
 	int getListCount(String searchKey);
 	
 	Sam selectOneSam(String restName);
+
+	ArrayList<Store> selectAllStores();
 }

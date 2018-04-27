@@ -53,4 +53,12 @@ public class StoreServiceImpl implements StoreService{
 		return s;
 	}
 
+	// 업체 조회 admin
+	@Override
+	public ArrayList<Store> selectAllStores() {
+		ArrayList<Store> storeList = sd.selectAllStores(sqlSession);
+		
+		return storeList;
+	}
+
 }

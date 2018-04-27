@@ -222,152 +222,24 @@
   	
   	<button type="submit" class="searchBtn">검색</button>
   	
-  	<button class="searchBtn">수정</button>
+  	
   	<br><br>
  	<div class="tableArea">
- 	<table class="tableList" align="center" >
+ 	<table class="tableList" align="center" id="storeTableList">
  	
- 	<tr style="border-bottom:1px solid lightgray;">
- 	<th style="width:100px;  text-align:center;height:20px;font-weight:bold;"><input type="checkbox" id="checkAll2">&nbsp;전체선택</th>
- 	<th style="width:100px; text-align:center;height:20px;font-weight:bold;">사업자번호</th>
+ 	<tr id="storeHeader" style="border-bottom:1px solid lightgray;"> 	
  	<th style="width:100px; text-align:center;height:20px;font-weight:bold;">업체명</th>
  	<th style="width:100px; text-align:center;height:20px;font-weight:bold;">전화번호</th>
  	<th style="width:100px; text-align:center;height:20px;font-weight:bold;">업종</th>
  	<th style="width:100px; text-align:center;height:20px;font-weight:bold;">예약가능여부</th>
- 	<th style="width:100px; text-align:center;height:20px;font-weight:bold;">주소</th>
+ 	<th style="width:300px; text-align:center;height:20px;font-weight:bold;">주소</th>
  	<th style="width:100px; text-align:center;height:20px;font-weight:bold;">영업시간</th>
  	<th style="width:100px; text-align:center;height:20px;font-weight:bold;">휴일</th>
  	<th style="width:100px; text-align:center;height:20px;font-weight:bold;">예산</th>
-  <th style="width:100px; text-align:center;height:20px;font-weight:bold;">분위기</th> 	
+  	<th style="width:100px; text-align:center;height:20px;font-weight:bold;">분위기</th> 	
  	<th style="width:100px; text-align:center;height:20px;font-weight:bold;">편의시설</th> 
  	</tr>
  	
- 	<tr class="tableRow">
- 		<td><input class="storeCheck" type="checkbox"></td>
- 		 <td style="padding:10px;">0000000000</td>
- 		 <td >에머이</td>
- 		 <td >555-0101</td>
- 		 <td >동남아식</td>
- 		 <td >Y</td>
- 		 <td >강남역 10번 출구</td>
- 		 <td>24시간</td>
- 		 <td>null</td>
- 		 <td>10000-20000</td>
- 		 <td>캐주얼, 데이트</td>
- 		 <td>베이비 체어, 와이파이, 내부 화장실, 주차불가uuuuuuuuuuuuuuuuuuuuuuuu</td> 
- 	</tr>
- 	<tr class="tableRow">
- 		<td><input class="storeCheck" type="checkbox"></td>
- 		 <td style="padding:10px;">0000000000</td>
- 		 <td >바토스</td>
- 		 <td >555-0101</td>
- 		 <td >멕시칸</td>
- 		 <td >Y</td>
- 		 <td >이태원 1번 출구</td>
- 		 <td>11:00-23:00</td>
- 		 <td>null</td>
- 		 <td>10000-20000</td>
- 		 <td>캐주얼, 데이트</td>
- 		 <td>베이비 체어, 와이파이, 내부 화장실, 주차불가</td> 
- 	</tr>
- 	<tr class="tableRow">
- 		<td><input class="storeCheck" type="checkbox"></td>
- 		 <td style="padding:10px;">0000000000</td>
- 		 <td >한와담</td>
- 		 <td >555-5101</td>
- 		 <td >한식</td>
- 		 <td >Y</td>
- 		 <td >한남동</td>
- 		 <td>11:30-11:00</td>
- 		 <td>null</td>
- 		 <td>30000-40000</td>
- 		 <td>회식</td>
- 		 <td>베이비 체어, 와이파이, 내부 화장실, 주차가능</td> 
- 	</tr>
- 	<tr class="tableRow">
- 		<td><input class="storeCheck" type="checkbox"></td>
- 		 <td style="padding:10px;">0000000000</td>
- 		 <td >아오리 라멘</td>
- 		 <td >555-0108</td>
- 		 <td >일식</td>
- 		 <td >N</td>
- 		 <td >강남역 10번 출구</td>
- 		 <td>10:30-23:00</td>
- 		 <td>null</td>
- 		 <td>10000-20000</td>
- 		 <td>캐주얼, 데이트</td>
- 		 <td>베이비 체어, 와이파이, 내부 화장실, 주차불가</td> 
- 	</tr>
- 	<tr class="tableRow">
- 		<td><input class="storeCheck" type="checkbox"></td>
- 		 <td style="padding:10px;">0000000000</td>
- 		 <td >에머이</td>
- 		 <td >555-0101</td>
- 		 <td >동남아식</td>
- 		 <td >Y</td>
- 		 <td >강남역 10번 출구</td>
- 		 <td>24시간</td>
- 		 <td>null</td>
- 		 <td>10000-20000</td>
- 		 <td>캐주얼, 데이트</td>
- 		 <td>베이비 체어, 와이파이, 내부 화장실, 주차불가uuuuuuuuuuuuuuuuuuuuuuuu</td> 
- 	</tr>
- 	<tr class="tableRow">
- 		<td><input class="storeCheck" type="checkbox"></td>
- 		 <td style="padding:10px;">0000000000</td>
- 		 <td >에머이</td>
- 		 <td >555-0101</td>
- 		 <td >동남아식</td>
- 		 <td >Y</td>
- 		 <td >강남역 10번 출구</td>
- 		 <td>24시간</td>
- 		 <td>null</td>
- 		 <td>10000-20000</td>
- 		 <td>캐주얼, 데이트</td>
- 		 <td>베이비 체어, 와이파이, 내부 화장실, 주차불가uuuuuuuuuuuuuuuuuuuuuuuu</td> 
- 	</tr>
- 	<tr class="tableRow">
- 		<td><input class="storeCheck" type="checkbox"></td>
- 		 <td style="padding:10px;">0000000000</td>
- 		 <td >에머이</td>
- 		 <td >555-0101</td>
- 		 <td >동남아식</td>
- 		 <td >Y</td>
- 		 <td >강남역 10번 출구</td>
- 		 <td>24시간</td>
- 		 <td>null</td>
- 		 <td>10000-20000</td>
- 		 <td>캐주얼, 데이트</td>
- 		 <td>베이비 체어, 와이파이, 내부 화장실, 주차불가uuuuuuuuuuuuuuuuuuuuuuuu</td> 
- 	</tr>
- 	<tr class="tableRow">
- 		<td><input class="storeCheck" type="checkbox"></td>
- 		 <td style="padding:10px;">0000000000</td>
- 		 <td >에머이</td>
- 		 <td >555-0101</td>
- 		 <td >동남아식</td>
- 		 <td >Y</td>
- 		 <td >강남역 10번 출구</td>
- 		 <td>24시간</td>
- 		 <td>null</td>
- 		 <td>10000-20000</td>
- 		 <td>캐주얼, 데이트</td>
- 		 <td>베이비 체어, 와이파이, 내부 화장실, 주차불가uuuuuuuuuuuuuuuuuuuuuuuu</td> 
- 	</tr>
- 	<tr class="tableRow">
- 		<td><input class="storeCheck" type="checkbox"></td>
- 		 <td style="padding:10px;">0000000000</td>
- 		 <td >에머이</td>
- 		 <td >555-0101</td>
- 		 <td >동남아식</td>
- 		 <td >Y</td>
- 		 <td >강남역 10번 출구</td>
- 		 <td>24시간</td>
- 		 <td>null</td>
- 		 <td>10000-20000</td>
- 		 <td>캐주얼, 데이트</td>
- 		 <td>베이비 체어, 와이파이, 내부 화장실, 주차불가uuuuuuuuuuuuuuuuuuuuuuuu</td> 
- 	</tr>
  	
  	
  	
@@ -973,6 +845,47 @@ function openTab(evt, tabName) {
 	     		  
 	     		  
 	     		});
+	    	
+	    } else if (tabName ='storeList'){
+	    	
+	    	   $.ajax({
+	     		  method: "POST",
+	     		  url: "selectAllStores.st", 
+	     		  success:function(data){
+	     			
+	     			  console.log(data);
+	     			  console.log(data.storeList); 
+	     			  
+	     		 	     
+	     			 $("#storeHeader").nextAll("tr").remove();
+	     			 
+	     			 for(var i = 0; i<data.storeList.length;i++){	     				 	  
+	     				 
+	    				  $("#storeTableList").append("<tr class='tableRow' > ");
+	    				  $("#storeTableList").find(".tableRow").last().append("<td style='padding-top: 10px;padding-bottom:10px;'>"+data.storeList[i].sName+" <input type='hidden' name='sid' class='sid' value="+ data.storeList[i].sid+"></td>");
+	    				  $("#storeTableList").find(".tableRow").last().append("<td>"+data.storeList[i].phone+"</td>");
+	    				  $("#storeTableList").find(".tableRow").last().append("<td>"+data.storeList[i].sCode+"</td>");
+	    				  $("#storeTableList").find(".tableRow").last().append("<td >"+data.storeList[i].bookYN+"</td>");
+	    				  $("#storeTableList").find(".tableRow").last().append("<td >"+data.storeList[i].address+"</td>");
+	    				  $("#storeTableList").find(".tableRow").last().append("<td >"+data.storeList[i].sHours+"</td>");
+	    				  $("#storeTableList").find(".tableRow").last().append("<td >"+data.storeList[i].dayoff+"</td>");
+	    				  $("#storeTableList").find(".tableRow").last().append("<td >"+data.storeList[i].budget+"</td>");
+	    				  $("#storeTableList").find(".tableRow").last().append("<td>"+data.storeList[i].atmosphere+"</td>");
+	    				  $("#storeTableList").find(".tableRow").last().append("<td>"+data.storeList[i].facilities+"</td></tr>");
+	    				      				  				  
+	    			  } 
+	     			 
+	     			 
+	     		     			 
+	     			
+	     		  },
+	     		  error:function(){
+	     			  alert('안됨');
+	     		  }
+	     		  
+	     		  
+	     		});
+	    	  
 	    	
 	    }
     
