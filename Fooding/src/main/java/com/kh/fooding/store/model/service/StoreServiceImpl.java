@@ -53,4 +53,11 @@ public class StoreServiceImpl implements StoreService{
 		return s;
 	}
 
+	@Override
+	public int getCouponListCount() {
+	int result = sd.getCouponListCount(sqlSession);
+		
+		return result;
+	}
+
 }
