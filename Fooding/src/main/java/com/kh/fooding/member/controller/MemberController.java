@@ -41,7 +41,8 @@ public class MemberController {
 
 		try {
 			Member loginUser = ms.loginMember(m);
-
+			
+			System.out.println("loginUser : " + loginUser);
 			session.setAttribute("loginUser", loginUser);
 			session.removeAttribute("loginFail");
 
@@ -151,7 +152,6 @@ public class MemberController {
 	}
 
 	// 멤버 리스트 불러오기
-
 	@RequestMapping(value = "selectMemberList.me", method = RequestMethod.POST)
 	public ModelAndView selectMemberList(ModelAndView mv) {
 
@@ -179,7 +179,7 @@ public class MemberController {
 		/*
 		 * System.out.println("수정페이지"); System.out.println("midlist : "+midlist);
 		 */
-
+		
 		ArrayList<Member> editList = ms.selectEditList(midlist);
 
 		// System.out.println("editList @ Controller : " + editList);
@@ -280,5 +280,22 @@ public class MemberController {
 		return "admin/qnaDetail";
 	}
 	
+	@RequestMapping(value = "goAdminMain.me")
+	public String goAdminMain() {
+		
+		return "admin/adminMain";
+	}
+	
+	@RequestMapping(value = "goStorePage.me")
+	public String goStorePage() {
+		
+		return "store/storePage";
+	}
+	
+	@RequestMapping(value = "goMemberUpdate.me")
+	public String goMemberUpdate() {
+		
+		return "myPage/goMemberUpdate";
+	}
 
 }

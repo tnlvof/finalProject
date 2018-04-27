@@ -34,17 +34,44 @@
 			</c:if>
 			
 			<c:if test="${ !empty loginUser }">
+				<c:if test="${ loginUser.mCode == '일반' }">
 	            <div class="dropdown" style="display: block;">
 	               <div class="user-profile" onclick="location.href='goMyPage.me'"><img src="/fooding/resources/images/common/no-image.png"></div>
 	               <ul class="dropdown-content">
+	                  <li onclick="location.href='goMyPage.me'">예약</li> 
+	                  <li onclick="location.href='goMyPageReview.me'">리뷰</li>
+	                  <li onclick="location.href='goMyPageQuestions.me'">1:1문의</li>
+	                  <li onclick="location.href='goMyPage.me'">설정</li>
+	                  <li onclick="location.href='logout.me'">로그아웃</li>
+	               </ul>
+	            </div>
+	            <!-- dropdown -->
+	            </c:if>
+	            
+	            <c:if test="${ loginUser.mCode == '업체' }">
+	            <div class="dropdown" style="display: block;">
+	               <div class="user-profile" onclick="location.href='goStorePage.me'"><img src="/fooding/resources/images/common/no-image.png"></div>
+	               <ul class="dropdown-content">
+	                  <li>가게정보</li>
 	                  <li>예약</li>
-	                  <li>티켓</li>
-	                  <li>결제</li>
+	                  <li>리뷰</li>
+	                  <li>1:1문의</li>
 	                  <li>설정</li>
 	                  <li onclick="location.href='logout.me'">로그아웃</li>
 	               </ul>
 	            </div>
 	            <!-- dropdown -->
+	            </c:if>
+	             
+	            <c:if test="${ loginUser.mCode == '관리자' }">
+	            <div class="dropdown" style="display: block;">
+	               <div class="user-profile" onclick="location.href='goAdminMain.me'"><img src="/fooding/resources/images/common/no-image.png"></div>
+	               <ul class="dropdown-content">
+	                  <li onclick="location.href='logout.me'">로그아웃</li>
+	               </ul>
+	            </div>
+	            <!-- dropdown -->
+	            </c:if>
 			</c:if>
          </div>
          <!-- loginArea -->

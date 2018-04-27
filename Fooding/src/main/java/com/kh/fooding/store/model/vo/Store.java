@@ -25,7 +25,42 @@ public class Store implements java.io.Serializable{
 	private String mainPhoto;
 	private String subPhoto;
 	private int mid;
+	private int star;
 	
+	public int getStar() {
+		return star;
+	}
+	public void setStar(int star) {
+		this.star = star;
+	}
+	public Store(int sid, String sName, String phone, String sCode, String bookYN, String address, String sLocation,
+			String sHours, String dayoff, String sTable, String budget, String atmosphere, String facilities,
+			String description, String couponNo, String keyword, String status, String menu, String mainPhoto,
+			String subPhoto, int mid, int star) {
+		super();
+		this.sid = sid;
+		this.sName = sName;
+		this.phone = phone;
+		this.sCode = sCode;
+		this.bookYN = bookYN;
+		this.address = address;
+		this.sLocation = sLocation;
+		this.sHours = sHours;
+		this.dayoff = dayoff;
+		this.sTable = sTable;
+		this.budget = budget;
+		this.atmosphere = atmosphere;
+		this.facilities = facilities;
+		this.description = description;
+		this.couponNo = couponNo;
+		this.keyword = keyword;
+		this.status = status;
+		this.menu = menu;
+		this.mainPhoto = mainPhoto;
+		this.subPhoto = subPhoto;
+		this.mid = mid;
+		this.star = star;
+	}
 	public Store() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -183,6 +218,7 @@ public class Store implements java.io.Serializable{
 	public void setMid(int mid) {
 		this.mid = mid;
 	}
+	
 	@Override
 	public String toString() {
 		return "Store [sid=" + sid + ", sName=" + sName + ", phone=" + phone + ", sCode=" + sCode + ", bookYN=" + bookYN
@@ -190,7 +226,7 @@ public class Store implements java.io.Serializable{
 				+ ", sTable=" + sTable + ", budget=" + budget + ", atmosphere=" + atmosphere + ", facilities="
 				+ facilities + ", description=" + description + ", couponNo=" + couponNo + ", keyword=" + keyword
 				+ ", status=" + status + ", menu=" + menu + ", mainPhoto=" + mainPhoto + ", subPhoto=" + subPhoto
-				+ ", mid=" + mid + "]";
+				+ ", mid=" + mid + ", star=" + star + "]";
 	}
 	
 }
