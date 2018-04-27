@@ -89,7 +89,7 @@
  	<th style="width:150px; text-align:center;height:20px;font-weight:bold;">주소</th>
  	<th style="width:100px; text-align:center;height:20px;font-weight:bold;">신고횟수</th>
  	<th style="width:100px; text-align:center;height:20px;font-weight:bold;">예약 누적 횟수</th>
- 	<th style="width:100px; text-align:center;height:20px;font-weight:bold;">탈퇴여부</th> 	
+ 	<th style="width:100px; text-align:center;height:20px;font-weight:bold;">회원여부</th> 	
  	
  	</tr>
   

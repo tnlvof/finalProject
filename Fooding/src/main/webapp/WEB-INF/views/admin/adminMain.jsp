@@ -46,7 +46,7 @@
   	
   	<button class="searchBtn" id="editBtn" >수정</button>
   	<form id="memberForm" action="showEditForm.me" method="post">
-		<input type="hidden" value="" name="editMid" id="editMid">  	
+		<input type="type" value="" name="editMid" id="editMid">  	
   	</form>
   	<!--  -->
   	<script type="text/javascript">
@@ -182,7 +182,7 @@
  	<th style="width:150px; text-align:center;height:20px;font-weight:bold;">주소</th>
  	<th style="width:100px; text-align:center;height:20px;font-weight:bold;">신고횟수</th>
  	<th style="width:100px; text-align:center;height:20px;font-weight:bold;">예약 누적 횟수</th>
- 	<th style="width:100px; text-align:center;height:20px;font-weight:bold;">탈퇴여부</th> 	
+ 	<th style="width:100px; text-align:center;height:20px;font-weight:bold;">회원여부</th> 	
  	
  	</tr>
  	
