@@ -9,10 +9,11 @@ public class Coupon {
 	private String cterm;
 	private String cmethod;
 	private int sid;
+	private Date enrollDate;
 	
 	public Coupon() {}
 
-	public Coupon(int cid, String cname, Date cdate, String cterm, String cmethod, int sid) {
+	public Coupon(int cid, String cname, Date cdate, String cterm, String cmethod, int sid, Date enrollDate) {
 		super();
 		this.cid = cid;
 		this.cname = cname;
@@ -20,6 +21,7 @@ public class Coupon {
 		this.cterm = cterm;
 		this.cmethod = cmethod;
 		this.sid = sid;
+		this.enrollDate = enrollDate;
 	}
 
 	public int getCid() {
@@ -70,11 +72,20 @@ public class Coupon {
 		this.sid = sid;
 	}
 
+	public Date getEnrollDate() {
+		return enrollDate;
+	}
+
+	public void setEnrollDate(Date enrollDate) {
+		this.enrollDate = enrollDate;
+	}
+
 	@Override
 	public String toString() {
 		return "Coupon [cid=" + cid + ", cname=" + cname + ", cdate=" + cdate + ", cterm=" + cterm + ", cmethod="
-				+ cmethod + ", sid=" + sid + "]";
+				+ cmethod + ", sid=" + sid + ", enrollDate=" + enrollDate + "]";
 	}
+
 	
 	
 }

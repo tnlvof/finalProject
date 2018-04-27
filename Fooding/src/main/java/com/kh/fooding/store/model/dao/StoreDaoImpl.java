@@ -63,6 +63,13 @@ public class StoreDaoImpl implements StoreDao{
 		return s;
 	}
 
+
+	@Override
+	public int getCouponListCount(SqlSessionTemplate sqlSession) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 	// 업체 조회
 	@Override
 	public ArrayList<Store> selectAllStores(SqlSessionTemplate sqlSession) {
@@ -70,6 +77,5 @@ public class StoreDaoImpl implements StoreDao{
 		ArrayList<Store> storeList =(ArrayList) sqlSession.selectList("Store.selectAllStores");
 		return storeList;
 	}
-
 
 }

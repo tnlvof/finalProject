@@ -17,5 +17,9 @@ public interface StoreService {
 	
 	Sam selectOneSam(String restName);
 
+
+	int getCouponListCount();
+
 	ArrayList<Store> selectAllStores();
+
 }
