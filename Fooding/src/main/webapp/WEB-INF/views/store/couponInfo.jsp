@@ -1,12 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
-<meta charset="UTF-8">
+
 <style>
 .layout1-main {
-   /* float: left; */
    width: 900px;
-   margin: 100px;
-   }
+}
 
 .tblg-coupon-wrap {
    clear: both;
@@ -233,12 +231,9 @@ div, p {
    
 } */
 </style>
-<!-- header -->
-<jsp:include page="/WEB-INF/views/common/header.jsp" />
 
 <!-- css or js파일 연결 시키는 곳 -->
 
-<div class="container">
 
 
    <div id="column-main" class="layout1-main">
@@ -392,9 +387,3 @@ div, p {
    </div>
 
 
-</div>
-<!-- container -->
-
-
-<!-- footer -->
-<jsp:include page="/WEB-INF/views/common/footer.jsp" />

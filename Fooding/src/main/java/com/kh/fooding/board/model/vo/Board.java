@@ -20,6 +20,7 @@ public class Board {
 	private String modifyDateJson;
 	private String answer;
 	private String answerDate;
+	private int answerBid;
 	
 	
 	public Board() {
@@ -30,7 +31,7 @@ public class Board {
 	
 	public Board(int bid, String mCode, int mid, String bTitle, String bContent, Date enrollDate, String status,
 			String refYN, int pno, int bLevel, Date modifyDate, int bno, int bCount, String enrollDateJson,
-			String modifyDateJson, String answer, String answerDate) {
+			String modifyDateJson, String answer, String answerDate, int answerBid) {
 		super();
 		this.bid = bid;
 		this.mCode = mCode;
@@ -49,6 +50,17 @@ public class Board {
 		this.modifyDateJson = modifyDateJson;
 		this.answer = answer;
 		this.answerDate = answerDate;
+		this.answerBid = answerBid;
+	}
+
+
+	public int getAnswerBid() {
+		return answerBid;
+	}
+
+
+	public void setAnswerBid(int answerBid) {
+		this.answerBid = answerBid;
 	}
 
 
@@ -177,7 +189,7 @@ public class Board {
 		return "Board [bid=" + bid + ", mCode=" + mCode + ", mid=" + mid + ", bTitle=" + bTitle + ", bContent="
 				+ bContent + ", enrollDate=" + enrollDate + ", status=" + status + ", refYN=" + refYN + ", pno=" + pno
 				+ ", bLevel=" + bLevel + ", modifyDate=" + modifyDate + ", bno=" + bno + ", bCount=" + bCount
-				+ ", enrollDateJson=" + enrollDateJson + ", modifyDateJson=" + modifyDateJson + " answer : "+ answer + " answerDate : " + answerDate+"]";
+				+ ", enrollDateJson=" + enrollDateJson + ", modifyDateJson=" + modifyDateJson + " answer : "+ answer + " answerDate : " + answerDate+ "answerBid : " + answerBid+ "]";
 	}
 	
 	

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.kh.fooding.board.model.dao.BoardDao;
 import com.kh.fooding.board.model.exception.insertException;
 import com.kh.fooding.board.model.exception.searchException;
+import com.kh.fooding.board.model.exception.updateException;
 import com.kh.fooding.board.model.vo.Board;
 import com.kh.fooding.member.model.vo.Member;
 
@@ -98,6 +99,39 @@ public class BoardServiceImpl implements BoardService {
 		ArrayList<Board> answerList = bd.selectAnwerList(b, sqlSession);
 		
 		return answerList;
+	}
+
+	// 문의글 답변 가져오기 admin
+	@Override
+	public Board selectAnswer(String bid) {
+		Board b = bd.selectAnswer(bid, sqlSession);
+		return b;
+	}
+
+	// 문의글 삭제
+	@Override
+	public int deleteQuestion(String bid)  throws updateException {
+		
+		int result = bd.deleteQuestion(bid, sqlSession);
+		
+		return result;
+	}
+
+	// 답변 수정 
+	@Override
+	public int updateAnswer(String bid,String answer) {
+		
+		int result = bd.updateAnswer(bid, sqlSession, answer);
+	
+		return result;
+	}
+
+	// 답변 삭제
+	@Override
+	public int deleteAnswer(String bid) {
+		int result = bd.deleteAnswer(bid, sqlSession);
+		
+		return result;
 	}
 	
 	

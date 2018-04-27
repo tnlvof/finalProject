@@ -29,7 +29,6 @@
 	
 	<aop:aspectj-autoproxy proxy-target-class="true"/>
 	
-	<!-- ajax를 사용하기위해서 jsonView선언 -->
 	<beans:bean id="jsonView" class="net.sf.json.spring.web.servlet.view.JsonView"></beans:bean>
 	<beans:bean id="viewResolver" class="org.springframework.web.servlet.view.BeanNameViewResolver">
 		<beans:property name="order" value="1"></beans:property>
@@ -40,3 +39,4 @@
 	</beans:bean>
 	
 </beans:beans>
+

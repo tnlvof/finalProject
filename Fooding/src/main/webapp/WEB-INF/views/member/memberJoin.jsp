@@ -40,7 +40,7 @@
 						<!-- 
 							정규식 조건에 맞춰 아래의 내용 변경할 것 
 						 -->
-						<p class="alarm overlap" id="pwdDis">비밀번호는 8자 이상, 하나 이상의 숫자를 포함해야합니다.</p>
+						<p class="alarm overlap" id="pwdDis">비밀번호는 8자 이상, 하나 이상의 숫자 및 특수문자를 포함해야합니다.</p>
 						<p class="alarm overlap" id="pwdDupl">비밀번호가 일치하지 않습니다.</p>
 						<p class="alarm usable" id="pwdUse">비밀번호가 일치합니다.</p>
 					</div>
@@ -142,7 +142,7 @@
 		var paco = $("#pwd2");
 		
 		var idRegExp = /^[a-z][a-z0-9_-]{5,19}$/
-		var paRegExp = /^[A-Za-z0-9_-]{6,18}$/;
+		var paRegExp = /^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
 		var paRegExp2 = /\d/g;
 		
 			$("#id").focusout(function(){
