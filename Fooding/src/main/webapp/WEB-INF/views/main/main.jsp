@@ -69,34 +69,37 @@
 			<div class="recommend">
 				<h3>테마별 레스토랑</h3>
 				<div class="recomd-wrap">
-					<div class="recomds recomd01" style="background-image:url('resources/images/main/recomd01.jpg')">
+					<div class="recomds recomd01" style="background-image:url('resources/images/main/korfood.png')" onclick="location.href='themeRest.st?type=한식'">
+					<div class="bg" style="cursor:pointer">
+							<p style="line-height:500px">우리의 맛 한식</p>
+						</div>
 					</div>
 					<!-- recomd01 -->
 					
-					<div class="recomds recomd02" style="background-image:url('resources/images/main/recomd02.jpg')">
+					<div class="recomds recomd02" style="background-image:url('resources/images/main/chinese.jpg')" >
 						<div class="bg">
-							<p>드라이 어메이징 스테이크</p>
+							<p>바삭한 꿔바로우</p>
 						</div>
 					</div>
 					<!-- recomd02 -->
 					
-					<div class="recomds recomd03" style="background-image:url('resources/images/main/recomd03.jpg')">
+					<div class="recomds recomd03" style="background-image:url('resources/images/main/recomd03.jpg')" ">
 						<div class="bg">
-							<p>고급디저트</p>
+							<p>이자카야</p>
 						</div>
 					</div>
 					<!-- recomd03 -->
 					
-					<div class="recomds recomd04" style="background-image:url('resources/images/main/recomd04.jpg')">
+					<div class="recomds recomd04" style="background-image:url('resources/images/main/pizza.jpg')">
 						<div class="bg">
-							<p>경리단길 브런치</p>
+							<p>베스트 피자</p>
 						</div>
 					</div>
 					<!-- recomd04 -->
 					
-					<div class="recomds recomd05" style="background-image:url('resources/images/main/recomd05.jpg')">
+					<div class="recomds recomd05" style="background-image:url('resources/images/main/recomd05.jpg')" onclick="chooseMeat();">
 						<div class="bg">
-							<p>샤로수길 맛집</p>
+							<p>진짜 고기맛</p>
 						</div>
 					</div>
 					<!-- recomd05 -->				
@@ -104,6 +107,10 @@
 				<!-- recomd-wrap -->
 				
 				<div class="more">더보기 &nbsp;&gt;</div>
+				
+				
+				
+				
 			</div>
 			<!-- recommend -->
 		</div>
