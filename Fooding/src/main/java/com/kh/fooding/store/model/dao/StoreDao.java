@@ -18,4 +18,6 @@ public interface StoreDao {
 	int getListCount(String searchKey, SqlSessionTemplate sqlSession);
 	
 	Sam selectOneSam(String restName, SqlSessionTemplate sqlSession);
+
+	ArrayList<Store> selectAllStores(SqlSessionTemplate sqlSession);
 }

@@ -120,7 +120,7 @@ public class BoardController {
 	
 	//문의 게시판 전부 조회 - admin 전용
 	@RequestMapping(value = "selectAllBoard.bo")
-	public ModelAndView selectAllBoard(ModelAndView mv, HttpSession session, HttpServletRequest request ) {
+	public ModelAndView selectAllBoard(ModelAndView mv ) {
 			
 		
 		//문의 게시판 리스트 불러오기
@@ -290,5 +290,9 @@ public class BoardController {
 		mv.setViewName("admin/adminMain");
 		return mv;
 	}
+	
+	
+	
+	
 
 }
