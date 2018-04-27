@@ -142,7 +142,7 @@
 		var paco = $("#pwd2");
 		
 		var idRegExp = /^[a-z][a-z0-9_-]{5,19}$/
-		var paRegExp = /^[A-Za-z0-9_-]{6,18}$/;
+		var paRegExp = /^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
 		var paRegExp2 = /\d/g;
 		
 			$("#id").focusout(function(){
