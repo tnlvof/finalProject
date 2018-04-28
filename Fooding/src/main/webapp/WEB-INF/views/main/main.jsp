@@ -69,7 +69,7 @@
 			<div class="recommend">
 				<h3>테마별 레스토랑</h3>
 				<div class="recomd-wrap">
-					<div class= "recomds recomd01" style="background-image:url('resources/images/main/korfood.png')" onclick="location.href='themeRest.st?type=한식'">
+					<div class= "recomds recomd01" style="background-image:url('resources/images/main/korfood.png')" onclick="location.href='themeRest.st?type=kor'">
 					<div class="bg" style="cursor:pointer">
 							<p style="line-height:500px">우리의 맛 한식</p>
 						</div>
@@ -83,7 +83,7 @@
 					</div>
 					<!-- recomd02 -->
 					
-					<div class="recomds recomd03" style="background-image:url('resources/images/main/recomd03.jpg')" ">
+					<div class="recomds recomd03" style="background-image:url('resources/images/main/recomd03.jpg')" >
 						<div class="bg">
 							<p>이자카야</p>
 						</div>

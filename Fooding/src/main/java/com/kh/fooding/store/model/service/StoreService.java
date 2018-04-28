@@ -18,8 +18,10 @@ public interface StoreService {
 	Sam selectOneSam(String restName);
 
 
-	int getCouponListCount();
+	//int getCouponListCount();
 
 	ArrayList<Store> selectAllStores();
+
+	ArrayList<Store> selectThemeList(String query);
 
 }

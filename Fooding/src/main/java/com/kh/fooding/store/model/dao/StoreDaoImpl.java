@@ -40,7 +40,7 @@ public class StoreDaoImpl implements StoreDao{
 	}
 	
 	@Override
-	public int getListCount(String searchKey, SqlSessionTemplate sqlSession) {
+	public int getListCount(String searchKey , SqlSessionTemplate sqlSession) {
 		
 		System.out.println("dao searchKey : " + searchKey);
 		
@@ -64,11 +64,11 @@ public class StoreDaoImpl implements StoreDao{
 	}
 
 
-	@Override
+	/*@Override
 	public int getCouponListCount(SqlSessionTemplate sqlSession) {
 		// TODO Auto-generated method stub
 		return 0;
-	}
+	}*/
 
 	// 업체 조회
 	@Override
@@ -77,5 +77,13 @@ public class StoreDaoImpl implements StoreDao{
 		ArrayList<Store> storeList =(ArrayList) sqlSession.selectList("Store.selectAllStores");
 		return storeList;
 	}
+
+	@Override
+	public ArrayList<Store> selectThemeList(SqlSessionTemplate sqlSession, String query) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
 
 }
