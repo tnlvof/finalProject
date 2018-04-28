@@ -2,7 +2,6 @@ package com.kh.fooding.store.controller;
 
 import java.io.File;
 import java.io.IOException;
-
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,7 +13,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -172,7 +170,38 @@ public class StoreController {
 		return mv;
 	}
 	
-	
+	//테마 식당 추천
+	@RequestMapping(value="themeRest.st", method=RequestMethod.POST)
+	public ModelAndView selectThemeRest(ModelAndView mv, HttpServletRequest request) {
+		// query 종류 - kor, izakaya, meat, chinese, pizza 
+		String query = request.getParameter("type");
+		System.out.println(query);
+		
+		//페이지 헤더에 넣을 이미지 주소, 문구 지정
+		String imgName = "";
+		String phrase = "";
+		
+		switch(query) {
+		case "kor" : imgName = "resources/images/main/korfood.png"; phrase = "한국인의 자랑스러운 맛 <br><br> 푸딩이 선정한  한식 맛집입니다."; break;
+		case "izakaya" :imgName = "resources/images/main/recomd03.jpg"; phrase="안주 종결자 이자카야 <br><br> 술맛은 똑같지만 안주와 분위기는 다릅니다."; break;
+		case "meat" : imgName="resources/images/main/recomd05.jpg"; phrase = "실패 확률 제로인 메뉴 초이스 <br><br> 고기는 언제나 옳다!";break;
+		case "chinese" : imgName="resources/images/main/chinese.jpg"; phrase = "바삭한 탕수육과 불맛을 제대로 느낄 수 있는 중국식당을 소개합니다.";break;
+		case "pizza" : imgName="resources/images/main/pizza.jpg" ; phrase="흉내낼 수 없는 셰프의 피자를 맛보세요 <br><br> 이탈리아를 그대로 가져온 것 같은 피제리아 "; break;
+ 		}
+		
+		ArrayList<String> forHeaderList = new ArrayList();
+		forHeaderList.add(imgName);
+		forHeaderList.add(phrase);
+		
+		mv.setViewName("store/theRecommended");
+		mv.addObject("forHeaderList", forHeaderList);
+		
+		// 테마 식당 가져오기
+		//ArrayList<Store> themeList = ss.selectThemeList(query);
+		
+		
+		return mv;
+	}
 	
 	
 }

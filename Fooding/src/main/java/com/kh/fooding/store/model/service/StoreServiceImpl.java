@@ -54,11 +54,12 @@ public class StoreServiceImpl implements StoreService{
 	}
 
 
-	@Override
-	public int getCouponListCount() {
+	//@Override
+	/*public int getCouponListCount() {
 	int result = sd.getCouponListCount(sqlSession);
 		
 		return result;
+	}*/
 
 	// 업체 조회 admin
 	@Override
@@ -67,6 +68,15 @@ public class StoreServiceImpl implements StoreService{
 		
 		return storeList;
 
+	}
+
+	
+	//테마 레스토랑 조회 
+	@Override
+	public ArrayList<Store> selectThemeList(String query) {
+		ArrayList<Store> themeList = sd.selectThemeList(sqlSession, query);
+		
+		return null;
 	}
 
 }
