@@ -28,7 +28,7 @@ public class ReservationController {
 		int cancelReserv = rs.cancelReservation(rvid);
 		
 		mv.addObject("cancelReserv", cancelReserv);
-		mv.setViewName("myPage/myPage");
+		mv.setViewName("redirect:/goMyPage.me");
 		
 		return mv; 
 		
