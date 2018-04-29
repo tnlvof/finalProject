@@ -22,8 +22,6 @@
   <button class="tablinks" onclick="openTab(event, 'memberList')" id="defaultOpen">회원관리</button>
   <button class="tablinks" onclick="openTab(event, 'storeList')">업체관리</button>
   <button class="tablinks" onclick="openTab(event, 'rsvList')">예약관리</button>
-  <button class="tablinks" onclick="openTab(event, 'adList')">광고현황</button>
-  <button class="tablinks" onclick="openTab(event, 'profitTab')">수익관리</button>
   <button class="tablinks" onclick="openTab(event, 'qnaBoard')">1:1 문의</button>
 </div>
 
@@ -37,7 +35,7 @@
   	<select id="memberSelect">  		
   		<option>아이디</option>
   		<option>이름</option>  		
-  		<option>연락처</option>
+  		
   		
   		
   	</select>
@@ -46,7 +44,7 @@
   	
   	<button class="searchBtn" id="editBtn" >수정</button>
   	<form id="memberForm" action="showEditForm.me" method="post">
-		<input type="type" value="" name="editMid" id="editMid">  	
+		<input type="hidden" value="" name="editMid" id="editMid">  	
   	</form>
   	<!--  -->
   	<script type="text/javascript">
@@ -67,7 +65,7 @@
   				switch($("#memberSelect option:selected" ).text()){  				
 	  				case '아이디': key = '아이디'; break;
 	  				case '이름': key = '이름'; break;
-	  				case '연락처': key ='연락처';break;
+	  			
   				}
   				
   				search = $("#memberSearchBar").val();
@@ -98,7 +96,6 @@
   		    				  $("#membertable").find(".tableRow").last().append("<td style='padding-top: 10px;padding-bottom:10px;' class='userId' name='userId'>"+data.searchList[i].userId+"</td>");
   		    				  $("#membertable").find(".tableRow").last().append("<td name='userName'>"+data.searchList[i].userName+"</td>");
   		    				  $("#membertable").find(".tableRow").last().append("<td name='birth'>"+data.searchList[i].birth+"</td>");
-  		    				  $("#membertable").find(".tableRow").last().append("<td name='phone'>"+data.searchList[i].phone+"</td>");
   		    				  $("#membertable").find(".tableRow").last().append("<td name='email'>"+data.searchList[i].email+"</td>");
   		    				  $("#membertable").find(".tableRow").last().append("<td name='address'>"+data.searchList[i].address+"</td>");
   		    				  $("#membertable").find(".tableRow").last().append("<td name='repCount'>"+data.searchList[i].repCount+"</td>");
@@ -177,7 +174,6 @@
  	<th style="width:100px; text-align:center;height:20px;font-weight:bold;">아이디</th>
  	<th style="width:100px; text-align:center;height:20px;font-weight:bold;">이름</th>
  	<th style="width:150px; text-align:center;height:20px;font-weight:bold;">생년월일</th>
- 	<th style="width:150px; text-align:center;height:20px;font-weight:bold;">연락처</th>
  	<th style="width:150px; text-align:center;height:20px;font-weight:bold;">이메일</th>
  	<th style="width:150px; text-align:center;height:20px;font-weight:bold;">주소</th>
  	<th style="width:100px; text-align:center;height:20px;font-weight:bold;">신고횟수</th>
@@ -224,7 +220,7 @@
   	
   	
   	<br><br>
- 	<div class="tableArea">
+ 	<div class="tableArea" style="margin-top: 20px;"> 
  	<table class="tableList" align="center" id="storeTableList">
  	
  	<tr id="storeHeader" style="border-bottom:1px solid lightgray;"> 	
@@ -294,7 +290,7 @@ function getCue(){
   	
   	<button class="searchBtn">수정</button>
   	<br><br>
- 	<div class="tableArea">
+ 	<div class="tableArea" style="margin-top: 20px;">
  	<table class="tableList" align="center" >
  	
  	<tr style="border-bottom:1px solid lightgray;">
@@ -400,187 +396,6 @@ function getCue(){
 <!-- /예약 관리 -->
 
 
-<!-- 수익 관리 -->
-
-<div id="profitTab" class="tabcontent">
-	
-	<h3>수익 관리</h3>
-	
-	<div class="tableArea" id="profitTable">
- 	<select>
-  		
-  		<option>결제자명</option>
-  		<option>사업자번호</option>
-  		<option>사업장</option>
-  		<option>결제수단</option>
-  		<option>결제금액</option>
-  		<option>결제날짜</option>
-  	</select>
-  	<input type="search">
-  	<button type="submit" class="searchBtn">검색</button>
- 	<table class="tableList" align="center" >
- 	
- 	<tr style="border-bottom:1px solid lightgray;">
- 	<th style="width:50px;  text-align:center;height:20px;font-weight:bold;">
- 		<input type="checkbox" id="checkAll4">&nbsp;전체선택
- 	</th>
- 	<th style="width:100px; text-align:center;height:20px;font-weight:bold;">결제자명</th>
- 	
- 	<th style="width:100px; text-align:center;height:20px;font-weight:bold;">사업장</th>
- 	<th style="width:120px; text-align:center;height:20px;font-weight:bold;">사용결제수단</th>
- 	<th style="width:200px; text-align:center;height:20px;font-weight:bold;">결제금액</th>
- 	<th style="width:150px; text-align:center;height:20px;font-weight:bold;">결제날짜</th>
- 	<th style="width:150px; text-align:center;height:20px;font-weight:bold;">성공여부</th>
- 	
- 	</tr>
- 	
- 	<tr class="tableRow">
- 		<td><input class="pftCheck" type="checkbox"></td>
- 		 <td style="padding:10px;">강지은</td>
- 		 <td>마녀김밥</td> 		 
- 		 <td>신용카드</td>
- 		 <td >100,000</td>
- 		 <td >2018-05-01</td>
- 		 <td >Y</td>
- 		  		
- 	</tr>
- 	<tr class="tableRow">
- 		<td><input class="pftCheck" type="checkbox"></td>
- 		 <td style="padding:10px;">강지은</td>
- 		 <td>마녀김밥</td> 		 
- 		 <td>신용카드</td>
- 		 <td >100,000</td>
- 		 <td >2018-05-01</td>
- 		 <td >Y</td>
- 		  		
- 	</tr>
- 	<tr class="tableRow">
- 		<td><input class="pftCheck" type="checkbox"></td>
- 		 <td style="padding:10px;">강지은</td>
- 		 <td>마녀김밥</td> 		 
- 		 <td>신용카드</td>
- 		 <td >100,000</td>
- 		 <td >2018-05-01</td>
- 		 <td >Y</td>
- 		  		
- 	</tr>
- 	<tr class="tableRow">
- 		<td><input class="pftCheck" type="checkbox"></td>
- 		 <td style="padding:10px;">강지은</td>
- 		 <td>마녀김밥</td> 		 
- 		 <td>신용카드</td>
- 		 <td >100,000</td>
- 		 <td >2018-05-01</td>
- 		 <td >Y</td>
- 		  		
- 	</tr>
- 	<tr class="tableRow">
- 		<td><input class="pftCheck" type="checkbox"></td>
- 		 <td style="padding:10px;">강지은</td>
- 		 <td>마녀김밥</td> 		 
- 		 <td>신용카드</td>
- 		 <td >100,000</td>
- 		 <td >2018-05-01</td>
- 		 <td >Y</td>
- 		  		
- 	</tr>
- 	<tr class="tableRow">
- 		<td><input class="pftCheck" type="checkbox"></td>
- 		 <td style="padding:10px;">강지은</td>
- 		 <td>마녀김밥</td> 		 
- 		 <td>신용카드</td>
- 		 <td >100,000</td>
- 		 <td >2018-05-01</td>
- 		 <td >Y</td>
- 		  		
- 	</tr>
- 	
- 	
- 	</table>
- </div>
-	
-	
-	<!-- 월간 수익 -->
-	<div class="profits">
-		
-	<h5 class="titles">최근 6개월간 수익</h5>
-	<div id="chart_div2" style="width:100%;  height: 600px;"></div>
-	
-	</div>
-	
-	<!-- 연간 수익 -->
-	<div class="profits">	
-	<h5 class="titles">최근 5년간 수익</h5>
-	<div id="chart_div" style="width:100%;  height: 600px;"></div>
-	
-	</div>
-	
-	
-	
-	
-	
-</div>
-
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
-      google.charts.load('current', {'packages':['corechart']});
-      google.charts.setOnLoadCallback(drawChart);
-      window.onresize = drawChart;
-
-      function drawChart() {
-    	  
-    	  var dataMonthly = google.visualization.arrayToDataTable([
-              ['Month', 'Sales'],
-              ['1',  1000  ],
-              ['2',  1170],
-              ['3',  660],
-              ['4',  1030],
-              ['5',  1030],
-              ['6',  5030],
-              
-            ]);
-    	  
-        var dataYearly = google.visualization.arrayToDataTable([
-          ['Year', 'Sales'],
-          ['2012',  1020  ],
-          ['2013',  1000  ],
-          ['2014',  1170],
-          ['2015',  660],
-          ['2016',  1030]
-        ]);
-
-       /*  
-        var width =  1.53*window.innerHeight;
-        var height = .3 * window.innerWidth;
- */
-     
-        var optionsYearly = {
-          title: 'Company Performance',
-          hAxis: {title: 'Year',  titleTextStyle: {color: '#333'}},
-          vAxis: {minValue: 0}
-        
-          
-        };
-        
-        var optionsMonthly = {
-                title: 'Company Performance',
-                hAxis: {title: 'Month',  titleTextStyle: {color: '#333'}},
-                vAxis: {minValue: 0}
-                
-          };
-        
-        var yearlyChart = new google.visualization.AreaChart(document.getElementById('chart_div'));
-        var montlyChart = new google.visualization.AreaChart(document.getElementById('chart_div2'));
-        
-        yearlyChart.draw(dataYearly, optionsYearly);
-        montlyChart.draw(dataMonthly, optionsMonthly);
-      }
-      
-      
-      
-    </script>
-
-<!-- /수익 관리 -->
 
 
 
@@ -718,7 +533,7 @@ function getCue(){
   	</select>
   	
   	<button type="submit" class="searchBtn" id="searchBtnQ">검색</button>
-	<div class="tableArea" id="qnaTable">
+	<div class="tableArea" id="qnaTable" style="margin-top: 32px;">
  	
  	<br><br>
  	<table class="tableList" align="center" id="boardList">
@@ -736,7 +551,8 @@ function getCue(){
  	
  	 	
  	</table><br><br>
- 		
+ </div>
+ </div>		
 
 <!-- /1:1문의 -->
 
@@ -781,7 +597,7 @@ function openTab(evt, tabName) {
 	    				  $("#membertable").find(".tableRow").last().append("<td style='padding-top: 10px;padding-bottom:10px;' class='userId' name='userId'>"+data.memberlist[i].userId+"</td>");
 	    				  $("#membertable").find(".tableRow").last().append("<td name='userName'>"+data.memberlist[i].userName+"</td>");
 	    				  $("#membertable").find(".tableRow").last().append("<td name='birth'>"+data.memberlist[i].birth+"</td>");
-	    				  $("#membertable").find(".tableRow").last().append("<td name='phone'>"+data.memberlist[i].phone+"</td>");
+
 	    				  $("#membertable").find(".tableRow").last().append("<td name='email'>"+data.memberlist[i].email+"</td>");
 	    				  $("#membertable").find(".tableRow").last().append("<td name='address'>"+data.memberlist[i].address+"</td>");
 	    				  $("#membertable").find(".tableRow").last().append("<td name='repCount'>"+data.memberlist[i].repCount+"</td>");
@@ -934,6 +750,7 @@ $('#checkAll4').click(function() {
 
 </div>
 <!-- container -->
+
 
 
 
