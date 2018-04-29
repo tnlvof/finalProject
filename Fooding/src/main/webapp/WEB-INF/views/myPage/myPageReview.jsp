@@ -83,7 +83,10 @@
 															style="margin-left: -110.5px; margin-top: 28.5px; width: 108.5px; display: block;"
 															onclick="document.getElementById('reviewDelete').style.display='none'">아니오</div>
 														<div class="confirmOk"
-															style="margin-left: 1px; margin-top: 28.5px; width: 108.5px; display: block;">예</div>
+															style="margin-left: 1px; margin-top: 28.5px; width: 108.5px; display: block;" onclick="location.href='${deleteReview}'">예</div>
+													    <c:url value="deleteReview.re" var="deleteReview">
+							                                <c:param name="rid" value="${ list.rid }" />
+						                             	</c:url>
 
 													</div>
 												</div>
