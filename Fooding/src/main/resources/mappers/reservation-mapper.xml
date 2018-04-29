@@ -44,7 +44,7 @@
     <update id="cancelReservation">
     UPDATE RESERVATION
     SET STATUS='N'
-    WHERE MID = #{ mid }
+    WHERE RVID = #{ rvid }
     </update>
     
 </mapper>

@@ -10,8 +10,8 @@ public class ReservationDaoImpl implements ReservationDao{
 	private SqlSessionTemplate sqlSession;
 
 	@Override
-	public int cancelReservation(int mid) {
-		int cancelReserv = sqlSession.update("Reservation.cancelReservation", mid);
+	public int cancelReservation(int rvid) {
+		int cancelReserv = sqlSession.update("Reservation.cancelReservation", rvid);
 		
 		return cancelReserv;
 	}
