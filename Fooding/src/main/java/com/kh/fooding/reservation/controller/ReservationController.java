@@ -30,6 +30,6 @@ public class ReservationController {
 		mv.setViewName("myPage/myPage");
 		
 		return mv; 
-		 
+		
 	}
 }
