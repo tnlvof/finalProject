@@ -17,8 +17,8 @@
 			<jsp:include page="/WEB-INF/views/myPage/myPageTab.jsp"/>
 			<div id="reservation" class="body empty">
 				<div class="filter">
-					<a href="#" class="">방문 예정 예약</a> <a
-						href="#" class="">지나간 예약</a>
+					<a href="goMyPage.me" class="">방문 예정 예약</a> <a
+						href="beforeReserv.rv" class="">지나간 예약</a>
 				</div>
 				<!-- 예약이 없을 때 화면 -->
 				<c:choose>
