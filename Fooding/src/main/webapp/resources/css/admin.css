@@ -10,12 +10,11 @@
     float: left; 
     background-color: #f1f1f1;
     width: 20%;
-    height:80%;
+    height:70%;
     /*position: fixed;
      z-index: 1;     
     left: 0;
     bottom:50; */
-    
     
     
 }
@@ -29,9 +28,10 @@
     width: 100%;
     border: none;
     border-right: 1px solid #ccc;
+    border-bottom:1px solid #ccc;
     outline: none;
     text-align: center;
-    height: 106px;
+    height: 164px;
     cursor: pointer;
     transition: 0.3s;
     font-size: 17px;
@@ -53,6 +53,7 @@
     padding: 0px 12px;    
     border: 1px solid #ccc;
     width: 80%;
+    height:auto !important;
     border-left: none;       
    
 }
@@ -61,6 +62,7 @@
 	background-color:white;	
 	overflow:auto;
 	height: 500px;
+	
 }
 
 h3{
@@ -144,40 +146,3 @@ select{
     text-align:center;
 	
 }
-
-.profits{
-	width: 35%;
-    height: 30%;
-	background:white;
-	float: left;	
-	margin:0;
-	
-}
-#profitTable{
-	
- width:64%;
- float:right;
-  margin:0;
-  padding:0;
-  height: 60%;
-	
-}
-
-#profitTable td{
-	
- width:80px;
-	
-}
-#qnaDetail td{
-	border-bottom:1px solid lightgray;
-}
-#qnaDetail td:hover{
-	cursor:auto !important;	
-}
-#qnaDetail tr:hover{
-	background:#f9f9f9; 
-	cursor:auto !important; 
-	
-}
-
-
