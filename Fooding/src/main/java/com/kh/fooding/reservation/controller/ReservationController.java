@@ -1,31 +1,35 @@
 package com.kh.fooding.reservation.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
-import com.kh.fooding.member.model.vo.Member;
 import com.kh.fooding.reservation.model.service.ReservationService;
-import com.kh.fooding.reservation.model.vo.Reservation;
 
 @Controller
 public class ReservationController {
 	@Autowired
 	private ReservationService rs;
 
-	@RequestMapping(value ="cancelReserv.rv")
-	public ModelAndView cancelReserv(HttpSession session, ModelAndView mv) {
-		Member m = (Member) session.getAttribute("loginUser");
-	
-		int cancelReserv = rs.cancelReservation(m.getMid());
+	@RequestMapping(value ="cancelReserv.rv", method = {RequestMethod.GET, RequestMethod.POST})
+	public ModelAndView cancelReserv(HttpServletRequest request, ModelAndView mv) {
+		int rvid = (Integer)(request.getAttribute("rvid"));
+		System.out.println("Controller rvid : " + rvid);
+		
+		int cancelReserv = rs.cancelReservation(rvid);
 		
 		mv.addObject("cancelReserv", cancelReserv);
 		mv.setViewName("myPage/myPage");
 		
-		return mv;
+		return mv; 
 		
 	}
 }

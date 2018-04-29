@@ -14,8 +14,12 @@ public class ReservationServiceImpl implements ReservationService{
 	private SqlSessionTemplate sqlSession;
 	
 	@Override
-	public int cancelReservation(int mid) {
-		int cancelReserv = rd.cancelReservation(mid);
+	public int cancelReservation(int rvid) {
+		int cancelReserv = rd.cancelReservation(rvid);
+		
+		System.out.println("Service rvid : " + rvid);
+		System.out.println("Service cancelReserv : " + cancelReserv);
+		
 		return cancelReserv;
 	}
 
