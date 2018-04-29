@@ -20,8 +20,9 @@ public class ReservationController {
 	private ReservationService rs;
 
 	@RequestMapping(value ="cancelReserv.rv", method = {RequestMethod.GET, RequestMethod.POST})
+	@ResponseBody
 	public ModelAndView cancelReserv(HttpServletRequest request, ModelAndView mv) {
-		int rvid = (Integer)(request.getAttribute("rvid"));
+		int rvid = Integer.parseInt(request.getParameter("rvid"));
 		System.out.println("Controller rvid : " + rvid);
 		
 		int cancelReserv = rs.cancelReservation(rvid);
