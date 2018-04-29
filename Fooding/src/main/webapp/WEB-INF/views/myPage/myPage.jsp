@@ -50,7 +50,7 @@
 							<div class="date">예약정보: ${ list.rDate } / ${ list.rTime }</div>
 							<div class="party_size">인원: ${ list.rPeople }명</div>
 							<c:url value="cancelReserv.rv" var="cancelReserv">
-							  <c:param name="rvid" value="${ rvid }" />
+							  <c:param name="rvid" value="${ list.rvid }" />
 							</c:url>
 						</div>
 						
