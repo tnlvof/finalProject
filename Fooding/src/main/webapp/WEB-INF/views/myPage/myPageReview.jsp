@@ -30,6 +30,10 @@
 				</c:when>
 					<c:otherwise>
 					<c:forEach var="list" items="${ reviewList }">
+					<c:set var="reviewId" value="${ list.rid}"></c:set>
+					<c:url value="deleteReview.re" var="deleteReview">
+					    <c:param name="reviewId" value="${ reviewId }" />
+					</c:url>
 						<div class="body review list review_wrap">
 							<div class="review">
 								<a class="place" href=""> <span class="thumbnail"
@@ -68,50 +72,71 @@
 									<div class="text" data-truncated="">${ list.rContent }</div>
 									<div class="action">
 										<div class="article">
+								            <input type="hidden" value="${ list.rid }" class="reviewId">
 											<button class="edit" tabindex="-1">수정하기</button>
 											<button class="delete" tabindex="-1"
 												onclick="document.getElementById('reviewDelete').style.display='block'">삭제하기</button>
-											<div id="reviewDelete" class="w3-modal">
-												<div class="w3-modal-content">
-													<div class="w3-container">
-														<div class="confirmBackground" style="display: block;"></div>
-														<div id="default" class="confirmPopup"
-															style="padding: 20px 40px; margin-left: -110.5px; margin-top: -26.5px; display: block;">
-															<div class="confirmMessage">리뷰를 삭제하시겠습니까?</div>
-														</div>
-														<div class="confirmNo"
-															style="margin-left: -110.5px; margin-top: 28.5px; width: 108.5px; display: block;"
-															onclick="document.getElementById('reviewDelete').style.display='none'">아니오</div>
-														<div class="confirmOk"
-															style="margin-left: 1px; margin-top: 28.5px; width: 108.5px; display: block;" onclick="location.href='${deleteReview}'">예</div>
-													    <c:url value="deleteReview.re" var="deleteReview">
-							                                <c:param name="rid" value="${ list.rid }" />
-						                             	</c:url>
-
-													</div>
-												</div>
-											</div>
+											<input type="hidden" value="" class="reid">
+											
 										</div>
 									</div>
 								</div>
+							<script>
+							$(function(){
+								$(".delete").click(function(){
+									var rid = $(this).parent().find('.reviewId').val();
+									console.log("삭제버튼 : "+rid);
+								    
+								    $(".reid").val(rid);
+								    		
+								 });
+								
+								$(".confirmOk").click(function(){
+									console.log("컨펌버튼 : "+ $(".reid").val());
+									
+									var reid = $(".reid").val();
+									
+									location.href="deleteReview.re?reviewId="+reid;
+								});
+							});
+							 
+							 
+							</script>
 							</div>
 						</div>
 						</c:forEach>
 						<div id="review_pagination">
-				<div class="page-list">
-					<ul class="pagination" onselectstart="return false;">
-						<li class="prevAll">&lt;&lt;</li>
-						<li class="prev">&lt;</li>
-						<li class="page active" data-page="1">1</li>
-						<li class="next">&gt;</li>
-						<li class="nextAll">&gt;&gt;</li>
-					</ul>
-				</div>
-			</div>
-						</c:otherwise>
+							<div class="page-list">
+								<ul class="pagination" onselectstart="return false;">
+									<li class="prevAll">&lt;&lt;</li>
+									<li class="prev">&lt;</li>
+									<li class="page active">1</li>
+									<li class="next">&gt;</li>
+									<li class="nextAll">&gt;&gt;</li>
+								</ul>
+							</div>
+						</div>
+					</c:otherwise>
 				</c:choose>
 			</div>
 			
+		</div>
+		<div id="reviewDelete" class="w3-modal">
+			<div class="w3-modal-content">
+				<div class="w3-container">
+					<div class="confirmBackground" style="display: block;"></div>
+					<div id="default" class="confirmPopup"
+						style="padding: 20px 40px; margin-left: -110.5px; margin-top: -26.5px; display: block;">
+						<div class="confirmMessage">리뷰를 삭제하시겠습니까?</div>
+					</div>
+					<div class="confirmNo"
+						style="margin-left: -110.5px; margin-top: 28.5px; width: 108.5px; display: block;"
+						onclick="document.getElementById('reviewDelete').style.display='none'">아니오</div>
+					<div class="confirmOk"
+						style="margin-left: 1px; margin-top: 28.5px; width: 108.5px; display: block;">예</div>
+
+				</div>
+			</div>
 		</div>
 		<jsp:include page="/WEB-INF/views/myPage/myPageSidebar.jsp" />
 	</div>
