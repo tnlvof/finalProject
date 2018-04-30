@@ -7,6 +7,7 @@
 <head>
 <link rel="stylesheet" type="text/css" href="resources/css/common.css">
 <link rel="stylesheet" type="text/css" href="resources/css/reset.css">
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <meta charset="utf-8">
     <title>Fooding - 검색 결과</title>
@@ -51,7 +52,115 @@
 body{
     background-color: #f3f3f3;
 }
+
+@charset "UTF-8";
+
+.title-box{
+   width: 100%;
+   height: 520px;
+   background-image: url(/fooding/resources/images/main/dining.png);
+   background-size: cover;
+   text-align: center;
+   vertical-align: middle;
+}
+.bg-black{
+   padding-top: 100px;
+   background: rgba(0,0,0,0.4);
+   height: 520px;
+}
+.title-box *{
+   color: #fff;
+}
+.title-box p{
+   font-size: 21px;
+   line-height: 1.8em;
+   margin-top: 130px;
+}
+.title-box span{
+   font-size: 14px;
+   display: inline-block;
+   margin: 0 auto;
+   border-top: 1px solid #fff;
+   padding-top: 40px;
+   margin-top: 30px;
+}
 #resultArea{
+   width: 1000px;
+   margin: 0 auto;
+}
+.coupons{
+   overflow: hidden;
+}
+.coupons li{
+   float: left;
+   border-radius: 5px;
+   background-color: #fff;
+   border: 1px solid #e5e5e5;
+   width: 235px;
+   box-sizing: border-box;
+   margin: 0 20px 40px 0;
+   overflow: hidden;
+   float: left;
+   cursor: default;
+}
+.coupons li:nth-child(4n){
+   margin-right: 0;
+}
+.photo{
+   overflow: hidden;
+   position: relative;
+}
+.photo img{
+   height: 200px;
+}
+.photo img:hover{
+   filter: grayscale(100%);
+   cursor: pointer;    
+}
+.photo p{
+   position: absolute;
+   left: 10px;
+   bottom: 10px;
+   color: #fff;
+}
+.photo span{
+   font-size: 12px;
+   color: inherit;
+}
+/* .coupon-info{
+   padding: 10px;
+   font-size: 13px;
+}
+.coupon-info p{
+   display: table;
+   margin-bottom: 10px;
+   font-size: 12px;
+   background-color: #cc272b;
+   color: #fff;
+   padding: 4px 8px;
+   border-radius: 5px;
+} */
+.coupon-price{
+   padding: 10px;
+}
+.coupon-price p{
+   display: inline-block;
+   width: 49%;
+   font-weight: bold;
+   font-size: 17px;
+}
+.coupon-price p:first-child{
+   color: #cc272b;
+}
+.coupon-price p:last-child{
+   text-align: right;
+  
+}
+
+.checked {
+    color: orange;
+}
+/* #resultArea{
 	margin-top:50px;
 	margin-left:auto;
 	margin-right:auto; 
@@ -90,7 +199,7 @@ body{
 	margin-left:5px;
 	margin-top:5px;
 	height:30px;
-	width:auto;	
+	/width:auto;
 	display:inline-block;
 	
 }
@@ -99,9 +208,7 @@ body{
 	background:lightgray;
 }
 
-.checked {
-    color: orange;
-}
+
 .nameAndPrices {	
 	list-style:none;
 	display:inline-block;
@@ -121,7 +228,27 @@ margin-left:10px;
 #pageIngArea{
 	margin-top:30px;
 }
-
+.buttons{
+	width:100%;
+	background-color:white;
+	border-radius: 4px;
+	border:0;
+	
+} */
+.write-btn{
+	width: 100%;
+	border: 0;
+	font-size: 13px;
+	background-color: #fff;
+	padding: 10px 0;
+	border-top: 1px solid #e5e5e5;
+	color: #666;
+}
+.write-btn:hover{
+	background: #999;
+	color: #fff;
+	cursor: pointer;
+}
 </style>
 </head>
 <body>
@@ -135,16 +262,13 @@ margin-left:10px;
 
 <div id="map" style="width:100%;height:350px;"></div>
 
-
-<hr>
-
-<br><br>
-<h1 align="center">${ searchKey } 맛집 검색 결과입니다.</h1>
+<h3 align="center">${ searchKey } 맛집 검색 결과입니다.</h3>
 
 
 <div id="resultArea">
+	<ul class="coupons">
 	<c:forEach var="s" items="${ sam }" >
-	<div class="result">
+	<%-- <div class="result">
 		<c:set var="restN" value="${ s.restName}"></c:set>
 		<c:url var="goDetail" value="/goDetail.st">
 				<c:param name="restName" value="${ restN }"/>
@@ -170,9 +294,34 @@ margin-left:10px;
 		<!-- <button class="buttons" >예약하기</button> -->
 		<button class="buttons" >리뷰쓰기</button>
 		</div>
-	</div>	
+	</div> --%>	
+	
+	
+      <li>
+         <div class="photo">
+            <img src="http://c2.poing.co.kr/MRI-original/MjAxODAz/15202254255a9ccc91bbbde.jpeg">
+            <p>
+              ${ s.restName}<br>
+               <span>${ s.restUpstream }</span>
+            </p>
+         </div>
+         <!-- photo -->
+         
+         <div class="coupon-price">
+          	<span class="fa fa-star checked"></span>
+			<span class="fa fa-star checked"></span>
+			<span class="fa fa-star checked"></span>
+			<span class="fa fa-star"></span>
+			<span class="fa fa-star"></span>
+         </div>
+         <!-- coupon-price -->
+         
+         <button class="write-btn">리뷰쓰기</button>
+      </li>
+      
 	
 	</c:forEach>
+     </ul>
 	
 	<div id="pageIngArea" align="center">
 		<c:if test="${ pi.currentPage <= 1 }">

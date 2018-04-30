@@ -15,11 +15,19 @@ public interface StoreDao {
 
 	ArrayList<Sam> searchResult(String searchKey, PageInfo pi, SqlSessionTemplate sqlSession);
 
-	int getListCount(String searchKey, SqlSessionTemplate sqlSession);
+
 	
 	Sam selectOneSam(String restName, SqlSessionTemplate sqlSession);
 
 	ArrayList<Store> selectAllStores(SqlSessionTemplate sqlSession);
 
+
 	int getCouponListCount(SqlSessionTemplate sqlSession);
+
+	int getListCount(String searchKey, SqlSessionTemplate sqlSession);
+
+	ArrayList<Store> selectThemeList(SqlSessionTemplate sqlSession, String query);
+
+	
+
 }

@@ -176,8 +176,8 @@
 						<span class="text margin">방문 예정</span>
 						<span class="past"></span>
 						<span class="text">지나간 예약</span>
-						<span class="coupon"></span>
-						<span class="text">티켓 사용</span>
+						<span class="todatM"></span>
+						<span class="text">오늘 날짜</span>
 					</div>
 				</div>
 			</div>

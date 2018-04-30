@@ -21,9 +21,9 @@
 	<!-- 회원 수정 -->
 
   	<h3>1 : 1 문의 </h3>
-  	
-  	<button id="blacklistOff" class="searchBtn" style="     position: relative;   left: 300px;" onclick="deleteQna();">글 삭제하기</button>
-  	
+  	<div style="    width: 1000px;   margin: 0 auto;">
+  	<button id="blacklistOff" class="searchBtn"  onclick="deleteQna();">글 삭제하기</button>
+  	</div>
   	<br><br>
   <script type="text/javascript">
   	function deleteQna(){
@@ -68,6 +68,7 @@
   </script>
     	
  	<div id="tableArea">
+ 	
  	<table id="qnaDetail" class="tableList" style="margin-left:auto;margin-right:auto;" >
  	<tr style="border-bottom:1px solid lightgray;">
  	
@@ -96,24 +97,25 @@
  	</table>
  	<hr>
  	
- 	<div id="replyDiv" style="display:inline-block;">
+ 	<div id="replyDiv" style="width:1000px; margin:0 auto;">
  	
  		<c:if test="${empty b.answer }">
- 		<textarea id="replyArea" rows="11" cols="100" style="font-size: 16px;     position: relative;   left: 200px;  padding: 12px 8px; margin-bottom: -100; margin-left: 140px;resize:none;" autofocus></textarea>
+ 		<textarea id="replyArea" rows="11" cols="100" style="font-size: 16px; width: 1000px;   margin:0 auto;  padding: 12px 8px;   resize:none;" autofocus></textarea>
  		
- 		<div style="display:inline-block;">
- 		 		<button class="searchBtn" id="replyBtn" style="height:200px;  position: relative;   left: 200px;" onclick="submitReply();"> 답변 달기 </button>
+ 		<div style="style="margin: 0 auto;   width: 1000px;">
+ 		 		<button class="searchBtn" id="replyBtn" style="height: 90px;   width: 1000px;   margin-top: 30px;" onclick="submitReply();"> 답변 달기 </button>
  		</div>
  		</c:if>
  		
  		<c:if test="${! empty b.answer }">
- 		<p style="position: relative; left: 1020px; font-size: 15px;"><c:out value="${b.answerDate }"> </c:out> <input type="text" value="${b.answerBid }" id="answerBid"></p>
- 		<textarea id="replyArea" rows="11" cols="100" style="font-size: 16px;     position: relative;   left: 200px;  padding: 12px 8px;    margin-bottom: -50; margin-left: 140px;resize:none;" autofocus>${b.answer } </textarea>
+ 		
+ 		<p style="text-align:right; font-size: 15px;"><c:out value="${b.answerDate }"> </c:out> <input type="hidden" value="${b.answerBid }" id="answerBid"></p>
+ 		<textarea id="replyArea" rows="11" cols="100" style="font-size: 16px; width: 1000px;   margin:0 auto;  padding: 12px 8px;   resize:none;" autofocus>${b.answer } </textarea>
  		</div>
- 		<div style="display:inline-block;">
+ 		<div style="margin: 0 auto;   width: 1000px;">
  		<ul>
- 			<li><button class="searchBtn" id="replyBtn" style="height:100px;  position: relative;  margin:5px; left: 200px;" onclick="updateReply();"> 답변 수정 </button></li>
- 		 	<li><button class="searchBtn" id="replyBtn" style="height:100px;  position: relative;  margin:5px;  left: 200px;" onclick="deleteReply();"> 답변 삭제 </button></li>
+ 			<li style="float: left;  margin-right: 15px;"><button class="searchBtn" id="replyBtn" style="height: 70px; margin: 5 auto; width: 480px;" onclick="updateReply();"> 답변 수정 </button></li>
+ 		 	<li><button class="searchBtn" id="replyBtn" style="    width: 500px;       height: 70px; margin: 5px auto;" onclick="deleteReply();"> 답변 삭제 </button></li>
  		 </ul>	
  		</div>
  		

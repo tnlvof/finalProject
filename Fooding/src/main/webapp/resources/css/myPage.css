@@ -607,13 +607,13 @@ div.page-list>ul.pagination>li.active {
 	background: #969696;
 }
 
-#reservation_calendar>.desc>.coupon {
-	background: url(http://c1.poing.co.kr/original/images/recent_sheet.png)
-		-186px -125px;
-	margin: 5px 2px 0 0;
+#reservation_calendar>.desc>.todatM {
+	margin-right: 2px;
+	margin-top: 5px;
+	background: #ff5a5f;
 }
 
-#reservation_calendar>.desc>.coupon, #reservation_calendar>.desc>.past,
+#reservation_calendar>.desc>.todatM, #reservation_calendar>.desc>.past,
 	#reservation_calendar>.desc>.recent {
 	display: inline-block;
 	width: 20px;
@@ -716,8 +716,8 @@ td.not-current {
 }
 
 td.today {
-  font-weight:bold;
-  color:#333;
+  background:#ff5a5f;
+  color:white;
 }
 thead th {
   border:none;

@@ -17,8 +17,8 @@
 			<jsp:include page="/WEB-INF/views/myPage/myPageTab.jsp"/>
 			<div id="reservation" class="body empty">
 				<div class="filter">
-					<a href="#" class="">방문 예정 예약</a> <a
-						href="#" class="">지나간 예약</a>
+					<a href="goMyPage.me" class="">방문 예정 예약</a> <a
+						href="beforeReserv.rv" class="">지나간 예약</a>
 				</div>
 				<!-- 예약이 없을 때 화면 -->
 				<c:choose>
@@ -49,7 +49,11 @@
 							<input type="hidden" value="${ list.rvid }" class="reservId">
 							<div class="date">예약정보: ${ list.rDate } / ${ list.rTime }</div>
 							<div class="party_size">인원: ${ list.rPeople }명</div>
+							<c:url value="cancelReserv.rv" var="cancelReserv">
+							  <c:param name="rvid" value="${ list.rvid }" />
+							</c:url>
 						</div>
+						
 
 						<!-- <button class="ccBtn red border_radius soft" tabindex="-1" id="ccBtn">변경
 							/ 취소</button> -->
@@ -65,7 +69,7 @@
 														<div class="confirmNo"
 															style="margin-left: -110.5px; margin-top: 28.5px; width: 108.5px; display: block;" onclick="document.getElementById('reservCancel').style.display='none'">아니오</div>
 														<div class="confirmOk"
-															style="margin-left: 1px; margin-top: 28.5px; width: 108.5px; display: block;" onclick="location.href='cancelReserv.rv'">예</div>
+															style="margin-left: 1px; margin-top: 28.5px; width: 108.5px; display: block;" onclick="location.href='${cancelReserv}'">예</div>
 													</div>
 												</div>
 											</div>
@@ -75,163 +79,15 @@
 								var rvid = $(this).parent().find('.reservId').val();
 								console.log(rvid);
 								<c:forEach var="l" items="${ reservList }">
-									if(rvid == ${l.rvid}){
+									if(rvid == ${ l.rvid }){
 										$(".rPeople").val('${l.rPeople}');
 										$(".rDate").text('${l.rDate}');
 										$(".rTime").text('${l.rTime}');
-										
 									}
 								</c:forEach>
 							    		/* document.getElementById('changeCancel').style.display='block'; */
 							});
 							</script>
-						<!-- Modal -->
-						<%-- <div id="changeCancel" class="w3-modal">
-							<div class="w3-modal-content">
-								<div class="w3-container">									
-									<div id="pre-reserve" class="reserve-popup"
-										style="width: 599px; height: 390px; margin-top: -203px; display: block;">
-										<img
-										src="${contextPath }/resources/images/common/closeButton.png"
-										width="15" height="15" align="right" class="xBtn"
-										onclick="document.getElementById('changeCancel').style.display='none'" style="position: absolute; top: 7px; right: 6px;">
-										<div class="popup-title">예약변경/취소</div>
-										<div class="popup-row box_list">
-											<div class="box">
-												<i class="icon personnel"></i>
-												<div class="box_text">인원</div>
-												<div class="person_count">
-													<input value="-" count_range="m" type="button" id="mBtn" style="display:none;">
-													<label class="mIcon" for="mBtn"><i class="icon minus"></i></label>
-													<!-- <span id="reserve_person_count" class="count">6</span> -->
-													<input class="count rPeople" value="${ list.rPeople }" readonly>
-													<input value="+" count_range="p" type="button" id="pBtn" style="display:none;">
-													<label class="pIcon" for="pBtn"><i class="icon plus"></i></label>
-												</div>
-												<script>
-												$(document).ready(function(){
-												    $('.person_count input[count_range]').click(function(e){
-												        e.preventDefault();
-												        var type = $(this).attr('count_range');
-												        var $count = $(this).parent().children('input.count');
-												        var count_val = $count.val(); // min 1
-												        console.log(count_val);
-												        if(type=='m'){
-												            if(count_val<1){
-												                return;
-												            }
-												            $count.val(parseInt(count_val)-1);
-												        }else if(type=='p'){
-												            $count.val(parseInt(count_val)+1);
-												        }
-												    });
-												});
-												</script>
-											</div>
-											<div class="box pointer">
-												<div id="calendar"
-													class="sidemenu-content sub_popup hasDatepicker"
-													style="display: none;">
-													<div
-														class="ui-datepicker-inline ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all"
-														style="display: block;">
-														보여라
-													</div>
-												</div>
-
-												<i class="icon calendar"></i>
-												<div class="box_text">날짜</div>
-												<span id="reserve_date" class="date first rDate">${ list.rDate }</span> <i
-													class="icon arrow red calArrow"></i>
-												<script>
-												$(function(){
-										  			  $('.calArrow').click(function(){
-													    $('#calendar').show();
-													    $(this).addClass('calShow');
-													  });
-													});
-												</script>
-											</div>
-											<div class="box pointer" style="margin: 0;">
-												<div id="timetable" class="sidemenu-content sub_popup"
-													style="display: none;">
-												</div>
-
-												<i class="icon clock"></i>
-												<div class="box_text">시간</div>
-												<span id="reserve_time" class="time first rTime" time="12:00">${ list.rTime }</span> <i class="icon arrow red"></i>
-											</div>
-										</div>
-
-										<div class="popup-row comment result">
-											<span class="date rDate">${ list.rDate } (수)</span> <span class="time rTime">
-												${ list.rTime }</span> <span class="count rPeople">${ list.rPeople }명</span>
-										</div>
-
-										<div class="popup-row comment">
-											<textarea id="reserve_comment" rows="5"
-												placeholder="요청사항을 적어주세요." maxlength="50"></textarea>
-											<p>
-												(<span id="counter">0</span>/50자)
-											</p>
-											<script>
-											$(function() {
-											      $('#reserve_comment').keyup(function (e){
-											          var comment = $(this).val();
-											          $(this).height(((comment.split('\n').length + 1) * 1.5) + 'em');
-											          $('#counter').html(comment.length);
-											      });
-											      $('#reserve_comment').keyup();
-											});
-											</script>
-										</div>
-										<div class="popup-row notice">
-											<div>*예약 취소는 예약 시간 30분 전까지만 가능합니다.</div>
-											<div>*No-Show(노쇼:예약을 하고 나타나지 않은 행위)는 외식업계를 아프게합니다.</div>
-										</div>
-										<div class="confirm-btn">
-											<button type="text" class="reserve" tabindex="-1"
-												style="display: none;">예약 접수</button>
-											<button type="text" class="cancel" tabindex="-1"
-												style="display: inline-block;" onclick="document.getElementById('reservCancel').style.display='block'">예약 취소</button>
-											<button type="text" class="edit" tabindex="-1"
-												style="display: inline-block;" onclick="document.getElementById('reservChange').style.display='block'">변경</button>
-											<div id="reservCancel" class="w3-modal">
-												<div class="w3-modal-content">
-													<div class="w3-container">
-														<div class="confirmBackground" style="display: block;"></div>
-														<div id="default" class="confirmPopup"
-															style="padding: 20px 40px; margin-left: -110.5px; margin-top: -26.5px; display: block;">
-															<div class="confirmMessage">예약을 취소하시겠습니까?</div>
-														</div>
-														<div class="confirmNo"
-															style="margin-left: -110.5px; margin-top: 28.5px; width: 108.5px; display: block;" onclick="document.getElementById('reservCancel').style.display='none'">아니오</div>
-														<div class="confirmOk"
-															style="margin-left: 1px; margin-top: 28.5px; width: 108.5px; display: block;">예</div>
-													</div>
-												</div>
-											</div>
-											<div id="reservChange" class="w3-modal">
-												<div class="w3-modal-content">
-													<div class="w3-container">
-														<div class="confirmBackground" style="display: block;"></div>
-														<div id="default" class="confirmPopup"
-															style="padding: 20px 40px; margin-left: -110.5px; margin-top: -26.5px; display: block;">
-															<div class="confirmMessage">예약을 변경하시겠습니까?</div>
-														</div>
-														<div class="confirmNo"
-															style="margin-left: -110.5px; margin-top: 28.5px; width: 108.5px; display: block;" onclick="document.getElementById('reservChange').style.display='none'">아니오</div>
-														<div class="confirmOk"
-															style="margin-left: 1px; margin-top: 28.5px; width: 108.5px; display: block;">예</div>
-														
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div> --%>
 					</div>
 				</div>
 				</c:forEach>

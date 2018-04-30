@@ -37,14 +37,23 @@
     FROM RESERVATION R
     JOIN MEMBER M ON (M.MID = R.MID)
     JOIN STORE S ON (S.SID = R.SID)
-    WHERE M.MID=#{ mid } AND R.STATUS = 'Y'
+    WHERE M.MID=#{ mid } AND R.STATUS = 'Y' AND TO_CHAR(R.R_DATE, 'YYYYMMDD') >= TO_CHAR(SYSDATE, 'YYYYMMDD')
     ORDER BY R.R_DATE ASC
     </select>   
     
     <update id="cancelReservation">
     UPDATE RESERVATION
     SET STATUS='N'
-    WHERE MID = #{ mid }
+    WHERE RVID = #{ rvid }
     </update>
+    
+    <select id="beforeReservationList" resultMap="reservationResultSet2">
+    SELECT *
+    FROM RESERVATION R
+    JOIN MEMBER M ON (M.MID = R.MID)
+    JOIN STORE S ON (S.SID = R.SID)
+    WHERE M.MID=#{ mid } AND R.STATUS = 'Y' AND TO_CHAR(SYSDATE, 'YYYYMMDD') > TO_CHAR(R.R_DATE, 'YYYYMMDD')
+    ORDER BY R.R_DATE ASC
+    </select>
     
 </mapper>
