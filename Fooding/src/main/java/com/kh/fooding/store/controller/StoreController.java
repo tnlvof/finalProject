@@ -170,8 +170,16 @@ public class StoreController {
 		return mv;
 	}
 	
+	//테마 식당 더 보기
+	@RequestMapping(value="moreThemeRest.st")
+	public String showMoreThemeRest() {
+		
+		return "store/themeRest";
+	}
+	
+	
 	//테마 식당 추천
-	@RequestMapping(value="themeRest.st", method=RequestMethod.POST)
+	@RequestMapping(value="themeRest.st", method=RequestMethod.GET)
 	public ModelAndView selectThemeRest(ModelAndView mv, HttpServletRequest request) {
 		// query 종류 - kor, izakaya, meat, chinese, pizza 
 		String query = request.getParameter("type");
@@ -190,14 +198,21 @@ public class StoreController {
  		}
 		
 		ArrayList<String> forHeaderList = new ArrayList();
+		
 		forHeaderList.add(imgName);
 		forHeaderList.add(phrase);
 		
-		mv.setViewName("store/theRecommended");
-		mv.addObject("forHeaderList", forHeaderList);
+		
 		
 		// 테마 식당 가져오기
-		//ArrayList<Store> themeList = ss.selectThemeList(query);
+		ArrayList<Store> themeList = ss.selectThemeList(query);
+		
+		System.out.println(themeList);
+		
+		mv.setViewName("store/theRecommended");
+		mv.addObject("headerList", forHeaderList);
+		mv.addObject("themeList", themeList);
+		
 		
 		
 		return mv;

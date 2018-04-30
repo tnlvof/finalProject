@@ -66,6 +66,20 @@
 	<select id="selectAllStores" resultMap="storeResultSet">	
 	SELECT * FROM STORE  
 	</select>
+	
+	<select id="selectUpstream" resultMap="samResultSet" parameterType="String">
+	SELECT SID, REST_NAME, REST_UPSTREAM ,REST_ADDRESS, REST_NUMBER
+	FROM SAM
+	WHERE REST_UPSTREAM = #{query}
+	</select>
+	
+	
+	<select id="selectMenu" resultMap="samResultSet" parameterType="String">
+	SELECT SID, REST_NAME, REST_UPSTREAM ,REST_ADDRESS, REST_NUMBER
+	FROM SAM
+	WHERE REST_MENU = #{query}	
+	</select>
+	
 </mapper>
 
 

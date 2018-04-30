@@ -80,7 +80,7 @@ public class StoreServiceImpl implements StoreService{
 	public ArrayList<Store> selectThemeList(String query) {
 		ArrayList<Store> themeList = sd.selectThemeList(sqlSession, query);
 		
-		return null;
+		return themeList;
 	}
 
 }
