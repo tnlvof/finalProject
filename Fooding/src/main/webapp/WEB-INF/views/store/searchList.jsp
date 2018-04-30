@@ -296,10 +296,14 @@ margin-left:10px;
 		</div>
 	</div> --%>	
 	
-	
+	  <c:set var="restN" value="${ s.restName}"></c:set>
+		<c:url var="goDetail" value="/goDetail.st">
+				<c:param name="restName" value="${ restN }"/>
+		</c:url>	
+	 
       <li>
          <div class="photo">
-            <img src="http://c2.poing.co.kr/MRI-original/MjAxODAz/15202254255a9ccc91bbbde.jpeg">
+            <img src="http://c2.poing.co.kr/MRI-original/MjAxODAz/15202254255a9ccc91bbbde.jpeg" onclick="location.href='${goDetail}'">
             <p>
               ${ s.restName}<br>
                <span>${ s.restUpstream }</span>
