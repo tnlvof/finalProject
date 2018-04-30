@@ -26,7 +26,7 @@ public class ReservationController {
 	@RequestMapping(value ="cancelReserv.rv", method = {RequestMethod.GET, RequestMethod.POST})
 	@ResponseBody
 	public ModelAndView cancelReserv(HttpServletRequest request, ModelAndView mv) {
-		int rvid = Integer.parseInt(request.getParameter("rvid"));
+		int rvid = Integer.parseInt(request.getParameter("reservId"));
 		System.out.println("Controller rvid : " + rvid);
 		
 		int cancelReserv = rs.cancelReservation(rvid);
