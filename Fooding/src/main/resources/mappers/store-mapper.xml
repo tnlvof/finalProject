@@ -41,7 +41,7 @@
 		<result property="restY" column="REST_Y"/>                                            
 	</resultMap>                                                                        
 	
- 	<insert id="insertStore" parameterType="Store">INSERT INTO STORE VALUES(SEQ_SID.NEXTVAL, #{sName} , #{phone} , #{sCode}, #{bookYN} ,#{address} ,#{sLocation}, #{sHours} , #{dayoff} ,#{sTable} , #{budget},#{atmosphere},#{facilities},#{description} ,DEFAULT, DEFAULT,DEFAULT,DEFAULT,#{mainPhoto},DEFAULT, #{mid})</insert> 
+ 	<insert id="insertStore" parameterType="Store">INSERT INTO STORE VALUES(SEQ_SID.NEXTVAL, #{sName} , #{phone} , #{sCode}, #{bookYN} ,#{address} ,#{sLocation}, #{sHours} , #{dayoff} ,#{sTable} , #{budget},#{atmosphere},#{facilities},#{description} ,DEFAULT, DEFAULT,DEFAULT,DEFAULT,#{mainPhoto},DEFAULT, #{mid} , null)</insert> 
 
 
 	<select id="searchResult" resultMap="samResultSet">
