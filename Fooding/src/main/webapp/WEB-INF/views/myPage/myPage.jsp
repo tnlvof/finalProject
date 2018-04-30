@@ -17,8 +17,8 @@
 			<jsp:include page="/WEB-INF/views/myPage/myPageTab.jsp"/>
 			<div id="reservation" class="body empty">
 				<div class="filter">
-					<a href="#" class="">방문 예정 예약</a> <a
-						href="#" class="">지나간 예약</a>
+					<a href="goMyPage.me" class="">방문 예정 예약</a> <a
+						href="beforeReserv.rv" class="">지나간 예약</a>
 				</div>
 				<!-- 예약이 없을 때 화면 -->
 				<c:choose>
@@ -49,7 +49,9 @@
 							<input type="hidden" value="${ list.rvid }" class="reservId">
 							<div class="date">예약정보: ${ list.rDate } / ${ list.rTime }</div>
 							<div class="party_size">인원: ${ list.rPeople }명</div>
-							
+							<c:url value="cancelReserv.rv" var="cancelReserv">
+							  <c:param name="rvid" value="${ list.rvid }" />
+							</c:url>
 						</div>
 						
 
@@ -68,9 +70,6 @@
 															style="margin-left: -110.5px; margin-top: 28.5px; width: 108.5px; display: block;" onclick="document.getElementById('reservCancel').style.display='none'">아니오</div>
 														<div class="confirmOk"
 															style="margin-left: 1px; margin-top: 28.5px; width: 108.5px; display: block;" onclick="location.href='${cancelReserv}'">예</div>
-														<c:url value="cancelReserv.rv" var="cancelReserv">
-									                        <c:param name="rvid" value="${ list.rvid }" />
-								                        </c:url>
 													</div>
 												</div>
 											</div>
