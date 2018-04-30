@@ -116,6 +116,43 @@
 								</ul>
 							</div>
 						</div>
+						<%-- 페이지 처리 --%>
+						<div class="pagingArea" align="center">
+							<button
+								onclick="location.href='${contextPath}/goMyPageReview.me?currentPage=1'"><<</button>
+							<c:choose>
+								<c:when test="${ currentPage <= 1 }">
+									<button disabled><</button>
+								</c:when>
+								<c:otherwise>
+									<button
+										onclick="location.href='${contextPath}/goMyPageReview.me?currentPage=${ currentPage - 1 }'"><</button>
+								</c:otherwise>
+							</c:choose>
+							<c:forEach var="p" begin="${ startPage }" end="${ endPage }">
+								<c:choose>
+									<c:when test="${ p eq currentPage }">
+										<button disabled>${ p }</button>
+									</c:when>
+									<c:otherwise>
+										<button
+											onclick="location.href='${contextPath}/goMyPageReview.me?currentPage=${ p }'">${ p }</button>
+									</c:otherwise>
+								</c:choose>
+							</c:forEach>
+
+							<c:choose>
+								<c:when test="${ currentPage >= maxPage }">
+									<button disabled>></button>
+								</c:when>
+								<c:otherwise>
+									<button
+										onclick="location.href='${contextPath}/goMyPageReview.me?currentPage=${ currentPage + 1 }'">></button>
+								</c:otherwise>
+							</c:choose>
+							<button
+								onclick="location.href='${contextPath}/goMyPageReview.me?curruntPage=${ maxPage }'">>></button>
+						</div>
 					</c:otherwise>
 				</c:choose>
 			</div>

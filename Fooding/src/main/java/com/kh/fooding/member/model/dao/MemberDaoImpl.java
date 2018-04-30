@@ -10,6 +10,7 @@ import org.springframework.http.codec.multipart.SynchronossPartHttpMessageReader
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Repository;
 
+import com.kh.fooding.common.PageInfo;
 import com.kh.fooding.member.model.exception.LoginException;
 import com.kh.fooding.member.model.exception.selectMemberException;
 import com.kh.fooding.member.model.vo.Member;
@@ -145,7 +146,7 @@ public class MemberDaoImpl implements MemberDao{
 
 	@Override
 	public ArrayList<Review> selectReviewList(int mid) {
-		ArrayList<Review> reviewList = (ArrayList)sqlSession.selectList("Review.selectReviewList", mid);
+        ArrayList<Review> reviewList = (ArrayList)sqlSession.selectList("Review.selectReviewList", mid);
 		
 		System.out.println("reviewList : " + reviewList);
 		
