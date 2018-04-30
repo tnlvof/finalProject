@@ -21,9 +21,13 @@ public interface StoreDao {
 
 	ArrayList<Store> selectAllStores(SqlSessionTemplate sqlSession);
 
+
+	int getCouponListCount(SqlSessionTemplate sqlSession);
+
 	int getListCount(String searchKey, SqlSessionTemplate sqlSession);
 
 	ArrayList<Store> selectThemeList(SqlSessionTemplate sqlSession, String query);
 
 	
+
 }
