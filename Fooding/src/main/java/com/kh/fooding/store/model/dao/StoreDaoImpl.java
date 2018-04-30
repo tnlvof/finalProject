@@ -84,15 +84,14 @@ public class StoreDaoImpl implements StoreDao{
 		String statement = "";
 	
 		switch(query) {
-			case "kor" : query="한식"; statement ="Store.selectUpstream"; break;
-			case "izakaya" :query="이자카야"; statement ="Store.selectMenu";break;
-			case "meat" : query="소고기 구이"; statement="Store.selectMenu" ; break;
-			case "chinese" :query="중식"; statement = "Store.selectUpstream";break;
-			case "pizza" :query="피자";statement="Store.selectMenu";  break;
+			case "kor" : query="한식"; break;
+			case "japanese" :query="일식"; break;			
+			case "chinese" :query="중식";break;
+			case "western" :query="양식";  break;
  		}
 		
 		
-		ArrayList<Store> selectThemeList = (ArrayList) sqlSession.selectList(statement, query);
+		ArrayList<Store> selectThemeList = (ArrayList) sqlSession.selectList("Store.selectRestType", query);
 		
 		System.out.println("themeList : "  + selectThemeList);
 		
