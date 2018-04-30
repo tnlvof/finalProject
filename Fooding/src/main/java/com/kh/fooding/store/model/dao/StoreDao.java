@@ -20,4 +20,6 @@ public interface StoreDao {
 	Sam selectOneSam(String restName, SqlSessionTemplate sqlSession);
 
 	ArrayList<Store> selectAllStores(SqlSessionTemplate sqlSession);
+
+	int getCouponListCount(SqlSessionTemplate sqlSession);
 }
