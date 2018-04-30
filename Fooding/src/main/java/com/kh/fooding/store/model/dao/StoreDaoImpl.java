@@ -64,11 +64,11 @@ public class StoreDaoImpl implements StoreDao{
 	}
 
 
-	/*@Override
+	@Override
 	public int getCouponListCount(SqlSessionTemplate sqlSession) {
 		// TODO Auto-generated method stub
 		return 0;
-	}*/
+	}
 
 	// 업체 조회
 	@Override
