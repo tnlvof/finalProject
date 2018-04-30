@@ -67,6 +67,12 @@
 	SELECT * FROM STORE  
 	</select>
 	
+	<select id="selectRestType" resultMap="storeResultSet" parameterType="String">
+	SELECT * FROM STORE
+	WHERE SCODE=#{query}
+	ORDER BY STAR DESC	
+	</select>
+	
 	<select id="selectUpstream" resultMap="samResultSet" parameterType="String">
 	SELECT SID, REST_NAME, REST_UPSTREAM ,REST_ADDRESS, REST_NUMBER
 	FROM SAM
