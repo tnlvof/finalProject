@@ -80,8 +80,23 @@ public class StoreDaoImpl implements StoreDao{
 
 	@Override
 	public ArrayList<Store> selectThemeList(SqlSessionTemplate sqlSession, String query) {
-		// TODO Auto-generated method stub
-		return null;
+				
+		String statement = "";
+	
+		switch(query) {
+			case "kor" : query="한식"; statement ="Store.selectUpstream"; break;
+			case "izakaya" :query="이자카야"; statement ="Store.selectMenu";break;
+			case "meat" : query="소고기 구이"; statement="Store.selectMenu" ; break;
+			case "chinese" :query="중식"; statement = "Store.selectUpstream";break;
+			case "pizza" :query="피자";statement="Store.selectMenu";  break;
+ 		}
+		
+		
+		ArrayList<Store> selectThemeList = (ArrayList) sqlSession.selectList(statement, query);
+		
+		System.out.println("themeList : "  + selectThemeList);
+		
+		return selectThemeList;
 	}
 
 
