@@ -28,6 +28,30 @@
 		<result property="star" column="STAR"/>    
 	</resultMap>                                                                        
 	
+	<resultMap id="storeResultSet2" type="Store">
+		<id property="sid" column="SID"/>                                               
+		<result property="sName" column="SNAME"/>                                    
+		<result property="phone" column="PHONE"/>                                  
+		<result property="sCode" column="SCODE"/>                                
+		<result property="bookYN" column="BOOK_YN"/>                                       
+		<result property="address" column="ADDRESS"/>                                       
+		<result property="sLocation" column="S_LOCATION"/>                                     
+		<result property="sHours" column="SHOURS"/>                                       
+		<result property="dayoff" column="DAYOFF"/>                                   
+		<result property="sTable" column="S_TABLE"/>                                       
+		<result property="budget" column="BUDGET"/>                            
+		<result property="atmosphere" column="ATMOSPHERE"/>                                
+		<result property="facilities" column="FACILITIES"/>                                   
+		<result property="description" column="DESCRIPTION"/>                               
+		<result property="keyword" column="COUPON_NO"/>       
+		<result property="status" column="STATUS"/>    
+		<result property="menu" column="MENU"/>    
+		<result property="mainPhoto" column="MAIN_PHOTO"/>    
+		<result property="subPhoto" column="SUB_PHOTO"/>    
+		<result property="mid" column="MID"/>
+		<result property="rank" column="순위" />    
+	</resultMap>                                                                              
+	
 	<resultMap id="samResultSet" type="Sam">
 		<id property="sid" column="SID"/>                                                     
 		<result property="areaDong" column="AREA_DONG"/>                                       
@@ -73,10 +97,14 @@
 	SELECT * FROM STORE  
 	</select>
 	
-	<select id="selectRestType" resultMap="storeResultSet" parameterType="String">
-	SELECT * FROM STORE
-	WHERE SCODE=#{query}
-	ORDER BY STAR DESC	
+	<select id="selectRestType" resultMap="storeResultSet2" parameterType="String">
+	SELECT *
+	FROM (SELECT SID, SNAME, PHONE, SCODE, BOOK_YN, ADDRESS,
+  	S_LOCATION, SHOURS, DAYOFF, S_TABLE, BUDGET, ATMOSPHERE, FACILITIES, DESCRIPTION,
+ 	COUPON_NO, KEYWORD, STATUS, MENU, MAIN_PHOTO, SUB_PHOTO, MID, STAR,
+ 	DENSE_RANK() OVER(ORDER BY STAR DESC)순위
+   	FROM STORE WHERE SCODE=#{query}) 
+	WHERE 순위 &lt;= 20	
 	</select>
 	
 	<select id="selectUpstream" resultMap="samResultSet" parameterType="String">

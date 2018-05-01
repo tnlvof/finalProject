@@ -190,12 +190,12 @@ public class StoreController {
 		System.out.println(query);
 		
 		//페이지 헤더에 넣을 이미지 주소, 문구 지정
-		/*String imgName = "";
+		String imgName = "";
 		String phrase = "";
 		
 		switch(query) {
-		case "kor" : imgName = "resources/images/main/korfood.png"; phrase = "한국인의 자랑스러운 맛 <br><br> 푸딩이 선정한  한식 맛집입니다."; break;
-		case "japanese" :imgName = "resources/images/main/recomd03.jpg"; phrase="안주 종결자 이자카야 <br><br> 술맛은 똑같지만 안주와 분위기는 다릅니다."; break;		
+		case "kor" : imgName = "resources/images/main/korheader.png"; phrase = "한국인의 자랑스러운 맛 <br><br><br><br><br> 푸딩이 선정한  한식 맛집입니다."; break;
+		case "japanese" :imgName = "resources/images/main/recomd03.jpg"; phrase="안주 종결자 이자카야 <br><br><br> 술맛은 똑같지만 안주와 분위기는 다릅니다."; break;		
 		case "chinese" : imgName="resources/images/main/chinese.jpg"; phrase = "바삭한 탕수육과 불맛을 제대로 느낄 수 있는 중국식당을 소개합니다.";break;
 		case "western" : imgName="resources/images/main/pizza.jpg" ; phrase="흉내낼 수 없는 셰프의 피자를 맛보세요 <br><br> 이탈리아를 그대로 가져온 것 같은 피제리아 "; break;
  		}
@@ -203,16 +203,29 @@ public class StoreController {
 		ArrayList<String> forHeaderList = new ArrayList();
 		
 		forHeaderList.add(imgName);
-		forHeaderList.add(phrase);
-		*/
+		forHeaderList.add(phrase);		
 		
 		
 		// 테마 식당 가져오기
 		ArrayList<Store> themeList = ss.selectThemeList(query);
+		String photoLocation = "";
+		String after="";
+		
+		for(int i =0; i<themeList.size();i++) {
+			photoLocation = themeList.get(i).getMainPhoto();
+			after = photoLocation.substring(photoLocation.indexOf("resources"));
+			if(! after.equals("resources\\uploadFiles")) {
+				themeList.get(i).setMainPhoto(after);				
+			} else {
+				themeList.get(i).setMainPhoto(null);
+			}
+			
+		}
+		
 		
 		System.out.println(themeList);
 		
-		
+		mv.addObject("HeaderList", forHeaderList);
 		mv.addObject("themeList", themeList);
 		mv.setViewName("store/theRecommended");		
 		
