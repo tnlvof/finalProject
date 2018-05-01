@@ -37,7 +37,7 @@
 						<div class="body review list review_wrap">
 							<div class="review">
 								<a class="place" href=""> <span class="thumbnail"
-									style="display: block; background-image: url(&quot;http://c2.poing.co.kr/PIMAGE-default/5746a03f668a484de2000044.png&quot;);"></span>
+									style="display: block; background-image: url(${ list.mainPhoto });"></span>
 									<p class="name">${ list.sName }</p>
 									<p class="info">강남역 · ${ list.sCode }</p>
 								</a>
@@ -73,9 +73,9 @@
 									<div class="action">
 										<div class="article">
 								            <input type="hidden" value="${ list.rid }" class="reviewId">
-											<button class="edit" tabindex="-1">수정하기</button>
+											<!-- <button class="edit" tabindex="-1">수정하기</button> -->
 											<button class="delete" tabindex="-1"
-												onclick="document.getElementById('reviewDelete').style.display='block'">삭제하기</button>
+												onclick="document.getElementById('reviewDelete').style.display='block'">삭제</button>
 											<input type="hidden" value="" class="reid">
 											
 										</div>
@@ -105,53 +105,42 @@
 							</div>
 						</div>
 						</c:forEach>
-						<div id="review_pagination">
-							<div class="page-list">
-								<ul class="pagination" onselectstart="return false;">
-									<li class="prevAll">&lt;&lt;</li>
-									<li class="prev">&lt;</li>
-									<li class="page active">1</li>
-									<li class="next">&gt;</li>
-									<li class="nextAll">&gt;&gt;</li>
-								</ul>
-							</div>
-						</div>
-						<%-- 페이지 처리 --%>
-						<div class="pagingArea" align="center">
-							<button
-								onclick="location.href='${contextPath}/goMyPageReview.me?currentPage=1'"><<</button>
-							<c:choose>
-								<c:when test="${ currentPage <= 1 }">
-									<button disabled><</button>
-								</c:when>
-								<c:otherwise>
-									<button
-										onclick="location.href='${contextPath}/goMyPageReview.me?currentPage=${ currentPage - 1 }'"><</button>
-								</c:otherwise>
-							</c:choose>
-							<c:forEach var="p" begin="${ startPage }" end="${ endPage }">
-								<c:choose>
-									<c:when test="${ p eq currentPage }">
-										<button disabled>${ p }</button>
-									</c:when>
-									<c:otherwise>
-										<button
-											onclick="location.href='${contextPath}/goMyPageReview.me?currentPage=${ p }'">${ p }</button>
-									</c:otherwise>
-								</c:choose>
+
+                        <br>
+						<div id="pageIngArea" align="center">
+							<c:if test="${ pi.currentPage <= 1 }">
+							<< &nbsp;
+		                    </c:if>
+							<c:if test="${ pi.currentPage > 1 }">
+								<c:url var="bListBack" value="/goMyPageReview.me">
+									<c:param name="currentPage" value="${ pi.currentPage -1 }" />
+								</c:url>
+								<a href="${ bListBack }"><<</a> &nbsp;
+		                    </c:if>
+
+							<c:forEach var="p" begin="${ pi.startPage }"
+								end="${ pi.endPage }">
+								<c:if test="${ p eq pi.currentPage }">
+									<b style="color: #ff5a5f;">${ p }</b>
+								</c:if>
+								<c:if test="${ p ne pi.currentPage }">
+									<c:url var="bListCheck" value="goMyPageReview.me">
+										<c:param name="currentPage" value="${ p }" />
+									</c:url>
+									<a href="${ bListCheck }">${ p }</a>
+								</c:if>
 							</c:forEach>
 
-							<c:choose>
-								<c:when test="${ currentPage >= maxPage }">
-									<button disabled>></button>
-								</c:when>
-								<c:otherwise>
-									<button
-										onclick="location.href='${contextPath}/goMyPageReview.me?currentPage=${ currentPage + 1 }'">></button>
-								</c:otherwise>
-							</c:choose>
-							<button
-								onclick="location.href='${contextPath}/goMyPageReview.me?curruntPage=${ maxPage }'">>></button>
+							<c:if test="${ pi.currentPage >= pi.maxPage }">
+		                    &nbsp; >>
+	                    	</c:if>
+							<c:if test="${ pi.currentPage < pi.maxPage }">
+								<c:url var="bListEnd" value="goMyPageReview.me">
+									<c:param name="currentPage" value="${ pi.currentPage + 1 }" />
+								</c:url>
+								<a href="${ bListEnd }">&nbsp; >></a>
+							</c:if>
+
 						</div>
 					</c:otherwise>
 				</c:choose>

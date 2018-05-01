@@ -37,6 +37,6 @@ public interface MemberService  {
 	
 	void insertStore(Member m);
 
-	ArrayList<Review> selectReviewList(int mid);
+	ArrayList<Review> selectReviewList(int mid, PageInfo pi);
 
 }

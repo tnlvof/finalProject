@@ -19,6 +19,7 @@ public class Review implements java.io.Serializable{
 	private int price;
 	private String sName;
 	private String sCode;
+	private String mainPhoto;
 	
 	public Review() {
 		super();
@@ -26,7 +27,7 @@ public class Review implements java.io.Serializable{
 	}
 
 	public Review(int rid, Date enrollDate, String rTitle, String rContent, int sid, String status, int star, int mid,
-			int taste, int service, int price, String sName, String sCode) {
+			int taste, int service, int price, String sName, String sCode, String mainPhoto) {
 		super();
 		this.rid = rid;
 		this.enrollDate = enrollDate;
@@ -41,6 +42,7 @@ public class Review implements java.io.Serializable{
 		this.price = price;
 		this.sName = sName;
 		this.sCode = sCode;
+		this.mainPhoto = mainPhoto;
 	}
 
 	public int getRid() {
@@ -147,11 +149,20 @@ public class Review implements java.io.Serializable{
 		this.sCode = sCode;
 	}
 
+	public String getMainPhoto() {
+		return mainPhoto;
+	}
+
+	public void setMainPhoto(String mainPhoto) {
+		this.mainPhoto = mainPhoto;
+	}
+
 	@Override
 	public String toString() {
 		return "Review [rid=" + rid + ", enrollDate=" + enrollDate + ", rTitle=" + rTitle + ", rContent=" + rContent
 				+ ", sid=" + sid + ", status=" + status + ", star=" + star + ", mid=" + mid + ", taste=" + taste
-				+ ", service=" + service + ", price=" + price + ", sName=" + sName + ", sCode=" + sCode + "]";
+				+ ", service=" + service + ", price=" + price + ", sName=" + sName + ", sCode=" + sCode + ", mainPhoto="
+				+ mainPhoto + "]";
 	}
 
 }

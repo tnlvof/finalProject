@@ -37,6 +37,6 @@ public interface MemberDao {
 
 	ArrayList<Reservation> selectReservList(int mid);
 
-	ArrayList<Review> selectReviewList(int mid);
+	ArrayList<Review> selectReviewList(int mid, PageInfo pi);
 
 }

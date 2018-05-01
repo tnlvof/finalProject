@@ -304,7 +304,7 @@ public class MemberController {
 		System.out.println("startPage : " + startPage);
 		System.out.println("endPage : " + endPage);
 		
-		ArrayList<Review> reviewList = ms.selectReviewList(m.getMid());
+		ArrayList<Review> reviewList = ms.selectReviewList(m.getMid(), pi);
 		
 		System.out.println("Controller reviewList : " + reviewList);
 

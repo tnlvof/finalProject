@@ -437,6 +437,10 @@ button.red, button.red_fill {
     clear: both;
 }
 
+#content > .body > #pageIngArea{
+	color: #969696;
+}
+
 
 
 /* 문의 답변 */
@@ -524,32 +528,6 @@ i, input[type=checkbox].slide-toggle+label span {
 .review_wrap>.review>.body>.grade>span {
     margin-left: 5px;
     font-size: 12px;
-}
-
-/* 리뷰 페이징 */
-div.page-list {
-    text-align: center;
-}
-div.page-list>ul.pagination {
-    margin-top: 10px;
-}
-ol, ul {
-    list-style: none;
-}
-div.page-list>ul.pagination>li {
-    display: inline-block;
-    cursor: pointer;
-    width: 24px;
-    height: 24px;
-    line-height: 24px;
-    text-align: center;
-    font-size: 12px;
-    color: #969696;
-}
-div.page-list>ul.pagination>li.active {
-    color: #FF5A5F;
-    font-weight: 600;
-    font-size: 11pt;
 }
 
 /* 사이드바(캘린더) */
