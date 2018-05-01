@@ -50,27 +50,40 @@
 		<result property="subPhoto" column="SUB_PHOTO"/>    
 		<result property="mid" column="MID"/>                                                                       
 		<result property="rank" column="순위" />                                                                          
-	</resultMap>                                                                                                          
-	                                                                                                                    
-	<resultMap id="samResultSet" type="Sam">                                                                            
-		<id property="sid" column="SID"/>                                                                                 
-		<result property="areaDong" column="AREA_DONG"/>                                                                   
-		<result property="areaGoo" column="AREA_GOO"/>                                                                       
-		<result property="areaSi" column="AREA_SI"/>                                                                    
-		<result property="restAddress" column="REST_ADDRESS"/>                                                                   
-		<result property="restBoard" column="REST_BROAD"/>                                                                    
-		<result property="restMenu" column="REST_MENU"/>                                                                    
-		<result property="restName" column="REST_NAME"/>                                  
-		<result property="restNumber" column="REST_NUMBER"/>                              
-		<result property="restUpstream" column="REST_UPSTREAM"/>                          
-		<result property="restX" column="REST_X"/>                                        
-		<result property="restY" column="REST_Y"/>  
-		<result property="writer" column="WRITER"/>  
-		<result property="content" column="CONTENT"/>  
-		<result property="photo" column="PHOTO"/>  
+	</resultMap>                                                                                                                                                                                    
+	
+	<resultMap id="samResultSet" type="Sam">
+		<id property="sid" column="SID"/>                                                     
+		<result property="areaDong" column="AREA_DONG"/>                                       
+		<result property="areaGoo" column="AREA_GOO"/>                                           
+		<result property="areaSi" column="AREA_SI"/>                                
+		<result property="restAddress" column="REST_ADDRESS"/>                                       
+		<result property="restBoard" column="REST_BROAD"/>                                        
+		<result property="restMenu" column="REST_MENU"/>                                        
+		<result property="restName" column="REST_NAME"/>                                         
+		<result property="restNumber" column="REST_NUMBER"/>                                     
+		<result property="restUpstream" column="REST_UPSTREAM"/>                                     
+		<result property="restX" column="REST_X"/>                                            
+		<result property="restY" column="REST_Y"/>   
+		<result property="writer" column="WRITER"/>
+		<result property="content" column="CONTENT"/>
+		<result property="photo" column="PHOTO"/>
+		<result property="sid" column="SID"/>
+		<result property="star" column="STAR"/>
+		<result property="rank" column="순위" />
+	</resultMap>                                                                            
+	
+	<resultMap id="couponResultSet" type="Coupon"> 
+		<id property="cid" column="CID"/>                                                     
+		<result property="cname" column="C_NAME"/>                                           
+		<result property="cdate" column="C_ENDDATE"/>                                
+		<result property="cterm" column="C_TERM"/>                                       
+		<result property="cmethod" column="C_METHOD"/>                                        
+		<result property="sid" column="SID"/>                                        
+		<result property="enrollDate" column="ENROLL_DATE"/>                                         
 	</resultMap>                                                                        
 	
- 	<insert id="insertStore" parameterType="Store">INSERT INTO STORE VALUES(SEQ_SID.NEXTVAL, #{sName} ,#{phone} , #{sCode}, #{bookYN} ,#{address} ,#{sLocation}, #{sHours} , #{dayoff} ,#{sTable} , #{budget},#{atmosphere},#{facilities},#{description} ,DEFAULT, DEFAULT,DEFAULT,DEFAULT,#{mainPhoto},DEFAULT, #{mid} , null)</insert> 
+ 	<insert id="insertStore" parameterType="Store">INSERT INTO STORE VALUES(SEQ_SID.NEXTVAL, #{sName} ,#{phone} , #{sCode}, #{bookYN} ,#{address} ,#{sLocation}, #{sHours} , #{dayoff} ,#{sTable} , #{budget},#{atmosphere},#{facilities},#{description} ,DEFAULT, #{keyword},DEFAULT,#{menu},#{mainPhoto},DEFAULT, #{mid} , null)</insert> 
 
 
 	<select id="searchResult" resultMap="samResultSet">
@@ -105,6 +118,15 @@
 	SELECT * FROM STORE  
 	</select>
 	
+
+	<select id="selectBestCoupon" resultMap="couponResultSet">
+		SELECT C.CID, C.C_NAME, C.SID, S.SNAME, S.SCODE, S.ADDRESS, S.DESCRIPTION, S.KEYWORD, S.MAIN_PHOTO, S.STAR
+		FROM COUPON C
+		JOIN STORE S ON(C.SID = S.SID)
+		WHERE ROWNUM &lt;= 100
+		ORDER BY S.STAR DESC
+	</select>
+
 	<select id="selectRestType" resultMap="storeResultSet2" parameterType="String">
 	SELECT *
 	FROM (SELECT SID, SNAME, PHONE, SCODE, BOOK_YN, ADDRESS,
@@ -112,20 +134,38 @@
  	COUPON_NO, KEYWORD, STATUS, MENU, MAIN_PHOTO, SUB_PHOTO, MID, STAR,
  	DENSE_RANK() OVER(ORDER BY STAR DESC)순위
    	FROM STORE WHERE SCODE=#{query}) 
-	WHERE 순위 &lt;= 20	
+	WHERE 순위 &lt;= 10	
+	</select>
+			
+	
+	<select id="selectSamThemeListCat" resultMap="samResultSet" parameterType="String">
+	SELECT *
+	FROM ( SELECT ROWNUM, AREA_DONG, AREA_SI, REST_ADDRESS, REST_BROAD, REST_MENU, SID, REST_NAME,
+	REST_UPSTREAM , REST_NUMBER, REST_X, REST_Y, WRITER, CONTENT, PHOTO, STAR,
+	DENSE_RANK() OVER(ORDER BY STAR DESC)순위
+	FROM SAM
+	WHERE REST_UPSTREAM = #{query})
+	WHERE ROWNUM &lt;=10		
 	</select>
 	
-	<select id="selectUpstream" resultMap="samResultSet" parameterType="String">
-	SELECT SID, REST_NAME, REST_UPSTREAM ,REST_ADDRESS, REST_NUMBER
+	<select id="selectMenu" resultMap = "samResultSet">
+	SELECT *
+	FROM (SELECT ROWNUM, AREA_DONG, AREA_SI, REST_ADDRESS, REST_BROAD, REST_MENU, SID, REST_NAME,
+	REST_UPSTREAM , REST_NUMBER, REST_X, REST_Y, WRITER, CONTENT, PHOTO, STAR,
+	DENSE_RANK() OVER(ORDER BY STAR DESC)순위 
 	FROM SAM
-	WHERE REST_UPSTREAM = #{query}
+	WHERE REST_MENU LIKE '%' ||#{query} || '%' )
+	WHERE ROWNUM &lt;=10
 	</select>
 	
-	
-	<select id="selectMenu" resultMap="samResultSet" parameterType="String">
-	SELECT SID, REST_NAME, REST_UPSTREAM ,REST_ADDRESS, REST_NUMBER
+	<select id="selectMenuMeat" resultMap = "samResultSet">
+	SELECT *
+	FROM (SELECT ROWNUM, AREA_DONG, AREA_SI, REST_ADDRESS, REST_BROAD, REST_MENU, SID, REST_NAME,
+	REST_UPSTREAM , REST_NUMBER, REST_X, REST_Y, WRITER, CONTENT, PHOTO, STAR,
+	DENSE_RANK() OVER(ORDER BY STAR DESC)순위 
 	FROM SAM
-	WHERE REST_MENU = #{query}	
+	WHERE REST_MENU LIKE '%' || '고기' || '%' OR REST_MENU LIKE '%' || '곱창' || '%')
+	WHERE ROWNUM &lt;=10
 	</select>
 	
 </mapper>

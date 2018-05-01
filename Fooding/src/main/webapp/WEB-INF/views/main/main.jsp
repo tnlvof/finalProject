@@ -50,7 +50,7 @@
 							<p>신규 등록 쿠폰</p>
 						</div>
 					</li>
-					<li style="background-image:url(http://c1.poing.co.kr/original/images/main/location.png)">
+					<li style="background-image:url(http://c1.poing.co.kr/original/images/main/location.png)" onclick="location.href='bestCoupon.st'">
 						<div class="bg">
 							<p>Fooding's choice</p>
 						</div>
@@ -61,7 +61,7 @@
 						</div>
 					</li>
 				</ul>
-				<div class="more" onclick="locaiton.href='couponList.st'">더보기 &nbsp;&gt;</div>
+				<!-- <div class="more">더보기 &nbsp;&gt;</div> -->
 			</div>
 			<!-- coupon-wrap -->
 			
@@ -76,28 +76,28 @@
 					</div>
 					<!-- recomd01 -->
 					
-					<div class="recomds recomd02" style="background-image:url('resources/images/main/chinese.jpg')" >
+					<div class="recomds recomd02" style="background-image:url('resources/images/main/chinese.jpg')"  onclick="location.href='themeRest.st?type=chinese'">
 						<div class="bg">
 							<p>바삭한 꿔바로우</p>
 						</div>
 					</div>
 					<!-- recomd02 -->
 					
-					<div class="recomds recomd03" style="background-image:url('resources/images/main/recomd03.jpg')" >
+					<div class="recomds recomd03" style="background-image:url('resources/images/main/recomd03.jpg')"  onclick="location.href='themeRestMenu.st?type=izakaya'" >
 						<div class="bg">
 							<p>이자카야</p>
 						</div>
 					</div>
 					<!-- recomd03 -->
 					
-					<div class="recomds recomd04" style="background-image:url('resources/images/main/pizza.jpg')">
+					<div class="recomds recomd04" style="background-image:url('resources/images/main/pizza.jpg')"  onclick="location.href='themeRestMenu.st?type=pizza'" >
 						<div class="bg">
 							<p>베스트 피자</p>
 						</div>
 					</div>
 					<!-- recomd04 -->
 					
-					<div class="recomds recomd05" style="background-image:url('resources/images/main/recomd05.jpg')" onclick="chooseMeat();">
+					<div class="recomds recomd05" style="background-image:url('resources/images/main/recomd05.jpg')"  onclick="location.href='themeRestMenu.st?type=meat'">
 						<div class="bg">
 							<p>진짜 고기맛</p>
 						</div>

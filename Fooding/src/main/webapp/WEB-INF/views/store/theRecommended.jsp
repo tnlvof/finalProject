@@ -144,15 +144,15 @@ margin-left:10px;
 
 <div id="container">
 
-<img alt="" src="${HeaderList[0] }" class="headerPic" >
- <div class="centered" align="center"><h3 > ${HeaderList[1] } </h3> </div>
+<img alt="" src="${HeaderList[0] }" class="headerPic" style="filter:brightness(50%);" >
+ <div class="centered" align="center"><h3 style="color:white;"> ${HeaderList[1] } </h3> </div>
 
 <hr>
 
 <br><br>
 
-<div id="resultArea">
-
+<div id="resultArea" style="height: 100%;">
+<c:if test="${! empty themeList }">
  <c:forEach items = "${themeList }" var="e">
 	<div class="result">
 		<c:if test="${!empty e.mainPhoto }">
@@ -184,8 +184,38 @@ margin-left:10px;
 		<button class="buttons" >리뷰하기</button>
 		</div>
 	</div>	
-</c:forEach> 
-	
+</c:forEach>
+</c:if>
+
+
+ <c:forEach items = "${themeListSam }" var="d">
+	<div class="result">
+		<c:if test="${!empty d.photo }">
+		<img alt="" src="${d.photo }" class="profilePic">
+		</c:if>
+		<c:if test="${ empty d.photo  }">
+		<img alt="" src="resources/images/restaurants/nothing.png" class="profilePic">
+		</c:if>
+		
+		 <div class="nameAndPricesArea">
+		
+			 <h1 class="text"><c:out value="${d.restName }"></c:out></h1>
+					
+		 <span class="fa fa-star checked"></span>
+		<span class="fa fa-star checked"></span>
+		<span class="fa fa-star checked"></span>
+		<span class="fa fa-star"></span>
+		<span class="fa fa-star"></span>
+		
+				
+		 </div>
+		<div class="btns">		
+		
+		<button class="buttons" >리뷰하기</button>
+		</div>
+	</div>	
+</c:forEach>
+
 </div>
 
 
@@ -193,6 +223,5 @@ margin-left:10px;
 
 </div>
 
+<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
 
-</body>
-</html>

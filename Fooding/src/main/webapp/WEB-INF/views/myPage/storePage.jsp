@@ -14,7 +14,7 @@
 	<jsp:include page="/WEB-INF/views/myPage/myPageBanner.jsp" />
 	<div id="content_wrap">
 		<div id="content" class="mypage">
-			<ul class="tab">   
+			<ul class="tab">
 				<li class="item" onclick="location.href='goMyPage.me'">정보 입력</li>
 				<li class="item" onclick="location.href='goMyPageReview.me'">리뷰</li>
 				<li class="item" onclick="location.href='goMyPageQuestions.bo'">1:1 문의</li>
@@ -45,7 +45,12 @@
 					<input type="checkbox" id="china" name="sCode" value="중식"><label for="smoking">중식</label>
 					<input type="checkbox" id="japan" name="sCode" value="일식"> <label for="parking">일식</label>
 					<input type="checkbox" id="western" name="sCode" value="양식"> <label for="baby">양식</label>
+					<input type="checkbox" id="qnstlr" name="sCode" value="분식"> <label for="baby">분식</label>
 				</div>
+			</li>
+			<li>
+				<label>검색키워드</label>
+				<input type="text" name="keyword">
 			</li>
 			<li>
 				<label>전화 번호</label>
@@ -107,9 +112,12 @@
 	                <input type="checkbox" id="pat" name="facilities" value="애완동물 출입가능"> <label for="pat">애완동물 출입가능</label>
 				</div>
 			</li>
-			
 			<li>
 				<label>메뉴</label>
+				<textarea id="menutextarea" cols="50" rows="15" style="resize:none;" name="menu"></textarea>
+			</li>			
+			<li>
+				<label>기타내용</label>
 				<textarea id="menutextarea" cols="50" rows="15" style="resize:none;" name="description"></textarea>
 			</li>
 			

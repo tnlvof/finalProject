@@ -16,9 +16,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kh.fooding.board.model.service.BoardService;
+import com.kh.fooding.board.model.service.BoardServiceImpl;
 import com.kh.fooding.common.PageInfo;
 import com.kh.fooding.member.model.vo.Member;
 import com.kh.fooding.store.model.service.StoreService;
+import com.kh.fooding.store.model.vo.Coupon;
 import com.kh.fooding.store.model.vo.Sam;
 import com.kh.fooding.store.model.vo.Store;
 
@@ -184,10 +187,50 @@ public class StoreController {
 	}
 	
 	
-	//테마 식당 추천
+	//테마 식당 추천 - 카테고리별
 	@RequestMapping(value="themeRest.st", method=RequestMethod.GET)
 	public ModelAndView selectThemeRest(ModelAndView mv, HttpServletRequest request) {
-		// query 종류 - kor, izakaya, meat, chinese, pizza 
+		//페이징 처리
+		/*//페이징 처리
+				int currentPage;
+				int limit; //한 페이지에 보여주는 것
+				int maxPage;
+				int startPage;
+				int endPage;
+				
+				currentPage = 1;		
+				limit = 10; 
+				
+				if(request.getParameter("currentPage")!=null) {
+					currentPage = Integer.parseInt(request.getParameter("currentPage"));			
+				}
+				
+				int listCount;
+			
+				BoardService bs = new BoardServiceImpl();
+				
+				try {
+					listCount = bs.getListCount();
+					System.out.println("전체 게시글 수 : " + listCount);
+					
+					maxPage = (int)((double) listCount / limit + 0.9);
+					
+					startPage = ((int)((double) currentPage / limit + 0.9)-1) * limit + 1;
+					
+					endPage = startPage + limit - 1;
+					
+					if(maxPage < endPage) {
+						endPage = maxPage;				
+					}
+					
+					PageInfo pi = new PageInfo(currentPage, listCount, limit, maxPage, startPage, endPage);
+					*/
+		
+		
+		
+		
+		
+		// query 종류 - kor, japanese, chinese, western
 		String query = request.getParameter("type");
 		System.out.println(query);
 		
@@ -197,9 +240,9 @@ public class StoreController {
 		
 		switch(query) {
 		case "kor" : imgName = "resources/images/main/korheader.png"; phrase = "한국인의 자랑스러운 맛 <br><br><br><br><br> 푸딩이 선정한  한식 맛집입니다."; break;
-		case "japanese" :imgName = "resources/images/main/recomd03.jpg"; phrase="안주 종결자 이자카야 <br><br><br> 술맛은 똑같지만 안주와 분위기는 다릅니다."; break;		
+		case "japanese" :imgName = "resources/images/main/recomd03.jpg"; phrase="정갈한 일식으로 가벼운 외식하세요."; break;		
 		case "chinese" : imgName="resources/images/main/chinese.jpg"; phrase = "바삭한 탕수육과 불맛을 제대로 느낄 수 있는 중국식당을 소개합니다.";break;
-		case "western" : imgName="resources/images/main/pizza.jpg" ; phrase="흉내낼 수 없는 셰프의 피자를 맛보세요 <br><br> 이탈리아를 그대로 가져온 것 같은 피제리아 "; break;
+		case "western" : imgName="resources/images/main/pizza.jpg" ; phrase="새롭고 특별한 맛이 먹고 싶을 때."; break;
  		}
 		
 		ArrayList<String> forHeaderList = new ArrayList();
@@ -208,7 +251,7 @@ public class StoreController {
 		forHeaderList.add(phrase);		
 		
 		
-		// 테마 식당 가져오기
+		// 테마 식당 가져오기 - STORE
 		ArrayList<Store> themeList = ss.selectThemeList(query);
 		String photoLocation = "";
 		String after="";
@@ -224,16 +267,91 @@ public class StoreController {
 			
 		}
 		
+		// Sam Table에서 가져오는 리스트 - 카테고리별
+		ArrayList<Sam> themeListSam = ss.selectThemeListSamCat(query);
+		System.out.println( "themeListSam!!! : "+ themeListSam);
+		
 		
 		System.out.println(themeList);
 		
 		mv.addObject("HeaderList", forHeaderList);
 		mv.addObject("themeList", themeList);
+		mv.addObject("themeListSam", themeListSam);
 		mv.setViewName("store/theRecommended");		
 		
 		
 		return mv;
 	}
+	
+	
+
+	//추천 쿠폰
+	@RequestMapping(value="bestCoupon.st", method = RequestMethod.GET)
+	public ModelAndView selectBestCoupon(ModelAndView mv, HttpServletRequest request){
+		
+		ArrayList<Coupon> couponList = ss.selectBestCoupon();
+		
+		System.out.println("추천 쿠폰 리스트 : " + couponList);
+		
+		mv.addObject("couponList", couponList);
+		mv.setViewName("store/coupon");
+		
+		return mv;
+	}
+
+	
+	//테마 식당 추천 -메뉴별
+		@RequestMapping(value="themeRestMenu.st", method=RequestMethod.GET)
+		public ModelAndView selectThemeRestMenu(ModelAndView mv, HttpServletRequest request) {
+			// query 종류 -izakaya, meat, pizza 
+			String query = request.getParameter("type");
+			System.out.println(query);
+			
+			//페이지 헤더에 넣을 이미지 주소, 문구 지정
+			String imgName = "";
+			String phrase = "";
+			
+			switch(query) {
+			case "meat" : imgName = "resources/images/main/korheader.png"; phrase = "실패확률 ZERO! 고기는 항상 옳다."; break;
+			case "izakaya" :imgName = "resources/images/main/recomd03.jpg"; phrase="안주 종결자 이자카야 <br><br><br> 술맛은 똑같지만 안주와 분위기는 다릅니다."; break;			
+			case "pizza" : imgName="resources/images/main/pizza.jpg" ; phrase="흉내낼 수 없는 셰프의 피자를 맛보세요 <br><br> 이탈리아를 그대로 가져온 것 같은 피제리아 "; break;
+	 		}
+			
+			ArrayList<String> forHeaderList = new ArrayList();
+			
+			forHeaderList.add(imgName);
+			forHeaderList.add(phrase);		
+			
+			
+			// 테마 식당 가져오기 Sam
+			ArrayList<Sam> themeList = ss.selectThemeListMenu(query);
+			/*String photoLocation = "";
+			String after="";
+			*/
+			/*for(int i =0; i<themeList.size();i++) {
+				photoLocation = themeList.get(i).getMainPhoto();
+				after = photoLocation.substring(photoLocation.indexOf("resources"));
+				if(! after.equals("resources\\uploadFiles")) {
+					themeList.get(i).setMainPhoto(after);				
+				} else {
+					themeList.get(i).setMainPhoto(null);
+				}
+				
+			}*/
+			
+			
+			System.out.println(themeList);
+			
+			mv.addObject("HeaderList", forHeaderList);
+			mv.addObject("themeListSam", themeList);
+			mv.setViewName("store/theRecommended");		
+			
+			
+			return mv;
+		}
+		
+	
+	
 	
 	
 }

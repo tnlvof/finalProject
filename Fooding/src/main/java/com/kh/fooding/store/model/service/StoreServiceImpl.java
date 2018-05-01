@@ -10,7 +10,7 @@ import com.kh.fooding.common.PageInfo;
 import com.kh.fooding.store.model.dao.StoreDao;
 
 import com.kh.fooding.store.model.vo.Store;
-
+import com.kh.fooding.store.model.vo.Coupon;
 import com.kh.fooding.store.model.vo.Sam;
 
 
@@ -54,17 +54,6 @@ public class StoreServiceImpl implements StoreService{
 	}
 
 
-	//@Override
-	/*public int getCouponListCount() {
-	int result = sd.getCouponListCount(sqlSession);
-		
-		return result;
-
-	
-
-	}*/
-
-
 	// 업체 조회 admin
 	@Override
 	public ArrayList<Store> selectAllStores() {
@@ -75,7 +64,7 @@ public class StoreServiceImpl implements StoreService{
 	}
 
 	
-	//테마 레스토랑 조회 
+	//테마 레스토랑 조회 - 카테고리별
 	@Override
 	public ArrayList<Store> selectThemeList(String query) {
 		ArrayList<Store> themeList = sd.selectThemeList(sqlSession, query);
@@ -83,11 +72,37 @@ public class StoreServiceImpl implements StoreService{
 		return themeList;
 	}
 
+
 	//검색 결과
 	@Override
 	public ArrayList<Store> searchStore(PageInfo pi, String searchKey) {
 		ArrayList<Store> store = sd.searchStore(sqlSession, searchKey,pi);
 		return store;
+
+	//테마 레스토랑 조회 - 메뉴별
+	@Override
+	public ArrayList<Sam> selectThemeListMenu(String query) {
+		ArrayList<Sam> selectThemeListMenu = sd.selectThemeListMenu(sqlSession, query);
+		
+		return selectThemeListMenu;
+	}
+
+	// 테마 레스토랑 조회 - 카테고리별
+	@Override
+	public ArrayList<Sam> selectThemeListSamCat(String query) {
+		ArrayList<Sam> selectThemeListSamCat = sd.selectThemeListSamCat(sqlSession, query );
+		
+		return selectThemeListSamCat;
+	}
+
+	//추천 쿠폰 조회
+	@Override
+	public ArrayList<Coupon> selectBestCoupon() {
+		
+		ArrayList<Coupon> couponList = sd.selectBestCoupon(sqlSession);
+		
+		return couponList;
+
 	}
 
 }

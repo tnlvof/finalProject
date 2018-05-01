@@ -20,6 +20,47 @@ public class Sam implements java.io.Serializable{
 	private String content; 
 	private String photo;
 	private int sid;
+	private int star;
+	private int rank;
+	
+	public Sam() {                                               
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Sam(String areaDong, String areaGoo, String areaSi, String restAddress, String restBoard, String restMenu,
+			String restName, String restNumber, String restUpstream, int restX, int restY, String writer,
+			String content, String photo, int sid, int star, int rank) {
+		super();
+		this.areaDong = areaDong;
+		this.areaGoo = areaGoo;
+		this.areaSi = areaSi;
+		this.restAddress = restAddress;
+		this.restBoard = restBoard;
+		this.restMenu = restMenu;
+		this.restName = restName;
+		this.restNumber = restNumber;
+		this.restUpstream = restUpstream;
+		this.restX = restX;
+		this.restY = restY;
+		this.writer = writer;
+		this.content = content;
+		this.photo = photo;
+		this.sid = sid;
+		this.star = star;
+		this.rank = rank;
+	}
+
+
+	
+	public int getRank() {
+		return rank;
+	}
+
+	public void setRank(int rank) {
+		this.rank = rank;
+	}
+
 	public String getWriter() {
 		return writer;
 	}
@@ -60,50 +101,7 @@ public class Sam implements java.io.Serializable{
 		this.star = star;
 	}
 
-	public Sam(String areaDong, String areaGoo, String areaSi, String restAddress, String restBoard, String restMenu,
-			String restName, String restNumber, String restUpstream, int restX, int restY, String writer,
-			String content, String photo, int sid, int star) {
-		super();
-		this.areaDong = areaDong;
-		this.areaGoo = areaGoo;
-		this.areaSi = areaSi;
-		this.restAddress = restAddress;
-		this.restBoard = restBoard;
-		this.restMenu = restMenu;
-		this.restName = restName;
-		this.restNumber = restNumber;
-		this.restUpstream = restUpstream;
-		this.restX = restX;
-		this.restY = restY;
-		this.writer = writer;
-		this.content = content;
-		this.photo = photo;
-		this.sid = sid;
-		this.star = star;
-	}
 
-	private int star;
-	
-	public Sam() {                                               
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	public Sam(String areaDong, String areaGoo, String areaSi, String restAddress, String restBoard, String restMenu,
-			String restName, String restNumber, String restUpstream, int restX, int restY) {
-		super();
-		this.areaDong = areaDong;
-		this.areaGoo = areaGoo;
-		this.areaSi = areaSi;
-		this.restAddress = restAddress;
-		this.restBoard = restBoard;
-		this.restMenu = restMenu;
-		this.restName = restName;
-		this.restNumber = restNumber;
-		this.restUpstream = restUpstream;
-		this.restX = restX;
-		this.restY = restY;
-	}
 
 	public String getAreaDong() {
 		return areaDong;
@@ -199,7 +197,7 @@ public class Sam implements java.io.Serializable{
 				+ restAddress + ", restBoard=" + restBoard + ", restMenu=" + restMenu + ", restName=" + restName
 				+ ", restNumber=" + restNumber + ", restUpstream=" + restUpstream + ", restX=" + restX + ", restY="
 				+ restY + ", writer=" + writer + ", content=" + content + ", photo=" + photo + ", sid=" + sid
-				+ ", star=" + star + "]";
+				+ ", star=" + star + " rank : " + rank + "]";
 	}
 	
 	
