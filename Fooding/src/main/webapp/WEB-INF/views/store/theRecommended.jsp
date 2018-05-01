@@ -152,7 +152,7 @@ margin-left:10px;
 <br><br>
 
 <div id="resultArea" style="height: 100%;">
-
+<c:if test="${! empty themeList }">
  <c:forEach items = "${themeList }" var="e">
 	<div class="result">
 		<c:if test="${!empty e.mainPhoto }">
@@ -184,7 +184,10 @@ margin-left:10px;
 		<button class="buttons" >리뷰하기</button>
 		</div>
 	</div>	
-</c:forEach> 
+</c:forEach>
+</c:if>
+
+
  <c:forEach items = "${themeListSam }" var="d">
 	<div class="result">
 		<c:if test="${!empty d.photo }">
@@ -212,7 +215,7 @@ margin-left:10px;
 		</div>
 	</div>	
 </c:forEach>
-	
+
 </div>
 
 

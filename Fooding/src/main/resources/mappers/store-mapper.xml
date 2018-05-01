@@ -110,7 +110,7 @@
  	COUPON_NO, KEYWORD, STATUS, MENU, MAIN_PHOTO, SUB_PHOTO, MID, STAR,
  	DENSE_RANK() OVER(ORDER BY STAR DESC)순위
    	FROM STORE WHERE SCODE=#{query}) 
-	WHERE 순위 &lt;= 20	
+	WHERE 순위 &lt;= 10	
 	</select>
 			
 	
@@ -121,12 +121,27 @@
 	DENSE_RANK() OVER(ORDER BY STAR DESC)순위
 	FROM SAM
 	WHERE REST_UPSTREAM = #{query})
-	WHERE ROWNUM &lt;=20		
+	WHERE ROWNUM &lt;=10		
 	</select>
 	
-	<select id="Store.selectMenuMeat" resultMap = "samResultSet">
-	SELECT * FROM SAM
-	WHERE REST_MENU LIKE '%' || 고기 || '%' OR REST_MENU LIKE '%' || 곱창 || '%';
+	<select id="selectMenu" resultMap = "samResultSet">
+	SELECT *
+	FROM (SELECT ROWNUM, AREA_DONG, AREA_SI, REST_ADDRESS, REST_BROAD, REST_MENU, SID, REST_NAME,
+	REST_UPSTREAM , REST_NUMBER, REST_X, REST_Y, WRITER, CONTENT, PHOTO, STAR,
+	DENSE_RANK() OVER(ORDER BY STAR DESC)순위 
+	FROM SAM
+	WHERE REST_MENU LIKE '%' ||#{query} || '%' )
+	WHERE ROWNUM &lt;=10
+	</select>
+	
+	<select id="selectMenuMeat" resultMap = "samResultSet">
+	SELECT *
+	FROM (SELECT ROWNUM, AREA_DONG, AREA_SI, REST_ADDRESS, REST_BROAD, REST_MENU, SID, REST_NAME,
+	REST_UPSTREAM , REST_NUMBER, REST_X, REST_Y, WRITER, CONTENT, PHOTO, STAR,
+	DENSE_RANK() OVER(ORDER BY STAR DESC)순위 
+	FROM SAM
+	WHERE REST_MENU LIKE '%' || '고기' || '%' OR REST_MENU LIKE '%' || '곱창' || '%')
+	WHERE ROWNUM &lt;=10
 	</select>
 	
 </mapper>
