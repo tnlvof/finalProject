@@ -8,6 +8,7 @@
 		<typeAlias alias="Board" type="com.kh.fooding.board.model.vo.Board"/>
 		<typeAlias alias="Store" type="com.kh.fooding.store.model.vo.Store"/>
 		<typeAlias alias="Sam" type="com.kh.fooding.store.model.vo.Sam"/>
+		<typeAlias alias="Coupon" type="com.kh.fooding.store.model.vo.Coupon"/>
 		<typeAlias alias="Reservation" type="com.kh.fooding.reservation.model.vo.Reservation"/>
 		<typeAlias alias="Review" type="com.kh.fooding.review.model.vo.Review"/>
 		<typeAlias alias="Sample" type="com.kh.fooding.sample.model.vo.Sample"/>

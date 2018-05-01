@@ -6,6 +6,7 @@ import com.kh.fooding.store.model.vo.Store;
 import java.util.ArrayList;
 
 import com.kh.fooding.common.PageInfo;
+import com.kh.fooding.store.model.vo.Coupon;
 import com.kh.fooding.store.model.vo.Sam;
 
 public interface StoreService {
@@ -17,11 +18,10 @@ public interface StoreService {
 	
 	Sam selectOneSam(String restName);
 
-
-	//int getCouponListCount();
-
 	ArrayList<Store> selectAllStores();
 
 	ArrayList<Store> selectThemeList(String query);
+
+	ArrayList<Coupon> selectBestCoupon();
 
 }

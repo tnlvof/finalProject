@@ -39,6 +39,16 @@
 		<result property="restUpstream" column="REST_UPSTREAM"/>                                     
 		<result property="restX" column="REST_X"/>                                            
 		<result property="restY" column="REST_Y"/>                                            
+	</resultMap>                                                                            
+	
+	<resultMap id="couponResultSet" type="Coupon"> 
+		<id property="cid" column="CID"/>                                                     
+		<result property="cname" column="C_NAME"/>                                           
+		<result property="cdate" column="C_ENDDATE"/>                                
+		<result property="cterm" column="C_TERM"/>                                       
+		<result property="cmethod" column="C_METHOD"/>                                        
+		<result property="sid" column="SID"/>                                        
+		<result property="enrollDate" column="ENROLL_DATE"/>                                         
 	</resultMap>                                                                        
 	
  	<insert id="insertStore" parameterType="Store">INSERT INTO STORE VALUES(SEQ_SID.NEXTVAL, #{sName} , #{phone} , #{sCode}, #{bookYN} ,#{address} ,#{sLocation}, #{sHours} , #{dayoff} ,#{sTable} , #{budget},#{atmosphere},#{facilities},#{description} ,DEFAULT, DEFAULT,DEFAULT,DEFAULT,#{mainPhoto},DEFAULT, #{mid})</insert> 
@@ -65,6 +75,14 @@
 	
 	<select id="selectAllStores" resultMap="storeResultSet">	
 	SELECT * FROM STORE  
+	</select>
+	
+	<select id="selectBestCoupon" resultMap="couponResultSet">
+		SELECT C.CID, C.C_NAME, C.SID, S.SNAME, S.SCODE, S.ADDRESS, S.DESCRIPTION, S.KEYWORD, S.MAIN_PHOTO, S.STAR
+		FROM COUPON C
+		JOIN STORE S ON(C.SID = S.SID)
+		WHERE ROWNUM &lt;= 100
+		ORDER BY S.STAR DESC
 	</select>
 </mapper>
 

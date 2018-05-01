@@ -50,7 +50,7 @@
 							<p>신규 등록 쿠폰</p>
 						</div>
 					</li>
-					<li style="background-image:url(http://c1.poing.co.kr/original/images/main/location.png)">
+					<li style="background-image:url(http://c1.poing.co.kr/original/images/main/location.png)" onclick="location.href='bestCoupon.st'">
 						<div class="bg">
 							<p>Fooding's choice</p>
 						</div>
@@ -61,7 +61,7 @@
 						</div>
 					</li>
 				</ul>
-				<div class="more" onclick="locaiton.href='couponList.st'">더보기 &nbsp;&gt;</div>
+				<!-- <div class="more">더보기 &nbsp;&gt;</div> -->
 			</div>
 			<!-- coupon-wrap -->
 			
