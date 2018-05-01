@@ -48,9 +48,9 @@
 		<result property="menu" column="MENU"/>    
 		<result property="mainPhoto" column="MAIN_PHOTO"/>    
 		<result property="subPhoto" column="SUB_PHOTO"/>    
-		<result property="mid" column="MID"/>
-		<result property="rank" column="순위" />    
-	</resultMap>                                                                              
+		<result property="mid" column="MID"/>                                                                       
+		<result property="rank" column="순위" />                                                                          
+	</resultMap>                                                                                                                                                                                    
 	
 	<resultMap id="samResultSet" type="Sam">
 		<id property="sid" column="SID"/>                                                     
@@ -87,13 +87,18 @@
 
 
 	<select id="searchResult" resultMap="samResultSet">
-		SELECT DISTINCT REST_ADDRESS ,REST_MENU ,REST_NAME, REST_NUMBER, REST_UPSTREAM, REST_X, REST_Y FROM SAM 
+		SELECT DISTINCT REST_ADDRESS ,REST_MENU ,REST_NAME, REST_NUMBER, REST_UPSTREAM, REST_X, REST_Y, WRITER, CONTENT,PHOTO ,SID 
+		FROM SAM 
 		WHERE REST_ADDRESS LIKE '%' || #{searchKey} || '%' 
 		OR REST_NAME LIKE '%' || #{searchKey} || '%' 
 		AND ROWNUM &lt;= 100
 	</select>
+	
 	<select id="searchStore" resultMap="storeResultSet">
-		
+		SELECT * FROM STORE
+		WHERE KEYWORD LIKE '%' || #{searchKey} || '%'
+		AND ROWNUM &lt;= 100
+		ORDER BY STAR DESC
 		
 	</select>
 	

@@ -26,6 +26,9 @@ public interface StoreDao {
 	ArrayList<Store> selectThemeList(SqlSessionTemplate sqlSession, String query);
 
 
+	ArrayList<Store> searchStore(SqlSessionTemplate sqlSession, String searchKey, PageInfo pi);
+
+
 	ArrayList<Coupon> selectBestCoupon(SqlSessionTemplate sqlSession);
 
 	ArrayList<Sam> selectThemeListMenu(SqlSessionTemplate sqlSession, String query);

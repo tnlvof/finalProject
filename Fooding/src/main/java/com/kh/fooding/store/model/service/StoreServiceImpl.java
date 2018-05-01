@@ -30,7 +30,7 @@ public class StoreServiceImpl implements StoreService{
 	}
 
 	@Override
-	public ArrayList searchResult(PageInfo pi,String searchKey) {
+	public ArrayList<Sam> searchResult(PageInfo pi,String searchKey) {
 		
 		ArrayList sam = sd.searchResult(searchKey,pi,sqlSession); 
 		
@@ -72,6 +72,13 @@ public class StoreServiceImpl implements StoreService{
 		return themeList;
 	}
 
+
+	//검색 결과
+	@Override
+	public ArrayList<Store> searchStore(PageInfo pi, String searchKey) {
+		ArrayList<Store> store = sd.searchStore(sqlSession, searchKey,pi);
+		return store;
+
 	//테마 레스토랑 조회 - 메뉴별
 	@Override
 	public ArrayList<Sam> selectThemeListMenu(String query) {
@@ -95,6 +102,7 @@ public class StoreServiceImpl implements StoreService{
 		ArrayList<Coupon> couponList = sd.selectBestCoupon(sqlSession);
 		
 		return couponList;
+
 	}
 
 }

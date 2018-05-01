@@ -25,18 +25,13 @@ public class StoreDaoImpl implements StoreDao{
     
 	// 검색 결과
 	@Override
-	public ArrayList searchResult(String searchKey,PageInfo pi, SqlSessionTemplate sqlSession) {
+	public ArrayList<Sam> searchResult(String searchKey,PageInfo pi, SqlSessionTemplate sqlSession) {
 		
 		int offset = (pi.getCurrentPage() -1) * pi.getLimit();
 		RowBounds rowBounds = new RowBounds(offset, pi.getLimit());
-		ArrayList sam = (ArrayList)sqlSession.selectList("Store.searchResult", searchKey , rowBounds);
-		ArrayList result = (ArrayList) sqlSession.selectList("Store.searchStore",searchKey,rowBounds);
+		ArrayList<Sam> sam = (ArrayList)sqlSession.selectList("Store.searchResult", searchKey , rowBounds);
 		
-		result.addAll(sam);
-		
-		/*sam.addAll(sqlSession.selectList("store.searchStore",searchKey,rowBounds));*/
-		
-		for (Object sam2 : result) {
+		for (Object sam2 : sam) {
 			System.out.println("dao result : " + sam2);
 		}
 		
@@ -44,8 +39,7 @@ public class StoreDaoImpl implements StoreDao{
 			System.out.println("dao sam : " + sam2);
 		}*/
 		
-		return result;
-
+		return sam;
 	}
 	
 	@Override
@@ -100,6 +94,20 @@ public class StoreDaoImpl implements StoreDao{
 		return selectThemeList;
 	}
 
+
+	@Override
+	public ArrayList<Store> searchStore(SqlSessionTemplate sqlSession, String searchKey, PageInfo pi) {
+		int offset = (pi.getCurrentPage() -1) * pi.getLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getLimit());
+		ArrayList<Store> store = (ArrayList)sqlSession.selectList("Store.searchStore", searchKey , rowBounds);
+		
+		for (Object sam2 : store) {
+			System.out.println("dao result : " + sam2);
+		}
+		
+		return store;
+	}
+
 	// 테마별 식당 - 카테고리별 Sam 
 	@Override
 	public ArrayList<Sam> selectThemeListSamCat(SqlSessionTemplate sqlSession, String query) {
@@ -149,7 +157,6 @@ public class StoreDaoImpl implements StoreDao{
 		
 		return selectThemeListMenu;
 	}
-
 
 
 
