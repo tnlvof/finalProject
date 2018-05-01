@@ -73,7 +73,7 @@
 		<result property="rank" column="순위" />		                  
 	</resultMap>                                                                        
 	
- 	<insert id="insertStore" parameterType="Store">INSERT INTO STORE VALUES(SEQ_SID.NEXTVAL, #{sName} ,#{phone} , #{sCode}, #{bookYN} ,#{address} ,#{sLocation}, #{sHours} , #{dayoff} ,#{sTable} , #{budget},#{atmosphere},#{facilities},#{description} ,DEFAULT, DEFAULT,DEFAULT,DEFAULT,#{mainPhoto},DEFAULT, #{mid} , null)</insert> 
+ 	<insert id="insertStore" parameterType="Store">INSERT INTO STORE VALUES(SEQ_SID.NEXTVAL, #{sName} ,#{phone} , #{sCode}, #{bookYN} ,#{address} ,#{sLocation}, #{sHours} , #{dayoff} ,#{sTable} , #{budget},#{atmosphere},#{facilities},#{description} ,DEFAULT, #{keyword},DEFAULT,#{menu},#{mainPhoto},DEFAULT, #{mid} , null)</insert> 
 
 
 	<select id="searchResult" resultMap="samResultSet">
