@@ -128,7 +128,7 @@ public class StoreDaoImpl implements StoreDao{
 	public ArrayList<Sam> selectThemeListMenu(SqlSessionTemplate sqlSession, String query) {
 		
 		String statement = "Store.selectMenu";			
-		ArrayList<Sam> selectThemeListMenu = null;
+		ArrayList<Sam> selectThemeListMenu = new ArrayList<Sam>();
 		switch(query) {
 			case "izakaya" : query="이자카야";  break;
 			case "pizza" :query="피자"; break;			
