@@ -1,6 +1,9 @@
 package com.kh.fooding.sample.model.vo;
 
-public class Sample {
+import org.springframework.stereotype.Component;
+
+@Component
+public class Sample implements java.io.Serializable{
 	private int sbid;
 	private int sbNo;
 	private String sbName;

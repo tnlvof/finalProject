@@ -12,7 +12,7 @@ import com.kh.fooding.store.model.vo.Sam;
 public interface StoreService {
 	void insertStoreInfo(Store s);
 
-	ArrayList<Sam> searchResult(PageInfo pi, String searchKey);
+	ArrayList searchResult(PageInfo pi, String searchKey);
 
 	int getListCount(String searchKey);
 	
@@ -22,6 +22,14 @@ public interface StoreService {
 
 	ArrayList<Store> selectThemeList(String query);
 
+
 	ArrayList<Coupon> selectBestCoupon();
+
+	//sam 테이블에서 메뉴 별로 가져오기
+	ArrayList<Sam> selectThemeListMenu(String query);
+
+	//sam 테이블에서 업종 별로 가져오기
+	ArrayList<Sam> selectThemeListSamCat(String query);
+
 
 }

@@ -23,10 +23,9 @@ public class ReservationController {
 	@Autowired
 	private ReservationService rs;
 
-	@RequestMapping(value ="cancelReserv.rv", method = {RequestMethod.GET, RequestMethod.POST})
-	@ResponseBody
+	@RequestMapping(value ="cancelReserv.rv")
 	public ModelAndView cancelReserv(HttpServletRequest request, ModelAndView mv) {
-		int rvid = Integer.parseInt(request.getParameter("rvid"));
+		int rvid = Integer.parseInt(request.getParameter("reservId"));
 		System.out.println("Controller rvid : " + rvid);
 		
 		int cancelReserv = rs.cancelReservation(rvid);

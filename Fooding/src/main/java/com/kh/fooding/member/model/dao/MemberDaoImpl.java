@@ -4,12 +4,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.codec.multipart.SynchronossPartHttpMessageReader;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Repository;
 
+import com.kh.fooding.common.PageInfo;
 import com.kh.fooding.member.model.exception.LoginException;
 import com.kh.fooding.member.model.exception.selectMemberException;
 import com.kh.fooding.member.model.vo.Member;
@@ -144,8 +146,11 @@ public class MemberDaoImpl implements MemberDao{
 	}
 
 	@Override
-	public ArrayList<Review> selectReviewList(int mid) {
-		ArrayList<Review> reviewList = (ArrayList)sqlSession.selectList("Review.selectReviewList", mid);
+	public ArrayList<Review> selectReviewList(int mid, PageInfo pi) {
+		int offset = (pi.getCurrentPage() -1) * pi.getLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getLimit());
+		
+        ArrayList<Review> reviewList = (ArrayList)sqlSession.selectList("Review.selectReviewList", mid, rowBounds);
 		
 		System.out.println("reviewList : " + reviewList);
 		

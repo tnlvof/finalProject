@@ -2,7 +2,10 @@ package com.kh.fooding.reservation.model.vo;
 
 import java.sql.Date;
 
-public class Reservation {
+import org.springframework.stereotype.Component;
+
+@Component
+public class Reservation implements java.io.Serializable{
 	private int rvid;
 	private Date rDate;
 	private String rTime;

@@ -8,6 +8,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kh.fooding.common.PageInfo;
 import com.kh.fooding.member.model.dao.MemberDao;
 import com.kh.fooding.member.model.exception.LoginException;
 import com.kh.fooding.member.model.exception.selectMemberException;
@@ -101,8 +102,8 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public ArrayList<Review> selectReviewList(int mid) {
-		ArrayList<Review> reviewList = md.selectReviewList(mid);
+	public ArrayList<Review> selectReviewList(int mid, PageInfo pi) {
+        ArrayList<Review> reviewList = md.selectReviewList(mid, pi);
 		
 		return reviewList;
 	}

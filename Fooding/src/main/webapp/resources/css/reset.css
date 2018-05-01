@@ -38,9 +38,9 @@ body {
 ol, ul {
 	list-style: none;
 }
-li{
-	cursor: pointer;
-}
+ li{
+	cursor: default;
+} 
 blockquote, q {
 	quotes: none;
 }

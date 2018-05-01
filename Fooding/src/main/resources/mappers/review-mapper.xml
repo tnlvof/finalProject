@@ -29,6 +29,7 @@
         <result property="service" column="SERVICE" />
         <result property="price" column="PRICE" />
         <result property="sName" column="SNAME" />
+        <result property="mainPhoto" column="MAIN_PHOTO" />
     </resultMap>
     
     <select id="selectReviewCount" parameterType="_int" resultType="_int">
@@ -43,8 +44,8 @@
     FROM REVIEW R
     JOIN MEMBER M ON (M.MID = R.MID)
     JOIN STORE S ON (S.SID = R.SID)
-    WHERE M.MID=#{ mid } AND R.STATUS = 'Y'
-    ORDER BY R.ENROLL_DATE DESC
+    WHERE M.MID=#{ mid } AND R.STATUS = 'Y'AND ROWNUM &lt;= 100
+    ORDER BY R.RID DESC
     </select>
     
     <update id="deleteReview">

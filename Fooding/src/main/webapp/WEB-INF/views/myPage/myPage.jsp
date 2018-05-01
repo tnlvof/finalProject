@@ -33,6 +33,10 @@
 				<c:otherwise>
 				<!-- 예약화면 -->
 				<c:forEach var="list" items="${ reservList }">
+				<c:set var="reservId" value="${ list.rvid}"></c:set>
+				<c:url value="cancelReserv.rv" var="cancelReserv">
+					<c:param name="reservId" value="${ reservId }" />
+				</c:url>
 				<div class="list">
 					<div class="reservation">
 						<div class="i_wrap image">
@@ -49,44 +53,44 @@
 							<input type="hidden" value="${ list.rvid }" class="reservId">
 							<div class="date">예약정보: ${ list.rDate } / ${ list.rTime }</div>
 							<div class="party_size">인원: ${ list.rPeople }명</div>
-							<c:url value="cancelReserv.rv" var="cancelReserv">
-							  <c:param name="rvid" value="${ list.rvid }" />
-							</c:url>
+							
 						</div>
 						
 
 						<!-- <button class="ccBtn red border_radius soft" tabindex="-1" id="ccBtn">변경
 							/ 취소</button> -->
 							<button class="ccBtn red border_radius soft" tabindex="-1" id="ccBtn" onclick="document.getElementById('reservCancel').style.display='block'">예약 취소</button>
-							<div id="reservCancel" class="w3-modal">
-												<div class="w3-modal-content">
-													<div class="w3-container">
-														<div class="confirmBackground" style="display: block;"></div>
-														<div id="default" class="confirmPopup"
-															style="padding: 20px 40px; margin-left: -110.5px; margin-top: -26.5px; display: block;">
-															<div class="confirmMessage">예약을 취소하시겠습니까?</div>
-														</div>
-														<div class="confirmNo"
-															style="margin-left: -110.5px; margin-top: 28.5px; width: 108.5px; display: block;" onclick="document.getElementById('reservCancel').style.display='none'">아니오</div>
-														<div class="confirmOk"
-															style="margin-left: 1px; margin-top: 28.5px; width: 108.5px; display: block;" onclick="location.href='${cancelReserv}'">예</div>
-													</div>
-												</div>
-											</div>
 							
+							<input type="hidden" value="" class="idrv">
 							<script>
-							$(".ccBtn").click(function(){
-								var rvid = $(this).parent().find('.reservId').val();
-								console.log(rvid);
-								<c:forEach var="l" items="${ reservList }">
-									if(rvid == ${ l.rvid }){
-										$(".rPeople").val('${l.rPeople}');
-										$(".rDate").text('${l.rDate}');
-										$(".rTime").text('${l.rTime}');
-									}
-								</c:forEach>
-							    		/* document.getElementById('changeCancel').style.display='block'; */
+							 
+							$(function(){
+								$(".ccBtn").click(function(){
+									var rvid = $(this).parent().find('.reservId').val();
+									console.log("취소버튼 : "+rvid);
+									/* <c:forEach var="l" items="${ reservList }">
+										if(rvid == ${ l.rvid }){
+											$(".rPeople").val('${l.rPeople}');
+											$(".rDate").text('${l.rDate}');
+											$(".rTime").text('${l.rTime}');
+										}
+									</c:forEach> */
+								    
+								    $(".idrv").val(rvid);
+								    		
+								 });
+								
+								$(".confirmOk").click(function(){
+									console.log("컨펌버튼 : "+ $(".idrv").val());
+									
+									var idrv = $(".idrv").val();
+									
+									location.href="cancelReserv.rv?reservId="+idrv;
+								});
+								
 							});
+							 
+							 
 							</script>
 					</div>
 				</div>
@@ -95,6 +99,23 @@
 				</c:choose>
 			</div>
 		</div>
+		<div id="reservCancel" class="w3-modal">
+			<div class="w3-modal-content">
+				<div class="w3-container">
+					<div class="confirmBackground" style="display: block;"></div>
+					<div id="default" class="confirmPopup"
+						style="padding: 20px 40px; margin-left: -110.5px; margin-top: -26.5px; display: block;">
+						<div class="confirmMessage">예약을 취소하시겠습니까?</div>
+					</div>
+					<div class="confirmNo"
+						style="margin-left: -110.5px; margin-top: 28.5px; width: 108.5px; display: block;"
+						onclick="document.getElementById('reservCancel').style.display='none'">아니오</div>
+					<div class="confirmOk"
+						style="margin-left: 1px; margin-top: 28.5px; width: 108.5px; display: block;">예</div>
+				</div>
+			</div>
+		</div>
+
 		<jsp:include page="/WEB-INF/views/myPage/myPageSidebar.jsp" />
 	</div>
 </div>

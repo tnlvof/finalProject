@@ -2,7 +2,10 @@ package com.kh.fooding.member.model.vo;
 
 import java.sql.Date;
 
-public class Member {
+import org.springframework.stereotype.Component;
+
+@Component
+public class Member implements java.io.Serializable{
 	private int mid;                                      
 	private String userId;                                
 	private String userPwd;                               

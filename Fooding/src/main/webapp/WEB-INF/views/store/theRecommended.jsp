@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,7 +9,7 @@
 <link rel="stylesheet" type="text/css" href="resources/css/reset.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <meta charset="utf-8">
-    <title>Fooding - 추천 식당 : 일식</title>
+    <title>Fooding - 테마별 식당</title>
     <style>
 .map_wrap, .map_wrap * {margin:0;padding:0;font-family:'Malgun Gothic',dotum,'돋움',sans-serif;font-size:12px;}
 .map_wrap a, .map_wrap a:hover, .map_wrap a:active{color:#000;text-decoration: none;}
@@ -142,43 +144,27 @@ margin-left:10px;
 
 <div id="container">
 
-<img alt="" src="resources/images/restaurants/sushi.png" class="headerPic">
- <div class="centered" align="center">푸딩이 추천하는 일식 맛집입니다. <br><br> 정갈한 일식으로 가벼운 외식하세요. </div>
+<img alt="" src="${HeaderList[0] }" class="headerPic" style="filter:brightness(50%);" >
+ <div class="centered" align="center"><h3 style="color:white;"> ${HeaderList[1] } </h3> </div>
 
 <hr>
 
 <br><br>
 
-<div id="resultArea">
-	<div class="result">
-		<img alt="" src="resources/images/restaurants/vatos.jpg" class="profilePic">
-		 <div class="nameAndPricesArea">
-		
-			 <h1 class="text">바토스 Vatos</h1>
-			
-		
-		 <span class="fa fa-star checked"></span>
-		<span class="fa fa-star checked"></span>
-		<span class="fa fa-star checked"></span>
-		<span class="fa fa-star"></span>
-		<span class="fa fa-star"></span>
-		<br><br>
-		 <h5 class="prices">1-2만원대</h5><br>
-		 <p>멕시코 음식이 한국에 온다면? 인기메뉴인 김치 치즈 프라이를 꼭 드셔보세요</p>
-		 </div>
-	
-	
-		<div class="btns">		
-		<button class="buttons" >예약하기</button>
-		<button class="buttons" >리뷰하기</button>
-		</div>
-	</div>	
+<div id="resultArea" style="height: 100%;">
 
+ <c:forEach items = "${themeList }" var="e">
 	<div class="result">
-		<img alt="" src="resources/images/restaurants/vatos.jpg" class="profilePic">
+		<c:if test="${!empty e.mainPhoto }">
+		<img alt="" src="${e.mainPhoto }" class="profilePic">
+		</c:if>
+		<c:if test="${ empty e.mainPhoto  }">
+		<img alt="" src="resources/images/restaurants/nothing.png" class="profilePic">
+		</c:if>
+		
 		 <div class="nameAndPricesArea">
 		
-			 <h1 class="text">바토스 Vatos</h1>
+			 <h1 class="text"><c:out value="${e.sName }"></c:out></h1>
 			
 		
 		 <span class="fa fa-star checked"></span>
@@ -186,143 +172,47 @@ margin-left:10px;
 		<span class="fa fa-star checked"></span>
 		<span class="fa fa-star"></span>
 		<span class="fa fa-star"></span>
+		
 		<br><br>
-		 <h5 class="prices">1-2만원대</h5><br>
-		 <p>멕시코 음식이 한국에 온다면? 인기메뉴인 김치 치즈 프라이를 꼭 드셔보세요</p>
+		 <h5 class="prices">${e.budget }</h5><br>
+		 <p><c:out value="${e.description }"></c:out></p>
 		 </div>
 	
-		
-				 		
+	
 		<div class="btns">		
 		<button class="buttons" >예약하기</button>
 		<button class="buttons" >리뷰하기</button>
 		</div>
-	</div>
-	
-	<div class="result">
-		<img alt="" src="resources/images/restaurants/vatos.jpg" class="profilePic">
-		 <div class="nameAndPricesArea">
-		
-			 <h1 class="text">바토스 Vatos</h1>
-			
-		
-		 <span class="fa fa-star checked"></span>
-		<span class="fa fa-star checked"></span>
-		<span class="fa fa-star checked"></span>
-		<span class="fa fa-star"></span>
-		<span class="fa fa-star"></span>
-		<br><br>
-		 <h5 class="prices">1-2만원대</h5><br>
-		 <p>멕시코 음식이 한국에 온다면? 인기메뉴인 김치 치즈 프라이를 꼭 드셔보세요</p>
-		 </div>
-	
-		
-				 		
-		<div class="btns">		
-		<button  class="buttons">예약하기</button>
-		<button class="buttons" >리뷰하기</button>
-		</div>
 	</div>	
-
-<div class="result">
-		<img alt="" src="resources/images/restaurants/vatos.jpg" class="profilePic">
+</c:forEach> 
+ <c:forEach items = "${themeListSam }" var="d">
+	<div class="result">
+		<c:if test="${!empty d.photo }">
+		<img alt="" src="${d.photo }" class="profilePic">
+		</c:if>
+		<c:if test="${ empty d.photo  }">
+		<img alt="" src="resources/images/restaurants/nothing.png" class="profilePic">
+		</c:if>
+		
 		 <div class="nameAndPricesArea">
 		
-			 <h1 class="text">바토스 Vatos</h1>
-			
-		
+			 <h1 class="text"><c:out value="${d.restName }"></c:out></h1>
+					
 		 <span class="fa fa-star checked"></span>
 		<span class="fa fa-star checked"></span>
 		<span class="fa fa-star checked"></span>
 		<span class="fa fa-star"></span>
 		<span class="fa fa-star"></span>
-		<br><br>
-		 <h5 class="prices">1-2만원대</h5><br>
-		 <p>멕시코 음식이 한국에 온다면? 인기메뉴인 김치 치즈 프라이를 꼭 드셔보세요</p>
-		 </div>
-	
 		
-				 		
+				
+		 </div>
 		<div class="btns">		
 		
 		<button class="buttons" >리뷰하기</button>
 		</div>
 	</div>	
+</c:forEach>
 	
-	<div class="result">
-		<img alt="" src="resources/images/restaurants/vatos.jpg" class="profilePic">
-		 <div class="nameAndPricesArea">
-		
-			 <h1 class="text">바토스 Vatos</h1>
-			
-		
-		 <span class="fa fa-star checked"></span>
-		<span class="fa fa-star checked"></span>
-		<span class="fa fa-star checked"></span>
-		<span class="fa fa-star"></span>
-		<span class="fa fa-star"></span>
-		<br><br>
-		 <h5 class="prices">1-2만원대</h5><br>
-		 <p>멕시코 음식이 한국에 온다면? 인기메뉴인 김치 치즈 프라이를 꼭 드셔보세요</p>
-		 </div>
-	
-		
-				 		
-		<div class="btns">		
-		<button  class="buttons">예약하기</button>
-		<button class="buttons" >리뷰하기</button>
-		</div>
-	</div>	
-	
-	<div class="result">
-		<img alt="" src="resources/images/restaurants/vatos.jpg" class="profilePic">
-		 <div class="nameAndPricesArea">
-		
-			 <h1 class="text">바토스 Vatos</h1>
-			
-		
-		 <span class="fa fa-star checked"></span>
-		<span class="fa fa-star checked"></span>
-		<span class="fa fa-star checked"></span>
-		<span class="fa fa-star"></span>
-		<span class="fa fa-star"></span>
-		<br><br>
-		 <h5 class="prices">1-2만원대</h5><br>
-		 <p>멕시코 음식이 한국에 온다면? 인기메뉴인 김치 치즈 프라이를 꼭 드셔보세요</p>
-		 </div>
-	
-		
-				 		
-		<div class="btns">		
-		<button class="buttons" >예약하기</button>
-		<button  class="buttons">리뷰하기</button>
-		</div>
-	</div>	
-	
-	<div class="result">
-		<img alt="" src="resources/images/restaurants/vatos.jpg" class="profilePic">
-		 <div class="nameAndPricesArea">
-		
-			 <h1 class="text">바토스 Vatos</h1>
-			
-		
-		 <span class="fa fa-star checked"></span>
-		<span class="fa fa-star checked"></span>
-		<span class="fa fa-star checked"></span>
-		<span class="fa fa-star"></span>
-		<span class="fa fa-star"></span>
-		<br><br>
-		 <h5 class="prices">1-2만원대</h5><br>
-		 <p>멕시코 음식이 한국에 온다면? 인기메뉴인 김치 치즈 프라이를 꼭 드셔보세요</p>
-		 </div>
-	
-		
-				 		
-		<div class="btns">		
-		<button class="buttons" >예약하기</button>
-		<button  class="buttons">리뷰하기</button>
-		</div>
-	</div>	
 </div>
 
 
@@ -330,6 +220,5 @@ margin-left:10px;
 
 </div>
 
+<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
 
-</body>
-</html>

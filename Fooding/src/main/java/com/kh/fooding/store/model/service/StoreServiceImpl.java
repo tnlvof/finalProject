@@ -30,9 +30,9 @@ public class StoreServiceImpl implements StoreService{
 	}
 
 	@Override
-	public ArrayList<Sam> searchResult(PageInfo pi,String searchKey) {
+	public ArrayList searchResult(PageInfo pi,String searchKey) {
 		
-		ArrayList<Sam> sam = sd.searchResult(searchKey,pi,sqlSession); 
+		ArrayList sam = sd.searchResult(searchKey,pi,sqlSession); 
 		
 		return sam;
 	}
@@ -64,12 +64,28 @@ public class StoreServiceImpl implements StoreService{
 	}
 
 	
-	//테마 레스토랑 조회 
+	//테마 레스토랑 조회 - 카테고리별
 	@Override
 	public ArrayList<Store> selectThemeList(String query) {
 		ArrayList<Store> themeList = sd.selectThemeList(sqlSession, query);
 		
-		return null;
+		return themeList;
+	}
+
+	//테마 레스토랑 조회 - 메뉴별
+	@Override
+	public ArrayList<Sam> selectThemeListMenu(String query) {
+		ArrayList<Sam> selectThemeListMenu = sd.selectThemeListMenu(sqlSession, query);
+		
+		return selectThemeListMenu;
+	}
+
+	// 테마 레스토랑 조회 - 카테고리별
+	@Override
+	public ArrayList<Sam> selectThemeListSamCat(String query) {
+		ArrayList<Sam> selectThemeListSamCat = sd.selectThemeListSamCat(sqlSession, query );
+		
+		return selectThemeListSamCat;
 	}
 
 	//추천 쿠폰 조회

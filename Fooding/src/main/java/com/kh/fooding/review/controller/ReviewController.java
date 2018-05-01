@@ -16,10 +16,9 @@ public class ReviewController {
 	@Autowired
 	private ReviewService rs;
 	
-	@RequestMapping(value ="deleteReview.re", method = {RequestMethod.GET, RequestMethod.POST})
-	@ResponseBody
+	@RequestMapping(value ="deleteReview.re")
 	public ModelAndView deleteReview(HttpServletRequest request, ModelAndView mv) {
-		int rid = Integer.parseInt(request.getParameter("rid"));
+		int rid = Integer.parseInt(request.getParameter("reviewId"));
 		System.out.println("Controller rid : " + rid);
 		
 		int deleteReview = rs.deleteReview(rid);
