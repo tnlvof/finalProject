@@ -114,9 +114,9 @@ public class StoreController {
 
 		int listCount = ss.getListCount(searchKey);
 		
-		maxPage = (int) ((double) listCount / limit + 0.9);
+		maxPage = (int) ((double) listCount / limit + 1.1);
 
-		startPage = ((int) ((double) (currentPage / limit + 0.9) - 1) * limit + 1);
+		startPage = ((int) ((double) (currentPage / limit + 1.1) - 1) * limit + 1);
 
 		endPage = startPage + limit - 3;
 		
@@ -130,7 +130,8 @@ public class StoreController {
 		
 		PageInfo pi = new PageInfo(currentPage, listCount, limit, maxPage, startPage, endPage);
 
-		ArrayList sam = ss.searchResult(pi,searchKey);
+		ArrayList<Sam> sam = ss.searchResult(pi,searchKey);
+		ArrayList<Store> store = ss.searchStore(pi,searchKey);
 		
 		int samSize = sam.size();
 		
@@ -138,6 +139,7 @@ public class StoreController {
 		mv.addObject("pi",pi);
 		mv.addObject("samSize", samSize);
 		mv.addObject("sam", sam);
+		mv.addObject("store", store);
 		mv.setViewName("store/searchList");
 
 		return mv;

@@ -48,36 +48,44 @@
 		<result property="menu" column="MENU"/>    
 		<result property="mainPhoto" column="MAIN_PHOTO"/>    
 		<result property="subPhoto" column="SUB_PHOTO"/>    
-		<result property="mid" column="MID"/>
-		<result property="rank" column="순위" />    
-	</resultMap>                                                                              
-	
-	<resultMap id="samResultSet" type="Sam">
-		<id property="sid" column="SID"/>                                                     
-		<result property="areaDong" column="AREA_DONG"/>                                       
-		<result property="areaGoo" column="AREA_GOO"/>                                           
-		<result property="areaSi" column="AREA_SI"/>                                
-		<result property="restAddress" column="REST_ADDRESS"/>                                       
-		<result property="restBoard" column="REST_BROAD"/>                                        
-		<result property="restMenu" column="REST_MENU"/>                                        
-		<result property="restName" column="REST_NAME"/>                                         
-		<result property="restNumber" column="REST_NUMBER"/>                                     
-		<result property="restUpstream" column="REST_UPSTREAM"/>                                     
-		<result property="restX" column="REST_X"/>                                            
-		<result property="restY" column="REST_Y"/>                                            
+		<result property="mid" column="MID"/>                                                                       
+		<result property="rank" column="순위" />                                                                          
+	</resultMap>                                                                                                          
+	                                                                                                                    
+	<resultMap id="samResultSet" type="Sam">                                                                            
+		<id property="sid" column="SID"/>                                                                                 
+		<result property="areaDong" column="AREA_DONG"/>                                                                   
+		<result property="areaGoo" column="AREA_GOO"/>                                                                       
+		<result property="areaSi" column="AREA_SI"/>                                                                    
+		<result property="restAddress" column="REST_ADDRESS"/>                                                                   
+		<result property="restBoard" column="REST_BROAD"/>                                                                    
+		<result property="restMenu" column="REST_MENU"/>                                                                    
+		<result property="restName" column="REST_NAME"/>                                  
+		<result property="restNumber" column="REST_NUMBER"/>                              
+		<result property="restUpstream" column="REST_UPSTREAM"/>                          
+		<result property="restX" column="REST_X"/>                                        
+		<result property="restY" column="REST_Y"/>  
+		<result property="writer" column="WRITER"/>  
+		<result property="content" column="CONTENT"/>  
+		<result property="photo" column="PHOTO"/>  
 	</resultMap>                                                                        
 	
  	<insert id="insertStore" parameterType="Store">INSERT INTO STORE VALUES(SEQ_SID.NEXTVAL, #{sName} ,#{phone} , #{sCode}, #{bookYN} ,#{address} ,#{sLocation}, #{sHours} , #{dayoff} ,#{sTable} , #{budget},#{atmosphere},#{facilities},#{description} ,DEFAULT, DEFAULT,DEFAULT,DEFAULT,#{mainPhoto},DEFAULT, #{mid} , null)</insert> 
 
 
 	<select id="searchResult" resultMap="samResultSet">
-		SELECT DISTINCT REST_ADDRESS ,REST_MENU ,REST_NAME, REST_NUMBER, REST_UPSTREAM, REST_X, REST_Y FROM SAM 
+		SELECT DISTINCT REST_ADDRESS ,REST_MENU ,REST_NAME, REST_NUMBER, REST_UPSTREAM, REST_X, REST_Y, WRITER, CONTENT,PHOTO ,SID 
+		FROM SAM 
 		WHERE REST_ADDRESS LIKE '%' || #{searchKey} || '%' 
 		OR REST_NAME LIKE '%' || #{searchKey} || '%' 
 		AND ROWNUM &lt;= 100
 	</select>
+	
 	<select id="searchStore" resultMap="storeResultSet">
-		
+		SELECT * FROM STORE
+		WHERE KEYWORD LIKE '%' || #{searchKey} || '%'
+		AND ROWNUM &lt;= 100
+		ORDER BY STAR DESC
 		
 	</select>
 	

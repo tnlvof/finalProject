@@ -28,6 +28,8 @@ public interface StoreDao {
 
 	ArrayList<Store> selectThemeList(SqlSessionTemplate sqlSession, String query);
 
+	ArrayList<Store> searchStore(SqlSessionTemplate sqlSession, String searchKey, PageInfo pi);
+
 	
 
 }
