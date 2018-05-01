@@ -37,7 +37,7 @@
 						<div class="body review list review_wrap">
 							<div class="review">
 								<a class="place" href=""> <span class="thumbnail"
-									style="display: block; background-image: url(&quot;http://c2.poing.co.kr/PIMAGE-default/5746a03f668a484de2000044.png&quot;);"></span>
+									style="display: block; background-image: url(${ list.mainPhoto });"></span>
 									<p class="name">${ list.sName }</p>
 									<p class="info">강남역 · ${ list.sCode }</p>
 								</a>
@@ -73,9 +73,9 @@
 									<div class="action">
 										<div class="article">
 								            <input type="hidden" value="${ list.rid }" class="reviewId">
-											<button class="edit" tabindex="-1">수정하기</button>
+											<!-- <button class="edit" tabindex="-1">수정하기</button> -->
 											<button class="delete" tabindex="-1"
-												onclick="document.getElementById('reviewDelete').style.display='block'">삭제하기</button>
+												onclick="document.getElementById('reviewDelete').style.display='block'">삭제</button>
 											<input type="hidden" value="" class="reid">
 											
 										</div>

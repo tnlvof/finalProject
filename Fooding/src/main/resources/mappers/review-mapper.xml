@@ -29,6 +29,7 @@
         <result property="service" column="SERVICE" />
         <result property="price" column="PRICE" />
         <result property="sName" column="SNAME" />
+        <result property="mainPhoto" column="MAIN_PHOTO" />
     </resultMap>
     
     <select id="selectReviewCount" parameterType="_int" resultType="_int">
