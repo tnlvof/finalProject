@@ -144,8 +144,8 @@ margin-left:10px;
 
 <div id="container">
 
-<img alt="" src="resources/images/restaurants/sushi.png" class="headerPic">
- <div class="centered" align="center"><h3> 테마 식당 추천입니다.</h3> </div>
+<img alt="" src="${HeaderList[0] }" class="headerPic" >
+ <div class="centered" align="center"><h3 > ${HeaderList[1] } </h3> </div>
 
 <hr>
 
@@ -153,12 +153,18 @@ margin-left:10px;
 
 <div id="resultArea">
 
-<%-- <c:forEach items = "#{themeList }" var="e">
+ <c:forEach items = "${themeList }" var="e">
 	<div class="result">
-		<img alt="" src="resources/images/restaurants/vatos.jpg" class="profilePic">
+		<c:if test="${!empty e.mainPhoto }">
+		<img alt="" src="${e.mainPhoto }" class="profilePic">
+		</c:if>
+		<c:if test="${ empty e.mainPhoto  }">
+		<img alt="" src="resources/images/restaurants/nothing.png" class="profilePic">
+		</c:if>
+		
 		 <div class="nameAndPricesArea">
 		
-			 <h1 class="text"><c:out value="#{e.sName }"></c:out></h1>
+			 <h1 class="text"><c:out value="${e.sName }"></c:out></h1>
 			
 		
 		 <span class="fa fa-star checked"></span>
@@ -168,8 +174,8 @@ margin-left:10px;
 		<span class="fa fa-star"></span>
 		
 		<br><br>
-		 <h5 class="prices">#{e.budget }</h5><br>
-		 <p><c:out value="#{e.description }"></c:out></p>
+		 <h5 class="prices">${e.budget }</h5><br>
+		 <p><c:out value="${e.description }"></c:out></p>
 		 </div>
 	
 	
@@ -178,8 +184,8 @@ margin-left:10px;
 		<button class="buttons" >리뷰하기</button>
 		</div>
 	</div>	
-</c:forEach> --%>
-		
+</c:forEach> 
+	
 </div>
 
 
