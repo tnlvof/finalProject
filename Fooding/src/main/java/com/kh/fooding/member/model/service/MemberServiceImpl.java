@@ -102,8 +102,8 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public ArrayList<Review> selectReviewList(int mid) {
-        ArrayList<Review> reviewList = md.selectReviewList(mid);
+	public ArrayList<Review> selectReviewList(int mid, PageInfo pi) {
+        ArrayList<Review> reviewList = md.selectReviewList(mid, pi);
 		
 		return reviewList;
 	}
