@@ -1,5 +1,8 @@
 package com.kh.fooding.common;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class PageInfo implements java.io.Serializable{
 	private int currentPage;
 	private int listCount;

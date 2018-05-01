@@ -2,7 +2,10 @@ package com.kh.fooding.review.model.vo;
 
 import java.sql.Date;
 
-public class Review {
+import org.springframework.stereotype.Component;
+
+@Component
+public class Review implements java.io.Serializable{
 	private int rid;
 	private Date enrollDate;
 	private String rTitle;

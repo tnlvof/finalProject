@@ -24,18 +24,26 @@ public class StoreDaoImpl implements StoreDao{
     
 	// 검색 결과
 	@Override
-	public ArrayList<Sam> searchResult(String searchKey,PageInfo pi, SqlSessionTemplate sqlSession) {
+	public ArrayList searchResult(String searchKey,PageInfo pi, SqlSessionTemplate sqlSession) {
 		
 		int offset = (pi.getCurrentPage() -1) * pi.getLimit();
 		RowBounds rowBounds = new RowBounds(offset, pi.getLimit());
+		ArrayList sam = (ArrayList)sqlSession.selectList("Store.searchResult", searchKey , rowBounds);
+		ArrayList result = (ArrayList) sqlSession.selectList("Store.searchStore",searchKey,rowBounds);
 		
-		ArrayList<Sam> sam = (ArrayList)sqlSession.selectList("Store.searchResult", searchKey , rowBounds);
+		result.addAll(sam);
 		
-		for (Sam sam2 : sam) {
-			System.out.println("dao sam : " + sam2);
+		/*sam.addAll(sqlSession.selectList("store.searchStore",searchKey,rowBounds));*/
+		
+		for (Object sam2 : result) {
+			System.out.println("dao result : " + sam2);
 		}
 		
-		return sam;
+		/*for (Sam sam2 : sam) {
+			System.out.println("dao sam : " + sam2);
+		}*/
+		
+		return result;
 
 	}
 	

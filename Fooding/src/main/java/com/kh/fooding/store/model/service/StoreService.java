@@ -11,7 +11,7 @@ import com.kh.fooding.store.model.vo.Sam;
 public interface StoreService {
 	void insertStoreInfo(Store s);
 
-	ArrayList<Sam> searchResult(PageInfo pi, String searchKey);
+	ArrayList searchResult(PageInfo pi, String searchKey);
 
 	int getListCount(String searchKey);
 	

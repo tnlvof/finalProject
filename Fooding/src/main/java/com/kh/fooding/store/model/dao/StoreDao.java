@@ -13,7 +13,7 @@ public interface StoreDao {
 
 	int insertStoreInfo(Store s, SqlSessionTemplate sqlSession);
 
-	ArrayList<Sam> searchResult(String searchKey, PageInfo pi, SqlSessionTemplate sqlSession);
+	ArrayList searchResult(String searchKey, PageInfo pi, SqlSessionTemplate sqlSession);
 
 
 	
