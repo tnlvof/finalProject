@@ -24,4 +24,10 @@ public interface StoreService {
 
 	ArrayList<Store> selectThemeList(String query);
 
+	//sam 테이블에서 메뉴 별로 가져오기
+	ArrayList<Sam> selectThemeListMenu(String query);
+
+	//sam 테이블에서 업종 별로 가져오기
+	ArrayList<Sam> selectThemeListSamCat(String query);
+
 }

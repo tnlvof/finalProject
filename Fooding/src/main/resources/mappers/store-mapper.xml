@@ -64,7 +64,13 @@
 		<result property="restNumber" column="REST_NUMBER"/>                                     
 		<result property="restUpstream" column="REST_UPSTREAM"/>                                     
 		<result property="restX" column="REST_X"/>                                            
-		<result property="restY" column="REST_Y"/>                                            
+		<result property="restY" column="REST_Y"/>   
+		<result property="writer" column="WRITER"/>
+		<result property="content" column="CONTENT"/>
+		<result property="photo" column="PHOTO"/>
+		<result property="sid" column="SID"/>
+		<result property="star" column="STAR"/>
+		<result property="rank" column="순위" />		                  
 	</resultMap>                                                                        
 	
  	<insert id="insertStore" parameterType="Store">INSERT INTO STORE VALUES(SEQ_SID.NEXTVAL, #{sName} ,#{phone} , #{sCode}, #{bookYN} ,#{address} ,#{sLocation}, #{sHours} , #{dayoff} ,#{sTable} , #{budget},#{atmosphere},#{facilities},#{description} ,DEFAULT, DEFAULT,DEFAULT,DEFAULT,#{mainPhoto},DEFAULT, #{mid} , null)</insert> 
@@ -106,18 +112,21 @@
    	FROM STORE WHERE SCODE=#{query}) 
 	WHERE 순위 &lt;= 20	
 	</select>
+			
 	
-	<select id="selectUpstream" resultMap="samResultSet" parameterType="String">
-	SELECT SID, REST_NAME, REST_UPSTREAM ,REST_ADDRESS, REST_NUMBER
+	<select id="selectSamThemeListCat" resultMap="samResultSet" parameterType="String">
+	SELECT *
+	FROM ( SELECT ROWNUM, AREA_DONG, AREA_SI, REST_ADDRESS, REST_BROAD, REST_MENU, SID, REST_NAME,
+	REST_UPSTREAM , REST_NUMBER, REST_X, REST_Y, WRITER, CONTENT, PHOTO, STAR,
+	DENSE_RANK() OVER(ORDER BY STAR DESC)순위
 	FROM SAM
-	WHERE REST_UPSTREAM = #{query}
+	WHERE REST_UPSTREAM = #{query})
+	WHERE ROWNUM &lt;=20		
 	</select>
 	
-	
-	<select id="selectMenu" resultMap="samResultSet" parameterType="String">
-	SELECT SID, REST_NAME, REST_UPSTREAM ,REST_ADDRESS, REST_NUMBER
-	FROM SAM
-	WHERE REST_MENU = #{query}	
+	<select id="Store.selectMenuMeat" resultMap = "samResultSet">
+	SELECT * FROM SAM
+	WHERE REST_MENU LIKE '%' || 고기 || '%' OR REST_MENU LIKE '%' || 곱창 || '%';
 	</select>
 	
 </mapper>

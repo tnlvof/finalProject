@@ -86,11 +86,10 @@ public class StoreDaoImpl implements StoreDao{
 		return storeList;
 	}
 
+	//테마별 식당 - 카테고리별
 	@Override
 	public ArrayList<Store> selectThemeList(SqlSessionTemplate sqlSession, String query) {
-				
-		String statement = "";
-	
+					
 		switch(query) {
 			case "kor" : query="한식"; break;
 			case "japanese" :query="일식"; break;			
@@ -105,6 +104,48 @@ public class StoreDaoImpl implements StoreDao{
 		
 		return selectThemeList;
 	}
+
+	// 테마별 식당 - 카테고리별 Sam 
+	@Override
+	public ArrayList<Sam> selectThemeListSamCat(SqlSessionTemplate sqlSession, String query) {
+	
+
+		switch(query) {
+			case "kor" : query="한식"; break;
+			case "japanese" :query="일식"; break;			
+			case "chinese" :query="중식";break;
+			case "western" :query="양식";  break;
+ 		}
+		
+		ArrayList<Sam> selectThemeListSamCat =(ArrayList) sqlSession.selectList("Store.selectSamThemeListCat" , query);
+		
+		return selectThemeListSamCat;
+	}
+
+	
+	// 테마별 식당 - 메뉴별
+	@Override
+	public ArrayList<Sam> selectThemeListMenu(SqlSessionTemplate sqlSession, String query) {
+		
+		String statement = "Store.selectMenu";			
+		ArrayList<Sam> selectThemeListMenu = null;
+		switch(query) {
+			case "izakaya" : query="이자카야";  break;
+			case "pizza" :query="피자"; break;			
+			case "meat" : statement = "Store.selectMenuMeat"; break;
+ 		}
+		
+		if(! query.equals("meat")) {			
+			selectThemeListMenu = (ArrayList) sqlSession.selectList(statement, query);
+		} else {
+			selectThemeListMenu = (ArrayList) sqlSession.selectList(statement);			
+		}
+		
+		
+		
+		return selectThemeListMenu;
+	}
+
 
 
 
