@@ -68,14 +68,13 @@
 								$(".ccBtn").click(function(){
 									var rvid = $(this).parent().find('.reservId').val();
 									console.log("취소버튼 : "+rvid);
-									<c:forEach var="l" items="${ reservList }">
+									/* <c:forEach var="l" items="${ reservList }">
 										if(rvid == ${ l.rvid }){
 											$(".rPeople").val('${l.rPeople}');
 											$(".rDate").text('${l.rDate}');
 											$(".rTime").text('${l.rTime}');
 										}
-									</c:forEach>
-								    		/* document.getElementById('changeCancel').style.display='block'; */
+									</c:forEach> */
 								    
 								    $(".idrv").val(rvid);
 								    		

@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt"  uri="http://java.sun.com/jsp/jstl/fmt" %>
+ 
+<jsp:useBean id="nowDate" class="java.util.Date" />
 <div id="sidebar_wrap" class="mypage">
 				<div id="reservation_calendar" class="sidebar">
 				<div class="title">예약 캘린더</div>
@@ -178,6 +181,10 @@
 						<span class="text">지나간 예약</span>
 						<span class="todatM"></span>
 						<span class="text">오늘 날짜</span>
+						<fmt:formatDate value="${nowDate}" pattern="yyyy-MM-dd" />
+						<c:forEach var="list" items="${ reservList }">
+						<span>${ list.rDate }</span>
+						</c:forEach>
 					</div>
 				</div>
 			</div>
