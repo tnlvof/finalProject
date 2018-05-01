@@ -2,7 +2,10 @@ package com.kh.fooding.store.model.vo;
 
 import java.sql.Date;
 
-public class Coupon {
+import org.springframework.stereotype.Component;
+
+@Component
+public class Coupon implements java.io.Serializable{
 	private int cid;
 	private String cname;
 	private Date cdate;

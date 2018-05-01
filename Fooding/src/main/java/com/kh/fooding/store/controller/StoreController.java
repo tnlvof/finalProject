@@ -118,18 +118,22 @@ public class StoreController {
 
 		startPage = ((int) ((double) (currentPage / limit + 0.9) - 1) * limit + 1);
 
-		endPage = startPage + limit - 1;
-
+		endPage = startPage + limit - 3;
+		
 		if (maxPage < endPage) {
 			endPage = maxPage;
 		}
-
+		
+		if(endPage == 0 ) {
+			endPage=1;
+		}
+		
 		PageInfo pi = new PageInfo(currentPage, listCount, limit, maxPage, startPage, endPage);
 
-		ArrayList<Sam> sam = ss.searchResult(pi,searchKey);
-
+		ArrayList sam = ss.searchResult(pi,searchKey);
+		
 		int samSize = sam.size();
-
+		
 		request.setAttribute("searchKey",searchKey);
 		mv.addObject("pi",pi);
 		mv.addObject("samSize", samSize);

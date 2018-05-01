@@ -30,9 +30,9 @@ public class StoreServiceImpl implements StoreService{
 	}
 
 	@Override
-	public ArrayList<Sam> searchResult(PageInfo pi,String searchKey) {
+	public ArrayList searchResult(PageInfo pi,String searchKey) {
 		
-		ArrayList<Sam> sam = sd.searchResult(searchKey,pi,sqlSession); 
+		ArrayList sam = sd.searchResult(searchKey,pi,sqlSession); 
 		
 		return sam;
 	}
