@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kh.fooding.common.PageInfo;
+import com.kh.fooding.store.model.vo.Coupon;
 import com.kh.fooding.store.model.vo.Sam;
 import com.kh.fooding.store.model.vo.Store;
 
@@ -72,12 +73,6 @@ public class StoreDaoImpl implements StoreDao{
 	}
 
 
-	@Override
-	public int getCouponListCount(SqlSessionTemplate sqlSession) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
 	// 업체 조회
 	@Override
 	public ArrayList<Store> selectAllStores(SqlSessionTemplate sqlSession) {
@@ -122,6 +117,15 @@ public class StoreDaoImpl implements StoreDao{
 		return selectThemeListSamCat;
 	}
 
+
+	//추천 쿠폰 추천
+	@Override
+	public ArrayList<Coupon> selectBestCoupon(SqlSessionTemplate sqlSession) {
+		ArrayList<Coupon> couponList = (ArrayList) sqlSession.selectList("Store.selectBestCoupon");
+		return couponList;
+	}
+
+
 	
 	// 테마별 식당 - 메뉴별
 	@Override
@@ -145,6 +149,7 @@ public class StoreDaoImpl implements StoreDao{
 		
 		return selectThemeListMenu;
 	}
+
 
 
 

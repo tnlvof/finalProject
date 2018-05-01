@@ -21,6 +21,7 @@ import com.kh.fooding.board.model.service.BoardServiceImpl;
 import com.kh.fooding.common.PageInfo;
 import com.kh.fooding.member.model.vo.Member;
 import com.kh.fooding.store.model.service.StoreService;
+import com.kh.fooding.store.model.vo.Coupon;
 import com.kh.fooding.store.model.vo.Sam;
 import com.kh.fooding.store.model.vo.Store;
 
@@ -281,6 +282,21 @@ public class StoreController {
 	}
 	
 	
+
+	//추천 쿠폰
+	@RequestMapping(value="bestCoupon.st", method = RequestMethod.GET)
+	public ModelAndView selectBestCoupon(ModelAndView mv, HttpServletRequest request){
+		
+		ArrayList<Coupon> couponList = ss.selectBestCoupon();
+		
+		System.out.println("추천 쿠폰 리스트 : " + couponList);
+		
+		mv.addObject("couponList", couponList);
+		mv.setViewName("store/coupon");
+		
+		return mv;
+	}
+
 	
 	//테마 식당 추천 -메뉴별
 		@RequestMapping(value="themeRestMenu.st", method=RequestMethod.GET)

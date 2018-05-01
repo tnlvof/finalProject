@@ -89,14 +89,7 @@
 	padding: 10px 10px 20px 10px;
 }
 .coupon-price p{
-	display: inline-block;
-	width: 49%;
 	font-weight: bold;
 	font-size: 17px;
-}
-.coupon-price p:first-child{
 	color: #cc272b;
-}
-.coupon-price p:last-child{
-	text-align: right;
 }
