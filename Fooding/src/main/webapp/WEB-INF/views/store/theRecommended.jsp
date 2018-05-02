@@ -210,22 +210,25 @@ body{
 
 <ul class="coupons">
 <!-- themeList -->
-<c:if test="${! empty themeList }">
+
 	<c:forEach items = "${themeList }" var="e">
 		<c:set var="storeId" value="${ e.sid}"></c:set>
 		<%-- <c:url var="goStoreDetail" value="/goStoreDetail.st">
 				<c:param name="storeId" value="${ storeId }"/>
 		</c:url> --%>	
 	 
-      <li>
-         <div class="photo">
+     
+        
+         <c:if test="${!empty e.mainPhoto}">
+          <li>
+          <div class="photo">
             <img src="${e.mainPhoto}" <%-- onclick="location.href='${goDetail}'" --%>>
             <p>
               ${ e.sName}<br>
                <span>${ e.sCode}</span>
             </p>
-         </div>
-         <!-- photo -->
+           </div> 
+              <!-- photo -->
          
          <div class="coupon-price">
           	<span class="fa fa-star checked"></span>
@@ -236,47 +239,51 @@ body{
          </div>
          <!-- coupon-price -->
          
-         <button class="write-btn">예약하기</button>
-         <button class="write-btn">리뷰쓰기</button>
-      </li>
+         
+       
+            <button class="write-btn">예약하기</button>
+	         <button class="write-btn">리뷰쓰기</button>
+         
+       
+          </li>  
+          </c:if>
+          
+          
+          <c:if test="${empty e.mainPhoto }">
+	          <li>
+	           <div class="photo">
+	          	 <img src="http://c2.poing.co.kr/MRI-original/MjAxODAz/15202254255a9ccc91bbbde.jpeg" onclick="location.href='${goDetail}'">
+	          	  <p>
+	              ${ e.restName}<br>
+	               <span>${ e.restUpstream}</span>
+	            </p>
+	            </div>
+	            
+	            <div class="coupon-price">
+		          	<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star"></span>
+					<span class="fa fa-star"></span>
+	         	</div>
+	         <!-- coupon-price -->
+	                        
+	          <button class="write-btn">리뷰쓰기</button>
+	          </li>
+          </c:if>
+       
+         
+         
+               
+      
+         
+         
+      
 	</c:forEach>
 
-</c:if>
 
-<%-- 	<c:forEach items = "${themeListSam }" var="s"> --%>
-	<c:forEach var="s" items="${ themeListSam}" >
-	
-	  <c:set var="restN" value="${ s.restName}"></c:set>
-		<c:url var="goDetail" value="/goDetail.st">
-				<c:param name="restName" value="${ restN }"/>
-		</c:url>	
-	 
-      <li>
-         <div class="photo">
-            <img src="http://c2.poing.co.kr/MRI-original/MjAxODAz/15202254255a9ccc91bbbde.jpeg" onclick="location.href='${goDetail}'">
-            <p>
-              ${ s.restName}<br>
-               <span>${ s.restUpstream }</span>
-            </p>
-         </div>
-         <!-- photo -->
-         
-         <div class="coupon-price">
-          	<span class="fa fa-star checked"></span>
-			<span class="fa fa-star checked"></span>
-			<span class="fa fa-star checked"></span>
-			<span class="fa fa-star"></span>
-			<span class="fa fa-star"></span>
-         </div>
-         <!-- coupon-price -->
-         
-         <button class="write-btn">리뷰쓰기</button>
-      </li>
-    
- 	
-	</c:forEach>
      </ul>
-
+  </div>
 
 
 
