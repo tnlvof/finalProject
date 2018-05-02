@@ -96,6 +96,15 @@ public class StoreServiceImpl implements StoreService{
 		return selectThemeListSamCat;
 	}
 
+	//추천 쿠폰 수 
+	@Override
+	public int getBestCouponCount() {
+		int result = sd.getBestCouponCount(sqlSession);
+		
+		return result;
+	}
+
+
 	//추천 쿠폰 조회
 	@Override
 	public ArrayList<Coupon> selectBestCoupon() {
@@ -105,5 +114,4 @@ public class StoreServiceImpl implements StoreService{
 		return couponList;
 
 	}
-
 }

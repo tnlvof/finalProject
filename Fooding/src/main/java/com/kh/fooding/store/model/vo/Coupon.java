@@ -1,6 +1,7 @@
 package com.kh.fooding.store.model.vo;
 
 import java.sql.Date;
+import java.util.ArrayList;
 
 import org.springframework.stereotype.Component;
 
@@ -13,10 +14,11 @@ public class Coupon implements java.io.Serializable{
 	private String cmethod;
 	private int sid;
 	private Date enrollDate;
+	private ArrayList<Store> couponList;
 	
 	public Coupon() {}
 
-	public Coupon(int cid, String cname, Date cdate, String cterm, String cmethod, int sid, Date enrollDate) {
+	public Coupon(int cid, String cname, Date cdate, String cterm, String cmethod, int sid, Date enrollDate, ArrayList<Store> couponList) {
 		super();
 		this.cid = cid;
 		this.cname = cname;
@@ -25,6 +27,7 @@ public class Coupon implements java.io.Serializable{
 		this.cmethod = cmethod;
 		this.sid = sid;
 		this.enrollDate = enrollDate;
+		this.couponList = couponList;
 	}
 
 	public int getCid() {
@@ -82,12 +85,23 @@ public class Coupon implements java.io.Serializable{
 	public void setEnrollDate(Date enrollDate) {
 		this.enrollDate = enrollDate;
 	}
+	
+	
+
+	public ArrayList<Store> getCouponList() {
+		return couponList;
+	}
+
+	public void setCouponList(ArrayList<Store> couponList) {
+		this.couponList = couponList;
+	}
 
 	@Override
 	public String toString() {
 		return "Coupon [cid=" + cid + ", cname=" + cname + ", cdate=" + cdate + ", cterm=" + cterm + ", cmethod="
-				+ cmethod + ", sid=" + sid + ", enrollDate=" + enrollDate + "]";
+				+ cmethod + ", sid=" + sid + ", enrollDate=" + enrollDate + ", couponList=" + couponList + "]";
 	}
+
 
 	
 	

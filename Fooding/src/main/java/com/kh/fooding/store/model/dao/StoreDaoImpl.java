@@ -125,11 +125,18 @@ public class StoreDaoImpl implements StoreDao{
 		return selectThemeListSamCat;
 	}
 
+	@Override
+	public int getBestCouponCount(SqlSessionTemplate sqlSession) {
+		int result = sqlSession.selectOne("Store.getBestCouponCount");
+		return result;
+	}
 
 	//추천 쿠폰 추천
 	@Override
 	public ArrayList<Coupon> selectBestCoupon(SqlSessionTemplate sqlSession) {
-		ArrayList<Coupon> couponList = (ArrayList) sqlSession.selectList("Store.selectBestCoupon");
+		ArrayList<Coupon> couponList = (ArrayList)sqlSession.selectList("Store.selectBestCoupon");
+		
+		System.out.println("추천 쿠폰 리스트(DAOImpl) >>> " + couponList);
 		return couponList;
 	}
 
