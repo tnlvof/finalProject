@@ -83,10 +83,11 @@
 						</div>
 
 						<!-- 현재 프로필인 사진 경로 -->
-						<input class="upload-name" value="파일선택" disabled="disabled">
-						<label for="input_file" class="img_text">&nbsp;</label>
-						<input type="file" id="input_file" class="upload-hidden">
-
+						<form id="fileForm" action="profileUpload" method="post" enc>
+							<input class="upload-name" value="파일선택" disabled="disabled">
+							<label for="input_file" class="img_text">&nbsp;</label> <input
+								type="file" id="input_file" class="upload-hidden" name="PPhoto">
+						</form>
 					</div>
 					<!-- photo -->
 				</div>

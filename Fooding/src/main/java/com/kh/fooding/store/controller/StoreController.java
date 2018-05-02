@@ -16,14 +16,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.kh.fooding.board.model.service.BoardService;
-import com.kh.fooding.board.model.service.BoardServiceImpl;
 import com.kh.fooding.common.PageInfo;
 import com.kh.fooding.member.model.vo.Member;
 import com.kh.fooding.store.model.service.StoreService;
 import com.kh.fooding.store.model.vo.Coupon;
 import com.kh.fooding.store.model.vo.Sam;
 import com.kh.fooding.store.model.vo.Store;
+import com.kh.fooding.store.model.vo.StoreSam;
 
 @Controller
 public class StoreController {
@@ -43,10 +42,12 @@ public class StoreController {
 		
 		String root = request.getSession().getServletContext().getRealPath("resources");
 		String filePath = root + "\\uploadFiles";
-		s.setMainPhoto(filePath);
+		
+		s.setMainPhoto(photo.getOriginalFilename());
 		s.setMid(m.getMid());
 		
-		System.out.println(photo);
+		System.out.println("photo : "+photo);
+		System.out.println("오리지널 네임 : "+photo.getOriginalFilename());
 		try {	
 			photo.transferTo(new File(filePath + "\\" + photo.getOriginalFilename()));
 		} catch (IllegalStateException | IOException e1) {
@@ -55,7 +56,6 @@ public class StoreController {
 		ss.insertStoreInfo(s);
 
 		return "main/main";
-		
 		
 	}
 
@@ -117,9 +117,9 @@ public class StoreController {
 
 		int listCount = ss.getListCount(searchKey);
 		
-		maxPage = (int) ((double) listCount / limit + 0.9);
+		maxPage = (int) ((double) listCount / limit + 1.1);
 
-		startPage = ((int) ((double) (currentPage / limit + 0.9) - 1) * limit + 1);
+		startPage = ((int) ((double) (currentPage / limit + 1.1) - 1) * limit + 1);
 
 		endPage = startPage + limit - 3;
 		
@@ -133,7 +133,8 @@ public class StoreController {
 		
 		PageInfo pi = new PageInfo(currentPage, listCount, limit, maxPage, startPage, endPage);
 
-		ArrayList sam = ss.searchResult(pi,searchKey);
+		ArrayList<Sam> sam = ss.searchResult(pi,searchKey);
+		ArrayList<Store> store = ss.searchStore(pi,searchKey);
 		
 		int samSize = sam.size();
 		
@@ -141,6 +142,7 @@ public class StoreController {
 		mv.addObject("pi",pi);
 		mv.addObject("samSize", samSize);
 		mv.addObject("sam", sam);
+		mv.addObject("store", store);
 		mv.setViewName("store/searchList");
 
 		return mv;
@@ -188,49 +190,10 @@ public class StoreController {
 	//테마 식당 추천 - 카테고리별
 	@RequestMapping(value="themeRest.st", method=RequestMethod.GET)
 	public ModelAndView selectThemeRest(ModelAndView mv, HttpServletRequest request) {
-		//페이징 처리
-		/*//페이징 처리
-				int currentPage;
-				int limit; //한 페이지에 보여주는 것
-				int maxPage;
-				int startPage;
-				int endPage;
 				
-				currentPage = 1;		
-				limit = 10; 
-				
-				if(request.getParameter("currentPage")!=null) {
-					currentPage = Integer.parseInt(request.getParameter("currentPage"));			
-				}
-				
-				int listCount;
-			
-				BoardService bs = new BoardServiceImpl();
-				
-				try {
-					listCount = bs.getListCount();
-					System.out.println("전체 게시글 수 : " + listCount);
-					
-					maxPage = (int)((double) listCount / limit + 0.9);
-					
-					startPage = ((int)((double) currentPage / limit + 0.9)-1) * limit + 1;
-					
-					endPage = startPage + limit - 1;
-					
-					if(maxPage < endPage) {
-						endPage = maxPage;				
-					}
-					
-					PageInfo pi = new PageInfo(currentPage, listCount, limit, maxPage, startPage, endPage);
-					*/
-		
-		
-		
-		
-		
 		// query 종류 - kor, japanese, chinese, western
 		String query = request.getParameter("type");
-		System.out.println(query);
+		//System.out.println(query);
 		
 		//페이지 헤더에 넣을 이미지 주소, 문구 지정
 		String imgName = "";
@@ -249,32 +212,36 @@ public class StoreController {
 		forHeaderList.add(phrase);		
 		
 		
-		// 테마 식당 가져오기 - STORE
-		ArrayList<Store> themeList = ss.selectThemeList(query);
+		// 식당 리스트 가져오기		
+		ArrayList<StoreSam> themeList = ss.selectThemeList(query);
 		String photoLocation = "";
 		String after="";
 		
-		for(int i =0; i<themeList.size();i++) {
+		
+		for(int i =0; i<themeList.size();i++) {			
 			photoLocation = themeList.get(i).getMainPhoto();
-			after = photoLocation.substring(photoLocation.indexOf("resources"));
-			if(! after.equals("resources\\uploadFiles")) {
+			
+			if(photoLocation != null) {
+				after = "resources\\uploadFiles\\" + photoLocation;				
 				themeList.get(i).setMainPhoto(after);				
-			} else {
-				themeList.get(i).setMainPhoto(null);
 			}
+		
 			
 		}
 		
 		// Sam Table에서 가져오는 리스트 - 카테고리별
-		ArrayList<Sam> themeListSam = ss.selectThemeListSamCat(query);
+		ArrayList<StoreSam> themeListSam = ss.selectThemeListSamCat(query);
+		//System.out.println( "themeListSam!!! : "+ themeListSam);
 		
+		themeList.addAll(themeListSam);
 		
+		System.out.println("최종 : " + themeList);
+
 		
-		System.out.println(themeList);
 		
 		mv.addObject("HeaderList", forHeaderList);
 		mv.addObject("themeList", themeList);
-		mv.addObject("themeListSam", themeListSam);
+		
 		mv.setViewName("store/theRecommended");		
 		
 		
@@ -355,9 +322,9 @@ public class StoreController {
 			forHeaderList.add(imgName);
 			forHeaderList.add(phrase);		
 			
-			
-			// 테마 식당 가져오기
-			ArrayList<Sam> themeList = ss.selectThemeListMenu(query);
+						
+			// 테마 식당 가져오기 Sam
+			ArrayList<StoreSam> themeList = ss.selectThemeListMenu(query);
 			/*String photoLocation = "";
 			String after="";
 			*/
@@ -372,11 +339,12 @@ public class StoreController {
 				
 			}*/
 			
+			//테마 식당 가져오기 Store
 			
-			System.out.println(themeList);
+			
 			
 			mv.addObject("HeaderList", forHeaderList);
-			mv.addObject("themeList", themeList);
+			mv.addObject("themeListSam", themeList);
 			mv.setViewName("store/theRecommended");		
 			
 			

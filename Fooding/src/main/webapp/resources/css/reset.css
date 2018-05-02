@@ -39,7 +39,7 @@ ol, ul {
 	list-style: none;
 }
  li{
-	cursor: default;
+	cursor: pointer;
 } 
 blockquote, q {
 	quotes: none;

@@ -3,6 +3,7 @@ package com.kh.fooding.board.model.dao;
 import java.util.ArrayList;
 import java.util.Map;
 
+import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -11,6 +12,7 @@ import com.kh.fooding.board.model.exception.insertException;
 import com.kh.fooding.board.model.exception.searchException;
 import com.kh.fooding.board.model.exception.updateException;
 import com.kh.fooding.board.model.vo.Board;
+import com.kh.fooding.common.PageInfo;
 import com.kh.fooding.member.model.vo.Member;
 
 @Repository
@@ -35,11 +37,14 @@ public class BoardDaoImpl implements BoardDao{
 
 	// BoardList 조회
 	@Override
-	public ArrayList<Board> selectBoardList(Board b, SqlSessionTemplate sqlSession) {
+	public ArrayList<Board> selectBoardList(Board b, SqlSessionTemplate sqlSession, PageInfo pi ) {
 		
-		System.out.println("dao와엿");
+		//System.out.println("dao와엿");
 		
-		ArrayList<Board> list = (ArrayList) sqlSession.selectList("Board.selectBoardList", b); 
+		int offset = (pi.getCurrentPage()-1) * pi.getLimit(); //건너뛸 게시물
+		RowBounds rowBounds = new RowBounds(offset, pi.getLimit());
+		
+		ArrayList<Board> list = (ArrayList) sqlSession.selectList("Board.selectBoardList", b, rowBounds); 
 		
 		System.out.println(list);
 		

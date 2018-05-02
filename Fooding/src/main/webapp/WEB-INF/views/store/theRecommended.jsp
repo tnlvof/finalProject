@@ -1,15 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="resources/css/common.css">
 <link rel="stylesheet" type="text/css" href="resources/css/reset.css">
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <meta charset="utf-8">
-    <title>Fooding - 테마별 식당</title>
+    <title>Fooding - 검색 결과</title>
     <style>
 .map_wrap, .map_wrap * {margin:0;padding:0;font-family:'Malgun Gothic',dotum,'돋움',sans-serif;font-size:12px;}
 .map_wrap a, .map_wrap a:hover, .map_wrap a:active{color:#000;text-decoration: none;}
@@ -27,7 +28,7 @@
 #placesList .item .info{padding:10px 0 10px 55px;}
 #placesList .info .gray {color:#8a8a8a;}
 #placesList .info .jibun {padding-left:26px;background:url(http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_jibun.png) no-repeat;}
-#placesList .info .tel {color:#009900;}
+#placesList .info .tel {color:#009900; }
 #placesList .item .markerbg {float:left;position:absolute;width:36px; height:37px;margin:10px 0 0 10px;background:url(http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png) no-repeat;}
 #placesList .item .marker_1 {background-position: 0 -10px;}
 #placesList .item .marker_2 {background-position: 0 -56px;}
@@ -51,15 +52,137 @@
 body{
     background-color: #f3f3f3;
 }
+
+@charset "UTF-8";
+
+.title-box{
+   width: 100%;
+   height: 520px;
+   background-image: url(/fooding/resources/images/main/dining.png);
+   background-size: cover;
+   text-align: center;
+   vertical-align: middle;
+}
+.bg-black{
+   padding-top: 100px;
+   background: rgba(0,0,0,0.4);
+   height: 520px;
+}
+.title-box *{
+   color: #fff;
+}
+.title-box p{
+   font-size: 21px;
+   line-height: 1.8em;
+   margin-top: 130px;
+}
+.title-box span{
+   font-size: 14px;
+   display: inline-block;
+   margin: 0 auto;
+   border-top: 1px solid #fff;
+   padding-top: 40px;
+   margin-top: 30px;
+}
 #resultArea{
-	margin-top:50px;
-	margin-left:auto;
-	margin-right:auto; 
-	height:850px;
-	width:1000px;
-  	
+   width: 1000px;
+   margin: 0 auto;
+}
+.coupons{
+   overflow: hidden;
+}
+.coupons li{
+   float: left;
+   border-radius: 5px;
+   background-color: #fff;
+   border: 1px solid #e5e5e5;
+   width: 235px;
+   box-sizing: border-box;
+   margin: 0 20px 40px 0;
+   overflow: hidden;
+   float: left;
+   cursor: default;
+}
+.coupons li:nth-child(4n){
+   margin-right: 0;
+}
+.photo{
+   overflow: hidden;
+   position: relative;
+}
+.photo img{
+   height: 200px;
+}
+.photo img:hover{
+   filter: grayscale(100%);
+   cursor: pointer;    
+}
+.photo p{
+   position: absolute;
+   left: 10px;
+   bottom: 10px;
+   color: #fff;
+}
+.photo span{
+   font-size: 12px;
+   color: inherit;
+}
+/* .coupon-info{
+   padding: 10px;
+   font-size: 13px;
+}
+.coupon-info p{
+   display: table;
+   margin-bottom: 10px;
+   font-size: 12px;
+   background-color: #cc272b;
+   color: #fff;
+   padding: 4px 8px;
+   border-radius: 5px;
+} */
+.coupon-price{
+   padding: 10px;
+}
+.coupon-price p{
+   display: inline-block;
+   width: 49%;
+   font-weight: bold;
+   font-size: 17px;
+}
+.coupon-price p:first-child{
+   color: #cc272b;
+}
+.coupon-price p:last-child{
+   text-align: right;
+  
 }
 
+.checked {
+    color: orange;
+}
+
+.write-btn{
+	width: 100%;
+	border: 0;
+	font-size: 13px;
+	background-color: #fff;
+	padding: 10px 0;
+	border-top: 1px solid #e5e5e5;
+	color: #666;
+}
+.write-btn:hover{
+	background: #999;
+	color: #fff;
+	cursor: pointer;
+}
+.centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    color:white;
+    font-size:30px;
+    transform: translate(-50%, -50%);
+}
 .headerPic{
     position: relative;
     overflow: hidden;
@@ -69,77 +192,9 @@ body{
     background-position: center center;
 }
 
-
-.centered {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    color:white;
-    font-size:30px;
-    transform: translate(-50%, -50%);
-}
-
-.result{
-	width:300px;
-	height:380px;
-	background:white;
-	margin-top:20px;
-	margin-down:20px;
-	display: inline-block;
-	margin-left:10px;
-	margin-right:10px;
-}
-
-.profilePic{
-	width:280px;
-	height:200px;
-	margin-left:10px;
-	margin-right:10px;
-	margin-top:10px;	
-}
-
-.profilePic:hover{
-	cursor:pointer;
-	opacity:0.5;
-	
-}
-
-
-.btns button{
-	margin-left:5px;
-	margin-top:5px;
-	height:30px;
-	width:auto;	
-	display:inline-block;
-	
-}
-
-.btns button:hover{
-	background:lightgray;
-}
-
-.checked {
-    color: orange;
-}
-.nameAndPrices {	
-	list-style:none;
-	display:inline-block;
-}
-.prices{
-	font-size:13px;
-}
-#container{
-	margin-top:40px;
-}
-.nameAndPricesArea{
-margin-top:5px;
-margin-left:10px;
-	margin-right:10px;
-}
-
 </style>
 </head>
-<body>
+
 <jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
 
 <div id="container">
@@ -153,6 +208,100 @@ margin-left:10px;
 
 <div id="resultArea" style="height: 100%;">
 
+<ul class="coupons">
+<!-- themeList -->
+
+	<c:forEach items = "${themeList }" var="e">
+		<c:set var="storeId" value="${ e.sid}"></c:set>
+		<%-- <c:url var="goStoreDetail" value="/goStoreDetail.st">
+				<c:param name="storeId" value="${ storeId }"/>
+		</c:url> --%>	
+	 
+     
+        
+         <c:if test="${!empty e.mainPhoto}">
+          <li>
+          <div class="photo">
+            <img src="${e.mainPhoto}" <%-- onclick="location.href='${goDetail}'" --%>>
+            <p>
+              ${ e.sName}<br>
+               <span>${ e.sCode}</span>
+            </p>
+           </div> 
+              <!-- photo -->
+         
+         <div class="coupon-price">
+          	<span class="fa fa-star checked"></span>
+			<span class="fa fa-star checked"></span>
+			<span class="fa fa-star checked"></span>
+			<span class="fa fa-star"></span>
+			<span class="fa fa-star"></span>
+         </div>
+         <!-- coupon-price -->
+         
+         
+       
+            <button class="write-btn">예약하기</button>
+	         <button class="write-btn">리뷰쓰기</button>
+         
+       
+          </li>  
+          </c:if>
+          
+          
+          <c:if test="${empty e.mainPhoto }">
+	          <li>
+	           <div class="photo">
+	          	 <img src="http://c2.poing.co.kr/MRI-original/MjAxODAz/15202254255a9ccc91bbbde.jpeg" onclick="location.href='${goDetail}'">
+	          	  <p>
+	              ${ e.restName}<br>
+	               <span>${ e.restUpstream}</span>
+	            </p>
+	            </div>
+	            
+	            <div class="coupon-price">
+		          	<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star"></span>
+					<span class="fa fa-star"></span>
+	         	</div>
+	         <!-- coupon-price -->
+	                        
+	          <button class="write-btn">리뷰쓰기</button>
+	          </li>
+          </c:if>
+       
+         
+         
+               
+      
+         
+         
+      
+	</c:forEach>
+
+
+     </ul>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<%-- <c:if test="${! empty themeList }">
  <c:forEach items = "${themeList }" var="e">
 	<div class="result">
 		<c:if test="${!empty e.mainPhoto }">
@@ -170,7 +319,7 @@ margin-left:10px;
 		 <span class="fa fa-star checked"></span>
 		<span class="fa fa-star checked"></span>
 		<span class="fa fa-star checked"></span>
-		<span class="fa fa-star"></span>
+		<span class="fa fa-star checked"></span>
 		<span class="fa fa-star"></span>
 		
 		<br><br>
@@ -184,7 +333,10 @@ margin-left:10px;
 		<button class="buttons" >리뷰하기</button>
 		</div>
 	</div>	
-</c:forEach> 
+</c:forEach>
+</c:if> --%>
+
+<%-- 
  <c:forEach items = "${themeListSam }" var="d">
 	<div class="result">
 		<c:if test="${!empty d.photo }">
@@ -201,7 +353,7 @@ margin-left:10px;
 		 <span class="fa fa-star checked"></span>
 		<span class="fa fa-star checked"></span>
 		<span class="fa fa-star checked"></span>
-		<span class="fa fa-star"></span>
+		<span class="fa fa-star checked"></span>
 		<span class="fa fa-star"></span>
 		
 				
@@ -212,8 +364,8 @@ margin-left:10px;
 		</div>
 	</div>	
 </c:forEach>
-	
-</div>
+
+</div> --%>
 
 
 

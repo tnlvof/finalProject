@@ -12,6 +12,7 @@
 		<typeAlias alias="Reservation" type="com.kh.fooding.reservation.model.vo.Reservation"/>
 		<typeAlias alias="Review" type="com.kh.fooding.review.model.vo.Review"/>
 		<typeAlias alias="Sample" type="com.kh.fooding.sample.model.vo.Sample"/>
+		<typeAlias alias="StoreSam" type="com.kh.fooding.store.model.vo.StoreSam"/>
 	</typeAliases>
 	<mappers>
 		<mapper resource="mappers/member-mapper.xml"/>

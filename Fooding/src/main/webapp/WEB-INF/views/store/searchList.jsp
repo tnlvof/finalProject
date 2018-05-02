@@ -160,81 +160,7 @@ body{
 .checked {
     color: orange;
 }
-/* #resultArea{
-	margin-top:50px;
-	margin-left:auto;
-	margin-right:auto; 
-	height:1200px;
-	width:1000px;
-  	
-}
 
-.result{
-	width:300px;
-	height:380px;
-	background:white;
-	margin-top:20px;
-	margin-down:20px;
-	display: inline-block;
-	margin-left:10px;
-	margin-right:10px;
-}
-
-.profilePic{
-	width:280px;
-	height:200px;
-	margin-left:10px;
-	margin-right:10px;
-	margin-top:10px;	
-}
-
-.profilePic:hover{
-	cursor:pointer;
-	opacity:0.5;
-	
-}
-
-
-.btns button{
-	margin-left:5px;
-	margin-top:5px;
-	height:30px;
-	/width:auto;
-	display:inline-block;
-	
-}
-
-.btns button:hover{
-	background:lightgray;
-}
-
-
-.nameAndPrices {	
-	list-style:none;
-	display:inline-block;
-}
-.prices{
-	font-size:13px;
-}
-#container{
-	margin-top:40px;
-}
-.nameAndPricesArea{
-margin-top:5px;
-margin-left:10px;
-	margin-right:10px;
-}
-
-#pageIngArea{
-	margin-top:30px;
-}
-.buttons{
-	width:100%;
-	background-color:white;
-	border-radius: 4px;
-	border:0;
-	
-} */
 .write-btn{
 	width: 100%;
 	border: 0;
@@ -248,6 +174,17 @@ margin-left:10px;
 	background: #999;
 	color: #fff;
 	cursor: pointer;
+}
+.write-div{
+	width:49%;
+	display: inline-block;
+}
+#reserve-btn{
+	background-color:#c91b3c;
+	color:white;
+}
+.align-right{
+	float:right;
 }
 </style>
 </head>
@@ -267,6 +204,39 @@ margin-left:10px;
 
 <div id="resultArea">
 	<ul class="coupons">
+	<c:forEach var="store" items="${store}">
+		<c:set var="storeId" value="${ store.sid}"></c:set>
+		<%-- <c:url var="goStoreDetail" value="/goStoreDetail.st">
+				<c:param name="storeId" value="${ storeId }"/>
+		</c:url> --%>	
+	 
+      <li>
+         <div class="photo">
+            <img src="${contextPath}/resources/uploadFiles/${store.mainPhoto}" <%-- onclick="location.href='${goDetail}'" --%>>
+            <p>
+              ${ store.sName}<br>
+               <span>${ store.sCode}</span>
+            </p>
+         </div>
+         <!-- photo -->
+         
+         <div class="coupon-price">
+			<span class="fa fa-star"></span>
+			<span class="fa fa-star"></span>
+			<span class="fa fa-star"></span>
+			<span class="fa fa-star"></span>
+			<span class="fa fa-star"></span>
+         </div>
+         <!-- coupon-price -->
+         <div class="write-div">
+         <button class="write-btn" id="reserve-btn">예약하기</button>
+         </div>
+         <div class="write-div">
+         <button class="write-btn">리뷰쓰기</button>
+         </div>
+      </li>
+	</c:forEach>
+	
 	<c:forEach var="s" items="${ sam }" >
 	<%-- <div class="result">
 		<c:set var="restN" value="${ s.restName}"></c:set>
@@ -294,8 +264,7 @@ margin-left:10px;
 		<!-- <button class="buttons" >예약하기</button> -->
 		<button class="buttons" >리뷰쓰기</button>
 		</div>
-	</div> --%>	
-	
+	</div> --%>
 	  <c:set var="restN" value="${ s.restName}"></c:set>
 		<c:url var="goDetail" value="/goDetail.st">
 				<c:param name="restName" value="${ restN }"/>
@@ -308,22 +277,26 @@ margin-left:10px;
               ${ s.restName}<br>
                <span>${ s.restUpstream }</span>
             </p>
-         </div>
-         <!-- photo -->
-         
-         <div class="coupon-price">
-          	<span class="fa fa-star checked"></span>
-			<span class="fa fa-star checked"></span>
-			<span class="fa fa-star checked"></span>
-			<span class="fa fa-star"></span>
-			<span class="fa fa-star"></span>
-         </div>
-         <!-- coupon-price -->
-         
-         <button class="write-btn">리뷰쓰기</button>
+         </div> 
+         <!-- photo --> 
+         <c:choose>
+				<c:when test="${ s.star eq 0 }">
+					<div class="coupon-price">
+						<span class="fa fa-star"></span> 
+						<span class="fa fa-star"></span>
+						<span class="fa fa-star"></span> 
+						<span class="fa fa-star"></span>
+						<span class="fa fa-star"></span>
+						<span class="fa align-right"> 0.0 </span>
+					</div>
+				</c:when>
+		</c:choose> 
+		<!-- coupon-price -->
+
+						<button class="write-btn">리뷰쓰기</button>
       </li>
-      
-	
+    
+ 	
 	</c:forEach>
      </ul>
 	
