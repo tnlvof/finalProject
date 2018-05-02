@@ -65,7 +65,8 @@
 	<select id="selectMemberList" resultMap="memberResultSet2">		
 		 SELECT MID, USER_ID, USER_PWD, USER_NAME, BIRTH, PHONE, EMAIL, ADDRESS, STATUS, REP_COUNT, BIZ_NO, BIZ_NAME, BOOK_COUNT, GENDER,
 		 ENROLL_DATE
-		 FROM MEMBER 		
+		 FROM MEMBER 
+		 WHERE MCODE='일반'		
 	</select>
 	
 	<select id="selectEditList" resultMap="memberResultSet2">		

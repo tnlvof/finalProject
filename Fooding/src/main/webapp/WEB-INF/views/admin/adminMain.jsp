@@ -541,7 +541,7 @@ function getCue(){
  	<th style="width:50px;  text-align:center;height:20px;font-weight:bold;">
  		<input type="checkbox" id="checkAll4">&nbsp;전체선택
  	</th>
- 	<th style="width:50px; text-align:center;height:20px;font-weight:bold;">글번호</th>
+ 	<th style="width:100px; text-align:center;height:20px;font-weight:bold;">글번호</th>
  	<th style="width:300px; text-align:center;height:20px;font-weight:bold;">제목</th>
  	<th style="width:120px; text-align:center;height:20px;font-weight:bold;">글쓴이</th>
  	<th style="width:300px; text-align:center;height:20px;font-weight:bold;">등록시간</th>

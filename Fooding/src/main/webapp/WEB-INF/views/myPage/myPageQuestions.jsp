@@ -89,37 +89,37 @@
 				</div>
 			</div>
 			</c:forEach>
-		<div id="pagingArea" align="center">
+		<div id="pagingArea" align="center" style="font-size: 12px;">		
 			<c:if test="${pi.currentPage <= 1}">
-				[이전] &nbsp; 
+				< &nbsp; 
 			</c:if>
 			<c:if test="${pi.currentPage > 1 }">
 				<c:url var ="blistBack" value="goMyPageQuestions.bo">
 					<c:param name="currentPage" value="${pi.currentPage -1}"></c:param>
 				</c:url>
-				<a href="${blistBack }"> [이전]</a> &nbsp;
+				<a href="${blistBack }"> &nbsp;< </a> &nbsp;
 			</c:if>
 			
 			<c:forEach var="p" begin="${pi.startPage }" end="${pi.endPage }" >
 				<c:if test="${p eq pi.currentPage }">
-					<font color="pink" size="4"><b>[${p }]</b> </font>
+					<font  size="2"><b style="color:#ec3e43;">${p } &nbsp;</b> </font>
 				</c:if>
 				<c:if test="${p ne pi.currentPage }">
 					<c:url var="blistCheck" value="goMyPageQuestions.bo" >
 						<c:param name="currentPage" value="${p }"/>
 					</c:url>
-					<a href="${blistCheck }"> ${p }</a>
+					<a href="${blistCheck }"> ${p } &nbsp;</a>
 				</c:if>
 			</c:forEach>
 			
 			<c:if test="${pi.currentPage <= pi.maxPage}">
-				&nbsp; [다음]
+				 >
 			</c:if>
 			<c:if test="${pi.currentPage < pi.maxPage} ">
 				<c:url var="blistEnd" value="goMyPageQuestions.bo">
 					<c:param name="currentPage" value="${pi.currentPage +1 }"/>
 				</c:url>
-				<a href="${ blistEnd}"> &nbsp; [다음] </a>
+				<a href="${ blistEnd}"> &nbsp; > </a>
 			</c:if>
 	</div>
 		</div>

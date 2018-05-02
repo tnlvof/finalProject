@@ -13,7 +13,6 @@ import com.kh.fooding.store.model.vo.Store;
 import com.kh.fooding.store.model.vo.Coupon;
 import com.kh.fooding.store.model.vo.Sam;
 
-
 @Service
 public class StoreServiceImpl implements StoreService{
 	@Autowired
@@ -78,7 +77,7 @@ public class StoreServiceImpl implements StoreService{
 	public ArrayList<Store> searchStore(PageInfo pi, String searchKey) {
 		ArrayList<Store> store = sd.searchStore(sqlSession, searchKey,pi);
 		return store;
-
+	}
 	//테마 레스토랑 조회 - 메뉴별
 	@Override
 	public ArrayList<Sam> selectThemeListMenu(String query) {
