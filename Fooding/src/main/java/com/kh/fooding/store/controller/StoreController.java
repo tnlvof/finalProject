@@ -58,7 +58,6 @@ public class StoreController {
 
 		return "main/main";
 		
-		
 	}
 
 	// open api 사용

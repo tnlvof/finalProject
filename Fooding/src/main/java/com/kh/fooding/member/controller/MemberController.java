@@ -341,7 +341,7 @@ public class MemberController {
 	@RequestMapping(value = "goStorePage.me")
 	public String goStorePage() {
 		
-		return "store/storePage";
+		return "myPage/storePage";
 	}
 	
 	@RequestMapping(value = "goMemberUpdate.me")
