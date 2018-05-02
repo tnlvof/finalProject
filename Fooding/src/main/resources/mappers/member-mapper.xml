@@ -19,6 +19,7 @@
 		<result property="bizNo" column="BIZ_NO"/>                                   
 		<result property="bizName" column="BIZ_NAME"/>                               
 		<result property="bookCount" column="BOOK_COUNT"/>                              
+		<result property="profile" column="PROFILE"/>                              
 	</resultMap>
 	
 	 <resultMap id="memberResultSet2" type="Member">
@@ -54,12 +55,12 @@
 	
 	<insert id="insertMember">
    	  	 INSERT INTO MEMBER 
-    	  VALUES(SEQ_MID.NEXTVAL, #{userId} , #{userPwd} , #{userName} , #{birth} , NULL , #{email} ,NULL, '일반' , DEFAULT, NULL, NULL, NULL, NULL, #{gender}, SYSDATE)
+    	  VALUES(SEQ_MID.NEXTVAL, #{userId} , #{userPwd} , #{userName} , #{birth} , NULL , #{email} ,NULL, '일반' , DEFAULT, NULL, NULL, NULL, NULL, #{gender}, SYSDATE,null)
  	</insert>
 	
 	<insert id="insertStore">
 		INSERT INTO MEMBER
-		VALUES(SEQ_MID.NEXTVAL, #{userId}, #{userPwd}, #{bizName}, NULL, NULL, NULL, NULL, '업체', DEFAULT, NULL, #{bizNo}, #{bizName}, NULL, NULL, SYSDATE)
+		VALUES(SEQ_MID.NEXTVAL, #{userId}, #{userPwd}, #{bizName}, NULL, NULL, NULL, NULL, '업체', DEFAULT, NULL, #{bizNo}, #{bizName}, NULL, NULL, SYSDATE,null)
  	</insert>
 	
 	<select id="selectMemberList" resultMap="memberResultSet2">		

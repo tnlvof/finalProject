@@ -23,8 +23,46 @@ public class Member implements java.io.Serializable{
 	private String gender;                                
 	private Date enrollDate;
 	private String enrollDateJson;
+	private String profile;
 	
-	
+	public String getProfile() {
+		return profile;
+	}
+
+
+
+	public void setProfile(String profile) {
+		this.profile = profile;
+	}
+
+
+
+	public Member(int mid, String userId, String userPwd, String userName, String birth, String phone, String email,
+			String address, String mCode, String status, int repCount, int bizNo, String bizName, int bookCount,
+			String gender, Date enrollDate, String enrollDateJson, String profile) {
+		super();
+		this.mid = mid;
+		this.userId = userId;
+		this.userPwd = userPwd;
+		this.userName = userName;
+		this.birth = birth;
+		this.phone = phone;
+		this.email = email;
+		this.address = address;
+		this.mCode = mCode;
+		this.status = status;
+		this.repCount = repCount;
+		this.bizNo = bizNo;
+		this.bizName = bizName;
+		this.bookCount = bookCount;
+		this.gender = gender;
+		this.enrollDate = enrollDate;
+		this.enrollDateJson = enrollDateJson;
+		this.profile = profile;
+	}
+
+
+
 	public Member() {
 		super();
 	}
@@ -199,9 +237,10 @@ public class Member implements java.io.Serializable{
 	@Override
 	public String toString() {
 		return "Member [mid=" + mid + ", userId=" + userId + ", userPwd=" + userPwd + ", userName=" + userName
-				+ ", birth=" + birth + ", gender=" + gender + ", phone=" + phone + ", email=" + email + ", address="
-				+ address + ", mCode=" + mCode + ", status=" + status + ", enrollDate=" + enrollDate + ", repCount="
-				+ repCount + ", bizNo=" + bizNo + ", bizName=" + bizName + ", bookCount=" + bookCount + "]";
+				+ ", birth=" + birth + ", phone=" + phone + ", email=" + email + ", address=" + address + ", mCode="
+				+ mCode + ", status=" + status + ", repCount=" + repCount + ", bizNo=" + bizNo + ", bizName=" + bizName
+				+ ", bookCount=" + bookCount + ", gender=" + gender + ", enrollDate=" + enrollDate + ", enrollDateJson="
+				+ enrollDateJson + ", profile=" + profile + "]";
 	}
 	
 }

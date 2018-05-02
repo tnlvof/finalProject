@@ -81,7 +81,46 @@
 		<result property="cmethod" column="C_METHOD"/>                                        
 		<result property="sid" column="SID"/>                                        
 		<result property="enrollDate" column="ENROLL_DATE"/>                                         
-	</resultMap>                                                                        
+	</resultMap>              
+	
+	<resultMap id="storeSamResultSet" type="StoreSam">
+		<id property="sid" column="SID"/>                                               
+		<result property="sName" column="SNAME"/>                                    
+		<result property="phone" column="PHONE"/>                                  
+		<result property="sCode" column="SCODE"/>                                
+		<result property="bookYN" column="BOOK_YN"/>                                       
+		<result property="address" column="ADDRESS"/>                                       
+		<result property="sLocation" column="S_LOCATION"/>                                     
+		<result property="sHours" column="SHOURS"/>                                       
+		<result property="dayoff" column="DAYOFF"/>                                   
+		<result property="sTable" column="S_TABLE"/>                                       
+		<result property="budget" column="BUDGET"/>                            
+		<result property="atmosphere" column="ATMOSPHERE"/>                                
+		<result property="facilities" column="FACILITIES"/>                                   
+		<result property="description" column="DESCRIPTION"/>                               
+		<result property="keyword" column="COUPON_NO"/>       
+		<result property="status" column="STATUS"/>    
+		<result property="menu" column="MENU"/>    
+		<result property="mainPhoto" column="MAIN_PHOTO"/>    
+		<result property="subPhoto" column="SUB_PHOTO"/>    
+		<result property="mid" column="MID"/>    
+		<result property="star" column="STAR"/>
+		<result property="areaDong" column="AREA_DONG"/>                                       
+		<result property="areaGoo" column="AREA_GOO"/>                                           
+		<result property="areaSi" column="AREA_SI"/>                                
+		<result property="restAddress" column="REST_ADDRESS"/>                                       
+		<result property="restBoard" column="REST_BROAD"/>                                        
+		<result property="restMenu" column="REST_MENU"/>                                        
+		<result property="restName" column="REST_NAME"/>                                         
+		<result property="restNumber" column="REST_NUMBER"/>                                     
+		<result property="restUpstream" column="REST_UPSTREAM"/>                                     
+		<result property="restX" column="REST_X"/>                                            
+		<result property="restY" column="REST_Y"/>   
+		<result property="writer" column="WRITER"/>
+		<result property="content" column="CONTENT"/>
+		<result property="photo" column="PHOTO"/>
+		<result property="rank" column="순위" />    
+	</resultMap>                
 	
  	<insert id="insertStore" parameterType="Store">INSERT INTO STORE VALUES(SEQ_SID.NEXTVAL, #{sName} ,#{phone} , #{sCode}, #{bookYN} ,#{address} ,#{sLocation}, #{sHours} , #{dayoff} ,#{sTable} , #{budget},#{atmosphere},#{facilities},#{description} ,DEFAULT, #{keyword},DEFAULT,#{menu},#{mainPhoto},DEFAULT, #{mid} , null)</insert> 
 

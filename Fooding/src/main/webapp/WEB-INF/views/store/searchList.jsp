@@ -175,6 +175,17 @@ body{
 	color: #fff;
 	cursor: pointer;
 }
+.write-div{
+	width:49%;
+	display: inline-block;
+}
+#reserve-btn{
+	background-color:#c91b3c;
+	color:white;
+}
+.align-right{
+	float:right;
+}
 </style>
 </head>
 <body>
@@ -201,7 +212,7 @@ body{
 	 
       <li>
          <div class="photo">
-            <img src="${store.mainPhoto}" <%-- onclick="location.href='${goDetail}'" --%>>
+            <img src="${contextPath}/resources/uploadFiles/${store.mainPhoto}" <%-- onclick="location.href='${goDetail}'" --%>>
             <p>
               ${ store.sName}<br>
                <span>${ store.sCode}</span>
@@ -210,16 +221,19 @@ body{
          <!-- photo -->
          
          <div class="coupon-price">
-          	<span class="fa fa-star checked"></span>
-			<span class="fa fa-star checked"></span>
-			<span class="fa fa-star checked"></span>
+			<span class="fa fa-star"></span>
+			<span class="fa fa-star"></span>
+			<span class="fa fa-star"></span>
 			<span class="fa fa-star"></span>
 			<span class="fa fa-star"></span>
          </div>
          <!-- coupon-price -->
-         
-         <button class="write-btn">예약하기</button>
+         <div class="write-div">
+         <button class="write-btn" id="reserve-btn">예약하기</button>
+         </div>
+         <div class="write-div">
          <button class="write-btn">리뷰쓰기</button>
+         </div>
       </li>
 	</c:forEach>
 	
@@ -263,19 +277,23 @@ body{
               ${ s.restName}<br>
                <span>${ s.restUpstream }</span>
             </p>
-         </div>
-         <!-- photo -->
-         
-         <div class="coupon-price">
-          	<span class="fa fa-star checked"></span>
-			<span class="fa fa-star checked"></span>
-			<span class="fa fa-star checked"></span>
-			<span class="fa fa-star"></span>
-			<span class="fa fa-star"></span>
-         </div>
-         <!-- coupon-price -->
-         
-         <button class="write-btn">리뷰쓰기</button>
+         </div> 
+         <!-- photo --> 
+         <c:choose>
+				<c:when test="${ s.star eq 0 }">
+					<div class="coupon-price">
+						<span class="fa fa-star"></span> 
+						<span class="fa fa-star"></span>
+						<span class="fa fa-star"></span> 
+						<span class="fa fa-star"></span>
+						<span class="fa fa-star"></span>
+						<span class="fa align-right"> 0.0 </span>
+					</div>
+				</c:when>
+		</c:choose> 
+		<!-- coupon-price -->
+
+						<button class="write-btn">리뷰쓰기</button>
       </li>
     
  	
