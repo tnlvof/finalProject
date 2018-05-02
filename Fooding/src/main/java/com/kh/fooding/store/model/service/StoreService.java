@@ -22,6 +22,8 @@ public interface StoreService {
 
 	ArrayList<Store> selectThemeList(String query);
 
+	int getBestCouponCount();
+	
 
 	ArrayList<Coupon> selectBestCoupon();
 
@@ -30,6 +32,8 @@ public interface StoreService {
 
 	//sam 테이블에서 업종 별로 가져오기
 	ArrayList<Sam> selectThemeListSamCat(String query);
+
+
 
 
 }

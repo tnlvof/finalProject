@@ -80,8 +80,18 @@
 		<result property="cterm" column="C_TERM"/>                                       
 		<result property="cmethod" column="C_METHOD"/>                                        
 		<result property="sid" column="SID"/>                                        
-		<result property="enrollDate" column="ENROLL_DATE"/>                                         
-	</resultMap>                                                                        
+		<result property="enrollDate" column="ENROLL_DATE"/>                                        
+	</resultMap>  
+	
+	<resultMap id="couponResultSet2" type="java.util.HashMap">
+		<id property="cid" column="CID"/>
+		<result property="cname" column="C_NAME"/>
+		<result property="cdate" column="C_ENDDATE"/>
+		<result property="cterm" column="C_TERM"/>
+		<result property="cmethod" column="C_METHOD"/>
+		<result property="sid" column="SID"/>
+		<collection property="couponList" javaType="java.util.ArrayList" resultMap="storeResultSet"/>
+	</resultMap>
 	
  	<insert id="insertStore" parameterType="Store">INSERT INTO STORE VALUES(SEQ_SID.NEXTVAL, #{sName} ,#{phone} , #{sCode}, #{bookYN} ,#{address} ,#{sLocation}, #{sHours} , #{dayoff} ,#{sTable} , #{budget},#{atmosphere},#{facilities},#{description} ,DEFAULT, #{keyword},DEFAULT,#{menu},#{mainPhoto},DEFAULT, #{mid} , null)</insert> 
 
@@ -113,13 +123,13 @@
 	SELECT * FROM STORE  
 	</select>
 	
+	<select id="getBestCouponCount" resultType="_int">
+		SELECT COUNT(*) FROM COUPON C JOIN STORE S ON(C.SID = S.SID) WHERE ROWNUM &lt;= 100 ORDER BY S.STAR DESC
+	</select>
 
-	<select id="selectBestCoupon" resultMap="couponResultSet">
+	<select id="selectBestCoupon" resultMap="couponResultSet2">
 		SELECT C.CID, C.C_NAME, C.SID, S.SNAME, S.SCODE, S.ADDRESS, S.DESCRIPTION, S.KEYWORD, S.MAIN_PHOTO, S.STAR
-		FROM COUPON C
-		JOIN STORE S ON(C.SID = S.SID)
-		WHERE ROWNUM &lt;= 100
-		ORDER BY S.STAR DESC
+		FROM COUPON C JOIN STORE S ON(C.SID = S.SID) WHERE ROWNUM &lt;= 100 ORDER BY S.STAR DESC
 	</select>
 
 	<select id="selectRestType" resultMap="storeResultSet2" parameterType="String">

@@ -25,12 +25,15 @@ public interface StoreDao {
 
 	ArrayList<Store> selectThemeList(SqlSessionTemplate sqlSession, String query);
 
+	int getBestCouponCount(SqlSessionTemplate sqlSession);
 
 	ArrayList<Coupon> selectBestCoupon(SqlSessionTemplate sqlSession);
 
 	ArrayList<Sam> selectThemeListMenu(SqlSessionTemplate sqlSession, String query);
 
 	ArrayList<Sam> selectThemeListSamCat(SqlSessionTemplate sqlSession, String query);
+
+
 
 
 	
