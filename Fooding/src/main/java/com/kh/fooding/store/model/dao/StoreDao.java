@@ -4,6 +4,7 @@ package com.kh.fooding.store.model.dao;
 import org.mybatis.spring.SqlSessionTemplate;
 
 import com.kh.fooding.store.model.vo.Store;
+import com.kh.fooding.store.model.vo.StoreSam;
 import com.kh.fooding.common.PageInfo;
 import com.kh.fooding.store.model.vo.Coupon;
 import com.kh.fooding.store.model.vo.Sam;
@@ -15,7 +16,7 @@ public interface StoreDao {
 	int insertStoreInfo(Store s, SqlSessionTemplate sqlSession);
 
 
-	ArrayList<Sam> searchResult(String searchKey, PageInfo pi, SqlSessionTemplate sqlSession);
+	ArrayList<StoreSam> searchResult(String searchKey, PageInfo pi, SqlSessionTemplate sqlSession);
 	
 	Sam selectOneSam(String restName, SqlSessionTemplate sqlSession);
 

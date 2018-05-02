@@ -11,6 +11,7 @@ import com.kh.fooding.common.PageInfo;
 import com.kh.fooding.store.model.vo.Coupon;
 import com.kh.fooding.store.model.vo.Sam;
 import com.kh.fooding.store.model.vo.Store;
+import com.kh.fooding.store.model.vo.StoreSam;
 
 @Repository
 public class StoreDaoImpl implements StoreDao{
@@ -25,13 +26,23 @@ public class StoreDaoImpl implements StoreDao{
     
 	// 검색 결과
 	@Override
-	public ArrayList<Sam> searchResult(String searchKey,PageInfo pi, SqlSessionTemplate sqlSession) {
+	public ArrayList<StoreSam> searchResult(String searchKey,PageInfo pi, SqlSessionTemplate sqlSession) {
 		
 		int offset = (pi.getCurrentPage() -1) * pi.getLimit();
 		RowBounds rowBounds = new RowBounds(offset, pi.getLimit());
-		ArrayList<Sam> sam = (ArrayList)sqlSession.selectList("Store.searchResult", searchKey , rowBounds);
+		ArrayList<StoreSam> list = (ArrayList)sqlSession.selectList("Store.searchStore", searchKey , rowBounds);
 		
-		for (Object sam2 : sam) {
+		System.out.println("dao list size : " + list.size());
+		
+		rowBounds = new RowBounds(offset, pi.getLimit() - list.size());
+		
+		System.out.println("dao rowBounds : " + rowBounds);
+
+		ArrayList<StoreSam> list2 = (ArrayList)sqlSession.selectList("Store.searchSam", searchKey , rowBounds);
+		
+		list.addAll(list2);
+		
+		for (Object sam2 : list) {
 			System.out.println("dao result : " + sam2);
 		}
 		
@@ -39,7 +50,7 @@ public class StoreDaoImpl implements StoreDao{
 			System.out.println("dao sam : " + sam2);
 		}*/
 		
-		return sam;
+		return list;
 	}
 	
 	@Override
@@ -47,9 +58,17 @@ public class StoreDaoImpl implements StoreDao{
 		
 		System.out.println("dao searchKey : " + searchKey);
 		
-		int result = sqlSession.selectOne("Store.getListCount",searchKey);
+		int result = sqlSession.selectOne("Store.getSamListCount",searchKey);
 		
 		System.out.println("dao result : " + result);
+		
+		int result2 = sqlSession.selectOne("Store.getStoreListCount",searchKey);
+		
+		System.out.println("dao result2 : " + result2);
+		
+		result = result + result2;
+		
+		System.out.println("dao 최종 result : " + result);
 		
 		return result;
 	}

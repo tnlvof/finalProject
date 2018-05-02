@@ -2,6 +2,7 @@ package com.kh.fooding.store.model.service;
 
 
 import com.kh.fooding.store.model.vo.Store;
+import com.kh.fooding.store.model.vo.StoreSam;
 
 import java.util.ArrayList;
 
@@ -12,7 +13,7 @@ import com.kh.fooding.store.model.vo.Sam;
 public interface StoreService {
 	void insertStoreInfo(Store s);
 
-	ArrayList<Sam> searchResult(PageInfo pi, String searchKey);
+	ArrayList<StoreSam> searchResult(PageInfo pi, String searchKey);
 
 	int getListCount(String searchKey);
 	

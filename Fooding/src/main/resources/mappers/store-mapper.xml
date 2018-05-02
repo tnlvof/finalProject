@@ -125,27 +125,31 @@
  	<insert id="insertStore" parameterType="Store">INSERT INTO STORE VALUES(SEQ_SID.NEXTVAL, #{sName} ,#{phone} , #{sCode}, #{bookYN} ,#{address} ,#{sLocation}, #{sHours} , #{dayoff} ,#{sTable} , #{budget},#{atmosphere},#{facilities},#{description} ,DEFAULT, #{keyword},DEFAULT,#{menu},#{mainPhoto},DEFAULT, #{mid} , null)</insert> 
 
 
-	<select id="searchResult" resultMap="samResultSet">
-		SELECT DISTINCT REST_ADDRESS ,REST_MENU ,REST_NAME, REST_NUMBER, REST_UPSTREAM, REST_X, REST_Y, WRITER, CONTENT,PHOTO ,SID 
+	<select id="searchSam" resultMap="storeSamResultSet">
+		SELECT DISTINCT REST_NAME ,REST_MENU ,REST_ADDRESS, REST_NUMBER, REST_UPSTREAM, REST_X, REST_Y, WRITER, CONTENT,PHOTO ,STAR
 		FROM SAM 
 		WHERE REST_ADDRESS LIKE '%' || #{searchKey} || '%' 
 		OR REST_NAME LIKE '%' || #{searchKey} || '%' 
-		AND ROWNUM &lt;= 100
+		ORDER BY STAR DESC
 	</select>
 	
-	<select id="searchStore" resultMap="storeResultSet">
+	<select id="searchStore" resultMap="storeSamResultSet">
 		SELECT * FROM STORE
 		WHERE KEYWORD LIKE '%' || #{searchKey} || '%'
-		AND ROWNUM &lt;= 100
 		ORDER BY STAR DESC
 		
 	</select>
 	
-	<select id="getListCount" resultType="_int">
-		SELECT COUNT(DISTINCT REST_ADDRESS) FROM SAM 
-		WHERE REST_ADDRESS LIKE '%' || #{searchKey} || '%'
-		OR REST_NAME LIKE '%' || #{searchKey} || '%'  
-		AND ROWNUM &lt;= 100
+	<select id="getSamListCount" resultType="_int">
+		SELECT COUNT(REST_NAME) 
+		FROM (SELECT DISTINCT REST_NAME 
+     		  FROM (SELECT ROWNUM, REST_NAME FROM SAM WHERE REST_ADDRESS LIKE '%' || #{searchKey} || '%' OR REST_NAME LIKE '%' || #{searchKey} || '%') 
+     		  WHERE ROWNUM &lt;= 100) 
+	</select>
+	
+	<select id="getStoreListCount" resultType="_int">
+		SELECT COUNT(*) FROM STORE 
+		WHERE KEYWORD LIKE '%' || #{searchKey} || '%'
 	</select>
 	
 	<select id="selectOneSam" resultMap="samResultSet">
