@@ -270,10 +270,9 @@ public class StoreController {
 		
 		// Sam Table에서 가져오는 리스트 - 카테고리별
 		ArrayList<Sam> themeListSam = ss.selectThemeListSamCat(query);
-		System.out.println( "themeListSam!!! : "+ themeListSam);
+		//System.out.println( "themeListSam!!! : "+ themeListSam);
 		
-		
-		System.out.println(themeList);
+		//System.out.println(themeList);
 		
 		mv.addObject("HeaderList", forHeaderList);
 		mv.addObject("themeList", themeList);
