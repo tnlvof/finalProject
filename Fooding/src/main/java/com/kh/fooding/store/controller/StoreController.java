@@ -133,16 +133,14 @@ public class StoreController {
 		
 		PageInfo pi = new PageInfo(currentPage, listCount, limit, maxPage, startPage, endPage);
 
-		ArrayList<Sam> sam = ss.searchResult(pi,searchKey);
-		ArrayList<Store> store = ss.searchStore(pi,searchKey);
+		ArrayList<StoreSam> storeSam = ss.searchResult(pi,searchKey);
 		
-		int samSize = sam.size();
+		int samSize = storeSam.size();
 		
 		request.setAttribute("searchKey",searchKey);
 		mv.addObject("pi",pi);
 		mv.addObject("samSize", samSize);
-		mv.addObject("sam", sam);
-		mv.addObject("store", store);
+		mv.addObject("storeSam", storeSam);
 		mv.setViewName("store/searchList");
 
 		return mv;

@@ -16,7 +16,7 @@ public interface StoreDao {
 	int insertStoreInfo(Store s, SqlSessionTemplate sqlSession);
 
 
-	ArrayList<Sam> searchResult(String searchKey, PageInfo pi, SqlSessionTemplate sqlSession);
+	ArrayList<StoreSam> searchResult(String searchKey, PageInfo pi, SqlSessionTemplate sqlSession);
 	
 	Sam selectOneSam(String restName, SqlSessionTemplate sqlSession);
 

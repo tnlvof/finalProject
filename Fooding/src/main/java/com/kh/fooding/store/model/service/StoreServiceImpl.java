@@ -9,10 +9,14 @@ import org.springframework.stereotype.Service;
 
 import com.kh.fooding.common.PageInfo;
 import com.kh.fooding.store.model.dao.StoreDao;
-import com.kh.fooding.store.model.vo.Coupon;
-import com.kh.fooding.store.model.vo.Sam;
+
+
 import com.kh.fooding.store.model.vo.Store;
 import com.kh.fooding.store.model.vo.StoreSam;
+
+import com.kh.fooding.store.model.vo.Coupon;
+import com.kh.fooding.store.model.vo.Sam;
+
 
 @Service
 public class StoreServiceImpl implements StoreService{
@@ -30,9 +34,9 @@ public class StoreServiceImpl implements StoreService{
 	}
 
 	@Override
-	public ArrayList<Sam> searchResult(PageInfo pi,String searchKey) {
+	public ArrayList<StoreSam> searchResult(PageInfo pi,String searchKey) {
 		
-		ArrayList sam = sd.searchResult(searchKey,pi,sqlSession); 
+		ArrayList<StoreSam> sam = sd.searchResult(searchKey,pi,sqlSession); 
 		
 		return sam;
 	}
