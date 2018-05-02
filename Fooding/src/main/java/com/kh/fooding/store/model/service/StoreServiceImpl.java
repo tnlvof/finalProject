@@ -13,7 +13,6 @@ import com.kh.fooding.store.model.vo.Store;
 import com.kh.fooding.store.model.vo.Coupon;
 import com.kh.fooding.store.model.vo.Sam;
 
-
 @Service
 public class StoreServiceImpl implements StoreService{
 	@Autowired

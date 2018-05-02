@@ -9,12 +9,13 @@ import com.kh.fooding.board.model.exception.insertException;
 import com.kh.fooding.board.model.exception.searchException;
 import com.kh.fooding.board.model.exception.updateException;
 import com.kh.fooding.board.model.vo.Board;
+import com.kh.fooding.common.PageInfo;
 
 public interface BoardDao {
 
 	int insertBoard(Board b, SqlSessionTemplate sqlSession) throws insertException;
 
-	ArrayList<Board> selectBoardList(Board b, SqlSessionTemplate sqlSession);
+	ArrayList<Board> selectBoardList(Board b, SqlSessionTemplate sqlSession, PageInfo pi);
 
 	int getListCount(SqlSessionTemplate sqlSession, Board b);
 
