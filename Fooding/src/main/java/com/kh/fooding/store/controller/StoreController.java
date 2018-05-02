@@ -16,8 +16,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.kh.fooding.board.model.service.BoardService;
-import com.kh.fooding.board.model.service.BoardServiceImpl;
 import com.kh.fooding.common.PageInfo;
 import com.kh.fooding.member.model.vo.Member;
 import com.kh.fooding.store.model.service.StoreService;
@@ -190,49 +188,10 @@ public class StoreController {
 	//테마 식당 추천 - 카테고리별
 	@RequestMapping(value="themeRest.st", method=RequestMethod.GET)
 	public ModelAndView selectThemeRest(ModelAndView mv, HttpServletRequest request) {
-		//페이징 처리
-		/*//페이징 처리
-				int currentPage;
-				int limit; //한 페이지에 보여주는 것
-				int maxPage;
-				int startPage;
-				int endPage;
 				
-				currentPage = 1;		
-				limit = 10; 
-				
-				if(request.getParameter("currentPage")!=null) {
-					currentPage = Integer.parseInt(request.getParameter("currentPage"));			
-				}
-				
-				int listCount;
-			
-				BoardService bs = new BoardServiceImpl();
-				
-				try {
-					listCount = bs.getListCount();
-					System.out.println("전체 게시글 수 : " + listCount);
-					
-					maxPage = (int)((double) listCount / limit + 0.9);
-					
-					startPage = ((int)((double) currentPage / limit + 0.9)-1) * limit + 1;
-					
-					endPage = startPage + limit - 1;
-					
-					if(maxPage < endPage) {
-						endPage = maxPage;				
-					}
-					
-					PageInfo pi = new PageInfo(currentPage, listCount, limit, maxPage, startPage, endPage);
-					*/
-		
-		
-		
-		
-		
 		// query 종류 - kor, japanese, chinese, western
 		String query = request.getParameter("type");
-		System.out.println(query);
+		//System.out.println(query);
 		
 		//페이지 헤더에 넣을 이미지 주소, 문구 지정
 		String imgName = "";
@@ -251,32 +210,36 @@ public class StoreController {
 		forHeaderList.add(phrase);		
 		
 		
-		// 테마 식당 가져오기 - STORE
-		ArrayList<Store> themeList = ss.selectThemeList(query);
+		// 식당 리스트 가져오기		
+		ArrayList<StoreSam> themeList = ss.selectThemeList(query);
 		String photoLocation = "";
 		String after="";
 		
-		for(int i =0; i<themeList.size();i++) {
+		
+		for(int i =0; i<themeList.size();i++) {			
 			photoLocation = themeList.get(i).getMainPhoto();
-			after = photoLocation.substring(photoLocation.indexOf("resources"));
-			if(! after.equals("resources\\uploadFiles")) {
+			
+			if(photoLocation != null) {
+				after = "resources\\uploadFiles\\" + photoLocation;				
 				themeList.get(i).setMainPhoto(after);				
-			} else {
-				themeList.get(i).setMainPhoto(null);
 			}
+		
 			
 		}
 		
 		// Sam Table에서 가져오는 리스트 - 카테고리별
-		ArrayList<Sam> themeListSam = ss.selectThemeListSamCat(query);
-		System.out.println( "themeListSam!!! : "+ themeListSam);
+		ArrayList<StoreSam> themeListSam = ss.selectThemeListSamCat(query);
+		//System.out.println( "themeListSam!!! : "+ themeListSam);
 		
+		themeList.addAll(themeListSam);
 		
-		System.out.println(themeList);
+		System.out.println("최종 : " + themeList);
+
+		
 		
 		mv.addObject("HeaderList", forHeaderList);
 		mv.addObject("themeList", themeList);
-		mv.addObject("themeListSam", themeListSam);
+		
 		mv.setViewName("store/theRecommended");		
 		
 		
@@ -288,12 +251,47 @@ public class StoreController {
 	//추천 쿠폰
 	@RequestMapping(value="bestCoupon.st", method = RequestMethod.GET)
 	public ModelAndView selectBestCoupon(ModelAndView mv, HttpServletRequest request){
-		
 		ArrayList<Coupon> couponList = ss.selectBestCoupon();
+		
+		// 페이징처리
+		int currentPage;
+		int limit;
+		int maxPage;
+		int startPage;
+		int endPage;
+
+		currentPage = 1;
+
+		limit = 12;
+
+		if(request.getParameter("currentPage") != null ){
+			currentPage = Integer.parseInt(request.getParameter("currentPage"));
+		}
+
+		
+		int listCount = ss.getBestCouponCount();
+		/*System.out.println("추천 쿠폰 개수 : " + listCount);*/
+		
+		maxPage = (int) ((double) listCount / limit + 0.9);
+
+		startPage = ((int) ((double) (currentPage / limit + 0.9) - 1) * limit + 1);
+
+		endPage = startPage + limit - 3;
+		
+		if (maxPage < endPage) {
+			endPage = maxPage;
+		}
+		
+		if(endPage == 0 ) {
+			endPage=1;
+		}
+		
+		PageInfo pi = new PageInfo(currentPage, listCount, limit, maxPage, startPage, endPage);
 		
 		System.out.println("추천 쿠폰 리스트 : " + couponList);
 		
 		mv.addObject("couponList", couponList);
+		mv.addObject("pi", pi);
 		mv.setViewName("store/coupon");
 		
 		return mv;
@@ -322,9 +320,9 @@ public class StoreController {
 			forHeaderList.add(imgName);
 			forHeaderList.add(phrase);		
 			
-			
+						
 			// 테마 식당 가져오기 Sam
-			ArrayList<Sam> themeList = ss.selectThemeListMenu(query);
+			ArrayList<StoreSam> themeList = ss.selectThemeListMenu(query);
 			/*String photoLocation = "";
 			String after="";
 			*/
@@ -339,8 +337,9 @@ public class StoreController {
 				
 			}*/
 			
+			//테마 식당 가져오기 Store
 			
-			System.out.println(themeList);
+			
 			
 			mv.addObject("HeaderList", forHeaderList);
 			mv.addObject("themeListSam", themeList);

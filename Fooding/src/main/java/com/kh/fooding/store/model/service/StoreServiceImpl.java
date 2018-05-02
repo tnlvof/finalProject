@@ -2,6 +2,7 @@ package com.kh.fooding.store.model.service;
 
 
 import java.util.ArrayList;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,8 +10,10 @@ import org.springframework.stereotype.Service;
 import com.kh.fooding.common.PageInfo;
 import com.kh.fooding.store.model.dao.StoreDao;
 
+
 import com.kh.fooding.store.model.vo.Store;
 import com.kh.fooding.store.model.vo.StoreSam;
+
 import com.kh.fooding.store.model.vo.Coupon;
 import com.kh.fooding.store.model.vo.Sam;
 
@@ -67,8 +70,8 @@ public class StoreServiceImpl implements StoreService{
 	
 	//테마 레스토랑 조회 - 카테고리별
 	@Override
-	public ArrayList<Store> selectThemeList(String query) {
-		ArrayList<Store> themeList = sd.selectThemeList(sqlSession, query);
+	public ArrayList<StoreSam> selectThemeList(String query) {
+		ArrayList<StoreSam> themeList = sd.selectThemeList(sqlSession, query);
 		
 		return themeList;
 	}
@@ -83,19 +86,28 @@ public class StoreServiceImpl implements StoreService{
 
 	//테마 레스토랑 조회 - 메뉴별
 	@Override
-	public ArrayList<Sam> selectThemeListMenu(String query) {
-		ArrayList<Sam> selectThemeListMenu = sd.selectThemeListMenu(sqlSession, query);
+	public ArrayList<StoreSam> selectThemeListMenu(String query) {
+		ArrayList<StoreSam> selectThemeListMenu = sd.selectThemeListMenu(sqlSession, query);
 		
 		return selectThemeListMenu;
 	}
 
 	// 테마 레스토랑 조회 - 카테고리별
 	@Override
-	public ArrayList<Sam> selectThemeListSamCat(String query) {
-		ArrayList<Sam> selectThemeListSamCat = sd.selectThemeListSamCat(sqlSession, query );
+	public ArrayList<StoreSam> selectThemeListSamCat(String query) {
+		ArrayList<StoreSam> selectThemeListSamCat = sd.selectThemeListSamCat(sqlSession, query );
 		
 		return selectThemeListSamCat;
 	}
+
+	//추천 쿠폰 수 
+	@Override
+	public int getBestCouponCount() {
+		int result = sd.getBestCouponCount(sqlSession);
+		
+		return result;
+	}
+
 
 	//추천 쿠폰 조회
 	@Override
@@ -106,5 +118,4 @@ public class StoreServiceImpl implements StoreService{
 		return couponList;
 
 	}
-
 }
