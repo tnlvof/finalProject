@@ -166,7 +166,7 @@
 		ORDER BY S.STAR DESC
 	</select>
 
-	<select id="selectRestType" resultMap="storeResultSet2" parameterType="String">
+	<select id="selectRestType" resultMap="storeSamResultSet" parameterType="String">
 	SELECT *
 	FROM (SELECT SID, SNAME, PHONE, SCODE, BOOK_YN, ADDRESS,
   	S_LOCATION, SHOURS, DAYOFF, S_TABLE, BUDGET, ATMOSPHERE, FACILITIES, DESCRIPTION,
@@ -177,7 +177,7 @@
 	</select>
 			
 	
-	<select id="selectSamThemeListCat" resultMap="samResultSet" parameterType="String">
+	<select id="selectSamThemeListCat" resultMap="storeSamResultSet" parameterType="String">
 	SELECT *
 	FROM ( SELECT ROWNUM, AREA_DONG, AREA_SI, REST_ADDRESS, REST_BROAD, REST_MENU, SID, REST_NAME,
 	REST_UPSTREAM , REST_NUMBER, REST_X, REST_Y, WRITER, CONTENT, PHOTO, STAR,
@@ -187,7 +187,7 @@
 	WHERE ROWNUM &lt;=10		
 	</select>
 	
-	<select id="selectMenu" resultMap = "samResultSet">
+	<select id="selectMenu" resultMap = "storeSamResultSet">
 	SELECT *
 	FROM (SELECT ROWNUM, AREA_DONG, AREA_SI, REST_ADDRESS, REST_BROAD, REST_MENU, SID, REST_NAME,
 	REST_UPSTREAM , REST_NUMBER, REST_X, REST_Y, WRITER, CONTENT, PHOTO, STAR,
@@ -197,7 +197,7 @@
 	WHERE ROWNUM &lt;=10
 	</select>
 	
-	<select id="selectMenuMeat" resultMap = "samResultSet">
+	<select id="selectMenuMeat" resultMap = "storeSamResultSet">
 	SELECT *
 	FROM (SELECT ROWNUM, AREA_DONG, AREA_SI, REST_ADDRESS, REST_BROAD, REST_MENU, SID, REST_NAME,
 	REST_UPSTREAM , REST_NUMBER, REST_X, REST_Y, WRITER, CONTENT, PHOTO, STAR,
