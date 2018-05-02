@@ -43,10 +43,12 @@ public class StoreController {
 		
 		String root = request.getSession().getServletContext().getRealPath("resources");
 		String filePath = root + "\\uploadFiles";
-		s.setMainPhoto(filePath);
+		
+		s.setMainPhoto(photo.getOriginalFilename());
 		s.setMid(m.getMid());
 		
-		System.out.println(photo);
+		System.out.println("photo : "+photo);
+		System.out.println("오리지널 네임 : "+photo.getOriginalFilename());
 		try {	
 			photo.transferTo(new File(filePath + "\\" + photo.getOriginalFilename()));
 		} catch (IllegalStateException | IOException e1) {
