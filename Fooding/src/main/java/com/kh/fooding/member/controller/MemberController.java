@@ -1,5 +1,6 @@
 package com.kh.fooding.member.controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Map;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.fooding.member.model.exception.LoginException;
@@ -348,6 +350,26 @@ public class MemberController {
 	public String goMemberUpdate() {
 		
 		return "myPage/goMemberUpdate";
+	}
+	
+	@RequestMapping(value = "profileUpdate.me")
+	public String profileUpdate(@RequestParam(name="PPhoto", required=false)MultipartFile photo, HttpServletRequest request, HttpSession session) {
+		Member m = (Member) session.getAttribute("loginUser");
+		
+		String root = request.getSession().getServletContext().getRealPath("resources");
+		String filePath = root + "\\uploadFiles";
+		/*m.setProfile(filePath);
+		m.getMid();*/
+		
+		System.out.println(photo);
+		
+		try {	
+			photo.transferTo(new File(filePath + "\\" + photo.getOriginalFilename()));
+		} catch (IllegalStateException | IOException e1) {
+			e1.printStackTrace();
+		}
+		
+		return "myPage/myPageBanner";
 	}
 
 }
