@@ -335,9 +335,11 @@ public class StoreController {
 			
 			// 테마 식당 가져오기 Store
 			ArrayList<StoreSam> themeList2 = ss.selectThemeListMenuStore(query);
-			
+			System.out.println("themeList Sam :  " + themeList2);
 			// 테마 식당 가져오기 Sam
 			ArrayList<StoreSam> themeList = ss.selectThemeListMenu(query);
+			System.out.println("themeList Store : " + themeList);
+			
 			/*String photoLocation = "";
 			String after="";
 			*/
@@ -352,12 +354,14 @@ public class StoreController {
 				
 			}*/
 			
-			//테마 식당 가져오기 Store
 			
+			themeList2.addAll(themeList);
+			
+			System.out.println("finally  : " + themeList2);
 			
 			
 			mv.addObject("HeaderList", forHeaderList);
-			mv.addObject("themeListSam", themeList);
+			mv.addObject("themeList", themeList2);
 			mv.setViewName("store/theRecommended");		
 			
 			

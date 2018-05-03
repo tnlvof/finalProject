@@ -38,7 +38,7 @@
 				<p align="center">친숙한 재료로 내가 모르는 맛을 원한다면 중식</p>
 			</div>	
 		</div>
-		<div class="themes " style="margin:50 auto; width:1000px; height:380px;  background-image:url('resources/images/main/streetfood.png')">
+		<div class="themes " style="margin:50 auto; width:1000px; height:380px;  background-image:url('resources/images/main/streetfood.png')" onclick="location.href='themeRest.st?type=streetfood'">
 			<div class="bg">
 				<p align="center">분식의 변신은 끝이 없습니다</p>
 			</div>	
