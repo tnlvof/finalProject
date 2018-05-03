@@ -168,12 +168,12 @@
 	</select>
 	
 	<select id="getBestCouponCount" resultType="_int">
-		SELECT COUNT(*) FROM COUPON C JOIN STORE S ON(C.SID = S.SID) WHERE ROWNUM &lt;= 100 ORDER BY S.STAR DESC
+		SELECT COUNT(*) FROM COUPON C JOIN STORE S ON(C.SID = S.SID) ORDER BY S.STAR DESC
 	</select>
 
 	<select id="selectBestCoupon" resultMap="couponResultSet2">
 		SELECT C.CID, C.C_NAME, C.SID, S.SNAME, S.SCODE, S.ADDRESS, S.DESCRIPTION, S.KEYWORD, S.MAIN_PHOTO, S.STAR
-		FROM COUPON C JOIN STORE S ON(C.SID = S.SID) WHERE ROWNUM &lt;= 100 ORDER BY S.STAR DESC
+		FROM COUPON C JOIN STORE S ON(C.SID = S.SID) ORDER BY S.STAR DESC
 	</select>
 
 	<select id="selectRestType" resultMap="storeSamResultSet" parameterType="String">

@@ -28,7 +28,7 @@ public interface StoreService {
 	int getBestCouponCount();
 	
 
-	ArrayList<Coupon> selectBestCoupon();
+	ArrayList<Coupon> selectBestCoupon(PageInfo pi);
 
 	//sam 테이블에서 메뉴 별로 가져오기
 	ArrayList<StoreSam> selectThemeListMenu(String query);

@@ -25,17 +25,24 @@
 	<c:forEach var="c" items="${ couponList }" >
 		<li>
 			<div class="photo">
-				<img src="http://c2.poing.co.kr/MRI-original/MjAxODAz/15202254255a9ccc91bbbde.jpeg">
+				<c:choose>
+					<c:when test="${ empty c.couponList[0].mainPhoto }">
+						<img src="http://c2.poing.co.kr/PIMAGE-original/MjAxNzA2/14966298755934c273391c0.jpeg" onclick="location.href='goDetailCoupon.st'">
+					</c:when>
+					<c:otherwise>
+						<img src="${ contextPath }/resources/uploadFiles/${ c.couponList[0].mainPhoto }" onclick="location.href='goDetailCoupon.st'">
+					</c:otherwise>
+				</c:choose>
 				<p>
 					 ${ c.couponList[0].sName}<br>
-					<span>청담동/${ c.couponList[0].sCode }</span>
+					<span>${ c.couponList[0].keyword }/${ c.couponList[0].sCode }</span>
 				</p>
 			</div>
 			<!-- photo -->
 			
 			<div class="coupon-info">
 				<p>신규 다이닝 티켓</p>
-				행주산성 전망 좋은 레스토랑 세트 메뉴 
+				${ c.couponList[0].description }
 			</div>
 			<!-- coupon-info -->
 			
@@ -47,11 +54,45 @@
 		
 	</c:forEach>
 	</ul>
-</div>
-<script>
-	console.log("${couponList[0].couponList[0].sName}");
+
+
+	<div id="pageIngArea" align="center">
+		<c:if test="${ pi.currentPage <= 1 }">
+			[이전] &nbsp;
+		</c:if>
 		
-</script>
+		<c:if test="${ pi.currentPage > 1 }">
+			<c:url var="bListBack" value="/bestCoupon.st">
+				<c:param name="currentPage" value="${ pi.currentPage -1 }" />
+			</c:url>
+			<a href="${ bListBack }">[이전]</a> &nbsp;
+		</c:if>
+
+		<c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
+			<c:if test="${ p eq pi.currentPage }">
+				<b style="color: red; font-size: 20px;">${ p }</b>
+			</c:if>
+			
+			<c:if test="${ p ne pi.currentPage }">
+				<c:url var="bListCheck" value="bestCoupon.st">
+					<c:param name="currentPage" value="${ p }"/>
+				</c:url>
+				<a href="${ bListCheck }">${ p }</a>
+			</c:if>
+		</c:forEach>
+
+		<c:if test="${ pi.currentPage >= pi.maxPage }">
+			&nbsp; [다음]
+		</c:if>
+		<c:if test="${ pi.currentPage < pi.maxPage }">
+			<c:url var="bListEnd" value="bestCoupon.st">
+				<c:param name="currentPage" value="${ pi.currentPage + 1 }" />
+			</c:url>
+			<a href="${ bListEnd }">&nbsp; [다음]</a>
+		</c:if>
+
+	</div>
+</div>
 <!-- container -->
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>

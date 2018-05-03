@@ -107,11 +107,9 @@ public class StoreServiceImpl implements StoreService{
 
 	//추천 쿠폰 조회
 	@Override
-	public ArrayList<Coupon> selectBestCoupon() {
-		
-		ArrayList<Coupon> couponList = sd.selectBestCoupon(sqlSession);
+	public ArrayList<Coupon> selectBestCoupon(PageInfo pi) {
+		ArrayList<Coupon> couponList = sd.selectBestCoupon(sqlSession, pi);
 		
 		return couponList;
-
 	}
 }

@@ -21,7 +21,7 @@ public interface StoreDao {
 	Sam selectOneSam(String restName, SqlSessionTemplate sqlSession);
 
 	ArrayList<Store> selectAllStores(SqlSessionTemplate sqlSession);
-
+ 
 	int getListCount(String searchKey, SqlSessionTemplate sqlSession);
 
 	ArrayList<StoreSam> selectThemeList(SqlSessionTemplate sqlSession, String query);
@@ -31,7 +31,7 @@ public interface StoreDao {
 
 	int getBestCouponCount(SqlSessionTemplate sqlSession);
 
-	ArrayList<Coupon> selectBestCoupon(SqlSessionTemplate sqlSession);
+	ArrayList<Coupon> selectBestCoupon(SqlSessionTemplate sqlSession, PageInfo pi);
 
 	ArrayList<StoreSam> selectThemeListMenu(SqlSessionTemplate sqlSession, String query);
 
