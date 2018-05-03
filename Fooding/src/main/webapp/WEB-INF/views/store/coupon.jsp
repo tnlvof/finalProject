@@ -27,8 +27,8 @@
 			<div class="photo">
 				<img src="http://c2.poing.co.kr/MRI-original/MjAxODAz/15202254255a9ccc91bbbde.jpeg">
 				<p>
-					가게이름 ${ sName }<br>
-					<span>청담동/업종 ${ sCode }</span>
+					 ${ c.couponList[0].sName}<br>
+					<span>청담동/${ c.couponList[0].sCode }</span>
 				</p>
 			</div>
 			<!-- photo -->
@@ -48,6 +48,10 @@
 	</c:forEach>
 	</ul>
 </div>
+<script>
+	console.log("${couponList[0].couponList[0].sName}");
+		
+</script>
 <!-- container -->
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>

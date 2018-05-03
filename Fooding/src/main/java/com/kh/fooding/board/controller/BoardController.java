@@ -86,7 +86,7 @@ public class BoardController {
 				
 		
 		//문의 게시판 리스트 불러오기		
-		ArrayList<Board> boardList = bs.selectBoardList(b);
+		ArrayList<Board> boardList = bs.selectBoardList(b, pi);
 		//답변 리스트 불러오기
 		ArrayList<Board> answerList = bs.selectAnswerList(b);
 		System.out.println(answerList);
@@ -121,19 +121,16 @@ public class BoardController {
 	//문의 게시판 전부 조회 - admin 전용
 	@RequestMapping(value = "selectAllBoard.bo")
 	public ModelAndView selectAllBoard(ModelAndView mv ) {
-			
-		
+					
 		//문의 게시판 리스트 불러오기
 		
 		ArrayList<Board> boardList = bs.selectAllBoardList();		
-		System.out.println("boardList 전부 : " + boardList);
-					
+		System.out.println("boardList 전부 : " + boardList);					
 		
 		mv.addObject("boardList", boardList);
 		
 		//어드민 페이지
-		mv.setViewName("jsonView");
-		
+		mv.setViewName("jsonView");		
 		
 		return mv;
 	}
@@ -142,7 +139,7 @@ public class BoardController {
 	//문의 게시글 올리기
 	@RequestMapping(value="insertBoard.bo")
 	public ModelAndView insertBoard(ModelAndView mv , Board b, HttpSession session ,String bContent ) {
-		System.out.println("오니?");
+		//System.out.println("오니?");
 		Member m = (Member) session.getAttribute("loginUser");
 		b.setMid(m.getMid());		
 		b.setbContent(bContent);

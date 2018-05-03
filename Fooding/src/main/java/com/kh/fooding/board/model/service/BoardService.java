@@ -7,13 +7,14 @@ import com.kh.fooding.board.model.exception.insertException;
 import com.kh.fooding.board.model.exception.searchException;
 import com.kh.fooding.board.model.exception.updateException;
 import com.kh.fooding.board.model.vo.Board;
+import com.kh.fooding.common.PageInfo;
 import com.kh.fooding.member.model.vo.Member;
 
 public interface BoardService {
 
 	int insertBoard(Board b) throws insertException;
 
-	ArrayList<Board> selectBoardList(Board b );
+	ArrayList<Board> selectBoardList(Board b, PageInfo pi );
 
 	int getListCount(Board b);
 
