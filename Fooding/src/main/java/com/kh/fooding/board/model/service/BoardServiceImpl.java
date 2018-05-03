@@ -12,7 +12,7 @@ import com.kh.fooding.board.model.exception.insertException;
 import com.kh.fooding.board.model.exception.searchException;
 import com.kh.fooding.board.model.exception.updateException;
 import com.kh.fooding.board.model.vo.Board;
-import com.kh.fooding.member.model.vo.Member;
+import com.kh.fooding.board.model.vo.PageInfo;
 
 @Service
 public class BoardServiceImpl implements BoardService {
@@ -33,12 +33,12 @@ public class BoardServiceImpl implements BoardService {
 
 	// 게시물 리스트 가져오기
 	@Override
-	public ArrayList<Board> selectBoardList(Board b) {
-		System.out.println("떠비뜨");
-		ArrayList<Board> list = bd.selectBoardList(b, sqlSession);
+	public ArrayList<Board> selectBoardList(Board b, com.kh.fooding.common.PageInfo pi) {
+		ArrayList<Board> list = bd.selectBoardList(b, sqlSession, pi);
 		
 		return list;
 	}
+	
 
 	// 리스트 카운트 가져오기
 	@Override
@@ -133,6 +133,7 @@ public class BoardServiceImpl implements BoardService {
 		
 		return result;
 	}
+
 	
 	
 }
