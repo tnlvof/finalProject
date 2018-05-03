@@ -151,12 +151,14 @@ public class StoreDaoImpl implements StoreDao{
 		return result;
 	}
 
-	//추천 쿠폰 추천
+	//추천 쿠폰
 	@Override
-	public ArrayList<Coupon> selectBestCoupon(SqlSessionTemplate sqlSession) {
-		ArrayList<Coupon> couponList = (ArrayList)sqlSession.selectList("Store.selectBestCoupon");
+	public ArrayList<Coupon> selectBestCoupon(SqlSessionTemplate sqlSession, PageInfo pi) {
+		System.out.println("dao pi : " + pi);
+		int offset = (pi.getCurrentPage() -1) * pi.getLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getLimit());
+		ArrayList<Coupon> couponList = (ArrayList)sqlSession.selectList("Store.selectBestCoupon", pi ,rowBounds);
 		
-		System.out.println("추천 쿠폰 리스트(DAOImpl) >>> " + couponList);
 		return couponList;
 	}
 
@@ -212,6 +214,7 @@ public class StoreDaoImpl implements StoreDao{
 		
 		return store;
 	}
+
 
 
 

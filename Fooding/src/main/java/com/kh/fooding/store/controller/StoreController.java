@@ -264,44 +264,29 @@ public class StoreController {
 	//추천 쿠폰
 	@RequestMapping(value="bestCoupon.st", method = RequestMethod.GET)
 	public ModelAndView selectBestCoupon(ModelAndView mv, HttpServletRequest request){
-		ArrayList<Coupon> couponList = ss.selectBestCoupon();
 		
 		// 페이징처리
-		int currentPage;
-		int limit;
-		int maxPage;
-		int startPage;
-		int endPage;
+		int currentPage, limit, maxPage, startPage, endPage;
 
 		currentPage = 1;
-
 		limit = 12;
 
 		if(request.getParameter("currentPage") != null ){
 			currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		}
 
-		
 		int listCount = ss.getBestCouponCount();
-		/*System.out.println("추천 쿠폰 개수 : " + listCount);*/
 		
 		maxPage = (int) ((double) listCount / limit + 0.9);
-
 		startPage = ((int) ((double) (currentPage / limit + 0.9) - 1) * limit + 1);
-
 		endPage = startPage + limit - 3;
 		
-		if (maxPage < endPage) {
-			endPage = maxPage;
-		}
-		
-		if(endPage == 0 ) {
-			endPage=1;
-		}
+		if (maxPage < endPage) endPage = maxPage;
+		if(endPage == 0 ) endPage=1;
 		
 		PageInfo pi = new PageInfo(currentPage, listCount, limit, maxPage, startPage, endPage);
 		
-		System.out.println("추천 쿠폰 리스트 : " + couponList);
+		ArrayList<Coupon> couponList = ss.selectBestCoupon(pi);
 		
 		mv.addObject("couponList", couponList);
 		mv.addObject("pi", pi);
