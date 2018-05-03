@@ -29,11 +29,13 @@ public interface StoreService {
 
 	ArrayList<Coupon> selectBestCoupon();
 
-	//sam 테이블에서 메뉴 별로 가져오기
+	//sam 테이블에서 메뉴별로 가져오기
 	ArrayList<StoreSam> selectThemeListMenu(String query);
 
 	//sam 테이블에서 업종 별로 가져오기
 	ArrayList<StoreSam> selectThemeListSamCat(String query);
+	//store 테이블에서 메뉴별로 가져오기
+	ArrayList<StoreSam> selectThemeListMenuStore(String query);
 
 
 

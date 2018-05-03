@@ -106,11 +106,9 @@
 				</div>
 				<!-- recomd-wrap -->
 				
-				<div class="more">더보기 &nbsp;&gt;</div>
+				<div class="more" id="more"><a href="moreThemeRest.st">더보기 &nbsp;&gt;</a></div>
 				
-				
-				
-				
+								
 			</div>
 			<!-- recommend -->
 		</div>

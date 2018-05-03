@@ -210,10 +210,11 @@ public class StoreController {
 		String phrase = "";
 		
 		switch(query) {
-		case "kor" : imgName = "resources/images/main/korheader.png"; phrase = "한국인의 자랑스러운 맛 <br><br><br><br><br> 푸딩이 선정한  한식 맛집입니다."; break;
-		case "japanese" :imgName = "resources/images/main/recomd03.jpg"; phrase="정갈한 일식으로 가벼운 외식하세요."; break;		
-		case "chinese" : imgName="resources/images/main/chinese.jpg"; phrase = "바삭한 탕수육과 불맛을 제대로 느낄 수 있는 중국식당을 소개합니다.";break;
-		case "western" : imgName="resources/images/main/pizza.jpg" ; phrase="새롭고 특별한 맛이 먹고 싶을 때."; break;
+		case "kor" : imgName = "resources/images/main/korheader.png"; phrase = "한국인의 자랑스러운 맛 <br><br><br><br><br> 푸딩이 선정한  한식 맛집입니다"; break;
+		case "japanese" :imgName = "resources/images/main/recomd03.jpg"; phrase="정갈한 일식으로 가벼운 외식하세요"; break;		
+		case "chinese" : imgName="resources/images/main/chinese.jpg"; phrase = "바삭한 탕수육과 불맛을 제대로 느낄 수 있는 중국식당을 소개합니다";break;
+		case "western" : imgName="resources/images/main/pizza.jpg" ; phrase="새롭고 특별한 맛이 먹고 싶을 때"; break;
+		case "streetfood":imgName="resources/images/main/streetfood.png" ; phrase="분식의 변신은 끝이 없습니다";break;
  		}
 		
 		ArrayList<String> forHeaderList = new ArrayList();
@@ -311,8 +312,8 @@ public class StoreController {
 
 	
 	//테마 식당 추천 -메뉴별
-		@RequestMapping(value="themeRestMenu.st", method=RequestMethod.GET)
-		public ModelAndView selectThemeRestMenu(ModelAndView mv, HttpServletRequest request) {
+	@RequestMapping(value="themeRestMenu.st", method=RequestMethod.GET)
+	public ModelAndView selectThemeRestMenu(ModelAndView mv, HttpServletRequest request) {
 			// query 종류 -izakaya, meat, pizza 
 			String query = request.getParameter("type");
 			System.out.println(query);
@@ -332,7 +333,9 @@ public class StoreController {
 			forHeaderList.add(imgName);
 			forHeaderList.add(phrase);		
 			
-						
+			// 테마 식당 가져오기 Store
+			ArrayList<StoreSam> themeList2 = ss.selectThemeListMenuStore(query);
+			
 			// 테마 식당 가져오기 Sam
 			ArrayList<StoreSam> themeList = ss.selectThemeListMenu(query);
 			/*String photoLocation = "";

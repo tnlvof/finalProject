@@ -10,7 +10,7 @@
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <meta charset="utf-8">
-    <title>Fooding - 검색 결과</title>
+    <title>Fooding - 테마 식당 추천</title>
     <style>
 .map_wrap, .map_wrap * {margin:0;padding:0;font-family:'Malgun Gothic',dotum,'돋움',sans-serif;font-size:12px;}
 .map_wrap a, .map_wrap a:hover, .map_wrap a:active{color:#000;text-decoration: none;}
@@ -212,17 +212,17 @@ body{
 <!-- themeList -->
 
 	<c:forEach items = "${themeList }" var="e">
-		<c:set var="storeId" value="${ e.sid}"></c:set>
-		<%-- <c:url var="goStoreDetail" value="/goStoreDetail.st">
+		<c:set var="storeId" value="${e.sid}"></c:set>
+		 <c:url var="goStoreDetail" value="/goDetail.st">
 				<c:param name="storeId" value="${ storeId }"/>
-		</c:url> --%>	
+		</c:url> 	
 	 
      
         
          <c:if test="${!empty e.mainPhoto}">
           <li>
           <div class="photo">
-            <img src="${e.mainPhoto}" <%-- onclick="location.href='${goDetail}'" --%>>
+            <img src="${e.mainPhoto}" onclick="location.href='${goStoreDetail}'" >
             <p>
               ${ e.sName}<br>
                <span>${ e.sCode}</span>

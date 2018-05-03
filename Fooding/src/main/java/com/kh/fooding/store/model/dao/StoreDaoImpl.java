@@ -103,6 +103,7 @@ public class StoreDaoImpl implements StoreDao{
 			case "japanese" :query="일식"; break;			
 			case "chinese" :query="중식";break;
 			case "western" :query="양식";  break;
+			case "streetfood":query="분식";break;
  		}		
 		
 		ArrayList<StoreSam> selectThemeList = (ArrayList) sqlSession.selectList("Store.selectRestType", query);
@@ -183,13 +184,25 @@ public class StoreDaoImpl implements StoreDao{
 		return selectThemeListMenu;
 	}
 
+
+	// 테마별 식당 - store 테이블 메뉴 검색
 	@Override
+	public ArrayList<StoreSam> selectThemeListStore(SqlSessionTemplate sqlSession, String query) {
+	ArrayList<StoreSam> themeList2  = (ArrayList) sqlSession.selectList("Store.selectMenuStore", query);
+		
+		return themeList2;
+	}
+
+	
+	
+@Override
 	public Store selectOneStore(int sid, SqlSessionTemplate sqlSession) {
 		
 		Store store = sqlSession.selectOne("Store.selectOneStore",sid);
 		
 		return store;
 	}
+
 
 
 
