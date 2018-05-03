@@ -273,9 +273,9 @@
 				<li class="tablinks active" onclick="openTab(event, 'tabInfo')">정보</li>
 				<!-- <li class="tablinks" onclick="openTab(event, 'tabPhoto')">포토</li> -->
 				<li id="reviewBtn"class="tablinks" onclick="openTab(event, 'tabReview')">리뷰</li>
-				<li class="tablinks" onclick="openTab(event, 'tabMenu')">메뉴</li>
+				<!-- <li class="tablinks" onclick="openTab(event, 'tabMenu')">메뉴</li> -->
 				<li class="tablinks" onclick="openTab(event, 'tabCoupon')">쿠폰</li>
-				<li class="tablinks" onclick="openTab(event, 'tabMap')">지도</li>
+				<!-- <li class="tablinks" onclick="openTab(event, 'tabMap')">지도</li> -->
 			</ul>
 			<!-- tab -->
 			

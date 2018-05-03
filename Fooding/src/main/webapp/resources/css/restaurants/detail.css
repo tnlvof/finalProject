@@ -192,7 +192,6 @@ i.image, i.profile_image {
 }
 .con-box:last-child{
    border-bottom: 0;
-   padding: 0;
 }
 .con-box li,
 .con-box li span{
