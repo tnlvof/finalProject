@@ -107,4 +107,9 @@ public class StoreServiceImpl implements StoreService{
 
 	}
 
+	@Override
+	public Store selectOneStore(int sid) {
+		return sd.selectOneStore(sid, sqlSession);
+	}
+
 }

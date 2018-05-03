@@ -36,6 +36,8 @@ public interface StoreDao {
 
 	ArrayList<Sam> selectThemeListSamCat(SqlSessionTemplate sqlSession, String query);
 
+	Store selectOneStore(int sid, SqlSessionTemplate sqlSession);
+
 
 	
 

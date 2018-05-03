@@ -157,6 +157,12 @@
 		WHERE REST_NAME = #{restName}
 	</select>
 	
+	<select id="selectOneStore" resultMap="storeResultSet">
+		SELECT * FROM STORE
+		WHERE SID = #{sid}
+		
+	</select>
+	
 	<select id="selectAllStores" resultMap="storeResultSet">	
 	SELECT * FROM STORE  
 	</select>
