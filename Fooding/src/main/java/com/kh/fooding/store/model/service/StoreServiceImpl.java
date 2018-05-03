@@ -119,6 +119,7 @@ public class StoreServiceImpl implements StoreService{
 
 	}
 
+
 	//테마 레스토랑 메뉴 검색 (store)	
 	@Override
 	public ArrayList<StoreSam> selectThemeListMenuStore(String query) {
@@ -126,4 +127,10 @@ public class StoreServiceImpl implements StoreService{
 		ArrayList<StoreSam> themeList2 = sd.selectThemeListStore(sqlSession, query);
 		return themeList2;
 	}
-}
+
+	@Override
+	public Store selectOneStore(int sid) {
+		return sd.selectOneStore(sid, sqlSession);
+	}
+
+

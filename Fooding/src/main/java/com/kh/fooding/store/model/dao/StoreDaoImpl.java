@@ -184,6 +184,7 @@ public class StoreDaoImpl implements StoreDao{
 		return selectThemeListMenu;
 	}
 
+
 	// 테마별 식당 - store 테이블 메뉴 검색
 	@Override
 	public ArrayList<StoreSam> selectThemeListStore(SqlSessionTemplate sqlSession, String query) {
@@ -194,6 +195,14 @@ public class StoreDaoImpl implements StoreDao{
 
 	
 	
+@Override
+	public Store selectOneStore(int sid, SqlSessionTemplate sqlSession) {
+		
+		Store store = sqlSession.selectOne("Store.selectOneStore",sid);
+		
+		return store;
+	}
+
 
 
 
