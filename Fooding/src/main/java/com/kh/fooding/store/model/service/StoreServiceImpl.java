@@ -118,4 +118,12 @@ public class StoreServiceImpl implements StoreService{
 		return couponList;
 
 	}
+
+	//테마 레스토랑 메뉴 검색 (store)	
+	@Override
+	public ArrayList<StoreSam> selectThemeListMenuStore(String query) {
+		
+		ArrayList<StoreSam> themeList2 = sd.selectThemeListStore(sqlSession, query);
+		return themeList2;
+	}
 }

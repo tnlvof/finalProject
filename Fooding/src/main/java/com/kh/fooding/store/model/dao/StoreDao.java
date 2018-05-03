@@ -38,6 +38,9 @@ public interface StoreDao {
 	ArrayList<StoreSam> selectThemeListSamCat(SqlSessionTemplate sqlSession, String query);
 
 
+	ArrayList<StoreSam> selectThemeListStore(SqlSessionTemplate sqlSession, String query);
+
+
 
 
 	
