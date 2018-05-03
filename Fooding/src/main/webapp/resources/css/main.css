@@ -142,3 +142,26 @@
 	color: #fff;
 }
 
+
+.themes{
+	border-radius:6px;
+}
+.themes:hover{
+	cursor:pointer;
+}
+
+.themes .bg{
+	width: inherit;
+	height: inherit;
+	background-color: rgba(0, 0, 0, 0.3);
+		border-radius:6px;
+}
+.themes .bg:hover{
+	background-color: rgba(0, 0, 0, 0.6);
+}
+
+.themes p{
+	line-height: 350px;
+	color: #fff;
+}
+
