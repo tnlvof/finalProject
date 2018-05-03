@@ -37,6 +37,8 @@ public interface StoreService {
 
 
 
+	Store selectOneStore(int sid);
+
 
 
 }

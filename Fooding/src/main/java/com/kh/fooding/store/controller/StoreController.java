@@ -157,7 +157,19 @@ public class StoreController {
 		
 		request.setAttribute("s", s);
 		
+		return "store/detail";
+	}
+	
+	@RequestMapping(value="goStoreDetail.st")
+	public String goStoreDatail(HttpServletRequest request) {
 		
+		int sid = Integer.parseInt(request.getParameter("storeId"));
+		
+		System.out.println("controller sid : " + sid);
+		
+		Store store = ss.selectOneStore(sid);
+		
+		request.setAttribute("store", store);
 		
 		return "store/detail";
 	}
@@ -349,7 +361,6 @@ public class StoreController {
 			return mv;
 		}
 		
-	
 	
 	
 	

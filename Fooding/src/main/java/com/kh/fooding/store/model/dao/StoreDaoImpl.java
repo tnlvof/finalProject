@@ -183,6 +183,14 @@ public class StoreDaoImpl implements StoreDao{
 		return selectThemeListMenu;
 	}
 
+	@Override
+	public Store selectOneStore(int sid, SqlSessionTemplate sqlSession) {
+		
+		Store store = sqlSession.selectOne("Store.selectOneStore",sid);
+		
+		return store;
+	}
+
 
 
 

@@ -118,4 +118,8 @@ public class StoreServiceImpl implements StoreService{
 		return couponList;
 
 	}
-}
+	@Override
+	public Store selectOneStore(int sid) {
+		return sd.selectOneStore(sid, sqlSession);
+	}
+

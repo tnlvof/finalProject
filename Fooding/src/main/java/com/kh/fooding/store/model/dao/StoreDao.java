@@ -39,6 +39,8 @@ public interface StoreDao {
 
 
 
+	Store selectOneStore(int sid, SqlSessionTemplate sqlSession);
+
 
 	
 
