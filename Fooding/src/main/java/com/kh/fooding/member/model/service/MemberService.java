@@ -39,4 +39,6 @@ public interface MemberService  {
 
 	ArrayList<Review> selectReviewList(int mid, PageInfo pi);
 
+	void profileUpload(Member m);
+
 }

@@ -3,6 +3,7 @@ package com.kh.fooding.member.controller;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.fooding.member.model.exception.LoginException;
@@ -352,24 +354,71 @@ public class MemberController {
 		return "myPage/goMemberUpdate";
 	}
 	
-	@RequestMapping(value = "profileUpdate.me")
-	public String profileUpdate(@RequestParam(name="PPhoto", required=false)MultipartFile photo, HttpServletRequest request, HttpSession session) {
+	/*@RequestMapping(value = "/ajaxUpload")
+    public String ajaxUpload() {
+        return "ajaxUpload";
+    }
+     
+    @RequestMapping(value = "profileUpload.me")
+    public String fileUp(MultipartHttpServletRequest multi) {
+         
+        // 저장 경로 설정
+        String root = multi.getSession().getServletContext().getRealPath("resources");
+        String path = root + "\\uploadFiles";
+         
+        String newFileName = ""; // 업로드 되는 파일명
+         
+        File dir = new File(path);
+        if(!dir.isDirectory()){
+            dir.mkdir();
+        }
+         
+        Iterator<String> files = multi.getFileNames();
+        while(files.hasNext()){
+            String uploadFile = files.next();
+                         
+            MultipartFile mFile = multi.getFile(uploadFile);
+            String fileName = mFile.getOriginalFilename();
+            System.out.println("실제 파일 이름 : " +fileName);
+            newFileName = System.currentTimeMillis()+"."
+                    +fileName.substring(fileName.lastIndexOf(".")+1);
+             
+            try {
+                mFile.transferTo(new File(path + "\\" + fileName));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+         
+        return "ajaxUpload";
+    }*/
+	@ResponseBody
+	@RequestMapping(value = "profileUpload.me")
+    public ModelAndView profileUpload(HttpSession session, MultipartHttpServletRequest request,ModelAndView mv) {
 		Member m = (Member) session.getAttribute("loginUser");
 		
-		String root = request.getSession().getServletContext().getRealPath("resources");
-		String filePath = root + "\\uploadFiles";
-		/*m.setProfile(filePath);
-		m.getMid();*/
+		MultipartFile mf = request.getFile("PPhoto");
+		String path = request.getRealPath("resources/images/member");
+		String fileName = mf.getOriginalFilename();
+		File uploadFile = new File(path + "\\" + fileName);
 		
-		System.out.println(photo);
-		
-		try {	
-			photo.transferTo(new File(filePath + "\\" + photo.getOriginalFilename()));
-		} catch (IllegalStateException | IOException e1) {
-			e1.printStackTrace();
+		try {
+			mf.transferTo(uploadFile);
+		} catch (IllegalStateException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 		
-		return "myPage/myPageBanner";
+		m.setProfile(fileName);
+		m.getMid();
+		
+		System.out.println(fileName);
+		
+		ms.profileUpload(m);
+		
+		mv.setViewName("jsonView");	
+		return mv;		
 	}
 
 }

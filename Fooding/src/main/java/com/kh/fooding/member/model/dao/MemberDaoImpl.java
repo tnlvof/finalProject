@@ -156,5 +156,15 @@ public class MemberDaoImpl implements MemberDao{
 		
 		return reviewList;
 	}
+
+	@Override
+	public int profileUpload(Member m, SqlSessionTemplate sqlSession) {
+        int result = sqlSession.update("Member.profileUpload", m);
+		
+		System.out.println("profileUpload : " + result);
+		
+		return result;
+	}
+
 	
 }

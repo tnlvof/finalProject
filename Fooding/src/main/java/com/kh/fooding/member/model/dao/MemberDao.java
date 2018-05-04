@@ -39,4 +39,6 @@ public interface MemberDao {
 
 	ArrayList<Review> selectReviewList(int mid, PageInfo pi);
 
+	int profileUpload(Member m, SqlSessionTemplate sqlSession);
+
 }
