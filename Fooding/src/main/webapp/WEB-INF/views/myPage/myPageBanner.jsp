@@ -78,15 +78,24 @@
 					<div class="photo filebox bs3-primary preview-image">
 						<div class="upload-display">
 							<div class="upload-thumb-wrap">
+							    <c:choose>
+							    <c:when test="${ empty loginUser.profile }">
 								<img src="/fooding/resources/images/common/no-image.png">
+								</c:when>
+								<c:otherwise>
+								<img src="/fooding/resources/images/member/${ loginUser.profile }">
+								</c:otherwise>
+								</c:choose>
 							</div>
 						</div>
 
 						<!-- 현재 프로필인 사진 경로 -->
-						<form id="fileForm" action="profileUpload" method="post" enc>
+						<form id="fileForm" action="profileUpload.me" method="post" enctype="multipart/form-data">
 							<input class="upload-name" value="파일선택" disabled="disabled">
-							<label for="input_file" class="img_text">&nbsp;</label> <input
+							<label for="input_file" class="img_text">&nbsp;</label> 
+							<input
 								type="file" id="input_file" class="upload-hidden" name="PPhoto">
+								<button onclick="profileSubmit();">프로필 등록</button>
 						</form>
 					</div>
 					<!-- photo -->
@@ -132,6 +141,8 @@
 	        if(window.FileReader){
 	            // 파일명 추출
 	            var filename = $(this)[0].files[0].name;
+	            
+	            console.log(filename);
 	        } 
 
 	        else {
@@ -173,6 +184,26 @@
 	    });
 	});
 	
+	$(".profileSubmit").click(function(){
+	        
+			var formData = new FormData($("#fileForm")[0]);
+	        $.ajax({
+	            type : 'post',
+	            url : 'profileUpload.me',
+	            data : formData,
+	            processData : false,
+	            contentType : false,
+	            success : function(html) {
+	                alert("파일 업로드하였습니다.");
+	            },
+	            error : function(error) {
+	                alert("파일 업로드에 실패하였습니다.");
+	                /* console.log(error);
+	                console.log(error.status); */
+	            }
+	        });
+	}); 
+
 	$(function(){
 		$('.img_text').mouseover(function(){
 			$(this).addClass('over');

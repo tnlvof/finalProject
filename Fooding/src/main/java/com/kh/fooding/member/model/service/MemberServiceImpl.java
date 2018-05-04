@@ -107,4 +107,11 @@ public class MemberServiceImpl implements MemberService{
 		
 		return reviewList;
 	}
+
+	@Override
+	public void profileUpload(Member m) {
+		int result = md.profileUpload(m, sqlSession);
+		
+	}
+
 }
