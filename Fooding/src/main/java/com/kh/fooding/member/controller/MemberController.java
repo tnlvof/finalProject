@@ -242,13 +242,9 @@ public class MemberController {
  		
  		int rcount = ms.selectRcount(m.getMid());
  		int reviewCount = ms.selectReviewCount(m.getMid());
- 		int srcount = ms.selectSrcount(m.getMid());
- 		int sreviewCount = ms.selectSreviewCount(m.getMid());
  		
  		session.setAttribute("rcount", rcount);
  		session.setAttribute("reviewCount", reviewCount);
- 		session.setAttribute("srcount", srcount);
- 		session.setAttribute("sreviewCount", sreviewCount);
  		
  		ArrayList<Reservation> reservList = ms.selectReservList(m.getMid());
  		
@@ -348,7 +344,18 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "goStorePage.me")
-	public String goStorePage() {
+	public String goStorePage(HttpSession session, Store s) {
+		Member m = (Member) session.getAttribute("loginUser");
+		
+        s.setMid(m.getMid());
+        
+        int mid = s.getMid();
+        
+ 		int srcount = ms.selectSrcount(mid);
+ 		int sreviewCount = ms.selectSreviewCount(mid);
+ 		
+ 		session.setAttribute("srcount", srcount);
+ 		session.setAttribute("sreviewCount", sreviewCount);
 		
 		return "myPage/storePage";
 	}
