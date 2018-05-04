@@ -125,12 +125,12 @@
 	/* 성별 스크립트 */
 	$("#gender_male").click(function() {
 		$("#gender_male").css({"background":"#666","color":"#fff","border-color":"#666"});
-		$("#gender").val("여자");
+		$("#gender").val("남자");
 		$("#gender_female").css({"background":"#fff","color":"#e5e5e5","border-color":"#e5e5e5"});
 	});
 	$("#gender_female").click(function() {
 		$("#gender_female").css({"background":"#666","color":"#fff","border-color":"#666"});
-		$("#gender").val("남자");
+		$("#gender").val("여자");
 		$("#gender_male").css({"background":"#fff","color":"#e5e5e5","border-color":"#e5e5e5"});
 	});
 	

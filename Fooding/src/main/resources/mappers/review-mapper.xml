@@ -54,4 +54,9 @@
     WHERE RID = #{ rid }
     </update>   
     
+    <insert id="insertReview">
+    INSERT INTO REVIEW
+    VALUES(SEQ_RVID.NEXTVAL, SYSDATE, NULL, #{rContent}, #{sid}, DEFAULT, #{ star}, #{ mid}, null,null,null)
+    </insert>
+    
 </mapper>

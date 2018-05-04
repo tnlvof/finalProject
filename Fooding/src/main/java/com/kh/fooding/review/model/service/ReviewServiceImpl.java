@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.fooding.review.model.dao.ReviewDao;
+import com.kh.fooding.review.model.vo.Review;
 
 @Service
 public class ReviewServiceImpl implements ReviewService{
@@ -21,6 +22,11 @@ public class ReviewServiceImpl implements ReviewService{
 		System.out.println("Service deleteReview : " + deleteReview);
 		
 		return deleteReview;
+	}
+
+	@Override
+	public void insertReview(Review r) {
+		rd.insertReview(r);
 	}
 
 }
