@@ -12,6 +12,7 @@
 <!-- main css -->
 <link rel="stylesheet" href="http://idangero.us/swiper/dist/css/swiper.min.css" />
 <link rel="stylesheet" href="/fooding/resources/css/main.css">
+<link rel="stylesheet" href="/fooding/resources/css/join.css">
  
 	<div class="container">
 			
@@ -24,8 +25,8 @@
 			
 			<div class="basic">
 
-				<h3>업체 회원가입</h3>
-				<p class="subtitle">가입 정보 입력</p>
+				<h3>예약 페이지</h3>
+				<p class="subtitle">예약정보를 입력해주세요</p>
 
 				<div class="join_wrap storeJoin">
 					
