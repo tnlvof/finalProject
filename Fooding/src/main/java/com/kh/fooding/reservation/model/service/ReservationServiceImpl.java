@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.kh.fooding.reservation.model.dao.ReservationDao;
 import com.kh.fooding.reservation.model.vo.Reservation;
+import com.kh.fooding.store.model.vo.StoreSam;
 
 @Service
 public class ReservationServiceImpl implements ReservationService{
@@ -32,6 +33,16 @@ public class ReservationServiceImpl implements ReservationService{
 		
 		return beforeReservList;
 	}
+	// 예약하는 가게 정보 가져오기
+	@Override
+	public StoreSam getStoreInfo(String sid) {
+		StoreSam sInfo = rd.selectStoreInfo(sid, sqlSession);
+		
+		return sInfo;
+	}
+
+
+	
 
 
 }

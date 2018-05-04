@@ -36,7 +36,15 @@ public class StoreController {
 			HttpServletRequest request ,HttpSession session) {
 
 		
+		String am = request.getParameter("bookTimeAm");
+		String pm = request.getParameter("bookTimePm");
+		String sHours = am +" "+ pm;
+		
+		s.setsHours(sHours);
+		
 		System.out.println("controller : " + s);
+		
+		
 		
 		Member m = (Member) session.getAttribute("loginUser");
 		
