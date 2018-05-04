@@ -177,13 +177,37 @@
 	SELECT * FROM STORE  
 	</select>
 	
+	<select id="getNewCouponCount" resultType="_int">
+		 SELECT COUNT(*) FROM COUPON C JOIN STORE S ON(C.SID = S.SID) 
+		 WHERE TO_DATE(SYSDATE) - TO_DATE(ENROLL_DATE) <![CDATA[ < ]]>= 7
+		AND STAR IS NOT NULL ORDER BY C.C_ENDDATE DESC, S.STAR DESC
+	</select>
 	<select id="getBestCouponCount" resultType="_int">
 		SELECT COUNT(*) FROM COUPON C JOIN STORE S ON(C.SID = S.SID) ORDER BY S.STAR DESC
 	</select>
+	<select id="getAlmostOverCouponCount" resultType="_int">
+		SELECT COUNT(*) FROM COUPON C JOIN STORE S ON(C.SID = S.SID)
+		WHERE TO_DATE(C_ENDDATE) - TO_DATE(SYSDATE) <![CDATA[ < ]]>= 7
+		AND TO_DATE(C_ENDDATE) - TO_DATE(SYSDATE) >= 0
+		AND STAR IS NOT NULL ORDER BY C.C_ENDDATE ASC, S.STAR DESC
+	</select>
 
+	<select id="selectNewCoupon" resultMap="couponResultSet2">
+		SELECT * FROM COUPON C JOIN STORE S ON(C.SID = S.SID) 
+    	WHERE TO_DATE(SYSDATE) - TO_DATE(ENROLL_DATE) <![CDATA[ < ]]>= 7
+    	AND STAR IS NOT NULL
+    	ORDER BY C.C_ENDDATE DESC, S.STAR DESC
+	</select>
 	<select id="selectBestCoupon" resultMap="couponResultSet2">
 		SELECT C.CID, C.C_NAME, C.SID, S.SNAME, S.SCODE, S.ADDRESS, S.DESCRIPTION, S.KEYWORD, S.MAIN_PHOTO, S.STAR
 		FROM COUPON C JOIN STORE S ON(C.SID = S.SID) ORDER BY S.STAR DESC
+	</select>
+	<select id="selectAlmostOverCoupon" resultMap="couponResultSet2">
+		SELECT * FROM COUPON C JOIN STORE S ON(C.SID = S.SID) 
+    	WHERE TO_DATE(C_ENDDATE) - TO_DATE(SYSDATE) <![CDATA[ < ]]>= 7
+    	AND TO_DATE(C_ENDDATE) - TO_DATE(SYSDATE) <![CDATA[ > ]]>= 0
+    	AND STAR IS NOT NULL
+    	ORDER BY C.C_ENDDATE ASC, S.STAR DESC
 	</select>
 
 	<select id="selectRestType" resultMap="storeSamResultSet" parameterType="String">

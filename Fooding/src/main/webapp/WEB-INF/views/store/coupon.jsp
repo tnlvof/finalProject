@@ -9,39 +9,38 @@
 
 
 
-<div class="title-box">
+<div class="title-box" style="background-image: url(${ HeaderList[0] });">
 	<div class="bg-black">
-		<p>
-			푸딩 다이닝 티켓을 통해 최고의 레스토랑들을<br>
-			합리적인 가격에 만나보세요.
-		</p>
+		<p>${ HeaderList[1] }</p>
 		<span>Curated by Fooding</span>
 	</div>
 </div>
 
 
 <div class="container">
+	
 	<ul class="coupons">
+	
 	<c:forEach var="c" items="${ couponList }" >
 		<li>
-			<div class="photo">
+			<div class="photo" onclick="location.href='goDetail.st?restName=${ c.couponList[0].sName }'">
 				<c:choose>
 					<c:when test="${ empty c.couponList[0].mainPhoto }">
-						<img src="http://c2.poing.co.kr/PIMAGE-original/MjAxNzA2/14966298755934c273391c0.jpeg" onclick="location.href='goDetailCoupon.st'">
+						<img src="http://c2.poing.co.kr/PIMAGE-original/MjAxNzA2/14966298755934c273391c0.jpeg">
 					</c:when>
 					<c:otherwise>
-						<img src="${ contextPath }/resources/uploadFiles/${ c.couponList[0].mainPhoto }" onclick="location.href='goDetailCoupon.st'">
+						<img src="${ contextPath }/resources/uploadFiles/${ c.couponList[0].mainPhoto }">
 					</c:otherwise>
 				</c:choose>
 				<p>
-					 ${ c.couponList[0].sName}<br>
-					<span>${ c.couponList[0].keyword }/${ c.couponList[0].sCode }</span>
+					${ c.couponList[0].sName }<br>
+					<span>${ c.couponList[0].sCode }</span>
 				</p>
 			</div>
 			<!-- photo -->
 			
 			<div class="coupon-info">
-				<p>신규 다이닝 티켓</p>
+				<p>${ HeaderList[2] }</p>
 				${ c.couponList[0].description }
 			</div>
 			<!-- coupon-info -->
@@ -55,15 +54,15 @@
 	</c:forEach>
 	</ul>
 
-
 	<div id="pageIngArea" align="center">
 		<c:if test="${ pi.currentPage <= 1 }">
 			[이전] &nbsp;
 		</c:if>
 		
 		<c:if test="${ pi.currentPage > 1 }">
-			<c:url var="bListBack" value="/bestCoupon.st">
+			<c:url var="bListBack" value="/coupon.st">
 				<c:param name="currentPage" value="${ pi.currentPage -1 }" />
+				<c:param name="type" value="${ sort }"/>
 			</c:url>
 			<a href="${ bListBack }">[이전]</a> &nbsp;
 		</c:if>
@@ -74,8 +73,9 @@
 			</c:if>
 			
 			<c:if test="${ p ne pi.currentPage }">
-				<c:url var="bListCheck" value="bestCoupon.st">
+				<c:url var="bListCheck" value="coupon.st">
 					<c:param name="currentPage" value="${ p }"/>
+					<c:param name="type" value="${ sort }"/>
 				</c:url>
 				<a href="${ bListCheck }">${ p }</a>
 			</c:if>
@@ -85,8 +85,9 @@
 			&nbsp; [다음]
 		</c:if>
 		<c:if test="${ pi.currentPage < pi.maxPage }">
-			<c:url var="bListEnd" value="bestCoupon.st">
+			<c:url var="bListEnd" value="coupon.st">
 				<c:param name="currentPage" value="${ pi.currentPage + 1 }" />
+				<c:param name="type" value="${ sort }" />
 			</c:url>
 			<a href="${ bListEnd }">&nbsp; [다음]</a>
 		</c:if>
