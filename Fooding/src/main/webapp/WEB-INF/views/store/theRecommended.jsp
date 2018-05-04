@@ -212,14 +212,17 @@ body{
 <!-- themeList -->
 
 	<c:forEach items = "${themeList }" var="e">
-		<c:set var="storeId" value="${e.sid}"></c:set>
-		 <c:url var="goStoreDetail" value="/goDetail.st">
-				<c:param name="storeId" value="${ storeId }"/>
-		</c:url> 	
-	 
+	
      
         
          <c:if test="${!empty e.mainPhoto}">
+         
+    		<c:set var="storeId" value="${ e.sid}"></c:set>
+    		<c:url var="goStoreDetail" value="/goStoreDetail.st">
+    				<c:param name="storeId" value="${ storeId }"/>
+    		</c:url>	
+    	 
+	 
           <li>
           <div class="photo">
             <img src="${e.mainPhoto}" onclick="location.href='${goStoreDetail}'" >
@@ -239,10 +242,13 @@ body{
          </div>
          <!-- coupon-price -->
          
-         
+         <c:url var="goBook" value="/goBookingPage.rv">
+         	<c:param name="storeId" value="${storeId }"></c:param>
+         	
+         </c:url>
        
-            <button class="write-btn">예약하기</button>
-	         <button class="write-btn">리뷰쓰기</button>
+        <button class="write-btn" onclick="location.href='${goBook}'">예약하기</button>
+	    <button class="write-btn">리뷰쓰기</button>
          
        
           </li>  
@@ -250,9 +256,15 @@ body{
           
           
           <c:if test="${empty e.mainPhoto }">
+          
+        <c:set var="storeId" value="${ e.sid}"></c:set>
+    		<c:url var="goStoreDetail" value="/goStoreDetail.st">
+    				<c:param name="storeId" value="${ storeId }"/>
+    		</c:url>	
+    	 
 	          <li>
 	           <div class="photo">
-	          	 <img src="http://c2.poing.co.kr/MRI-original/MjAxODAz/15202254255a9ccc91bbbde.jpeg" onclick="location.href='${goDetail}'">
+	          	 <img src="http://c2.poing.co.kr/MRI-original/MjAxODAz/15202254255a9ccc91bbbde.jpeg" onclick="location.href='${goStoreDetail}'">
 	          	  <p>
 	              ${ e.restName}<br>
 	               <span>${ e.restUpstream}</span>
