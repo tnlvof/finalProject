@@ -359,6 +359,13 @@ public class MemberController {
 		return "myPage/goMemberUpdate";
 	}
 	
+	//업체마이페이지(쿠폰)
+	@RequestMapping(value="goStoreCoupon.me")
+	public String goStoreCoupon(){
+		
+		return "myPage/storeCoupon";
+	}
+	
 	/*@RequestMapping(value = "/ajaxUpload")
     public String ajaxUpload() {
         return "ajaxUpload";
