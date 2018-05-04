@@ -36,9 +36,9 @@ public interface StoreService {
 	//store 테이블에서 메뉴별로 가져오기
 	ArrayList<StoreSam> selectThemeListMenuStore(String query);
 
-
-
 	Store selectOneStore(int sid);
+
+
 
 
 

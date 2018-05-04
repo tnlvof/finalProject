@@ -11,6 +11,6 @@ public interface ReservationService {
 
 	ArrayList<Reservation> beforeReservList(int mid);
 
-	StoreSam getStoreInfo(String sid);
+
 
 }

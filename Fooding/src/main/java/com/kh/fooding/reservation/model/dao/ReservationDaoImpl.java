@@ -30,11 +30,4 @@ public class ReservationDaoImpl implements ReservationDao{
 		return beforeReservList;
 	}
 
-	// 예약할 때 가게 정보 가져오기
-	@Override
-	public StoreSam selectStoreInfo(String sid, SqlSessionTemplate sqlSession) {
-		StoreSam sInfo = sqlSession.selectOne("Reservation.selectOneStore", sid);
-		return sInfo;
-	}
-
 }

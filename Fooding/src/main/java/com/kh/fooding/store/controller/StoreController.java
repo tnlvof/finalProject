@@ -37,7 +37,7 @@ public class StoreController {
 		
 		String am = request.getParameter("bookTimeAm");
 		String pm = request.getParameter("bookTimePm");
-		String sHours = am +" "+ pm;
+		String sHours = am +"/"+ pm;
 		
 		s.setsHours(sHours);
 		
@@ -388,7 +388,31 @@ public class StoreController {
 			return mv;
 		}
 		
-	
+	//예약페이지 이동
+		@RequestMapping(value="goBookingPage.st")
+		public ModelAndView goBook(HttpSession session, ModelAndView mv, HttpServletRequest request) {
+		
+			int sid = Integer.parseInt(request.getParameter("storeId"));
+			
+			Store sInfo = ss.selectOneStore(sid);
+			String shours = sInfo.getsHours();
+			String[] sHoursList  = shours.split("/");
+			//String am = sHoursList[0];
+/*			String pm = sHoursList[1];*/
+			System.out.println(sInfo);
+			System.out.println(sHoursList);
+			
+			if(session.getAttribute("loginUser") != null) {
+				
+				mv.addObject("sInfo", sInfo);		
+				mv.setViewName("store/bookingPage");
+				
+			} else {
+				mv.setViewName("store/loginPage");
+			}
+			
+			return mv;
+		}
 	
 	
 }
