@@ -23,7 +23,7 @@
 	
 	<c:forEach var="c" items="${ couponList }" >
 		<li>
-			<div class="photo" onclick="location.href='goDetail.st?restName=${ c.couponList[0].sName }'">
+			<div class="photo" onclick="location.href='goStoreDetail.st?storeId=${ c.couponList[0].sid }'">
 				<c:choose>
 					<c:when test="${ empty c.couponList[0].mainPhoto }">
 						<img src="http://c2.poing.co.kr/PIMAGE-original/MjAxNzA2/14966298755934c273391c0.jpeg">

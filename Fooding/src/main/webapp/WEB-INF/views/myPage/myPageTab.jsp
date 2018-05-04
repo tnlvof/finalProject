@@ -15,6 +15,7 @@
 				<li class="item" onclick="location.href='goStorePage.me'">정보 입력</li>
 				<li class="item" onclick="location.href='goMyPage.me'">예약</li>
 				<li class="item" onclick="location.href='goMyPageReview.me'">리뷰</li>
+				<li class="item" onclick="location.href='goStoreCoupon.me'">쿠폰</li>
 				<li class="item" onclick="location.href='goMyPageQuestions.bo'">1:1 문의</li>
 			</ul>
 </c:if>

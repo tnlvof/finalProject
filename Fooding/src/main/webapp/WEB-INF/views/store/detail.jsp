@@ -277,7 +277,9 @@
 				<!-- <li class="tablinks" onclick="openTab(event, 'tabPhoto')">포토</li> -->
 				<li id="reviewBtn"class="tablinks" onclick="openTab(event, 'tabReview')">리뷰</li>
 				<!-- <li class="tablinks" onclick="openTab(event, 'tabMenu')">메뉴</li> -->
-				<li class="tablinks" onclick="openTab(event, 'tabCoupon')">쿠폰</li>
+				<c:if test="${ store ne null }">
+					<li class="tablinks" onclick="openTab(event, 'tabCoupon')">쿠폰</li>
+				</c:if>
 				<!-- <li class="tablinks" onclick="openTab(event, 'tabMap')">지도</li> -->
 			</ul>
 			<!-- tab -->
@@ -308,9 +310,11 @@
 			</div>
 			<!-- tabMenu -->
 			
+			<c:if test="${ store ne null }">
 			<div id="tabCoupon" class="tabcontent">
 				<jsp:include page="tab/tabCoupon.jsp"/>
 			</div>
+			</c:if>
 			<!-- tabCoupon -->
 			
 			<div id="tabMap" class="tabcontent">
