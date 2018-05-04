@@ -181,10 +181,10 @@
 						<span class="text">지나간 예약</span>
 						<span class="todatM"></span>
 						<span class="text">오늘 날짜</span>
-						<fmt:formatDate value="${nowDate}" pattern="yyyy-MM-dd" />
+						<%-- <fmt:formatDate value="${nowDate}" pattern="yyyy-MM-dd" />
 						<c:forEach var="list" items="${ reservList }">
 						<span>${ list.rDate }</span>
-						</c:forEach>
+						</c:forEach> --%>
 					</div>
 				</div>
 			</div>

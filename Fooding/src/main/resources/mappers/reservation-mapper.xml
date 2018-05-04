@@ -32,6 +32,13 @@
     WHERE M.MID=#{ mid } AND R.STATUS = 'Y'
     </select> 
     
+    <select id="selectSrcount" parameterType="_int" resultType="_int">
+    SELECT COUNT(*)
+    FROM RESERVATION R
+    JOIN MEMBER M ON (M.MID = R.MID)
+    WHERE M.MID=#{ mid } AND R.STATUS = 'Y'
+    </select> 
+    
     <select id="selectReservList" resultMap="reservationResultSet2">
     SELECT *
     FROM RESERVATION R
