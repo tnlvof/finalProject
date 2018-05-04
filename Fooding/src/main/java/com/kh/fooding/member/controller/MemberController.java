@@ -28,6 +28,7 @@ import com.kh.fooding.member.model.exception.selectMemberException;
 import com.kh.fooding.member.model.service.MemberService;
 import com.kh.fooding.member.model.vo.Member;
 import com.kh.fooding.sample.model.vo.Sample;
+import com.kh.fooding.store.model.vo.Store;
 import com.kh.fooding.reservation.model.vo.Reservation;
 import com.kh.fooding.review.model.vo.Review;
 import com.kh.fooding.common.PageInfo;
@@ -236,14 +237,24 @@ public class MemberController {
 	
 	//마이페이지 - 예약,리뷰 카운트 / 예약리스트 불러오기	
 	@RequestMapping(value ="goMyPage.me")
- 	public ModelAndView goMyPage(HttpSession session, ModelAndView mv) {
+ 	public ModelAndView goMyPage(HttpSession session, ModelAndView mv, Store s) {
  		Member m = (Member) session.getAttribute("loginUser");
  		
  		int rcount = ms.selectRcount(m.getMid());
  		int reviewCount = ms.selectReviewCount(m.getMid());
  		
+        s.setMid(m.getMid());
+        
+        int mid = s.getMid();
+        
+ 		int srcount = ms.selectSrcount(mid);
+ 		int sreviewCount = ms.selectSreviewCount(mid);
+ 		
  		session.setAttribute("rcount", rcount);
  		session.setAttribute("reviewCount", reviewCount);
+ 		
+ 		session.setAttribute("srcount", srcount);
+ 		session.setAttribute("sreviewCount", sreviewCount);
  		
  		ArrayList<Reservation> reservList = ms.selectReservList(m.getMid());
  		
@@ -344,7 +355,7 @@ public class MemberController {
 	
 	@RequestMapping(value = "goStorePage.me")
 	public String goStorePage() {
-		
+
 		return "myPage/storePage";
 	}
 	
@@ -394,7 +405,7 @@ public class MemberController {
     }*/
 	@ResponseBody
 	@RequestMapping(value = "profileUpload.me")
-    public ModelAndView profileUpload(HttpSession session, MultipartHttpServletRequest request,ModelAndView mv) {
+    public ModelAndView profileUpload(HttpSession session, MultipartHttpServletRequest request, ModelAndView mv) {
 		Member m = (Member) session.getAttribute("loginUser");
 		
 		MultipartFile mf = request.getFile("PPhoto");
@@ -417,7 +428,7 @@ public class MemberController {
 		
 		ms.profileUpload(m);
 		
-		mv.setViewName("jsonView");	
+		mv.setViewName("redirect:/goMyPage.me");
 		return mv;		
 	}
 

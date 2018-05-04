@@ -24,10 +24,19 @@
 				<c:choose>
 				<c:when test="${ empty reservList }">
 				<div class="blank">
-					<div class="message">
+						<c:if test="${ loginUser.mCode == '일반' }">
+						<div class="message">
 						예약이 없습니다.<br>지금 레스토랑에 예약해보시겠어요?
 					</div>
 					<button class="disable" onclick="" tabindex="-1"></button>
+
+						</c:if>
+						<c:if test="${ loginUser.mCode == '업체' }">
+						<div class="message">
+							등록된 예약이 없습니다.
+						</div>
+						<button class="disable" onclick="" tabindex="-1"></button>
+						</c:if>
 				</div>
 				</c:when>
 				<c:otherwise>

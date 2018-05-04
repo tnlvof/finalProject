@@ -39,6 +39,13 @@
     WHERE M.MID=#{ mid } AND R.STATUS = 'Y'
     </select>
     
+    <select id="selectSreviewCount" parameterType="_int" resultType="_int">
+    SELECT COUNT(*)
+    FROM REVIEW R
+    JOIN STORE S ON (R.SID = S.SID)
+    WHERE S.MID=#{ mid } AND R.STATUS = 'Y'
+    </select>
+    
     <select id="selectReviewList" resultMap="reviewResultSet2">
     SELECT *
     FROM REVIEW R
@@ -53,5 +60,10 @@
     SET STATUS='N'
     WHERE RID = #{ rid }
     </update>   
+    
+    <insert id="insertReview">
+    INSERT INTO REVIEW
+    VALUES(SEQ_RVID.NEXTVAL, SYSDATE, NULL, #{rContent}, #{sid}, DEFAULT, #{ star}, #{ mid}, null,null,null)
+    </insert>
     
 </mapper>

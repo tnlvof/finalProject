@@ -2,9 +2,11 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <style>
-.photo{
+.photo {
 	/* position: relative; */
+	
 }
+
 .filebox input[type="file"] {
 	display: none;
 }
@@ -14,11 +16,11 @@
 	width: 162px;
 	height: 162px;
 	top: 0;
-    color: #fff;
-    text-align: center;
-    padding-top: 60px;
-    border-radius: 50%;
-    cursor: pointer;
+	color: #fff;
+	text-align: center;
+	padding-top: 60px;
+	border-radius: 50%;
+	cursor: pointer;
 	top: 85px;
 	left: 10px;
 }
@@ -30,7 +32,7 @@
 
 /* imaged preview */
 .filebox .upload-display {
-
+	
 }
 
 .filebox .upload-thumb-wrap {
@@ -51,22 +53,49 @@
 }
 
 .over {
-    background:black;
-    opacity:0.6;
+	background: black;
+	opacity: 0.6;
 }
 
-.over:after{
-    color:#fff;
-    line-height: 3em;
-    content:'프로필 사진 바꾸기';
-    text-align:center;
-    font-size:13px;
+.over:after {
+	color: #fff;
+	line-height: 3em;
+	content: '프로필 사진 바꾸기';
+	text-align: center;
+	font-size: 13px;
 }
 
+.profileBackground {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	opacity: 0.3;
+}
+
+.PSBtn {
+	background-color: transparent;
+	border: transparent;
+	color: #fff;
+	width: 162px;
+	margin-left: 10px;
+	padding-top: 260px;
+}
 </style>
 <c:set var="contextPath" value="${ pageContext.servletContext.contextPath }" scope="application" />
 <div id="banner_wrap">
 	<div id="banner" class="user">
+		<c:choose>
+			<c:when test="${ empty loginUser.profile }">
+			</c:when>
+			<c:otherwise>
+			<div class="profileBackground">
+				<i style="background-image:url('/fooding/resources/images/member/${ loginUser.profile }');background-position:50% 50%;background-size: cover; filter: blur(10px);"></i>
+			</div>
+			</c:otherwise>
+		</c:choose>
+
 		<div class="inner_wrap">
 			<div class="inner">
 				<div id="change_user_image" class="user_image i_wrap">
@@ -95,7 +124,7 @@
 							<label for="input_file" class="img_text">&nbsp;</label> 
 							<input
 								type="file" id="input_file" class="upload-hidden" name="PPhoto">
-								<button onclick="profileSubmit();">프로필 등록</button>
+								<button class="PSBtn" onclick="profileSubmit();">변경</button>
 						</form>
 					</div>
 					<!-- photo -->
@@ -108,7 +137,12 @@
 				<!-- name -->
 				<div class="intro">맛있는 발견의 즐거움 - Fooding</div>
 				<div class="info">
+				<c:if test="${ loginUser.mCode == '일반' }">
 					<a>예약 <span>${ rcount }</span></a> &nbsp; <a>리뷰 <span>${ reviewCount }</span></a>
+				</c:if>
+				<c:if test="${ loginUser.mCode == '업체' }">
+					<a>예약 <span>${ srcount }</span></a> &nbsp; <a>리뷰 <span>${ sreviewCount }</span></a>
+				</c:if>
 				</div>
 				<!-- info -->
 			</div>
@@ -191,6 +225,7 @@
 	            type : 'post',
 	            url : 'profileUpload.me',
 	            data : formData,
+	            dataType: "json",
 	            processData : false,
 	            contentType : false,
 	            success : function(html) {

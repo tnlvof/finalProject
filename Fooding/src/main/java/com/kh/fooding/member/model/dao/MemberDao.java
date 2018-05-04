@@ -36,9 +36,13 @@ public interface MemberDao {
 	int selectReviewCount(int mid);
 
 	ArrayList<Reservation> selectReservList(int mid);
-
+	
 	ArrayList<Review> selectReviewList(int mid, PageInfo pi);
 
 	int profileUpload(Member m, SqlSessionTemplate sqlSession);
+
+	int selectSrcount(int mid);
+
+	int selectSreviewCount(int mid);
 
 }

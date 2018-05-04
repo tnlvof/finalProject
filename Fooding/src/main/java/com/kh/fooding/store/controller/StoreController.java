@@ -34,7 +34,6 @@ public class StoreController {
 	public String storeInfo(Store s, Model model,
 			@RequestParam(name="Photo", required=false)MultipartFile photo,
 			HttpServletRequest request ,HttpSession session) {
-
 		
 		String am = request.getParameter("bookTimeAm");
 		String pm = request.getParameter("bookTimePm");
@@ -269,21 +268,47 @@ public class StoreController {
 	
 	
 
-	//추천 쿠폰
-	@RequestMapping(value="bestCoupon.st", method = RequestMethod.GET)
-	public ModelAndView selectBestCoupon(ModelAndView mv, HttpServletRequest request){
+	//다이닝티켓(쿠폰)
+	@RequestMapping(value="coupon.st", method = RequestMethod.GET)
+	public ModelAndView selectCoupon(ModelAndView mv, HttpServletRequest request){
+		//쿠폰 종류
+		String sort = request.getParameter("type");
+
+		//페이지 헤더에 넣을 이미지 주소, 문구, 티켓 종류
+		String imgName = "";
+		String phrase = "";
+		String kindCoupon = "";
 		
+		switch(sort) {
+			case "new" : 
+				imgName = "resources/images/main/key_visiual13.jpg"; 
+				phrase = "새롭게 만날 수 있는 푸딩 다이닝 티켓을 통해<br>최고의 레스토랑들을 합리적인 가격에 만나보세요"; 
+				kindCoupon = "신규 다이닝 티켓"; break;
+			case "recommend" :
+				imgName = "resources/images/main/key_visiual09.jpg"; 
+				phrase="당신의 특별한 식사를 위해<br>푸딩이 최고의 다이닝을 위한 추천을 해드립니다."; 
+				kindCoupon = "추천 다이닝 티켓"; break;		
+			case "almostOver" : 
+				imgName="resources/images/main/key_visiual10.jpg";
+				phrase = "얼마 남지 않은 푸딩만의 혜택!<br>푸딩을 통해 그 즐거움을 놓치지 마세요."; 
+				kindCoupon = "마감임박 다이닝 티켓"; break;
+ 		}
+
+		ArrayList<String> forHeaderList = new ArrayList();
+		
+		forHeaderList.add(imgName);
+		forHeaderList.add(phrase);
+		forHeaderList.add(kindCoupon);	
+
 		// 페이징처리
 		int currentPage, limit, maxPage, startPage, endPage;
 
 		currentPage = 1;
 		limit = 12;
 
-		if(request.getParameter("currentPage") != null ){
-			currentPage = Integer.parseInt(request.getParameter("currentPage"));
-		}
+		if(request.getParameter("currentPage") != null ) currentPage = Integer.parseInt(request.getParameter("currentPage"));
 
-		int listCount = ss.getBestCouponCount();
+		int listCount = ss.getCouponCount(sort);
 		
 		maxPage = (int) ((double) listCount / limit + 0.9);
 		startPage = ((int) ((double) (currentPage / limit + 0.9) - 1) * limit + 1);
@@ -294,8 +319,10 @@ public class StoreController {
 		
 		PageInfo pi = new PageInfo(currentPage, listCount, limit, maxPage, startPage, endPage);
 		
-		ArrayList<Coupon> couponList = ss.selectBestCoupon(pi);
-		
+		ArrayList<Coupon> couponList = ss.selectCoupon(pi, sort);
+
+		request.setAttribute("sort",sort);
+		mv.addObject("HeaderList", forHeaderList);
 		mv.addObject("couponList", couponList);
 		mv.addObject("pi", pi);
 		mv.setViewName("store/coupon");

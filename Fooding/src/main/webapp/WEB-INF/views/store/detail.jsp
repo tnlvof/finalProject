@@ -5,6 +5,9 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
+<!-- detail에 있는 javascript -->
+<script type="text/javascript" src="/fooding/resources/js/detail.js"></script>
+
 <!-- header -->
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 
@@ -322,8 +325,6 @@
 <!-- container -->
 
 
-<!-- detail에 있는 javascript -->
-<script type="text/javascript" src="/fooding/resources/js/detail.js"></script>
 
 
 <!-- footer -->

@@ -32,7 +32,14 @@
     WHERE M.MID=#{ mid } AND R.STATUS = 'Y'
     </select> 
     
-    
+
+    <select id="selectSrcount" parameterType="_int" resultType="_int">
+    SELECT COUNT(*)
+    FROM RESERVATION R
+    JOIN STORE S ON (R.SID = S.SID)
+    WHERE S.MID=#{ mid } AND R.STATUS = 'Y'
+    </select> 
+
     
     <select id="selectReservList" resultMap="reservationResultSet2">
     SELECT *
@@ -41,7 +48,7 @@
     JOIN STORE S ON (S.SID = R.SID)
     WHERE M.MID=#{ mid } AND R.STATUS = 'Y' AND TO_CHAR(R.R_DATE, 'YYYYMMDD') >= TO_CHAR(SYSDATE, 'YYYYMMDD')
     ORDER BY R.R_DATE ASC
-    </select>   
+    </select>  
     
     <update id="cancelReservation">
     UPDATE RESERVATION

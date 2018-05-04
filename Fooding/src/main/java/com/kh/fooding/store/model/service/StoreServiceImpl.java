@@ -102,8 +102,8 @@ public class StoreServiceImpl implements StoreService{
 
 	//추천 쿠폰 수 
 	@Override
-	public int getBestCouponCount() {
-		int result = sd.getBestCouponCount(sqlSession);
+	public int getCouponCount(String sort) {
+		int result = sd.getCouponCount(sqlSession, sort);
 		
 		return result;
 	}
@@ -111,8 +111,10 @@ public class StoreServiceImpl implements StoreService{
 
 	//추천 쿠폰 조회
 	@Override
-	public ArrayList<Coupon> selectBestCoupon(PageInfo pi) {
-		ArrayList<Coupon> couponList = sd.selectBestCoupon(sqlSession, pi);
+	public ArrayList<Coupon> selectCoupon(PageInfo pi, String sort) {
+		ArrayList<Coupon> couponList = sd.selectCoupon(sqlSession, pi, sort);
+		
+		System.out.println("service couponList : " + couponList);
 		
 		return couponList;
 	}
