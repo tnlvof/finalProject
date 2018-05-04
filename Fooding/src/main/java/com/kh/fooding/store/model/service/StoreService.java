@@ -25,16 +25,18 @@ public interface StoreService {
 
 	ArrayList<Store> searchStore(PageInfo pi, String searchKey);
 
-	int getBestCouponCount();
+	int getCouponCount(String sort);
 	
-
-	ArrayList<Coupon> selectBestCoupon(PageInfo pi);
+	ArrayList<Coupon> selectCoupon(PageInfo pi, String sort);
 
 	//sam 테이블에서 메뉴 별로 가져오기
 	ArrayList<StoreSam> selectThemeListMenu(String query);
 
 	//sam 테이블에서 업종 별로 가져오기
 	ArrayList<StoreSam> selectThemeListSamCat(String query);
+
+
+
 
 
 

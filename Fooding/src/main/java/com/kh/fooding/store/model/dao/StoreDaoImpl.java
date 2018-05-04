@@ -126,18 +126,28 @@ public class StoreDaoImpl implements StoreDao{
 	}
 
 	@Override
-	public int getBestCouponCount(SqlSessionTemplate sqlSession) {
-		int result = sqlSession.selectOne("Store.getBestCouponCount");
+	public int getCouponCount(SqlSessionTemplate sqlSession, String sort) {
+		int result = 0;
+		if(sort.equals("new")) result = sqlSession.selectOne("Store.getNewCouponCount");
+		if(sort.equals("recommend")) result = sqlSession.selectOne("Store.getBestCouponCount");
+		if(sort.equals("almostOver")) result = sqlSession.selectOne("Store.getAlmostOverCouponCount");
+		
+		
 		return result;
 	}
 
 	//추천 쿠폰
 	@Override
-	public ArrayList<Coupon> selectBestCoupon(SqlSessionTemplate sqlSession, PageInfo pi) {
-		System.out.println("dao pi : " + pi);
+	public ArrayList<Coupon> selectCoupon(SqlSessionTemplate sqlSession, PageInfo pi, String sort) {
+		
 		int offset = (pi.getCurrentPage() -1) * pi.getLimit();
 		RowBounds rowBounds = new RowBounds(offset, pi.getLimit());
-		ArrayList<Coupon> couponList = (ArrayList)sqlSession.selectList("Store.selectBestCoupon", pi ,rowBounds);
+		
+		ArrayList<Coupon> couponList = null;
+
+		if(sort.equals("new")) couponList = (ArrayList)sqlSession.selectList("Store.selectNewCoupon", pi ,rowBounds);
+		if(sort.equals("recommend")) couponList = (ArrayList)sqlSession.selectList("Store.selectBestCoupon", pi ,rowBounds);
+		if(sort.equals("almostOver")) couponList = (ArrayList)sqlSession.selectList("Store.selectAlmostOverCoupon", pi ,rowBounds);
 		
 		return couponList;
 	}
