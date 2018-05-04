@@ -32,6 +32,8 @@
     WHERE M.MID=#{ mid } AND R.STATUS = 'Y'
     </select> 
     
+    
+    
     <select id="selectReservList" resultMap="reservationResultSet2">
     SELECT *
     FROM RESERVATION R

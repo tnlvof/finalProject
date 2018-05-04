@@ -13,6 +13,6 @@ public interface ReservationDao {
 
 	ArrayList<Reservation> beforeReservList(int mid);
 
-	StoreSam selectStoreInfo(String sid, SqlSessionTemplate sqlSession);
+	
  
 }

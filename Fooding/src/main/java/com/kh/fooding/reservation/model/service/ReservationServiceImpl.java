@@ -33,13 +33,7 @@ public class ReservationServiceImpl implements ReservationService{
 		
 		return beforeReservList;
 	}
-	// 예약하는 가게 정보 가져오기
-	@Override
-	public StoreSam getStoreInfo(String sid) {
-		StoreSam sInfo = rd.selectStoreInfo(sid, sqlSession);
-		
-		return sInfo;
-	}
+
 
 
 	

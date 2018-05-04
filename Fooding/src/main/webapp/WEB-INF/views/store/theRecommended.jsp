@@ -242,7 +242,7 @@ body{
          </div>
          <!-- coupon-price -->
          
-         <c:url var="goBook" value="/goBookingPage.rv">
+         <c:url var="goBook" value="/goBookingPage.st">
          	<c:param name="storeId" value="${storeId }"></c:param>
          	
          </c:url>

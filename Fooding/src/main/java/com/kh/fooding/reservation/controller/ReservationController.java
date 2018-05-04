@@ -48,25 +48,7 @@ public class ReservationController {
  		return mv;
  	}
 	
-	//예약페이지 이동
-	@RequestMapping(value="goBookingPage.rv")
-	public ModelAndView goBook(HttpSession session, ModelAndView mv, HttpServletRequest request) {
 	
-		String sid = request.getParameter("storeId");
-		
-		StoreSam sInfo = rs.getStoreInfo(sid);
-		
-		if(session.getAttribute("loginUser") != null) {
-			
-			mv.addObject("sInfo", sInfo);		
-			mv.setViewName("store/bookingPage");
-			
-		} else {
-			mv.setViewName("store/loginPage");
-		}
-		
-		return mv;
-	}
 	
 	
 }
