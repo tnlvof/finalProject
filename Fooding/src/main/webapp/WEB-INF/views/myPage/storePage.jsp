@@ -14,7 +14,16 @@
 	<jsp:include page="/WEB-INF/views/myPage/myPageBanner.jsp" />
 	<div id="content_wrap">
 		<div id="content" class="mypage">
+
+			<ul class="tab">
+				<li class="item" onclick="location.href='goMyPage.me'">정보 입력</li>
+				<li class="item" onclick="location.href='goMyPageReview.me'">리뷰</li>
+				<li class="item" onclick="location.href='goMyPageCoupon.me'">쿠폰</li>
+				<li class="item" onclick="location.href='goMyPageQuestions.bo'">1:1 문의</li>
+			</ul>
+      
 			<jsp:include page="/WEB-INF/views/myPage/myPageTab.jsp"/>
+      
 			<div id="reservation" class="body empty">
 				<div class="filter">
 <!-- 					<a href="#" class="">방문 예정 예약</a> <a
