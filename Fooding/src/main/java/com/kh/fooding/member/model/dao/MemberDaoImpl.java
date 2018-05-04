@@ -166,5 +166,17 @@ public class MemberDaoImpl implements MemberDao{
 		return result;
 	}
 
+	@Override
+	public int selectSrcount(int mid) {
+		int srcount = sqlSession.selectOne("Reservation.selectSrcount", mid);
+		return srcount;
+	}
+
+	@Override
+	public int selectSreviewCount(int mid) {
+		int sreviewcount = sqlSession.selectOne("Review.selectSreviewCount", mid);
+		return sreviewcount;
+	}
+
 	
 }
