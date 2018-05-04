@@ -22,10 +22,18 @@
 				<c:choose>
 				<c:when test="${ empty reviewList }">
 				<div class="blank">
+				    <c:if test="${ loginUser.mCode == '일반' }">
 					<div class="message">
 						내 리뷰가 없습니다.<br>첫 리뷰를 작성해보세요!
 					</div>
 					<button class="disable" onclick="" tabindex="-1"></button>
+					</c:if>
+					<c:if test="${ loginUser.mCode == '업체' }">
+					<div class="message">
+						등록된 리뷰가 없습니다.
+					</div>
+					<button class="disable" onclick="" tabindex="-1"></button>
+					</c:if>
 				</div>
 				</c:when>
 					<c:otherwise>

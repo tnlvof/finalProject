@@ -39,6 +39,14 @@
     WHERE M.MID=#{ mid } AND R.STATUS = 'Y'
     </select>
     
+    <select id="selectSreviewCount" parameterType="_int" resultType="_int">
+    SELECT COUNT(*)
+    FROM REVIEW R
+    JOIN STORE S ON (R.SID = S.SID)
+    JOIN MEMBER M ON (M.MID = S.MID)
+    WHERE S.SID=#{ sid } AND R.STATUS = 'Y'
+    </select>
+    
     <select id="selectReviewList" resultMap="reviewResultSet2">
     SELECT *
     FROM REVIEW R

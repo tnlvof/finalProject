@@ -41,4 +41,8 @@ public interface MemberService  {
 
 	void profileUpload(Member m);
 
+	int selectSrcount(int mid);
+
+	int selectSreviewCount(int mid);
+
 }

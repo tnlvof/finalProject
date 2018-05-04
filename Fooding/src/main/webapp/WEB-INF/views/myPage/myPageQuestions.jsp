@@ -16,16 +16,31 @@
 		<div id="content" class="mypage">
 			<jsp:include page="/WEB-INF/views/myPage/myPageTab.jsp"/>
 			<div id="reservation" class="body empty">
+			    <c:if test="${ loginUser.mCode == '일반' }">
 				<div class="filter" onclick="location.href='goMyPageQuestionForm.me'">
 				    1:1문의 작성하기 <input type="hidden" name="key" value="memberMypage">
 				</div>
+				</c:if>
+				<c:if test="${ loginUser.mCode == '업체' }">
+				<div class="filter">
+					<a>&nbsp;</a>
+				</div>
+				</c:if>
 				<!-- 리뷰가 없을 때 화면 -->
 				<c:if test="${empty boardList}">					
 					<div class="blank">
+					    <c:if test="${ loginUser.mCode == '일반' }">
 						<div class="message">
 							문의 사항이 없습니다.<br>문의 사항이 생기시면 언제든지 남겨주세요!
 						</div>
 						<button class="disable" onclick="" tabindex="-1"></button>
+						</c:if>
+						<c:if test="${ loginUser.mCode == '업체' }">
+						<div class="message">
+							등록된 문의 사항이 없습니다.
+						</div>
+						<button class="disable" onclick="" tabindex="-1"></button>
+						</c:if>
 					</div>
 				</c:if>
 			</div>

@@ -41,4 +41,8 @@ public interface MemberDao {
 
 	int profileUpload(Member m, SqlSessionTemplate sqlSession);
 
+	int selectSrcount(int mid);
+
+	int selectSreviewCount(int mid);
+
 }
