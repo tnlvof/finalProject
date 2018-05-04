@@ -84,26 +84,27 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public int selectRcount(int mid) {
-		int rcount = md.selectRcount(mid);
+	public int selectRcount(int mid, String mCode) {
+		int rcount = md.selectRcount(mid, mCode);
+		
 		return rcount;
 	}
 
 	@Override
-	public int selectReviewCount(int mid) {
-		int reviewCount = md.selectReviewCount(mid);
+	public int selectReviewCount(int mid, String mCode) {
+		int reviewCount = md.selectReviewCount(mid, mCode);
 		return reviewCount;
 	}
 
 	@Override
-	public ArrayList<Reservation> selectReservList(int mid) {
-		ArrayList<Reservation> reservList = md.selectReservList(mid);
+	public ArrayList<Reservation> selectReservList(int mid, String mCode) {
+		ArrayList<Reservation> reservList = md.selectReservList(mid, mCode);
 		return reservList;
 	}
 
 	@Override
-	public ArrayList<Review> selectReviewList(int mid, PageInfo pi) {
-        ArrayList<Review> reviewList = md.selectReviewList(mid, pi);
+	public ArrayList<Review> selectReviewList(int mid, String mCode, PageInfo pi) {
+        ArrayList<Review> reviewList = md.selectReviewList(mid, mCode, pi);
 		
 		return reviewList;
 	}
@@ -112,18 +113,6 @@ public class MemberServiceImpl implements MemberService{
 	public void profileUpload(Member m) {
 		int result = md.profileUpload(m, sqlSession);
 		
-	}
-
-	@Override
-	public int selectSrcount(int mid) {
-		int srcount = md.selectSrcount(mid);
-		return srcount;
-	}
-
-	@Override
-	public int selectSreviewCount(int mid) {
-		int sreviewCount = md.selectSreviewCount(mid);
-		return sreviewCount;
 	}
 
 }

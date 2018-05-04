@@ -240,23 +240,17 @@ public class MemberController {
  	public ModelAndView goMyPage(HttpSession session, ModelAndView mv, Store s) {
  		Member m = (Member) session.getAttribute("loginUser");
  		
- 		int rcount = ms.selectRcount(m.getMid());
- 		int reviewCount = ms.selectReviewCount(m.getMid());
+ 		int rcount = ms.selectRcount(m.getMid(), m.getmCode());
+ 		int reviewCount = ms.selectReviewCount(m.getMid(), m.getmCode());
  		
         s.setMid(m.getMid());
         
         int mid = s.getMid();
         
- 		int srcount = ms.selectSrcount(mid);
- 		int sreviewCount = ms.selectSreviewCount(mid);
- 		
  		session.setAttribute("rcount", rcount);
  		session.setAttribute("reviewCount", reviewCount);
  		
- 		session.setAttribute("srcount", srcount);
- 		session.setAttribute("sreviewCount", sreviewCount);
- 		
- 		ArrayList<Reservation> reservList = ms.selectReservList(m.getMid());
+ 		ArrayList<Reservation> reservList = ms.selectReservList(m.getMid(), m.getmCode());
  		
  		System.out.println("Controller reservList : " + reservList);
  		
@@ -289,7 +283,7 @@ public class MemberController {
 		limit = 3;
 
 		//전체 목록 갯수를 리턴받음
-		int listCount = ms.selectReviewCount(m.getMid());
+		int listCount = ms.selectReviewCount(m.getMid(), m.getmCode());
 
 		System.out.println("listCount : " + listCount);
 
@@ -319,7 +313,7 @@ public class MemberController {
 		System.out.println("startPage : " + startPage);
 		System.out.println("endPage : " + endPage);
 		
-		ArrayList<Review> reviewList = ms.selectReviewList(m.getMid(), pi);
+		ArrayList<Review> reviewList = ms.selectReviewList(m.getMid(), m.getmCode(), pi);
 		
 		System.out.println("Controller reviewList : " + reviewList);
 
@@ -365,44 +359,6 @@ public class MemberController {
 		return "myPage/goMemberUpdate";
 	}
 	
-	/*@RequestMapping(value = "/ajaxUpload")
-    public String ajaxUpload() {
-        return "ajaxUpload";
-    }
-     
-    @RequestMapping(value = "profileUpload.me")
-    public String fileUp(MultipartHttpServletRequest multi) {
-         
-        // 저장 경로 설정
-        String root = multi.getSession().getServletContext().getRealPath("resources");
-        String path = root + "\\uploadFiles";
-         
-        String newFileName = ""; // 업로드 되는 파일명
-         
-        File dir = new File(path);
-        if(!dir.isDirectory()){
-            dir.mkdir();
-        }
-         
-        Iterator<String> files = multi.getFileNames();
-        while(files.hasNext()){
-            String uploadFile = files.next();
-                         
-            MultipartFile mFile = multi.getFile(uploadFile);
-            String fileName = mFile.getOriginalFilename();
-            System.out.println("실제 파일 이름 : " +fileName);
-            newFileName = System.currentTimeMillis()+"."
-                    +fileName.substring(fileName.lastIndexOf(".")+1);
-             
-            try {
-                mFile.transferTo(new File(path + "\\" + fileName));
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-         
-        return "ajaxUpload";
-    }*/
 	@ResponseBody
 	@RequestMapping(value = "profileUpload.me")
     public ModelAndView profileUpload(HttpSession session, MultipartHttpServletRequest request, ModelAndView mv) {

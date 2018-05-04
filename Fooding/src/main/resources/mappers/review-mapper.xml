@@ -55,6 +55,15 @@
     ORDER BY R.RID DESC
     </select>
     
+    <select id="selectStoreReviewList" resultMap="reviewResultSet2">
+    SELECT *
+    FROM REVIEW R
+    JOIN MEMBER M ON (M.MID = R.MID)
+    JOIN STORE S ON (S.SID = R.SID)
+    WHERE S.MID=#{ mid } AND R.STATUS = 'Y'AND ROWNUM &lt;= 100
+    ORDER BY R.RID DESC
+    </select>
+    
     <update id="deleteReview">
     UPDATE REVIEW
     SET STATUS='N'
