@@ -48,6 +48,15 @@ public class ReservationController {
  		return mv;
  	}
 	
+	@RequestMapping(value="insertRsv.rv")
+	public ModelAndView insertBook(HttpSession session, ModelAndView mv, Reservation rsv ) {
+		
+		System.out.println(rsv);
+		
+		
+		
+		return mv;
+	}
 	
 	
 	
