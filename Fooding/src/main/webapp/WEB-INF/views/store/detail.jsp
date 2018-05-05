@@ -2,7 +2,11 @@
     pageEncoding="UTF-8"%>
 <meta charset="UTF-8">
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+<!-- detail에 있는 javascript -->
+<script type="text/javascript" src="/fooding/resources/js/detail.js"></script>
 
 <!-- header -->
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
@@ -30,6 +34,8 @@
 				style="background-image: url(/fooding/resources/images/main/key_visiual01.jpg)"></i>
 		</div>
 		
+		
+		<c:if test="${ store eq null }">
 		<div class="inner_wrap">
 			<div class="banner">
 				<div class="title">
@@ -41,17 +47,70 @@
 				
 				<ul class="ban-con">
 					<li class="rank-wrap">
-						<label>별점</label>
-						<c:if test="">
-						<div class="rank-box">
-							<i class="fa fa-star"></i>
-							<i class="fa fa-star"></i>
-							<i class="fa fa-star"></i>
-							<i class="fa fa-star"></i>
-							<i class="fa fa-star no-star"></i>
-						</div>
-						<span class="num-rank">0.0</span>
-						</c:if>
+					<label>별점</label>
+						<fmt:formatNumber var="star" value="${ s.star }" pattern="0"/>
+						<c:choose>
+	                   		<c:when test="${ star eq 0 }">
+                                <div class="coupon-price">
+                       			<span class="fa fa-star"></span>
+                       			<span class="fa fa-star"></span>
+                       			<span class="fa fa-star"></span>
+                       			<span class="fa fa-star"></span>
+                       			<span class="fa fa-star"></span>
+                       			<span class="fa align-right"> ${ s.star } </span>
+                                </div>
+	                   		</c:when>			
+	                   		<c:when test="${ star eq 1 }">
+                                <div class="coupon-price">
+                       			<span class="fa fa-star checked"></span>
+                       			<span class="fa fa-star"></span>
+                       			<span class="fa fa-star"></span>
+                       			<span class="fa fa-star"></span>
+                       			<span class="fa fa-star"></span>
+                       			<span class="fa align-right">${ s.star } </span>
+                                </div>
+	                   		</c:when>			
+	                   		<c:when test="${ star eq 2 }">
+                                <div class="coupon-price">
+                       			<span class="fa fa-star checked"></span>
+                       			<span class="fa fa-star checked"></span>
+                       			<span class="fa fa-star"></span>
+                       			<span class="fa fa-star"></span>
+                       			<span class="fa fa-star"></span>
+                       			<span class="fa align-right">${ s.star }  </span>
+                                </div>
+	                   		</c:when>			
+	                   		<c:when test="${ star eq 3 }">
+                                <div class="coupon-price">
+                       			<span class="fa fa-star checked"></span>
+                       			<span class="fa fa-star checked"></span>
+                       			<span class="fa fa-star checked"></span>
+                       			<span class="fa fa-star"></span>
+                       			<span class="fa fa-star"></span>
+                       			<span class="fa align-right">${ s.star }  </span>
+                                </div>
+	                   		</c:when>			
+	                   		<c:when test="${ star eq 4 }">
+                                <div class="coupon-price">
+                       			<span class="fa fa-star checked"></span>
+                       			<span class="fa fa-star checked"></span>
+                       			<span class="fa fa-star checked"></span>
+                       			<span class="fa fa-star checked"></span>
+                       			<span class="fa fa-star"></span>
+                       			<span class="fa align-right">${ s.star }  </span>
+                                </div>
+	                   		</c:when>
+	                   		<c:otherwise>
+                                <div class="coupon-price">
+                       			<span class="fa fa-star checked"></span>
+                       			<span class="fa fa-star checked"></span>
+                       			<span class="fa fa-star checked"></span>
+                       			<span class="fa fa-star checked"></span>
+                       			<span class="fa fa-star checked"></span>
+                       			<span class="fa align-right">${ s.star }  </span>
+                                </div>
+	                   		</c:otherwise>			
+	                   		</c:choose>
 						<!-- rank-box -->
 					</li>
 					
@@ -91,6 +150,121 @@
 			<!-- banner -->
 		</div>
 		<!-- inner_wrap -->
+		</c:if>
+		
+		<c:if test="${ store ne null }">
+		<div class="inner_wrap">
+			<div class="banner">
+				<div class="title">
+					<span class="restaurant-name">${ store.sName }</span>
+					<span class="restuarant-info">${ store.sCode}</span>
+					<!-- <span class="reservation-info">예약 802건 / 리뷰 23건 / 조회 7028건</span> -->
+				</div>
+				<!-- title -->
+				
+				<ul class="ban-con">
+					<li class="rank-wrap">
+						<label>별점</label>
+						<fmt:formatNumber var="star" value="${ store.star }" pattern="0"/>
+						<c:choose>
+	                   		<c:when test="${ star eq 0 }">
+                                <div class="coupon-price">
+                       			<span class="fa fa-star"></span>
+                       			<span class="fa fa-star"></span>
+                       			<span class="fa fa-star"></span>
+                       			<span class="fa fa-star"></span>
+                       			<span class="fa fa-star"></span>
+                       			<span class="fa align-right"> ${ store.star } </span>
+                                </div>
+	                   		</c:when>			
+	                   		<c:when test="${ star eq 1 }">
+                                <div class="coupon-price">
+                       			<span class="fa fa-star checked"></span>
+                       			<span class="fa fa-star"></span>
+                       			<span class="fa fa-star"></span>
+                       			<span class="fa fa-star"></span>
+                       			<span class="fa fa-star"></span>
+                       			<span class="fa align-right">${ store.star } </span>
+                                </div>
+	                   		</c:when>			
+	                   		<c:when test="${ star eq 2 }">
+                                <div class="coupon-price">
+                       			<span class="fa fa-star checked"></span>
+                       			<span class="fa fa-star checked"></span>
+                       			<span class="fa fa-star"></span>
+                       			<span class="fa fa-star"></span>
+                       			<span class="fa fa-star"></span>
+                       			<span class="fa align-right">${ store.star }  </span>
+                                </div>
+	                   		</c:when>			
+	                   		<c:when test="${ star eq 3 }">
+                                <div class="coupon-price">
+                       			<span class="fa fa-star checked"></span>
+                       			<span class="fa fa-star checked"></span>
+                       			<span class="fa fa-star checked"></span>
+                       			<span class="fa fa-star"></span>
+                       			<span class="fa fa-star"></span>
+                       			<span class="fa align-right">${ store.star }  </span>
+                                </div>
+	                   		</c:when>			
+	                   		<c:when test="${ star eq 4 }">
+                                <div class="coupon-price">
+                       			<span class="fa fa-star checked"></span>
+                       			<span class="fa fa-star checked"></span>
+                       			<span class="fa fa-star checked"></span>
+                       			<span class="fa fa-star checked"></span>
+                       			<span class="fa fa-star"></span>
+                       			<span class="fa align-right">${ store.star }  </span>
+                                </div>
+	                   		</c:when>
+	                   		<c:otherwise>
+                                <div class="coupon-price">
+                       			<span class="fa fa-star checked"></span>
+                       			<span class="fa fa-star checked"></span>
+                       			<span class="fa fa-star checked"></span>
+                       			<span class="fa fa-star checked"></span>
+                       			<span class="fa fa-star checked"></span>
+                       			<span class="fa align-right">${ store.star }  </span>
+                                </div>
+	                   		</c:otherwise>			
+	                   		</c:choose>
+						<!-- rank-box -->
+					</li>
+					
+					<li>
+						<label>전화번호</label>
+						${ store.phone }
+					</li>
+					
+					<li>
+						<label>주소</label>
+						${ store.address }
+					</li>
+					
+					<li>
+						<label>영업시간</label>
+						${ store.sHours }
+					</li>
+					
+					<li>
+						<label>휴무일</label>
+						${ store.dayoff }
+					</li>
+					
+					<li>
+						<label>예산(2인 기준)</label>
+						${ store.budget }
+					</li>
+					
+					<li><button type="button" class="asap-reservation">즉시 예약하기</button></li>
+				</ul>
+				
+			</div>
+			<!-- banner -->
+		</div>
+		<!-- inner_wrap -->
+		</c:if>
+		
 	</div>
 	<!-- banner-wrap -->
 
@@ -102,9 +276,11 @@
 				<li class="tablinks active" onclick="openTab(event, 'tabInfo')">정보</li>
 				<!-- <li class="tablinks" onclick="openTab(event, 'tabPhoto')">포토</li> -->
 				<li id="reviewBtn"class="tablinks" onclick="openTab(event, 'tabReview')">리뷰</li>
-				<li class="tablinks" onclick="openTab(event, 'tabMenu')">메뉴</li>
-				<li class="tablinks" onclick="openTab(event, 'tabCoupon')">쿠폰</li>
-				<li class="tablinks" onclick="openTab(event, 'tabMap')">지도</li>
+				<!-- <li class="tablinks" onclick="openTab(event, 'tabMenu')">메뉴</li> -->
+				<c:if test="${ store ne null }">
+					<li class="tablinks" onclick="openTab(event, 'tabCoupon')">쿠폰</li>
+				</c:if>
+				<!-- <li class="tablinks" onclick="openTab(event, 'tabMap')">지도</li> -->
 			</ul>
 			<!-- tab -->
 			
@@ -134,9 +310,11 @@
 			</div>
 			<!-- tabMenu -->
 			
+			<c:if test="${ store ne null }">
 			<div id="tabCoupon" class="tabcontent">
 				<jsp:include page="tab/tabCoupon.jsp"/>
 			</div>
+			</c:if>
 			<!-- tabCoupon -->
 			
 			<div id="tabMap" class="tabcontent">
@@ -151,8 +329,6 @@
 <!-- container -->
 
 
-<!-- detail에 있는 javascript -->
-<script type="text/javascript" src="/fooding/resources/js/detail.js"></script>
 
 
 <!-- footer -->

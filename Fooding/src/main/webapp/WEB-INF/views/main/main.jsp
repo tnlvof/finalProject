@@ -45,20 +45,23 @@
 				         다른 스타일은 main.css에 포함되어 있음  
 				-->
 				<ul>
-					<li style="background-image:url(http://c1.poing.co.kr/original/images/main/kind.png)">
+					<li style="background-image:url(http://c1.poing.co.kr/original/images/main/kind.png)" onclick="location.href='coupon.st?type=new'">
 						<div class="bg">
 							<p>신규 등록 쿠폰</p>
 						</div>
+						<input type="hidden" name="coupon" value="new" />
 					</li>
-					<li style="background-image:url(http://c1.poing.co.kr/original/images/main/location.png)" onclick="location.href='bestCoupon.st'">
+					<li style="background-image:url(http://c1.poing.co.kr/original/images/main/location.png)" onclick="location.href='coupon.st?type=recommend'">
 						<div class="bg">
 							<p>Fooding's choice</p>
 						</div>
+						<input type="hidden" name="coupon" value="recommend" />
 					</li>
-					<li style="background-image:url(http://c1.poing.co.kr/original/images/main/hotel.png)">
+					<li style="background-image:url(http://c1.poing.co.kr/original/images/main/hotel.png)" onclick="location.href='coupon.st?type=almostOver'">
 						<div class="bg">
 							<p>마감임박 쿠폰</p>
 						</div>
+						<input type="hidden" name="coupon" value="almostOver" />
 					</li>
 				</ul>
 				<!-- <div class="more">더보기 &nbsp;&gt;</div> -->
@@ -106,11 +109,9 @@
 				</div>
 				<!-- recomd-wrap -->
 				
-				<div class="more">더보기 &nbsp;&gt;</div>
+				<div class="more" id="more"><a href="moreThemeRest.st">더보기 &nbsp;&gt;</a></div>
 				
-				
-				
-				
+								
 			</div>
 			<!-- recommend -->
 		</div>

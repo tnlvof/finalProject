@@ -101,11 +101,14 @@ i.image, i.profile_image {
    width: 120px;
 }
 .ban-con label, .ban-con li, 
-.ban-con p, .ban-con span{
+.ban-con p , .ban-con span {
    color: #fff;
    font-size: 14px;
 }
-
+.ban-con .checked{
+	color: orange;
+	line-height: 28px;
+}
 .rank-wrap{
    overflow: hidden;
 }
@@ -128,7 +131,6 @@ i.image, i.profile_image {
 .rank-wrap .num-rank{
    line-height: 28px;
 }
-
 .asap-reservation{
    background: transparent;
    color: #fff;
@@ -190,7 +192,6 @@ i.image, i.profile_image {
 }
 .con-box:last-child{
    border-bottom: 0;
-   padding: 0;
 }
 .con-box li,
 .con-box li span{

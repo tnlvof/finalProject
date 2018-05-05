@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -208,6 +209,8 @@ body{
 <div id="resultArea">
 	<ul class="coupons">
 	<c:forEach var="s" items="${storeSam}">
+		<fmt:formatNumber var="star" value="${ s.star }" pattern="0"/>
+		<!-- Store 테이블 정보 -->
     	<c:if test="${ s.sName ne null }">
     		<c:set var="storeId" value="${ s.sid}"></c:set>
     		<c:url var="goStoreDetail" value="/goStoreDetail.st">
@@ -216,21 +219,75 @@ body{
     	 
           <li>
              <div class="photo">
-                <img src="${contextPath}/resources/uploadFiles/${s.mainPhoto}" <%-- onclick="location.href='${goDetail}'" --%>>
+                <img src="${contextPath}/resources/uploadFiles/${s.mainPhoto}" onclick="location.href='${goStoreDetail}'">
                 <p>
                   ${ s.sName}<br>
                    <span>${ s.sCode}</span>
                 </p>
              </div>
              <!-- photo -->
-             
+			<c:choose>
+			<c:when test="${ star eq 0 }">
              <div class="coupon-price">
     			<span class="fa fa-star"></span>
     			<span class="fa fa-star"></span>
     			<span class="fa fa-star"></span>
     			<span class="fa fa-star"></span>
     			<span class="fa fa-star"></span>
+    			<span class="fa align-right"> ${ s.star } </span>
              </div>
+			</c:when>			
+			<c:when test="${ star eq 1 }">
+             <div class="coupon-price">
+    			<span class="fa fa-star checked"></span>
+    			<span class="fa fa-star"></span>
+    			<span class="fa fa-star"></span>
+    			<span class="fa fa-star"></span>
+    			<span class="fa fa-star"></span>
+    			<span class="fa align-right">${ s.star } </span>
+             </div>
+			</c:when>			
+			<c:when test="${ star eq 2 }">
+             <div class="coupon-price">
+    			<span class="fa fa-star checked"></span>
+    			<span class="fa fa-star checked"></span>
+    			<span class="fa fa-star"></span>
+    			<span class="fa fa-star"></span>
+    			<span class="fa fa-star"></span>
+    			<span class="fa align-right">${ s.star }  </span>
+             </div>
+			</c:when>			
+			<c:when test="${ star eq 3 }">
+             <div class="coupon-price">
+    			<span class="fa fa-star checked"></span>
+    			<span class="fa fa-star checked"></span>
+    			<span class="fa fa-star checked"></span>
+    			<span class="fa fa-star"></span>
+    			<span class="fa fa-star"></span>
+    			<span class="fa align-right">${ s.star }  </span>
+             </div>
+			</c:when>			
+			<c:when test="${ star eq 4 }">
+             <div class="coupon-price">
+    			<span class="fa fa-star checked"></span>
+    			<span class="fa fa-star checked"></span>
+    			<span class="fa fa-star checked"></span>
+    			<span class="fa fa-star checked"></span>
+    			<span class="fa fa-star"></span>
+    			<span class="fa align-right">${ s.star }  </span>
+             </div>
+			</c:when>
+			<c:otherwise>
+             <div class="coupon-price">
+    			<span class="fa fa-star checked"></span>
+    			<span class="fa fa-star checked"></span>
+    			<span class="fa fa-star checked"></span>
+    			<span class="fa fa-star checked"></span>
+    			<span class="fa fa-star checked"></span>
+    			<span class="fa align-right">${ s.star }  </span>
+             </div>
+			</c:otherwise>			
+			</c:choose>
              <!-- coupon-price -->
              <div class="write-div">
              <button class="write-btn" id="reserve-btn">예약하기</button>
@@ -241,6 +298,7 @@ body{
           </li>
 		</c:if>
 
+					<!-- Sam 테이블 정보 -->
 					<c:if test="${ s.sName eq null }">
 						<c:set var="restN" value="${ s.restName}"></c:set>
 						<c:url var="goDetail" value="/goDetail.st">
