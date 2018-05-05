@@ -45,7 +45,7 @@
     FROM RESERVATION R
     JOIN MEMBER M ON (M.MID = R.MID)
     JOIN STORE S ON (S.SID = R.SID)
-    WHERE M.MID=#{ mid } AND R.STATUS = 'Y' AND TO_CHAR(R.R_DATE, 'YYYYMMDD') >= TO_CHAR(SYSDATE, 'YYYYMMDD')
+    WHERE M.MID=#{ mid } AND R.STATUS IN ('Y', 'W') AND TO_CHAR(R.R_DATE, 'YYYYMMDD') >= TO_CHAR(SYSDATE, 'YYYYMMDD')
     ORDER BY R.R_DATE ASC
     </select>
     
@@ -54,7 +54,7 @@
     FROM RESERVATION R
     JOIN MEMBER M ON (M.MID = R.MID)
     JOIN STORE S ON (S.SID = R.SID)
-    WHERE S.MID=#{ mid } AND R.STATUS = 'Y' AND TO_CHAR(R.R_DATE, 'YYYYMMDD') >= TO_CHAR(SYSDATE, 'YYYYMMDD')
+    WHERE S.MID=#{ mid } AND R.STATUS IN ('Y', 'W') AND TO_CHAR(R.R_DATE, 'YYYYMMDD') >= TO_CHAR(SYSDATE, 'YYYYMMDD')
     ORDER BY R.R_DATE ASC
     </select>    
     
@@ -64,12 +64,36 @@
     WHERE RVID = #{ rvid }
     </update>
     
+    <update id="confirmReservation">
+    UPDATE RESERVATION
+    SET STATUS='Y'
+    WHERE RVID = #{ rvid }
+    </update>
+    
     <select id="beforeReservationList" resultMap="reservationResultSet2">
     SELECT *
     FROM RESERVATION R
     JOIN MEMBER M ON (M.MID = R.MID)
     JOIN STORE S ON (S.SID = R.SID)
     WHERE M.MID=#{ mid } AND R.STATUS = 'Y' AND TO_CHAR(SYSDATE, 'YYYYMMDD') > TO_CHAR(R.R_DATE, 'YYYYMMDD')
+    ORDER BY R.R_DATE ASC
+    </select>
+    
+    <select id="beforeStoreReservationList" resultMap="reservationResultSet2">
+    SELECT *
+    FROM RESERVATION R
+    JOIN MEMBER M ON (M.MID = R.MID)
+    JOIN STORE S ON (S.SID = R.SID)
+    WHERE S.MID=#{ mid } AND R.STATUS = 'Y' AND TO_CHAR(SYSDATE, 'YYYYMMDD') > TO_CHAR(R.R_DATE, 'YYYYMMDD')
+    ORDER BY R.R_DATE ASC
+    </select>
+    
+    <select id="requestReservationList" resultMap="reservationResultSet2">
+    SELECT *
+    FROM RESERVATION R
+    JOIN MEMBER M ON (M.MID = R.MID)
+    JOIN STORE S ON (S.SID = R.SID)
+    WHERE S.MID=#{ mid } AND R.STATUS = 'W' AND TO_CHAR(R.R_DATE, 'YYYYMMDD') >= TO_CHAR(SYSDATE, 'YYYYMMDD')
     ORDER BY R.R_DATE ASC
     </select>
     

@@ -1066,7 +1066,7 @@ div.confirmBackground, div.noticePopup {
 div.confirmPopup {
     top: 50%;
 }
-div.confirmNo, div.confirmOk, div.confirmPopup {
+div.confirmNo, div.confirmOk, div.confirmPopup, div.rconfirmNo, div.rconfirmOk {
     z-index: 1000;
     position: fixed;
     border-radius: 3px;
@@ -1074,24 +1074,24 @@ div.confirmNo, div.confirmOk, div.confirmPopup {
     display: none;
     font-size: 13.1px;
 }
-div.confirmOk, div.confirmPopup, div.noticePopup {
+div.confirmOk, div.confirmPopup, div.noticePopup, div.rconfirmNo, div.rconfirmOk {
     background-color: #666;
     opacity:0.6;
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#CB000000, endColorstr=#CB000000);
 }
-div.confirmNo {
+div.confirmNo, div.rconfirmNo {
     background-color: #666;
     opacity:0.6;
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#CB000000, endColorstr=#CB000000);
     top: 50%;
 }
-div.confirmNo, div.confirmOk {
+div.confirmNo, div.confirmOk, div.rconfirmNo, div.rconfirmOk {
     color: #fff;
     padding: 8px 0;
     text-align: center;
     cursor: pointer;
 }
-div.confirmOk {
+div.confirmOk, div.rconfirmOk {
     top: 50%;
 }
 div.confirmMessage{

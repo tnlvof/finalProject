@@ -17,8 +17,11 @@
 			<jsp:include page="/WEB-INF/views/myPage/myPageTab.jsp"/>
 			<div id="reservation" class="body empty">
 				<div class="filter">
-					<a href="goMyPage.me" class="">방문 예정 예약</a> <a
-						href="beforeReserv.rv" class="">지나간 예약</a>
+					<a href="goMyPage.me" class="">방문 예정 예약</a>
+					<c:if test="${ loginUser.mCode == '업체' }">
+					<a href="requestReserv.rv" class="">예약 대기 목록</a>
+					</c:if>
+					<a href="beforeReserv.rv" class="">지나간 예약</a>
 				</div>
 				<!-- 예약이 없을 때 화면 -->
 				<c:choose>
@@ -55,14 +58,17 @@
 						<div class="info">
 							<div class="name">
 							<c:if test="${ loginUser.mCode == '일반' }">
-								<a href="#">${ list.sName }</a> <!-- <span
-									class="label blue border_radius soft">예약 대기</span> <span
-									class="label green border_radius soft">예약 확정</span> <span
-									class="label blue border_radius soft">변경 대기</span> -->
+								<a href="#">${ list.sName }</a>
 							</c:if>
 							<c:if test="${ loginUser.mCode == '업체' }">
 							    <a>${ list.userName }님</a>
 							</c:if>
+							<c:if test="${ list.status == 'W' }">
+								<span class="label blue border_radius soft">예약 대기</span>
+								</c:if>
+								<c:if test="${ list.status == 'Y' }">
+								<span class="label green border_radius soft">예약 확정</span>
+								</c:if>
 							</div>
 							<input type="hidden" value="${ list.rvid }" class="reservId">
 							<div class="date">예약정보: ${ list.rDate } / ${ list.rTime }</div>
@@ -70,12 +76,21 @@
 							
 						</div>
 						
-
-						<!-- <button class="ccBtn red border_radius soft" tabindex="-1" id="ccBtn">변경
-							/ 취소</button> -->
-							<button class="ccBtn red border_radius soft" tabindex="-1" id="ccBtn" onclick="document.getElementById('reservCancel').style.display='block'">예약 취소</button>
+						    <c:if test="${ loginUser.mCode == '업체' }">
+						        <c:if test="${ list.status == 'W' }">
+						            <button class="reservConfirmBtn red border_radius soft" tabindex="-1" id="reservConfirmBtn" onclick="document.getElementById('reservConfirm').style.display='block'">예약 확인</button>
+						        </c:if>
+						        <c:if test="${ list.status == 'Y' }">
+						            <button class="ccBtn red border_radius soft" tabindex="-1" id="ccBtn" onclick="document.getElementById('reservCancel').style.display='block'">예약 취소</button>
+						        </c:if>
+						    </c:if>
+						    
+						    <c:if test="${ loginUser.mCode == '일반' }">
+							    <button class="ccBtn red border_radius soft" tabindex="-1" id="ccBtn" onclick="document.getElementById('reservCancel').style.display='block'">예약 취소</button>
+							</c:if>
 							
 							<input type="hidden" value="" class="idrv">
+							
 							<script>
 							 
 							$(function(){
@@ -93,13 +108,37 @@
 								    $(".idrv").val(rvid);
 								    		
 								 });
-								
+
 								$(".confirmOk").click(function(){
 									console.log("컨펌버튼 : "+ $(".idrv").val());
 									
 									var idrv = $(".idrv").val();
 									
 									location.href="cancelReserv.rv?reservId="+idrv;
+								});
+								
+								$(".rconfirmNo").click(function(){
+									console.log("예약취소버튼 : "+ $(".idrv").val());
+									
+									var idrv = $(".idrv").val();
+									
+									location.href="cancelReserv.rv?reservId="+idrv;
+								});
+								
+								$(".reservConfirmBtn").click(function(){
+									var rvid = $(this).parent().find('.reservId').val();
+									console.log("취소버튼 : "+rvid);
+
+								    $(".idrv").val(rvid);
+								    		
+								 });
+								
+								$(".rconfirmOk").click(function(){
+									console.log("예약컨펌버튼 : "+ $(".idrv").val());
+									
+									var idrv = $(".idrv").val();
+									
+									location.href="confirmReserv.rv?reservId="+idrv;
 								});
 								
 							});
@@ -126,6 +165,22 @@
 						onclick="document.getElementById('reservCancel').style.display='none'">아니오</div>
 					<div class="confirmOk"
 						style="margin-left: 1px; margin-top: 28.5px; width: 108.5px; display: block;">예</div>
+				</div>
+			</div>
+		</div>
+		
+		<div id="reservConfirm" class="w3-modal">
+			<div class="w3-modal-content">
+				<div class="w3-container">
+					<div class="confirmBackground" style="display: block;"></div>
+					<div id="default" class="confirmPopup"
+						style="padding: 20px 40px; margin-left: -110.5px; margin-top: -26.5px; display: block;">
+						<div class="confirmMessage">예약을 확인하시겠습니까?</div>
+					</div>
+					<div class="rconfirmOk"
+						style="margin-left: -110.5px; margin-top: 28.5px; width: 108.5px; display: block;">확인</div>
+					<div class="rconfirmNo"
+						style="margin-left: 1px; margin-top: 28.5px; width: 108.5px; display: block;">취소</div>
 				</div>
 			</div>
 		</div>

@@ -7,7 +7,11 @@ import com.kh.fooding.reservation.model.vo.Reservation;
 public interface ReservationDao {
 
 	int cancelReservation(int rvid);
+	
+	int confirmReservation(int rvid);
 
-	ArrayList<Reservation> beforeReservList(int mid);
+	ArrayList<Reservation> beforeReservList(int mid, String mCode);
+
+	ArrayList<Reservation> requestReservList(int mid);
  
 }
