@@ -73,7 +73,6 @@
 							<input type="hidden" value="${ list.rvid }" class="reservId">
 							<div class="date">예약정보: ${ list.rDate } / ${ list.rTime }</div>
 							<div class="party_size">인원: ${ list.rPeople }명</div>
-							
 						</div>
 						
 						    <c:if test="${ loginUser.mCode == '업체' }">
