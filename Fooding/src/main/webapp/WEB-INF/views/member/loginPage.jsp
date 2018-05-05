@@ -73,11 +73,14 @@ a {
 <!-- css or js파일 연결 시키는 곳 -->
 
 <div class="container">
+
+
    <div id="sign">
 		<div class="body">
 			<div class="login active">
 				<p id="title">로그인</p>
-
+				<br><br>
+				<p> 로그인이 필요한 서비스입니다. </p>
 				<form action="login.me" method="post">
 					<input type="text" id="userId" name="userId" placeholder="아이디"
 						required="" class="input"> 

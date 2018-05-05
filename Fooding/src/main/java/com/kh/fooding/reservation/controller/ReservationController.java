@@ -8,15 +8,12 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.view.RedirectView;
 
 import com.kh.fooding.member.model.vo.Member;
 import com.kh.fooding.reservation.model.service.ReservationService;
 import com.kh.fooding.reservation.model.vo.Reservation;
+import com.kh.fooding.store.model.vo.StoreSam;
 
 @Controller
 public class ReservationController {
@@ -65,6 +62,7 @@ public class ReservationController {
  		return mv;
  	}
 	
+
 	@RequestMapping(value="requestReserv.rv")
 	public ModelAndView requestReservList(HttpSession session, ModelAndView mv) {
  		Member m = (Member) session.getAttribute("loginUser");
@@ -78,4 +76,5 @@ public class ReservationController {
  		
  		return mv;
  	}
+
 }

@@ -10,7 +10,7 @@
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <meta charset="utf-8">
-    <title>Fooding - 검색 결과</title>
+    <title>Fooding - 테마 식당 추천</title>
     <style>
 .map_wrap, .map_wrap * {margin:0;padding:0;font-family:'Malgun Gothic',dotum,'돋움',sans-serif;font-size:12px;}
 .map_wrap a, .map_wrap a:hover, .map_wrap a:active{color:#000;text-decoration: none;}
@@ -212,17 +212,20 @@ body{
 <!-- themeList -->
 
 	<c:forEach items = "${themeList }" var="e">
-		<c:set var="storeId" value="${ e.sid}"></c:set>
-		<%-- <c:url var="goStoreDetail" value="/goStoreDetail.st">
-				<c:param name="storeId" value="${ storeId }"/>
-		</c:url> --%>	
-	 
+	
      
         
-         <c:if test="${!empty e.mainPhoto}">
+         <c:if test="${ e.bookYN = 'Y'}">
+         
+    		<c:set var="storeId" value="${ e.sid}"></c:set>
+    		<c:url var="goStoreDetail" value="/goStoreDetail.st">
+    				<c:param name="storeId" value="${ storeId }"/>
+    		</c:url>	
+    	 
+	 
           <li>
           <div class="photo">
-            <img src="${e.mainPhoto}" <%-- onclick="location.href='${goDetail}'" --%>>
+            <img src="${e.mainPhoto}" onclick="location.href='${goStoreDetail}'" >
             <p>
               ${ e.sName}<br>
                <span>${ e.sCode}</span>
@@ -239,20 +242,71 @@ body{
          </div>
          <!-- coupon-price -->
          
-         
+         <c:url var="goBook" value="/goBookingPage.st">
+         	<c:param name="storeId" value="${storeId }"></c:param>
+         	
+         </c:url>
        
-            <button class="write-btn">예약하기</button>
-	         <button class="write-btn">리뷰쓰기</button>
+        <button class="write-btn" onclick="location.href='${goBook}'">예약하기</button>
+	    <button class="write-btn">리뷰쓰기</button>
          
        
           </li>  
           </c:if>
           
           
-          <c:if test="${empty e.mainPhoto }">
+      <c:if test="${ e.bookYN == 'Y' && empty e.mainPhoto}">
+         
+    		<c:set var="storeId" value="${ e.sid}"></c:set>
+    		<c:url var="goStoreDetail" value="/goStoreDetail.st">
+    				<c:param name="storeId" value="${ storeId }"/>
+    		</c:url>	
+    	 
+	 
+          <li>
+          <div class="photo">
+          <img src="http://c2.poing.co.kr/MRI-original/MjAxODAz/15202254255a9ccc91bbbde.jpeg" onclick="location.href='${goStoreDetail}'">
+            <p>
+              ${ e.sName}<br>
+               <span>${ e.sCode}</span>
+            </p>
+           </div> 
+              <!-- photo -->
+         
+         <div class="coupon-price">
+          	<span class="fa fa-star checked"></span>
+			<span class="fa fa-star checked"></span>
+			<span class="fa fa-star checked"></span>
+			<span class="fa fa-star"></span>
+			<span class="fa fa-star"></span>
+         </div>
+         <!-- coupon-price -->
+         
+         <c:url var="goBook" value="/goBookingPage.st">
+         	<c:param name="storeId" value="${storeId }"></c:param>
+         	
+         </c:url>
+       
+        <button class="write-btn" onclick="location.href='${goBook}'">예약하기</button>
+	    <button class="write-btn">리뷰쓰기</button>
+         
+       
+          </li>  
+          </c:if>
+          
+          
+          
+          
+       <c:if test="${empty e.mainPhoto || empty e.bookYN  }">
+          
+        <c:set var="storeId" value="${ e.sid}"></c:set>
+    		<c:url var="goStoreDetail" value="/goStoreDetail.st">
+    				<c:param name="storeId" value="${ storeId }"/>
+    		</c:url>	
+    	 
 	          <li>
 	           <div class="photo">
-	          	 <img src="http://c2.poing.co.kr/MRI-original/MjAxODAz/15202254255a9ccc91bbbde.jpeg" onclick="location.href='${goDetail}'">
+	          	 <img src="http://c2.poing.co.kr/MRI-original/MjAxODAz/15202254255a9ccc91bbbde.jpeg" onclick="location.href='${goStoreDetail}'">
 	          	  <p>
 	              ${ e.restName}<br>
 	               <span>${ e.restUpstream}</span>

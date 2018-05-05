@@ -115,7 +115,7 @@ button {
             </tr>
             <tr>
                <th>영업 시간</th>
-               <td><input type="text" name="sHours"></td>
+               <td> <input type="text" name="sHours">  </td>
             </tr>
             <tr>
                <th>쉬는날</th>

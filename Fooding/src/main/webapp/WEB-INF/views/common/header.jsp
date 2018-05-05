@@ -74,6 +74,7 @@
 	                  <li>가게정보</li>
 	                  <li>예약</li>
 	                  <li>리뷰</li>
+	                  <li>쿠폰</li>
 	                  <li>1:1문의</li>
 	                  <li>설정</li>
 	                  <li onclick="location.href='logout.me'">로그아웃</li>

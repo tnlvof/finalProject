@@ -9,33 +9,39 @@
 
 
 
-<div class="title-box">
+<div class="title-box" style="background-image: url(${ HeaderList[0] });">
 	<div class="bg-black">
-		<p>
-			푸딩 다이닝 티켓을 통해 최고의 레스토랑들을<br>
-			합리적인 가격에 만나보세요.
-		</p>
+		<p>${ HeaderList[1] }</p>
 		<span>Curated by Fooding</span>
 	</div>
 </div>
 
 
 <div class="container">
+	
 	<ul class="coupons">
+	
 	<c:forEach var="c" items="${ couponList }" >
 		<li>
-			<div class="photo">
-				<img src="http://c2.poing.co.kr/MRI-original/MjAxODAz/15202254255a9ccc91bbbde.jpeg">
+			<div class="photo" onclick="location.href='goStoreDetail.st?storeId=${ c.couponList[0].sid }'">
+				<c:choose>
+					<c:when test="${ empty c.couponList[0].mainPhoto }">
+						<img src="http://c2.poing.co.kr/PIMAGE-original/MjAxNzA2/14966298755934c273391c0.jpeg">
+					</c:when>
+					<c:otherwise>
+						<img src="${ contextPath }/resources/uploadFiles/${ c.couponList[0].mainPhoto }">
+					</c:otherwise>
+				</c:choose>
 				<p>
-					 ${ c.couponList[0].sName}<br>
-					<span>청담동/${ c.couponList[0].sCode }</span>
+					${ c.couponList[0].sName }<br>
+					<span>${ c.couponList[0].sCode }</span>
 				</p>
 			</div>
 			<!-- photo -->
 			
 			<div class="coupon-info">
-				<p>신규 다이닝 티켓</p>
-				행주산성 전망 좋은 레스토랑 세트 메뉴 
+				<p>${ HeaderList[2] }</p>
+				${ c.couponList[0].description }
 			</div>
 			<!-- coupon-info -->
 			
@@ -47,11 +53,47 @@
 		
 	</c:forEach>
 	</ul>
-</div>
-<script>
-	console.log("${couponList[0].couponList[0].sName}");
+
+	<div id="pageIngArea" align="center">
+		<c:if test="${ pi.currentPage <= 1 }">
+			[이전] &nbsp;
+		</c:if>
 		
-</script>
+		<c:if test="${ pi.currentPage > 1 }">
+			<c:url var="bListBack" value="/coupon.st">
+				<c:param name="currentPage" value="${ pi.currentPage -1 }" />
+				<c:param name="type" value="${ sort }"/>
+			</c:url>
+			<a href="${ bListBack }">[이전]</a> &nbsp;
+		</c:if>
+
+		<c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
+			<c:if test="${ p eq pi.currentPage }">
+				<b style="color: red; font-size: 20px;">${ p }</b>
+			</c:if>
+			
+			<c:if test="${ p ne pi.currentPage }">
+				<c:url var="bListCheck" value="coupon.st">
+					<c:param name="currentPage" value="${ p }"/>
+					<c:param name="type" value="${ sort }"/>
+				</c:url>
+				<a href="${ bListCheck }">${ p }</a>
+			</c:if>
+		</c:forEach>
+
+		<c:if test="${ pi.currentPage >= pi.maxPage }">
+			&nbsp; [다음]
+		</c:if>
+		<c:if test="${ pi.currentPage < pi.maxPage }">
+			<c:url var="bListEnd" value="coupon.st">
+				<c:param name="currentPage" value="${ pi.currentPage + 1 }" />
+				<c:param name="type" value="${ sort }" />
+			</c:url>
+			<a href="${ bListEnd }">&nbsp; [다음]</a>
+		</c:if>
+
+	</div>
+</div>
 <!-- container -->
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>

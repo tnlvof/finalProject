@@ -4,6 +4,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.kh.fooding.review.model.vo.Review;
+
 @Repository
 public class ReviewDaoImpl implements ReviewDao{
 	@Autowired
@@ -16,4 +18,9 @@ public class ReviewDaoImpl implements ReviewDao{
 		return deleteReview;
 	}
 
+	@Override
+	public void insertReview(Review r) {
+		sqlSession.insert("Review.insertReview",r);
+	}
+	
 }

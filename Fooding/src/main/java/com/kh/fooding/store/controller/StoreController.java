@@ -34,9 +34,18 @@ public class StoreController {
 	public String storeInfo(Store s, Model model,
 			@RequestParam(name="Photo", required=false)MultipartFile photo,
 			HttpServletRequest request ,HttpSession session) {
-
+		
+		String am = request.getParameter("bookTimeAm").substring(0, 8);
+		String pm = request.getParameter("bookTimePm").substring(0, 8);
+		
+		
+		String sHours = am +"/"+ pm;
+		
+		s.setsHours(sHours);
 		
 		System.out.println("controller : " + s);
+		
+		
 		
 		Member m = (Member) session.getAttribute("loginUser");
 		
@@ -157,7 +166,19 @@ public class StoreController {
 		
 		request.setAttribute("s", s);
 		
+		return "store/detail";
+	}
+	
+	@RequestMapping(value="goStoreDetail.st")
+	public String goStoreDatail(HttpServletRequest request) {
 		
+		int sid = Integer.parseInt(request.getParameter("storeId"));
+		
+		System.out.println("controller sid : " + sid);
+		
+		Store store = ss.selectOneStore(sid);
+		
+		request.setAttribute("store", store);
 		
 		return "store/detail";
 	}
@@ -198,10 +219,11 @@ public class StoreController {
 		String phrase = "";
 		
 		switch(query) {
-		case "kor" : imgName = "resources/images/main/korheader.png"; phrase = "한국인의 자랑스러운 맛 <br><br><br><br><br> 푸딩이 선정한  한식 맛집입니다."; break;
-		case "japanese" :imgName = "resources/images/main/recomd03.jpg"; phrase="정갈한 일식으로 가벼운 외식하세요."; break;		
-		case "chinese" : imgName="resources/images/main/chinese.jpg"; phrase = "바삭한 탕수육과 불맛을 제대로 느낄 수 있는 중국식당을 소개합니다.";break;
-		case "western" : imgName="resources/images/main/pizza.jpg" ; phrase="새롭고 특별한 맛이 먹고 싶을 때."; break;
+		case "kor" : imgName = "resources/images/main/korheader.png"; phrase = "한국인의 자랑스러운 맛 <br><br><br><br><br> 푸딩이 선정한  한식 맛집입니다"; break;
+		case "japanese" :imgName = "resources/images/main/recomd03.jpg"; phrase="정갈한 일식으로 가벼운 외식하세요"; break;		
+		case "chinese" : imgName="resources/images/main/chinese.jpg"; phrase = "바삭한 탕수육과 불맛을 제대로 느낄 수 있는 중국식당을 소개합니다";break;
+		case "western" : imgName="resources/images/main/pizza.jpg" ; phrase="새롭고 특별한 맛이 먹고 싶을 때"; break;
+		case "streetfood":imgName="resources/images/main/streetfood.png" ; phrase="분식의 변신은 끝이 없습니다";break;
  		}
 		
 		ArrayList<String> forHeaderList = new ArrayList();
@@ -248,48 +270,61 @@ public class StoreController {
 	
 	
 
-	//추천 쿠폰
-	@RequestMapping(value="bestCoupon.st", method = RequestMethod.GET)
-	public ModelAndView selectBestCoupon(ModelAndView mv, HttpServletRequest request){
-		ArrayList<Coupon> couponList = ss.selectBestCoupon();
+	//다이닝티켓(쿠폰)
+	@RequestMapping(value="coupon.st", method = RequestMethod.GET)
+	public ModelAndView selectCoupon(ModelAndView mv, HttpServletRequest request){
+		//쿠폰 종류
+		String sort = request.getParameter("type");
+
+		//페이지 헤더에 넣을 이미지 주소, 문구, 티켓 종류
+		String imgName = "";
+		String phrase = "";
+		String kindCoupon = "";
 		
+		switch(sort) {
+			case "new" : 
+				imgName = "resources/images/main/key_visiual13.jpg"; 
+				phrase = "새롭게 만날 수 있는 푸딩 다이닝 티켓을 통해<br>최고의 레스토랑들을 합리적인 가격에 만나보세요"; 
+				kindCoupon = "신규 다이닝 티켓"; break;
+			case "recommend" :
+				imgName = "resources/images/main/key_visiual09.jpg"; 
+				phrase="당신의 특별한 식사를 위해<br>푸딩이 최고의 다이닝을 위한 추천을 해드립니다."; 
+				kindCoupon = "추천 다이닝 티켓"; break;		
+			case "almostOver" : 
+				imgName="resources/images/main/key_visiual10.jpg";
+				phrase = "얼마 남지 않은 푸딩만의 혜택!<br>푸딩을 통해 그 즐거움을 놓치지 마세요."; 
+				kindCoupon = "마감임박 다이닝 티켓"; break;
+ 		}
+
+		ArrayList<String> forHeaderList = new ArrayList();
+		
+		forHeaderList.add(imgName);
+		forHeaderList.add(phrase);
+		forHeaderList.add(kindCoupon);	
+
 		// 페이징처리
-		int currentPage;
-		int limit;
-		int maxPage;
-		int startPage;
-		int endPage;
+		int currentPage, limit, maxPage, startPage, endPage;
 
 		currentPage = 1;
-
 		limit = 12;
 
-		if(request.getParameter("currentPage") != null ){
-			currentPage = Integer.parseInt(request.getParameter("currentPage"));
-		}
+		if(request.getParameter("currentPage") != null ) currentPage = Integer.parseInt(request.getParameter("currentPage"));
 
-		
-		int listCount = ss.getBestCouponCount();
-		/*System.out.println("추천 쿠폰 개수 : " + listCount);*/
+		int listCount = ss.getCouponCount(sort);
 		
 		maxPage = (int) ((double) listCount / limit + 0.9);
-
 		startPage = ((int) ((double) (currentPage / limit + 0.9) - 1) * limit + 1);
-
 		endPage = startPage + limit - 3;
 		
-		if (maxPage < endPage) {
-			endPage = maxPage;
-		}
-		
-		if(endPage == 0 ) {
-			endPage=1;
-		}
+		if (maxPage < endPage) endPage = maxPage;
+		if(endPage == 0 ) endPage=1;
 		
 		PageInfo pi = new PageInfo(currentPage, listCount, limit, maxPage, startPage, endPage);
 		
-		System.out.println("추천 쿠폰 리스트 : " + couponList);
-		
+		ArrayList<Coupon> couponList = ss.selectCoupon(pi, sort);
+
+		request.setAttribute("sort",sort);
+		mv.addObject("HeaderList", forHeaderList);
 		mv.addObject("couponList", couponList);
 		mv.addObject("pi", pi);
 		mv.setViewName("store/coupon");
@@ -299,8 +334,8 @@ public class StoreController {
 
 	
 	//테마 식당 추천 -메뉴별
-		@RequestMapping(value="themeRestMenu.st", method=RequestMethod.GET)
-		public ModelAndView selectThemeRestMenu(ModelAndView mv, HttpServletRequest request) {
+	@RequestMapping(value="themeRestMenu.st", method=RequestMethod.GET)
+	public ModelAndView selectThemeRestMenu(ModelAndView mv, HttpServletRequest request) {
 			// query 종류 -izakaya, meat, pizza 
 			String query = request.getParameter("type");
 			System.out.println(query);
@@ -320,9 +355,13 @@ public class StoreController {
 			forHeaderList.add(imgName);
 			forHeaderList.add(phrase);		
 			
-						
+			// 테마 식당 가져오기 Store
+			ArrayList<StoreSam> themeList2 = ss.selectThemeListMenuStore(query);
+			System.out.println("themeList Sam :  " + themeList2);
 			// 테마 식당 가져오기 Sam
 			ArrayList<StoreSam> themeList = ss.selectThemeListMenu(query);
+			System.out.println("themeList Store : " + themeList);
+			
 			/*String photoLocation = "";
 			String after="";
 			*/
@@ -337,20 +376,45 @@ public class StoreController {
 				
 			}*/
 			
-			//테마 식당 가져오기 Store
 			
+			themeList2.addAll(themeList);
+			
+			System.out.println("finally  : " + themeList2);
 			
 			
 			mv.addObject("HeaderList", forHeaderList);
-			mv.addObject("themeListSam", themeList);
+			mv.addObject("themeList", themeList2);
 			mv.setViewName("store/theRecommended");		
 			
 			
 			return mv;
 		}
 		
-	
-	
+	//예약페이지 이동
+		@RequestMapping(value="goBookingPage.st")
+		public ModelAndView goBook(HttpSession session, ModelAndView mv, HttpServletRequest request) {
+		
+			int sid = Integer.parseInt(request.getParameter("storeId"));
+			
+			Store sInfo = ss.selectOneStore(sid);
+			String shours = sInfo.getsHours();
+			String[] sHoursList  = shours.split("/");
+			//String am = sHoursList[0];
+/*			String pm = sHoursList[1];*/
+			System.out.println(sInfo);
+			System.out.println(sHoursList);
+			
+			if(session.getAttribute("loginUser") != null) {
+				
+				mv.addObject("sInfo", sInfo);		
+				mv.setViewName("store/bookingPage");
+				
+			} else {
+				mv.setViewName("store/loginPage");
+			}
+			
+			return mv;
+		}
 	
 	
 }

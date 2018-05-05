@@ -17,7 +17,7 @@
 				<li> | </li>
 				<li>공지사항</li>
 				<li> | </li>
-				<li>Instagram</li>
+				<li onclick="location.href='https://instagram.com/fooding_0509/'">Instagram</li>
 			</ul>
 			
 			<ul class="copyright">
