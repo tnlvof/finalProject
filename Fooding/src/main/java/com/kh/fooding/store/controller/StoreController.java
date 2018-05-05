@@ -35,8 +35,10 @@ public class StoreController {
 			@RequestParam(name="Photo", required=false)MultipartFile photo,
 			HttpServletRequest request ,HttpSession session) {
 		
-		String am = request.getParameter("bookTimeAm");
-		String pm = request.getParameter("bookTimePm");
+		String am = request.getParameter("bookTimeAm").substring(0, 8);
+		String pm = request.getParameter("bookTimePm").substring(0, 8);
+		
+		
 		String sHours = am +"/"+ pm;
 		
 		s.setsHours(sHours);
