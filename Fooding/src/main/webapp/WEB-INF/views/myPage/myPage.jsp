@@ -92,7 +92,6 @@
 							<input type="hidden" value="" class="idrv">
 							
 							<script>
-							 
 							$(function(){
 								$(".ccBtn").click(function(){
 									var rvid = $(this).parent().find('.reservId').val();
