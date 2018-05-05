@@ -10,9 +10,12 @@ import com.kh.fooding.store.model.vo.StoreSam;
 public interface ReservationDao {
 
 	int cancelReservation(int rvid);
-
-	ArrayList<Reservation> beforeReservList(int mid);
-
 	
- 
+	int confirmReservation(int rvid);
+
+
+	ArrayList<Reservation> beforeReservList(int mid, String mCode);
+
+	ArrayList<Reservation> requestReservList(int mid);
+
 }

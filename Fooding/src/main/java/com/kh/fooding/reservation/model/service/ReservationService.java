@@ -9,7 +9,11 @@ public interface ReservationService {
 
 	int cancelReservation(int rvid);
 
-	ArrayList<Reservation> beforeReservList(int mid);
+	int confirmReservation(int rvid);
+	
+	ArrayList<Reservation> beforeReservList(int mid, String mCode);
+
+	ArrayList<Reservation> requestReservList(int mid);
 
 
 

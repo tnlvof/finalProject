@@ -22,12 +22,36 @@ public class ReservationDaoImpl implements ReservationDao{
 	}
 
 	@Override
-	public ArrayList<Reservation> beforeReservList(int mid) {
-        ArrayList<Reservation> beforeReservList = (ArrayList)sqlSession.selectList("Reservation.beforeReservationList", mid);
+	public int confirmReservation(int rvid) {
+        int confirmReserv = sqlSession.update("Reservation.confirmReservation", rvid);
+		
+		return confirmReserv;
+	}
+
+	@Override
+	public ArrayList<Reservation> beforeReservList(int mid, String mCode) {
+        String reservListQ = "";
+		
+		switch(mCode) {
+			case "일반": reservListQ = "Reservation.beforeReservationList";break;
+			case "업체": reservListQ = "Reservation.beforeStoreReservationList";break;
+		}
+		
+        ArrayList<Reservation> beforeReservList = (ArrayList)sqlSession.selectList(reservListQ, mid);
 		
 		System.out.println("beforeReservList : " + beforeReservList);
 		
 		return beforeReservList;
 	}
+
+	@Override
+	public ArrayList<Reservation> requestReservList(int mid) {
+        ArrayList<Reservation> requestReservList = (ArrayList)sqlSession.selectList("Reservation.requestReservationList", mid);
+		
+		System.out.println("requestReservList : " + requestReservList);
+		
+		return requestReservList;
+	}
+
 
 }

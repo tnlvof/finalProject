@@ -47,7 +47,7 @@
 								<a class="place" href=""> <span class="thumbnail"
 									style="display: block; background-image: url(${ list.mainPhoto });"></span>
 									<p class="name">${ list.sName }</p>
-									<p class="info">강남역 · ${ list.sCode }</p>
+									<p class="info"><!-- 강남역 ·  -->${ list.sCode }</p>
 								</a>
 								<div class="body">
 									<div class="time  loaded" style="display: block;">${ list.enrollDate }</div>
@@ -82,8 +82,10 @@
 										<div class="article">
 								            <input type="hidden" value="${ list.rid }" class="reviewId">
 											<!-- <button class="edit" tabindex="-1">수정하기</button> -->
+											<c:if test="${ loginUser.mCode == '일반' }">
 											<button class="delete" tabindex="-1"
 												onclick="document.getElementById('reviewDelete').style.display='block'">삭제</button>
+											</c:if>
 											<input type="hidden" value="" class="reid">
 											
 										</div>
