@@ -36,7 +36,16 @@
 			<c:if test="${ !empty loginUser }">
 				<c:if test="${ loginUser.mCode == '일반' }">
 	            <div class="dropdown" style="display: block;">
-	               <div class="user-profile" onclick="location.href='goMyPage.me'"><img src="/fooding/resources/images/common/no-image.png"></div>
+	               <div class="user-profile" onclick="location.href='goMyPage.me'">
+								<c:choose>
+									<c:when test="${ empty loginUser.profile }">
+										<img src="/fooding/resources/images/common/no-image.png">
+									</c:when>
+									<c:otherwise>
+										<img src="/fooding/resources/images/member/${ loginUser.profile }">
+									</c:otherwise>
+								</c:choose>
+							</div>
 	               <ul class="dropdown-content">
 	                  <li onclick="location.href='goMyPage.me'">예약</li> 
 	                  <li onclick="location.href='goMyPageReview.me'">리뷰</li>
@@ -50,7 +59,17 @@
 	            
 	            <c:if test="${ loginUser.mCode == '업체' }">
 	            <div class="dropdown" style="display: block;">
-	               <div class="user-profile" onclick="location.href='goStorePage.me'"><img src="/fooding/resources/images/common/no-image.png"></div>
+	               <div class="user-profile" onclick="location.href='goStorePage.me'">
+								<c:choose>
+									<c:when test="${ empty loginUser.profile }">
+										<img src="/fooding/resources/images/common/no-image.png">
+									</c:when>
+									<c:otherwise>
+										<img
+											src="/fooding/resources/images/member/${ loginUser.profile }">
+									</c:otherwise>
+								</c:choose>
+							</div>
 	               <ul class="dropdown-content">
 	                  <li>가게정보</li>
 	                  <li>예약</li>

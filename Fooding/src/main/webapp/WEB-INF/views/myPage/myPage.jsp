@@ -54,10 +54,15 @@
 						</div>
 						<div class="info">
 							<div class="name">
+							<c:if test="${ loginUser.mCode == '일반' }">
 								<a href="#">${ list.sName }</a> <!-- <span
 									class="label blue border_radius soft">예약 대기</span> <span
 									class="label green border_radius soft">예약 확정</span> <span
 									class="label blue border_radius soft">변경 대기</span> -->
+							</c:if>
+							<c:if test="${ loginUser.mCode == '업체' }">
+							    <a>${ list.userName }님</a>
+							</c:if>
 							</div>
 							<input type="hidden" value="${ list.rvid }" class="reservId">
 							<div class="date">예약정보: ${ list.rDate } / ${ list.rTime }</div>
