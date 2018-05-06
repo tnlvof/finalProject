@@ -65,7 +65,7 @@ public class ReservationDaoImpl implements ReservationDao{
 		return rsvList;
 	}
 
-=======
+
 	@Override
 	public ArrayList<Reservation> requestReservList(int mid) {
         ArrayList<Reservation> requestReservList = (ArrayList)sqlSession.selectList("Reservation.requestReservationList", mid);

@@ -410,7 +410,7 @@ public class StoreController {
 				mv.setViewName("store/bookingPage");
 				
 			} else {
-				mv.setViewName("store/loginPage");
+				mv.setViewName("member/loginPage");
 			}
 			
 			return mv;
