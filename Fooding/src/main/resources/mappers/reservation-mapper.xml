@@ -51,6 +51,15 @@
     ORDER BY R.R_DATE ASC
     </select>
     
+    <select id="selectRsvList" resultMap="reservationResultSet2">
+    SELECT *
+    FROM RESERVATION R
+    JOIN MEMBER M ON (M.MID = R.MID)
+    JOIN STORE S ON (S.SID = R.SID)
+    WHERE M.MID=#{ mid } AND R.STATUS = 'Y' AND TO_CHAR(R.R_DATE, 'YYYYMMDD') >= TO_CHAR(SYSDATE, 'YYYYMMDD')
+    ORDER BY R.R_DATE ASC
+    </select>
+    
     <select id="selectStoreReservList" resultMap="reservationResultSet2">
     SELECT *
     FROM RESERVATION R
@@ -81,6 +90,13 @@
     ORDER BY R.R_DATE ASC
     </select>
     
+
+    <insert id="insertBook" >
+	INSERT INTO RESERVATION
+	VALUES(SEQ_RVID.NEXTVAL, #{rDate}, #{rTime}, #{rContent}, #{rPeople}, 'W', #{mid}, #{sid})
+    </insert>
+     
+
     <select id="beforeStoreReservationList" resultMap="reservationResultSet2">
     SELECT *
     FROM RESERVATION R
@@ -98,5 +114,6 @@
     WHERE S.MID=#{ mid } AND R.STATUS = 'W' AND TO_CHAR(R.R_DATE, 'YYYYMMDD') >= TO_CHAR(SYSDATE, 'YYYYMMDD')
     ORDER BY R.R_DATE ASC
     </select>
+
     
 </mapper>
