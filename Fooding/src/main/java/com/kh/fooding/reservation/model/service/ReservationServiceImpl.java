@@ -27,10 +27,21 @@ public class ReservationServiceImpl implements ReservationService{
 		
 		return cancelReserv;
 	}
+	
 
 	@Override
-	public ArrayList<Reservation> beforeReservList(int mid) {
-		ArrayList<Reservation> beforeReservList = rd.beforeReservList(mid);
+	public int confirmReservation(int rvid) {
+        int confirmReserv = rd.confirmReservation(rvid);
+		
+		System.out.println("Service rvid : " + rvid);
+		System.out.println("Service confirmReserv : " + confirmReserv);
+		
+		return confirmReserv;
+	}
+
+	@Override
+	public ArrayList<Reservation> beforeReservList(int mid, String mCode) {
+		ArrayList<Reservation> beforeReservList = rd.beforeReservList(mid, mCode);
 		
 		return beforeReservList;
 	}
@@ -51,7 +62,13 @@ public class ReservationServiceImpl implements ReservationService{
 
 
 
-	
+	@Override
+	public ArrayList<Reservation> requestReservList(int mid) {
+        ArrayList<Reservation> requestReservList = rd.requestReservList(mid);
+		
+		return requestReservList;
+	}
+
 
 
 }

@@ -35,11 +35,25 @@ public class ReservationController {
 		
 	}
 	
+	@RequestMapping(value ="confirmReserv.rv")
+	public ModelAndView confirmReserv(HttpServletRequest request, ModelAndView mv) {
+		int rvid = Integer.parseInt(request.getParameter("reservId"));
+		System.out.println("Controller rvid : " + rvid);
+		
+		int confirmReserv = rs.confirmReservation(rvid);
+		
+		mv.addObject("confirmReserv", confirmReserv);
+		mv.setViewName("redirect:/goMyPage.me");
+		
+		return mv; 
+		
+	}
+	
 	@RequestMapping(value="beforeReserv.rv")
 	public ModelAndView beforeReservList(HttpSession session, ModelAndView mv) {
  		Member m = (Member) session.getAttribute("loginUser");
  		
- 		ArrayList<Reservation> reservList = rs.beforeReservList(m.getMid());
+ 		ArrayList<Reservation> reservList = rs.beforeReservList(m.getMid(), m.getmCode());
  		
  		System.out.println("Controller beforeReservList : " + reservList);
  		
@@ -48,7 +62,7 @@ public class ReservationController {
  		
  		return mv;
  	}
-	
+
 	@RequestMapping(value="insertRsv.rv")
 	public ModelAndView insertBook(HttpSession session, ModelAndView mv, Reservation rsv ) {
 		
@@ -75,4 +89,21 @@ public class ReservationController {
 	
 	
 	
+
+
+	@RequestMapping(value="requestReserv.rv")
+	public ModelAndView requestReservList(HttpSession session, ModelAndView mv) {
+ 		Member m = (Member) session.getAttribute("loginUser");
+ 		
+ 		ArrayList<Reservation> reservList = rs.requestReservList(m.getMid());
+ 		
+ 		System.out.println("Controller requestReservList : " + reservList);
+ 		
+ 		mv.addObject("reservList", reservList);
+ 		mv.setViewName("myPage/myPage");
+ 		
+ 		return mv;
+ 	}
+
+
 }

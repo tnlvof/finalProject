@@ -11,8 +11,10 @@ import com.kh.fooding.store.model.vo.StoreSam;
 public interface ReservationDao {
 
 	int cancelReservation(int rvid);
+	
+	int confirmReservation(int rvid);
 
-	ArrayList<Reservation> beforeReservList(int mid);
+
 
 	int insertBook(Reservation rsv, SqlSessionTemplate sqlSession) throws BookException;
 
@@ -20,4 +22,10 @@ public interface ReservationDao {
 
 	
  
+
+	ArrayList<Reservation> beforeReservList(int mid, String mCode);
+
+	ArrayList<Reservation> requestReservList(int mid);
+
+
 }
