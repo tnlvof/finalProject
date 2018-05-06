@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.fooding.member.model.vo.Member;
+import com.kh.fooding.reservation.model.exception.BookException;
 import com.kh.fooding.reservation.model.service.ReservationService;
 import com.kh.fooding.reservation.model.vo.Reservation;
 import com.kh.fooding.store.model.vo.StoreSam;
@@ -51,9 +52,23 @@ public class ReservationController {
 	@RequestMapping(value="insertRsv.rv")
 	public ModelAndView insertBook(HttpSession session, ModelAndView mv, Reservation rsv ) {
 		
+		
 		System.out.println(rsv);
 		
-		
+		try {
+			int result = rs.insertBook(rsv);
+			
+			ArrayList<Reservation> reservList = rs.selectRsvList(rsv);
+			
+			System.out.println("넣고 : " + reservList);
+			mv.addObject("reservList", reservList);
+			mv.setViewName("myPage/myPage");
+			
+			
+		} catch (BookException e) {
+			mv.addObject("message", e.getMessage());
+			mv.setViewName("common/errorPage");
+		}
 		
 		return mv;
 	}

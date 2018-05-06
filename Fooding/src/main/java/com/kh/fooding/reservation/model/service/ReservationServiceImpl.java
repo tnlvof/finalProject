@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.fooding.reservation.model.dao.ReservationDao;
+import com.kh.fooding.reservation.model.exception.BookException;
 import com.kh.fooding.reservation.model.vo.Reservation;
 import com.kh.fooding.store.model.vo.StoreSam;
 
@@ -32,6 +33,20 @@ public class ReservationServiceImpl implements ReservationService{
 		ArrayList<Reservation> beforeReservList = rd.beforeReservList(mid);
 		
 		return beforeReservList;
+	}
+	
+	// 예약 등록
+	@Override
+	public int insertBook(Reservation rsv) throws BookException{
+		int result = rd.insertBook(rsv, sqlSession);
+		return result;
+	}
+
+	// 예약 리스트  가져오기 - myPage 회원
+	@Override
+	public ArrayList<Reservation> selectRsvList(Reservation rsv) {
+		ArrayList<Reservation >RsvList = rd.selectRsvList(rsv, sqlSession);
+		return RsvList;
 	}
 
 
