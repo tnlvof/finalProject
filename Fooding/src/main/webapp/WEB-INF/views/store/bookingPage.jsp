@@ -35,6 +35,10 @@
 					<input type="text" name="userId" class="storeId" value="${loginUser.userId }" readonly />					
 					<input type="hidden" name="mid" id="mid" value="${ loginUser.mid }">
 					
+					<label class="must">연락처</label>
+					<input type="text" name="phone" id="phone" class="storeId"   />					
+					
+					
 					<!-- private int rvid;
 					private Date rDate;
 					private String rTime;
@@ -150,8 +154,8 @@
 																													
 					  </select>
 					
-					
-					<!-- 1시간 내에 테이블 갯수만큼 예약이 차면 예약 시간 버튼을 없애기로. -->
+					<label class="must">휴일안내</label>
+					<p style="padding-top: 15px; padding-bottom: 15px; color:#ec3e43; font-weight:bold;">${sInfo.dayoff }</p>
 										
 					
 					<label class="must">인원수</label>
@@ -193,10 +197,11 @@
 							var time= document.getElementById("bookTime");
 							var timeUser = time.options[time.selectedIndex].value; 
 							var person= document.getElementById("rvNum").value;
+							var phone = document.getElementById("phone").value;
 							
 							
 							 
-							if(date == null || timeUser== "예약 시간을 선택해주세요" || person== null ){								
+							if(date == null || timeUser== "예약 시간을 선택해주세요" || person== null || phone==null ){								
 								alert("필수 항목을 입력해주세요");
 								return false;
 							} else{

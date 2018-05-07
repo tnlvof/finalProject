@@ -41,7 +41,7 @@
 				<div class="title">
 					<span class="restaurant-name">${ s.restName }</span>
 					<span class="restuarant-info">${ s.restUpstream }</span>
-					<!-- <span class="reservation-info">예약 802건 / 리뷰 23건 / 조회 7028건</span> -->
+					<!-- <span class="reservation-info"> 802건 / 리뷰 23건 / 조회 7028건</span> -->
 				</div>
 				<!-- title -->
 				
@@ -143,7 +143,13 @@
 						16만원 이상
 					</li> -->
 					
-					<li><button type="button" class="asap-reservation">즉시 예약하기</button></li>
+					  <c:url var="goBook" value="/goBookingPage.st">
+        			 	<c:param name="storeId" value="${s.sid}"></c:param>
+        			 </c:url>
+					
+					<li>
+					<button type="button" class="asap-reservation" onclick="location.href='${goBook}'">즉시 예약하기</button>
+					</li>
 				</ul>
 				
 			</div>
@@ -255,8 +261,13 @@
 						<label>예산(2인 기준)</label>
 						${ store.budget }
 					</li>
+					<c:url var="goBook" value="/goBookingPage.st">
+        			 	<c:param name="storeId" value="${store.sid}"></c:param>
+        			 </c:url>
 					
-					<li><button type="button" class="asap-reservation">즉시 예약하기</button></li>
+					<li>
+					<button type="button" class="asap-reservation" onclick="location.href='${goBook}'">즉시 예약하기</button>
+					</li>
 				</ul>
 				
 			</div>

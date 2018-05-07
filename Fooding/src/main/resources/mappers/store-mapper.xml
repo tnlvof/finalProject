@@ -174,7 +174,9 @@
 	</select>
 	
 	<select id="selectAllStores" resultMap="storeResultSet">	
-	SELECT * FROM STORE  
+	SELECT *
+	FROM STORE S
+	  
 	</select>
 	
 	<select id="getNewCouponCount" resultType="_int">
@@ -261,6 +263,23 @@
 	WHERE REST_MENU LIKE '%' || '고기' || '%' OR REST_MENU LIKE '%' || '곱창' || '%')
 	WHERE ROWNUM &lt;=10
 	</select>
+	
+	<select id="searchBySName"  resultMap = "storeSamResultSet" parameterType="map">
+	SELECT * FROM STORE
+	WHERE SNAME LIKE '%' ||#{search} || '%' 
+	</select>
+	
+	<select id="searchByPhone"  resultMap = "storeSamResultSet" parameterType="map">
+	SELECT * FROM STORE
+	WHERE PHONE LIKE '%' ||#{search} || '%' 
+	</select>
+	
+	<select id="searchBySCode"  resultMap = "storeSamResultSet" parameterType="map">
+	SELECT * FROM STORE
+	WHERE SCODE LIKE '%' ||#{search} || '%' 
+	</select>
+	
+	
 	
 </mapper>
 

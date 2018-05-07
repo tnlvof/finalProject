@@ -1,6 +1,7 @@
 package com.kh.fooding.reservation.model.dao;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -73,6 +74,40 @@ public class ReservationDaoImpl implements ReservationDao{
 		System.out.println("requestReservList : " + requestReservList);
 		
 		return requestReservList;
+	}
+
+	// 관리자 페이지 
+	@Override
+	public ArrayList<Reservation> selectAllRsvList() {
+		
+		ArrayList<Reservation> rsvList = (ArrayList) sqlSession.selectList("Reservation.selectAllRsvList");
+	
+		return rsvList;
+	}
+
+	
+	// 관리자 페이지 - 예약 검색
+	@Override
+	public ArrayList<Reservation> searchRsvList(Map<String, String> data, String searchCon) {
+		
+		String statement="";
+		
+		switch(searchCon) {
+		case "아이디" : statement = "Reservation.searchByUserId"; break;
+		case "업체명" : statement = "Reservation.searchByStoreName";break;
+		case "날짜" : statement="Reservation.searchByDate"; break;
+		}
+		
+		if(searchCon == "날짜") {
+			String editDate = data.get("search");
+			data.put("search", editDate.replace("-", "/"));			
+			
+		}
+		
+		ArrayList<Reservation> rsvSearchList = (ArrayList) sqlSession.selectList(statement, data);
+		System.out.println(rsvSearchList);
+	
+		return rsvSearchList;
 	}
 
 

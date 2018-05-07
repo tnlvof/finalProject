@@ -59,7 +59,7 @@
 	            
 	            <c:if test="${ loginUser.mCode == '업체' }">
 	            <div class="dropdown" style="display: block;">
-	               <div class="user-profile" onclick="location.href='goStorePage.me'">
+	               <div class="user-profile" onclick="location.href='goMyPage.me'">
 								<c:choose>
 									<c:when test="${ empty loginUser.profile }">
 										<img src="/fooding/resources/images/common/no-image.png">

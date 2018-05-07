@@ -26,6 +26,20 @@
         <result property="userName" column="USER_NAME" />
     </resultMap>
     
+     <resultMap type="Reservation" id="reservationResultSet3">
+        <id property="rvid" column="RVID"/>
+       <result property="jsonDate" column="R_DATE"/>
+        <result property="rTime" column="R_TIME" />
+        <result property="rContent" column="R_CONTENT" />
+         <result property="phone" column="PHONE" />
+        <result property="rPeople" column="R_PEOPLE" />
+        <result property="status" column="STATUS" />
+        <result property="mid" column="MID" />
+        <result property="sid" column="SID" />
+        <result property="sName" column="SNAME" />
+        <result property="userName" column="USER_ID" />
+    </resultMap>
+    
     <select id="selectRcount" parameterType="_int" resultType="_int">
     SELECT COUNT(*)
     FROM RESERVATION R
@@ -92,8 +106,8 @@
     
 
     <insert id="insertBook" >
-	INSERT INTO RESERVATION
-	VALUES(SEQ_RVID.NEXTVAL, #{rDate}, #{rTime}, #{rContent}, #{rPeople}, 'W', #{mid}, #{sid})
+	INSERT INTO RESERVATION(RVID,R_DATE,R_TIME,R_CONTENT,R_PEOPLE,STATUS,MID,SID, PHONE)
+	VALUES(SEQ_RVID.NEXTVAL, #{rDate}, #{rTime}, #{rContent}, #{rPeople}, 'W', #{mid}, #{sid}, #{phone})
     </insert>
      
 
@@ -114,6 +128,40 @@
     WHERE S.MID=#{ mid } AND R.STATUS = 'W' AND TO_CHAR(R.R_DATE, 'YYYYMMDD') >= TO_CHAR(SYSDATE, 'YYYYMMDD')
     ORDER BY R.R_DATE ASC
     </select>
-
+    
+    <select id="selectAllRsvList" resultMap="reservationResultSet3">
+    SELECT R.RVID, R.R_DATE, R.R_TIME, R.R_CONTENT,R.R_PEOPLE,R.STATUS, R.PHONE, M.MID, S.SID, S.SNAME, M.USER_ID
+    FROM RESERVATION R
+    JOIN MEMBER M ON (M.MID = R.MID)
+    JOIN STORE S ON (S.SID = R.SID)
+     ORDER BY R.R_DATE ASC
+    
+    </select>
+	
+	<select id="searchByUserId" resultMap="reservationResultSet3" parameterType="map">
+	SELECT R.RVID, R.R_DATE, R.R_TIME, R.R_CONTENT,R.R_PEOPLE,R.STATUS, R.PHONE, M.MID, S.SID, S.SNAME, M.USER_ID
+    FROM RESERVATION R
+    JOIN MEMBER M ON (M.MID = R.MID)
+    JOIN STORE S ON (S.SID = R.SID)
+    WHERE M.USER_ID LIKE '%' || #{search} || '%'
+    ORDER BY R.R_DATE ASC
+	</select>
+	
+	<select id="searchByStoreName" resultMap="reservationResultSet3" parameterType="map">
+	SELECT R.RVID, R.R_DATE, R.R_TIME, R.R_CONTENT,R.R_PEOPLE,R.STATUS, R.PHONE, M.MID, S.SID, S.SNAME, M.USER_ID
+    FROM RESERVATION R
+    JOIN MEMBER M ON (M.MID = R.MID)
+    JOIN STORE S ON (S.SID = R.SID)
+    WHERE S.SNAME LIKE '%' || #{search} || '%'
+    ORDER BY R.R_DATE ASC
+	</select>
+	
+	<select id="searchByDate" resultMap="reservationResultSet3" parameterType="map">
+	SELECT R.RVID, R.R_DATE, R.R_TIME, R.R_CONTENT,R.R_PEOPLE,R.STATUS, R.PHONE, M.MID, S.SID, S.SNAME, M.USER_ID
+    FROM RESERVATION R
+    JOIN MEMBER M ON (M.MID = R.MID)
+    JOIN STORE S ON (S.SID = R.SID)
+    WHERE R.R_DATE = #{search}   
+	</select>
     
 </mapper>

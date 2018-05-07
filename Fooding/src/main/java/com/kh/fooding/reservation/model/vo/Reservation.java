@@ -16,6 +16,9 @@ public class Reservation implements java.io.Serializable{
 	private int sid;
 	private String sName;
 	private String userName;
+	private String phone;
+	private String jsonDate;
+	
 	
 	public Reservation() {
 		super();
@@ -23,7 +26,7 @@ public class Reservation implements java.io.Serializable{
 	}
 
 	public Reservation(int rvid, Date rDate, String rTime, String rContent, String rPeople, String status, int mid,
-			int sid, String sName, String userName) {
+			int sid, String sName, String userName, String phone, String jsonDate) {
 		super();
 		this.rvid = rvid;
 		this.rDate = rDate;
@@ -35,6 +38,16 @@ public class Reservation implements java.io.Serializable{
 		this.sid = sid;
 		this.sName = sName;
 		this.userName = userName;
+		this.phone = phone;
+		this.jsonDate = jsonDate;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 
 	public int getRvid() {
@@ -97,6 +110,15 @@ public class Reservation implements java.io.Serializable{
 		return sid;
 	}
 
+	
+	public String getJsonDate() {
+		return jsonDate;
+	}
+
+	public void setJsonDate(String jsonDate) {
+		this.jsonDate = jsonDate;
+	}
+
 	public void setSid(int sid) {
 		this.sid = sid;
 	}
@@ -121,7 +143,7 @@ public class Reservation implements java.io.Serializable{
 	public String toString() {
 		return "Reservation [rvid=" + rvid + ", rDate=" + rDate + ", rTime=" + rTime + ", rContent=" + rContent
 				+ ", rPeople=" + rPeople + ", status=" + status + ", mid=" + mid + ", sid=" + sid + ", sName=" + sName
-				+ ", userName=" + userName + "]";
+				+ ", userName=" + userName + " , Phone : "+ phone+ ", jsonDate : "+jsonDate+"]";
 	}
 	
 	
