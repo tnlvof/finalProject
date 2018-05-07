@@ -41,4 +41,8 @@ public interface MemberDao {
 
 	int profileUpload(Member m, SqlSessionTemplate sqlSession);
 
+	int resetPwd(String password, Member checkUser);
+
+	Member checkUser(Map<String, String> data);
+
 }

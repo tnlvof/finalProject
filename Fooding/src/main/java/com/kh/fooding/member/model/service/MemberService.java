@@ -41,4 +41,8 @@ public interface MemberService  {
 
 	void profileUpload(Member m);
 
+	int resetPwd(String password, Member checkUser);
+
+	Member checkUser(Map<String, String> data);
+
 }

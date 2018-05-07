@@ -1,14 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
+
 <meta charset="UTF-8">
-<title>맛있는 발견의 즐거움 - Fooding</title>
+
 <link rel="stylesheet" href="resources/css/reset.css">
 <link rel="stylesheet" href="resources/css/common.css">
+
+<!-- header -->
+<jsp:include page="/WEB-INF/views/common/header.jsp"/>
+
 <style>
-button {
+
+#resetPwd {
 	margin: 20px;
 	width: 390px;
 	height: 47px;
@@ -16,10 +19,11 @@ button {
 }
 
 #forgot_password { 
+	margin:30 auto;
 	width: 440px;
 	height: 555px;
-	background-color: white;
-	display: table-cell;
+	background-color:#f9f9f9;
+	
 	vertical-align: middle;
 	text-align: center;
 }
@@ -33,9 +37,7 @@ button {
 	line-height: 20px;
 }
 
-#email {
-	
-}
+
 
 input {
 	width: 390px;
@@ -56,8 +58,8 @@ input {
 	font-weight: bold;
 }
 </style>
-</head> 
-<body> 
+
+<div class="container" style="    padding-bottom: 0px;"> 
 	<div id="forgot_password">
 		<i class="icon popup_close" data-close=""></i>
 		<div class="body custom">
@@ -68,15 +70,40 @@ input {
 				임의로 설정된 새로운 비밀번호가 메일로 전송 됩니다.
 			</p>
 
-			<form novalidate="">
-				<input type="text" id="userId" name="userId" placeholder="아이디"
-					required=""> <input type="email" id="email" name="email"
-					placeholder="이메일" required="">
+			
+				<input type="text" id="userIdInput" name="userId" placeholder="아이디"
+					required>
+				<input type="email" id="email" name="email"
+					placeholder="이메일" required><br>
 				<p class="notice">가입시 입력하신 이메일로 임시 비밀번호를 발송합니다.</p>
 
-				<button>비밀번호 재설정하기</button>
-			</form>
+				<button id="resetPwd">비밀번호 재설정하기</button>
+			
+			
+			<script type="text/javascript">
+			$("#resetPwd").click(function(){
+				var userId = $("#userIdInput").val();
+				var email = $("#email").val();
+				
+				if(userId == "" || email == ""){
+					alert('항목들을 빠짐없이 채워주세요.')
+				} else {
+					
+					console.log(userId);
+					console.log(email);
+					
+					
+					
+				}
+			});
+			</script>
 		</div>
 	</div>
-</body>
+</div>
+
+
+
+
+<!-- footer -->
+<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </html>

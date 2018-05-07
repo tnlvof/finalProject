@@ -114,5 +114,19 @@ public class MemberServiceImpl implements MemberService{
 		int result = md.profileUpload(m, sqlSession);
 		
 	}
+	// 비밀번호 재설정
+	@Override
+	public int resetPwd(String password, Member checkUser) {
+		
+		int result = md.resetPwd(password, checkUser);
+	
+		return result;
+	}
+
+	@Override
+	public Member checkUser(Map<String, String> data) {
+	
+		return md.checkUser(data);
+	}
 
 }
