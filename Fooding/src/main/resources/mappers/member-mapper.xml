@@ -120,6 +120,17 @@
 	     UPDATE MEMBER
 	     SET PROFILE = #{profile}
 	     WHERE MID = #{mid}
+	     
+	</update>
+	<select id="checkUser" resultMap="memberResultSet2" parameterType="map">
+	 	SELECT * FROM MEMBER
+	 	WHERE USER_ID =#{userId}
+	 	AND EAMIL=#{email}
+	</select>
+	<update id="resetPwd">
+	UPDATE MEMBER
+	SET USER_PWD = #{userPwd}
+	WHERE USER_ID = #{userId}
 	</update>
 
 	

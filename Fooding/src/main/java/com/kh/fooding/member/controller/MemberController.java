@@ -3,14 +3,16 @@ package com.kh.fooding.member.controller;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.Map;
 
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,15 +25,14 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kh.fooding.common.PageInfo;
 import com.kh.fooding.member.model.exception.LoginException;
 import com.kh.fooding.member.model.exception.selectMemberException;
 import com.kh.fooding.member.model.service.MemberService;
 import com.kh.fooding.member.model.vo.Member;
-import com.kh.fooding.sample.model.vo.Sample;
-import com.kh.fooding.store.model.vo.Store;
 import com.kh.fooding.reservation.model.vo.Reservation;
 import com.kh.fooding.review.model.vo.Review;
-import com.kh.fooding.common.PageInfo;
+import com.kh.fooding.store.model.vo.Store;
 
 @Controller
 public class MemberController {
@@ -39,6 +40,9 @@ public class MemberController {
 	private MemberService ms;
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
+	@Autowired
+	  private JavaMailSender mailSender;
+	
 
 	// 로그인
 	@RequestMapping(value = "login.me", method = RequestMethod.POST)
@@ -82,6 +86,68 @@ public class MemberController {
 	 * mv; }
 	 */
 
+	//비밀번호 재설정 페이지 이동	
+	@RequestMapping(value="goResetPwd.me")
+	public String goResetPwd() {
+		return "member/findPwd";
+	}
+	
+	@RequestMapping(value="resetPwd.me")
+	@ResponseBody
+	public ModelAndView resetPwd(ModelAndView mv, @RequestBody Map<String, String> data ) {
+		
+		//이메일 확인
+		Member checkUser = ms.checkUser(data);
+		
+		
+		
+		//이메일 확인해서 맞으면 새로 지정해서 메일 보내기
+		if(checkUser != null && data.get("email").equals(checkUser.getEmail())) {
+			        
+		    String tomail  = checkUser.getEmail();     // 받는 사람 이메일
+		    String title   = "변경된 패스워드입니다.";      // 제목
+		    StringBuffer buffer=new StringBuffer();
+			for(int i=0;i<=4;i++){
+				int num=(int)(Math.random()*9+1);
+				buffer.append(num);
+			}
+			String password = buffer.toString();
+		    
+		    String content = "변경된 패스워드는 "+password+"입니다.";    // 내용
+		   
+		    try {
+		      MimeMessage message = mailSender.createMimeMessage();
+		      MimeMessageHelper messageHelper 
+		                        = new MimeMessageHelper(message, true, "UTF-8");
+		 
+		      messageHelper.setFrom("ctradm119@gmail.com");  // 보내는사람 생략하거나 하면 정상작동을 안함
+		      messageHelper.setTo(tomail);     // 받는사람 이메일
+		      messageHelper.setSubject(title); // 메일제목은 생략이 가능하다
+		      messageHelper.setText(content);  // 메일 내용
+		     
+		      mailSender.send(message);
+		      
+		      //변경된 비밀번호로 수정하기 
+		      password = passwordEncoder.encode(password);
+		      
+		      int result = ms.resetPwd(password, checkUser);
+		      
+		    } catch(Exception e){
+		      System.out.println(e);
+		    }
+		
+		}
+		
+		//아니면 없다고 하기
+		
+		return mv;
+	}
+	
+	
+	
+	
+	
+	
 	@RequestMapping(value = "goMemberJoin.me")
 	public String goMemberJoin() {
 

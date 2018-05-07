@@ -194,5 +194,21 @@ public class MemberDaoImpl implements MemberDao{
 		
 		return result;
 	}
+	// 패스워드 리셋하기 
+	@Override
+	public int resetPwd(String password, Member checkUser) {
+		
+		checkUser.setUserPwd(password);
+	
+		int result = sqlSession.update("Member.resetPwd", checkUser);
+		
+		return result;
+	}
+
+	@Override
+	public Member checkUser(Map<String, String> data) {
+		Member checkUser = sqlSession.selectOne("Member.checkUser", data);
+		return checkUser;
+	}
 	
 }
