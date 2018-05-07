@@ -131,7 +131,8 @@
 				<!-- name -->
 				<div class="intro">맛있는 발견의 즐거움 - Fooding</div>
 				<div class="info">
-					<a>예약 <span>${ rcount }</span></a> &nbsp; <a>리뷰 <span>${ reviewCount }</span></a>
+					<a>예약 <span>${ rcount }</span></a> &nbsp;
+					<a>리뷰 <span>${ reviewCount }</span></a>
 				</div>
 				<!-- info -->
 			</div>
@@ -223,8 +224,6 @@
 			},
 			error : function(error) {
 				alert("프로필 사진 변경에 실패하였습니다.");
-				/* console.log(error);
-				console.log(error.status); */
 			}
 		});
 	});
