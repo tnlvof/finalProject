@@ -1,6 +1,7 @@
 package com.kh.fooding.reservation.model.service;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import com.kh.fooding.reservation.model.exception.BookException;
 import com.kh.fooding.reservation.model.vo.Reservation;
@@ -19,6 +20,10 @@ public interface ReservationService {
 	int insertBook(Reservation rsv) throws BookException;
 
 	ArrayList<Reservation> selectRsvList(Reservation rsv);
+
+	ArrayList<Reservation> selectAllRsvList();
+
+	ArrayList<Reservation> searchRsvList(Map<String, String> data, String searchCon);
 
 	
 

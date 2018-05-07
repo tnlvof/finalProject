@@ -35,6 +35,10 @@
 					<input type="text" name="userId" class="storeId" value="${loginUser.userId }" readonly />					
 					<input type="hidden" name="mid" id="mid" value="${ loginUser.mid }">
 					
+					<label class="must">연락처</label>
+					<input type="text" name="phone" class="storeId"   />					
+					
+					
 					<!-- private int rvid;
 					private Date rDate;
 					private String rTime;

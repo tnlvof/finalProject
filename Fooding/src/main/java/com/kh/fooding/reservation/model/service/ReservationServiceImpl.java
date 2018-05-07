@@ -1,6 +1,7 @@
 package com.kh.fooding.reservation.model.service;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,6 +68,24 @@ public class ReservationServiceImpl implements ReservationService{
         ArrayList<Reservation> requestReservList = rd.requestReservList(mid);
 		
 		return requestReservList;
+	}
+
+
+	// 관리자 - 예약리스트 조회
+	@Override
+	public ArrayList<Reservation> selectAllRsvList() {
+		
+		ArrayList<Reservation> rsvList = rd.selectAllRsvList();
+		return rsvList;
+	}
+
+	// 관리자 - 예약 검색
+	@Override
+	public ArrayList<Reservation> searchRsvList(Map<String, String> data, String searchCon) {
+		
+		ArrayList<Reservation> searchRsvList = rd.searchRsvList(data, searchCon);
+		
+		return searchRsvList;
 	}
 
 
