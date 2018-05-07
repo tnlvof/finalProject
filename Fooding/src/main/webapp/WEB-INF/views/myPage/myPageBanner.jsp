@@ -80,7 +80,7 @@
 	color: #fff;
 	width: 162px;
 	margin-left: 10px;
-	padding-top: 260px;
+	margin-top: 260px;
 }
 </style>
 <c:set var="contextPath" value="${ pageContext.servletContext.contextPath }" scope="application" />
