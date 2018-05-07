@@ -241,7 +241,7 @@ $(function(){
 		
 				
 			switch($("#searchSelectStore option:selected").text()){			
-  					case '아이디': key = '아이디';  console.log(key); break;
+  					case '전화번호': key = '전화번호';  console.log(key); break;
   					case '업체명': key = '업체명'; console.log(key); break; 
 			}	
 			
@@ -270,31 +270,31 @@ $(function(){
 		  	$.ajax({
 		 		
 	  				method:"post",
-	  				url:"searchReservation.rv",
+	  				url:"searchStoresAdm.st",
 	  				data: JSON.stringify(data),  
 	  				contentType:"application/json",
 	  				success:function(data){
 	  					/* alert('넘어감.'); */
 	  					
-	  				 	console.log(data.searchRsvList);
+	  				 	console.log(data.storeList);
 	  					
-	  				    
-		     			 $("#rsvHeader").nextAll("tr").remove();
+	  					 $("#storeHeader").nextAll("tr").remove();
 		     			 
-		     			 for(var i = 0; i<data.searchRsvList.length;i++){	     				 	  
+		     			 for(var i = 0; i<data.storeList.length;i++){	     				 	  
 		     				 
-		    				  $("#rsvTableList").append("<tr class='tableRow' > ");
-		    				  $("#rsvTableList").find(".tableRow").last().append("<td style='padding-top: 10px;padding-bottom:10px;'>"+data.searchRsvList[i].userName+"</td>");
-		    				  $("#rsvTableList").find(".tableRow").last().append("<td>"+data.searchRsvList[i].phone+"</td>");
-		    				  $("#rsvTableList").find(".tableRow").last().append("<td>"+data.searchRsvList[i].sName+"</td>");
-		    				  $("#rsvTableList").find(".tableRow").last().append("<td >"+data.searchRsvList[i].jsonDate+"</td>");
-		    				  $("#rsvTableList").find(".tableRow").last().append("<td >"+data.searchRsvList[i].rTime+"</td>");
-		    				  $("#rsvTableList").find(".tableRow").last().append("<td >"+data.searchRsvList[i].rPeople+"</td>");
-		    				  $("#rsvTableList").find(".tableRow").last().append("<td >"+data.searchRsvList[i].rContent+"</td>");
-		    				  $("#rsvTableList").find(".tableRow").last().append("<td >"+data.searchRsvList[i].status+"</td>");
-		    				 
+		    				  $("#storeTableList").append("<tr class='tableRow' > ");
+		    				  $("#storeTableList").find(".tableRow").last().append("<td style='padding-top: 10px;padding-bottom:10px;'>"+data.storeList[i].sName+" <input type='hidden' name='sid' class='sid' value="+ data.storeList[i].sid+"></td>");
+		    				  $("#storeTableList").find(".tableRow").last().append("<td>"+data.storeList[i].phone+"</td>");
+		    				  $("#storeTableList").find(".tableRow").last().append("<td>"+data.storeList[i].sCode+"</td>");
+		    				  $("#storeTableList").find(".tableRow").last().append("<td >"+data.storeList[i].address+"</td>");
+		    				  $("#storeTableList").find(".tableRow").last().append("<td >"+data.storeList[i].sHours+"</td>");
+		    				  $("#storeTableList").find(".tableRow").last().append("<td >"+data.storeList[i].dayoff+"</td>");
+		    				  $("#storeTableList").find(".tableRow").last().append("<td >"+data.storeList[i].budget+"</td>");
+		    				  $("#storeTableList").find(".tableRow").last().append("<td>"+data.storeList[i].atmosphere+"</td>");
+		    				  $("#storeTableList").find(".tableRow").last().append("<td>"+data.storeList[i].facilities+"</td></tr>");
 		    				      				  				  
-		    			  }   
+		    			  } 
+		     			  
 	  					
 	  				},
 	  				error:function(){

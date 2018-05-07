@@ -203,16 +203,16 @@ public class StoreController {
 	}
 	
 	//가게 조회 - admin 검색
-	@RequestMapping(value="")
+	@RequestMapping(value="searchStoresAdm.st")
 	@ResponseBody
 	public ModelAndView searchStores(ModelAndView mv, @RequestBody Map<String, String> data  ) {
 		
 		String searchCon = data.get("key");
 		
 		ArrayList<Store> searchStList = ss.searchStList(data, searchCon);
+		System.out.println("이ㅏ이ㅏㅇ : " + searchStList);
 		
-		
-		mv.addObject("searchRsvList", searchStList);
+		mv.addObject("storeList", searchStList);
 		mv.setViewName("jsonView");
 		
 		
