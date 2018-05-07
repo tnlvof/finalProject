@@ -99,11 +99,6 @@
 		<div class="inner_wrap">
 			<div class="inner">
 				<div id="change_user_image" class="user_image i_wrap">
-					<!-- <div class="image border_radius circle profile_image" id="btn-upload">
-						<button type="button" id="btn-upload"></button>
-					</div>
-					<input type="file" id="file" name="file" onchange="changeValue(this)" />
-					<div class="border_radius circle"></div> -->
 					<div class="photo filebox bs3-primary preview-image">
 						<div class="upload-display">
 							<div class="upload-thumb-wrap">
