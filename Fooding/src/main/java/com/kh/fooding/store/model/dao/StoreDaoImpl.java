@@ -1,6 +1,7 @@
 package com.kh.fooding.store.model.dao;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kh.fooding.common.PageInfo;
+import com.kh.fooding.reservation.model.vo.Reservation;
 import com.kh.fooding.store.model.vo.Coupon;
 import com.kh.fooding.store.model.vo.Sam;
 import com.kh.fooding.store.model.vo.Store;
@@ -217,13 +219,31 @@ public class StoreDaoImpl implements StoreDao{
 
 	
 	
-@Override
-	public Store selectOneStore(int sid, SqlSessionTemplate sqlSession) {
+		@Override
+			public Store selectOneStore(int sid, SqlSessionTemplate sqlSession) {
+				
+				Store store = sqlSession.selectOne("Store.selectOneStore",sid);
+				
+				return store;
+			}
 		
-		Store store = sqlSession.selectOne("Store.selectOneStore",sid);
+		// admin - 업체 검색
 		
-		return store;
-	}
+		@Override
+		public ArrayList<Store> searchStList(Map<String, String> data, String searchCon) {
+			String statement = "";
+			
+			switch(searchCon) {
+				case "업체명": statement="Store.searchBySName"; break;
+				case "전화번호": statement="Store.searchByPhone"; break;
+				case "업종": statement = "Store.searchBySCode"; break;
+			}
+			
+			ArrayList<Store> searchStList = (ArrayList)sqlSession.selectList(statement, data);
+			
+			return searchStList;
+		}
+
 
 	
 

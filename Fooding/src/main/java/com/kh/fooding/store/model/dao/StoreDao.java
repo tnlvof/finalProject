@@ -6,10 +6,12 @@ import org.mybatis.spring.SqlSessionTemplate;
 import com.kh.fooding.store.model.vo.Store;
 import com.kh.fooding.store.model.vo.StoreSam;
 import com.kh.fooding.common.PageInfo;
+import com.kh.fooding.reservation.model.vo.Reservation;
 import com.kh.fooding.store.model.vo.Coupon;
 import com.kh.fooding.store.model.vo.Sam;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 public interface StoreDao {
 
@@ -40,9 +42,10 @@ public interface StoreDao {
 
 	ArrayList<StoreSam> selectThemeListStore(SqlSessionTemplate sqlSession, String query);
 
-
-
 	Store selectOneStore(int sid, SqlSessionTemplate sqlSession);
+
+
+	ArrayList<Store> searchStList(Map<String, String> data, String searchCon);
 
 
 
