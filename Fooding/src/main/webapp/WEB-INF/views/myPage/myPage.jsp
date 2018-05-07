@@ -135,7 +135,7 @@
 									console.log("예약컨펌버튼 : "+ $(".idrv").val());
 									
 									var idrv = $(".idrv").val();
-									
+							        
 									location.href="confirmReserv.rv?reservId="+idrv;
 								});
 								
@@ -176,9 +176,9 @@
 						<div class="confirmMessage">예약을 확인하시겠습니까?</div>
 					</div>
 					<div class="rconfirmOk"
-						style="margin-left: -110.5px; margin-top: 28.5px; width: 108.5px; display: block;">확인</div>
+						style="margin-left: -110.5px; margin-top: 28.5px; width: 108.5px; display: block;">예약 확인</div>
 					<div class="rconfirmNo"
-						style="margin-left: 1px; margin-top: 28.5px; width: 108.5px; display: block;">취소</div>
+						style="margin-left: 1px; margin-top: 28.5px; width: 108.5px; display: block;">예약 취소</div>
 				</div>
 			</div>
 		</div>
