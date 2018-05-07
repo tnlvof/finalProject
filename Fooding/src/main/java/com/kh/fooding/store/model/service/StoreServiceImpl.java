@@ -2,12 +2,14 @@ package com.kh.fooding.store.model.service;
 
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.fooding.common.PageInfo;
+import com.kh.fooding.reservation.model.vo.Reservation;
 import com.kh.fooding.store.model.dao.StoreDao;
 
 
@@ -131,6 +133,12 @@ public class StoreServiceImpl implements StoreService{
 	@Override
 	public Store selectOneStore(int sid) {
 		return sd.selectOneStore(sid, sqlSession);
+	}
+
+	@Override
+	public ArrayList<Store> searchStList(Map<String, String> data, String searchCon) {
+		ArrayList<Store> searchStList = sd.searchStList(data, searchCon);
+		return searchStList;
 	}
 
 	

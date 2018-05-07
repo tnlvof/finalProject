@@ -65,7 +65,6 @@
   				switch($("#memberSelect option:selected" ).text()){  				
 	  				case '아이디': key = '아이디'; break;
 	  				case '이름': key = '이름'; break;
-	  			
   				}
   				
   				search = $("#memberSearchBar").val();
@@ -197,18 +196,139 @@
 <div id="storeList" class="tabcontent">
 <h3>업체 조회</h3>
 
+	<script type="text/javascript">
+	
+	 $(function(){
+			$("#categorySelect").hide();
+		}); 
+	 
+	function getCue3(){
+		var searchSelect = document.getElementById("searchSelectStore");
+		var str = searchSelect.options[searchSelect.selectedIndex].value;
+		
+		console.log(str);
+		
+	 	if(str=="업종"){
+			$("#searchBarStore").toggle();
+			$("#categorySelect").toggle();			
+		} else {			
+			$("#searchBarStore").show();
+			$("#categorySelect").hide();		
+		} 
+		
+	}
+	</script>
+	
+	<!-- 업체 검색 -->
+	 <script type="text/javascript">
 
-
-	<select id="searchSelect" >  		
+$(function(){
+	
+	//검색 버튼
+		$("#searchBtnS").click(function(){
+			var keyword = $("#searchBarStore").val();  
+			
+			console.log(keyword);
+			
+			if( $("#searchBarStore").is(":visible") && keyword==""){
+									
+				alert('검색어를 입력해주세요.');
+			} else {
+				
+			// 예약자명, 업체명, 날짜 검색
+			var search ;
+			var key;
+		
+				
+			switch($("#searchSelectStore option:selected").text()){			
+  					case '아이디': key = '아이디';  console.log(key); break;
+  					case '업체명': key = '업체명'; console.log(key); break; 
+			}	
+			
+			search = $("#searchBarStore").val();
+			
+			
+			console.log("키" + key);
+			console.log("값" + search); 
+			
+	 		if( !$("#searchBarStore").is(":visible")){
+				console.log('still here');
+				//날짜 검색
+				if( $("#categorySelect").is(":visible")){
+					key = '업종';
+					search= $("#categorySelect option:selected").val();
+				}
+			} 
+			
+	
+			
+			var data = {key : key, search:search };
+			
+			console.log("맵 : ");
+			console.log( data);
+			
+		  	$.ajax({
+		 		
+	  				method:"post",
+	  				url:"searchReservation.rv",
+	  				data: JSON.stringify(data),  
+	  				contentType:"application/json",
+	  				success:function(data){
+	  					/* alert('넘어감.'); */
+	  					
+	  				 	console.log(data.searchRsvList);
+	  					
+	  				    
+		     			 $("#rsvHeader").nextAll("tr").remove();
+		     			 
+		     			 for(var i = 0; i<data.searchRsvList.length;i++){	     				 	  
+		     				 
+		    				  $("#rsvTableList").append("<tr class='tableRow' > ");
+		    				  $("#rsvTableList").find(".tableRow").last().append("<td style='padding-top: 10px;padding-bottom:10px;'>"+data.searchRsvList[i].userName+"</td>");
+		    				  $("#rsvTableList").find(".tableRow").last().append("<td>"+data.searchRsvList[i].phone+"</td>");
+		    				  $("#rsvTableList").find(".tableRow").last().append("<td>"+data.searchRsvList[i].sName+"</td>");
+		    				  $("#rsvTableList").find(".tableRow").last().append("<td >"+data.searchRsvList[i].jsonDate+"</td>");
+		    				  $("#rsvTableList").find(".tableRow").last().append("<td >"+data.searchRsvList[i].rTime+"</td>");
+		    				  $("#rsvTableList").find(".tableRow").last().append("<td >"+data.searchRsvList[i].rPeople+"</td>");
+		    				  $("#rsvTableList").find(".tableRow").last().append("<td >"+data.searchRsvList[i].rContent+"</td>");
+		    				  $("#rsvTableList").find(".tableRow").last().append("<td >"+data.searchRsvList[i].status+"</td>");
+		    				 
+		    				      				  				  
+		    			  }   
+	  					
+	  				},
+	  				error:function(){
+	  					alert('ㅡㅡ');
+	  				}
+	  				
+	  			});   
+		
+	  		 
+				
+			}
+			
+		});
+	
+});
+</script>
+	<!-- /업체 검색 -->
+	<select id="searchSelectStore" onchange="getCue3()">  		
   		<option>업체명</option>
-  		<option>사업자번호</option>
   		<option>전화번호</option>
   		<option>업종</option> 
   	</select>
   	
+  	<select id="categorySelect">
+  		<option>한식</option>
+  		<option>양식</option>
+  		<option>중식</option>
+  		<option>일식</option>
+  		<option>분식</option>
+  	</select>
+  	
   	<!-- 검색창 -->  	
-  	<input type="search" id="searchBar">
-  	<button type="submit" class="searchBtn">검색</button>
+  	<input type="search" id="searchBarStore">
+  	<button type="submit" class="searchBtn" id="searchBtnS">검색</button>
   	
   	
   	<br><br>
@@ -219,7 +339,6 @@
  	<th style="width:100px; text-align:center;height:20px;font-weight:bold;">업체명</th>
  	<th style="width:100px; text-align:center;height:20px;font-weight:bold;">전화번호</th>
  	<th style="width:100px; text-align:center;height:20px;font-weight:bold;">업종</th>
- 	<th style="width:100px; text-align:center;height:20px;font-weight:bold;">사업자번호</th>
  	<th style="width:300px; text-align:center;height:20px;font-weight:bold;">주소</th>
  	<th style="width:200px; text-align:center;height:20px;font-weight:bold;">영업시간</th>
  	<th style="width:200px; text-align:center;height:20px;font-weight:bold;">휴일</th>
@@ -696,7 +815,6 @@ function openTab(evt, tabName) {
 	    				  $("#storeTableList").find(".tableRow").last().append("<td style='padding-top: 10px;padding-bottom:10px;'>"+data.storeList[i].sName+" <input type='hidden' name='sid' class='sid' value="+ data.storeList[i].sid+"></td>");
 	    				  $("#storeTableList").find(".tableRow").last().append("<td>"+data.storeList[i].phone+"</td>");
 	    				  $("#storeTableList").find(".tableRow").last().append("<td>"+data.storeList[i].sCode+"</td>");
-	    				  $("#storeTableList").find(".tableRow").last().append("<td >"+data.storeList[i].bookYN+"</td>");
 	    				  $("#storeTableList").find(".tableRow").last().append("<td >"+data.storeList[i].address+"</td>");
 	    				  $("#storeTableList").find(".tableRow").last().append("<td >"+data.storeList[i].sHours+"</td>");
 	    				  $("#storeTableList").find(".tableRow").last().append("<td >"+data.storeList[i].dayoff+"</td>");
