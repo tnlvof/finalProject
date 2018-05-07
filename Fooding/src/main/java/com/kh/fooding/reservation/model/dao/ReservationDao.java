@@ -1,6 +1,7 @@
 package com.kh.fooding.reservation.model.dao;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 
@@ -26,6 +27,10 @@ public interface ReservationDao {
 	ArrayList<Reservation> beforeReservList(int mid, String mCode);
 
 	ArrayList<Reservation> requestReservList(int mid);
+
+	ArrayList<Reservation> selectAllRsvList();
+
+	ArrayList<Reservation> searchRsvList(Map<String, String> data, String searchCon);
 
 
 }
