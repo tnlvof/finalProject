@@ -14,11 +14,14 @@ function openTab(evt, tabName) {
    
    if(tabName == "tabReview"){
 	   $("#reviews").css("display","block");
+	   renewReview();
    }else{
 	   $("#reviews").css("display","none");
+	   $("#tabReview").css("display","none");
    }
    
 }
+
 
 //reviewTab
 function addTab(evt, tabName){

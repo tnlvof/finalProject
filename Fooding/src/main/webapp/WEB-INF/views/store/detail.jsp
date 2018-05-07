@@ -308,17 +308,17 @@
 			<div id="tabReview" class="tabcontent tabReview">
 				<!-- 리뷰 작성 폼 (탭 메뉴 상단에 위치) -->
 				<jsp:include page="tab/tabReviewForm.jsp"/>
-			</div>
-			<!-- tabReview -->
-			
 			<!-- 리뷰가 있을 때 없을 때 보여지는 곳 -->
-			<jsp:include page="tab/tabReviews.jsp"/>
+			<!-- tabReview -->
+			</div>
+
+				<jsp:include page="tab/tabReviews.jsp"/>
 			
 		
 			
-			<div id="tabMenu" class="tabcontent">
+			<%-- <div id="tabMenu" class="tabcontent">
 				<jsp:include page="tab/tabMenu.jsp"/>
-			</div>
+			</div> --%>
 			<!-- tabMenu -->
 			
 			<c:if test="${ store ne null }">
@@ -328,9 +328,9 @@
 			</c:if>
 			<!-- tabCoupon -->
 			
-			<div id="tabMap" class="tabcontent">
+			<%-- div id="tabMap" class="tabcontent">
 				<jsp:include page="tab/tabMap.jsp"/>
-			</div>
+			</div> --%>
 			<!-- tabMap -->
 		</div>
 		<!-- detail-content -->

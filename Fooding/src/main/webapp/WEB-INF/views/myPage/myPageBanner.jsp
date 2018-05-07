@@ -124,6 +124,7 @@
 							<label for="input_file" class="img_text">&nbsp;</label> <input
 								type="file" id="input_file" class="upload-hidden" name="PPhoto">
 							<button class="PSBtn" id="profileSubmit">변경</button>
+
 						</form>
 					</div>
 					<!-- photo -->
@@ -212,6 +213,7 @@
 	    });
 	});
 	
+
 	
 	$("#profileSubmit").click(function() {
 

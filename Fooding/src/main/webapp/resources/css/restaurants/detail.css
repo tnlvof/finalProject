@@ -637,4 +637,7 @@ i.image, i.profile_image {
 	color: inherit;
 
 }
+.reviewImg{
+	height:200px;
+}
 }

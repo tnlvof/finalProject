@@ -1,12 +1,15 @@
 package com.kh.fooding.review.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -35,7 +38,8 @@ public class ReviewController {
 		
 	}
 	
-	@RequestMapping(value = "insertReview.rv")
+	@ResponseBody
+	@RequestMapping(value = "insertReview.re")
 	public ModelAndView insertReview(ModelAndView mv, Review r ,
 		   @RequestParam(name="Photo", required=false)MultipartFile photo,
 		   HttpServletRequest request ,HttpSession session) {
@@ -48,14 +52,37 @@ public class ReviewController {
 		System.out.println("controller Review : " + r);
 		System.out.println("controller photo : " + photo.getOriginalFilename());
 		
+		String root = request.getSession().getServletContext().getRealPath("resources");
+		String filePath = root + "\\reviewFiles";
+		
+		r.setMainPhoto(photo.getOriginalFilename());
 		r.setMid(m.getMid());
 		r.setSid(sid);
 		
 		rs.insertReview(r);
 		
-		mv.addObject("storeId", sid);
-		mv.setViewName("redirect:goStoreDetail.st");
+		try {	
+			photo.transferTo(new File(filePath + "\\" + photo.getOriginalFilename()));
+		} catch (IllegalStateException | IOException e1) {
+			e1.printStackTrace();
+		}
 		
+		mv.setViewName("jsonView");
+		
+		return mv;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "selectReview.re")
+	public ModelAndView selectReview(ModelAndView mv, HttpServletRequest request) {
+		int sid = Integer.parseInt(request.getParameter("sid"));
+		
+		System.out.println("review sid : " + sid);
+		
+		ArrayList<Review> rList = rs.selectReview(sid);
+		
+		mv.addObject("rList",rList);
+		mv.setViewName("jsonView");
 		return mv;
 	}
 }
