@@ -215,7 +215,7 @@ body{
 	
      
         
-         <c:if test="${ e.bookYN = 'Y'}">
+         <c:if test="${ e.bookYN == 'Y' && !empty e.mainPhoto}">
          
     		<c:set var="storeId" value="${ e.sid}"></c:set>
     		<c:url var="goStoreDetail" value="/goStoreDetail.st">
@@ -223,7 +223,7 @@ body{
     		</c:url>	
     	 
 	 
-          <li>
+          <li style="margin-bottom: 0px;">
           <div class="photo">
             <img src="${e.mainPhoto}" onclick="location.href='${goStoreDetail}'" >
             <p>
@@ -235,54 +235,54 @@ body{
          
          
          <c:choose>
-			<c:when test="${ star eq 0 }">
+			<c:when test="${ e.star eq 0 }">
              <div class="coupon-price">
     			<span class="fa fa-star"></span>
     			<span class="fa fa-star"></span>
     			<span class="fa fa-star"></span>
     			<span class="fa fa-star"></span>
     			<span class="fa fa-star"></span>
-    			<span class="fa align-right"> ${ s.star } </span>
+    			<span class="fa align-right"> ${ e.star } </span>
              </div>
 			</c:when>			
-			<c:when test="${ star eq 1 }">
+			<c:when test="${ e.star eq 1 }">
              <div class="coupon-price">
     			<span class="fa fa-star checked"></span>
     			<span class="fa fa-star"></span>
     			<span class="fa fa-star"></span>
     			<span class="fa fa-star"></span>
     			<span class="fa fa-star"></span>
-    			<span class="fa align-right">${ s.star } </span>
+    			<span class="fa align-right">${ e.star } </span>
              </div>
 			</c:when>			
-			<c:when test="${ star eq 2 }">
+			<c:when test="${ e.star eq 2 }">
              <div class="coupon-price">
     			<span class="fa fa-star checked"></span>
     			<span class="fa fa-star checked"></span>
     			<span class="fa fa-star"></span>
     			<span class="fa fa-star"></span>
     			<span class="fa fa-star"></span>
-    			<span class="fa align-right">${ s.star }  </span>
+    			<span class="fa align-right">${ e.star }  </span>
              </div>
 			</c:when>			
-			<c:when test="${ star eq 3 }">
+			<c:when test="${ e.star eq 3 }">
              <div class="coupon-price">
     			<span class="fa fa-star checked"></span>
     			<span class="fa fa-star checked"></span>
     			<span class="fa fa-star checked"></span>
     			<span class="fa fa-star"></span>
     			<span class="fa fa-star"></span>
-    			<span class="fa align-right">${ s.star }  </span>
+    			<span class="fa align-right">${ e.star }  </span>
              </div>
 			</c:when>			
-			<c:when test="${ star eq 4 }">
+			<c:when test="${ e.star eq 4 }">
              <div class="coupon-price">
     			<span class="fa fa-star checked"></span>
     			<span class="fa fa-star checked"></span>
     			<span class="fa fa-star checked"></span>
     			<span class="fa fa-star checked"></span>
     			<span class="fa fa-star"></span>
-    			<span class="fa align-right">${ s.star }  </span>
+    			<span class="fa align-right">${ e.star }  </span>
              </div>
 			</c:when>
 			<c:otherwise>
@@ -292,7 +292,7 @@ body{
     			<span class="fa fa-star checked"></span>
     			<span class="fa fa-star checked"></span>
     			<span class="fa fa-star checked"></span>
-    			<span class="fa align-right">${ s.star }  </span>
+    			<span class="fa align-right">${ e.star }  </span>
              </div>
 			</c:otherwise>			
 			</c:choose>
@@ -301,7 +301,6 @@ body{
          
          <c:url var="goBook" value="/goBookingPage.st">
          	<c:param name="storeId" value="${storeId }"></c:param>
-         	
          </c:url>
        
         <button class="write-btn" onclick="location.href='${goBook}'">예약하기</button>
@@ -320,7 +319,7 @@ body{
     		</c:url>	
     	 
 	 
-          <li>
+          <li style="margin-bottom: 0px;">
           <div class="photo">
           <img src="http://c2.poing.co.kr/MRI-original/MjAxODAz/15202254255a9ccc91bbbde.jpeg" onclick="location.href='${goStoreDetail}'">
             <p>
@@ -331,54 +330,54 @@ body{
               <!-- photo -->
               
               <c:choose>
-			<c:when test="${ star eq 0 }">
+			<c:when test="${ e.star eq 0 }">
              <div class="coupon-price">
     			<span class="fa fa-star"></span>
     			<span class="fa fa-star"></span>
     			<span class="fa fa-star"></span>
     			<span class="fa fa-star"></span>
     			<span class="fa fa-star"></span>
-    			<span class="fa align-right"> ${ s.star } </span>
+    			<span class="fa align-right"> ${ e.star } </span>
              </div>
 			</c:when>			
-			<c:when test="${ star eq 1 }">
+			<c:when test="${ e.star eq 1 }">
              <div class="coupon-price">
     			<span class="fa fa-star checked"></span>
     			<span class="fa fa-star"></span>
     			<span class="fa fa-star"></span>
     			<span class="fa fa-star"></span>
     			<span class="fa fa-star"></span>
-    			<span class="fa align-right">${ s.star } </span>
+    			<span class="fa align-right">${ e.star } </span>
              </div>
 			</c:when>			
-			<c:when test="${ star eq 2 }">
+			<c:when test="${ e.star eq 2 }">
              <div class="coupon-price">
     			<span class="fa fa-star checked"></span>
     			<span class="fa fa-star checked"></span>
     			<span class="fa fa-star"></span>
     			<span class="fa fa-star"></span>
     			<span class="fa fa-star"></span>
-    			<span class="fa align-right">${ s.star }  </span>
+    			<span class="fa align-right">${ e.star }  </span>
              </div>
 			</c:when>			
-			<c:when test="${ star eq 3 }">
+			<c:when test="${ e.star eq 3 }">
              <div class="coupon-price">
     			<span class="fa fa-star checked"></span>
     			<span class="fa fa-star checked"></span>
     			<span class="fa fa-star checked"></span>
     			<span class="fa fa-star"></span>
     			<span class="fa fa-star"></span>
-    			<span class="fa align-right">${ s.star }  </span>
+    			<span class="fa align-right">${ e.star }  </span>
              </div>
 			</c:when>			
-			<c:when test="${ star eq 4 }">
+			<c:when test="${ e.star eq 4 }">
              <div class="coupon-price">
     			<span class="fa fa-star checked"></span>
     			<span class="fa fa-star checked"></span>
     			<span class="fa fa-star checked"></span>
     			<span class="fa fa-star checked"></span>
     			<span class="fa fa-star"></span>
-    			<span class="fa align-right">${ s.star }  </span>
+    			<span class="fa align-right">${ e.star }  </span>
              </div>
 			</c:when>
 			<c:otherwise>
@@ -388,7 +387,7 @@ body{
     			<span class="fa fa-star checked"></span>
     			<span class="fa fa-star checked"></span>
     			<span class="fa fa-star checked"></span>
-    			<span class="fa align-right">${ s.star }  </span>
+    			<span class="fa align-right">${ e.star }  </span>
              </div>
 			</c:otherwise>			
 			</c:choose>
@@ -406,12 +405,12 @@ body{
          
        
           </li>  
-          </c:if>
+     </c:if>
           
           
           
           
-       <c:if test="${empty e.mainPhoto || empty e.bookYN  }">
+       <c:if test="${ empty e.bookYN  }">
           
         <c:set var="storeId" value="${ e.sid}"></c:set>
     		<c:url var="goStoreDetail" value="/goStoreDetail.st">
@@ -427,54 +426,54 @@ body{
 	            </p>
 	            </div>
 	            <c:choose>
-			<c:when test="${ star eq 0 }">
+			<c:when test="${ e.star eq 0 }">
              <div class="coupon-price">
     			<span class="fa fa-star"></span>
     			<span class="fa fa-star"></span>
     			<span class="fa fa-star"></span>
     			<span class="fa fa-star"></span>
     			<span class="fa fa-star"></span>
-    			<span class="fa align-right"> ${ s.star } </span>
+    			<span class="fa align-right"> ${ e.star } </span>
              </div>
 			</c:when>			
-			<c:when test="${ star eq 1 }">
+			<c:when test="${ e.star eq 1 }">
              <div class="coupon-price">
     			<span class="fa fa-star checked"></span>
     			<span class="fa fa-star"></span>
     			<span class="fa fa-star"></span>
     			<span class="fa fa-star"></span>
     			<span class="fa fa-star"></span>
-    			<span class="fa align-right">${ s.star } </span>
+    			<span class="fa align-right">${ e.star } </span>
              </div>
 			</c:when>			
-			<c:when test="${ star eq 2 }">
+			<c:when test="${ e.star eq 2 }">
              <div class="coupon-price">
     			<span class="fa fa-star checked"></span>
     			<span class="fa fa-star checked"></span>
     			<span class="fa fa-star"></span>
     			<span class="fa fa-star"></span>
     			<span class="fa fa-star"></span>
-    			<span class="fa align-right">${ s.star }  </span>
+    			<span class="fa align-right">${ e.star }  </span>
              </div>
 			</c:when>			
-			<c:when test="${ star eq 3 }">
+			<c:when test="${ e.star eq 3 }">
              <div class="coupon-price">
     			<span class="fa fa-star checked"></span>
     			<span class="fa fa-star checked"></span>
     			<span class="fa fa-star checked"></span>
     			<span class="fa fa-star"></span>
     			<span class="fa fa-star"></span>
-    			<span class="fa align-right">${ s.star }  </span>
+    			<span class="fa align-right">${ e.star }  </span>
              </div>
 			</c:when>			
-			<c:when test="${ star eq 4 }">
+			<c:when test="${ e.star eq 4 }">
              <div class="coupon-price">
     			<span class="fa fa-star checked"></span>
     			<span class="fa fa-star checked"></span>
     			<span class="fa fa-star checked"></span>
     			<span class="fa fa-star checked"></span>
     			<span class="fa fa-star"></span>
-    			<span class="fa align-right">${ s.star }  </span>
+    			<span class="fa align-right">${ e.star }  </span>
              </div>
 			</c:when>
 			<c:otherwise>
@@ -484,7 +483,7 @@ body{
     			<span class="fa fa-star checked"></span>
     			<span class="fa fa-star checked"></span>
     			<span class="fa fa-star checked"></span>
-    			<span class="fa align-right">${ s.star }  </span>
+    			<span class="fa align-right">${ e.star }  </span>
              </div>
 			</c:otherwise>			
 			</c:choose>
