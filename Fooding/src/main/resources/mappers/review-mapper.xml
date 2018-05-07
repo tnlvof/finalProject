@@ -18,7 +18,7 @@
     </resultMap>
     <resultMap type="Review" id="reviewResultSet2">
         <id property="rid" column="RID"/>
-        <result property="enrollDate" column="ENROLL_DATE" />
+        <result property="enrollDate" column="enrollDate" />
         <result property="rTitle" column="RTITLE" />
         <result property="rContent" column="RCONTENT" />
         <result property="sid" column="SID" />
@@ -30,6 +30,7 @@
         <result property="price" column="PRICE" />
         <result property="sName" column="SNAME" />
         <result property="mainPhoto" column="MAIN_PHOTO" />
+        <result property="writer" column="USER_NAME"/>
     </resultMap>
     
     <select id="selectReviewCount" parameterType="_int" resultType="_int">
@@ -71,8 +72,18 @@
     </update>   
     
     <insert id="insertReview">
-    INSERT INTO REVIEW
-    VALUES(SEQ_RVID.NEXTVAL, SYSDATE, NULL, #{rContent}, #{sid}, DEFAULT, #{ star}, #{ mid}, null,null,null)
+    INSERT INTO REVIEW(RID,ENROLL_DATE,RCONTENT,SID,STATUS,STAR,MID,MAIN_PHOTO)
+    VALUES(SEQ_RVID.NEXTVAL, SYSDATE, #{rContent}, #{sid}, DEFAULT, #{star}, #{mid},#{mainPhoto})
     </insert>
+    
+    <select id="selectReveiw" resultMap="reviewResultSet2">
+    	SELECT R.RID, TO_CHAR(R.ENROLL_DATE, 'YYYY-MM-DD HH24:MI:SS') AS enrollDate, R.RCONTENT, R.SID, R.STAR, R.MAIN_PHOTO, M.USER_NAME 
+    	FROM REVIEW R
+    	JOIN MEMBER M ON(M.MID = R.MID)
+    	WHERE R.STATUS = 'Y'
+    	AND R.SID = #{sid}
+    	ORDER BY R.ENROLL_DATE DESC
+    	
+    </select> 
     
 </mapper>

@@ -119,12 +119,12 @@
 						</div>
 
 						<!-- 현재 프로필인 사진 경로 -->
-						<form id="fileForm" action="profileUpload.me" method="post" enctype="multipart/form-data">
+						<form id="fileForm" method="post" enctype="multipart/form-data">
 							<input class="upload-name" value="파일선택" disabled="disabled">
 							<label for="input_file" class="img_text">&nbsp;</label> 
 							<input
 								type="file" id="input_file" class="upload-hidden" name="PPhoto">
-								<button class="PSBtn" onclick="profileSubmit();">변경</button>
+								<button class="PSBtn" id="profileSubmit">변경</button>
 						</form>
 					</div>
 					<!-- photo -->
@@ -213,7 +213,7 @@
 	    });
 	});
 	
-	$(".profileSubmit").click(function(){
+	$("#profileSubmit").click(function(){
 	        
 			var formData = new FormData($("#fileForm")[0]);
 	        $.ajax({
@@ -221,8 +221,8 @@
 	            url : 'profileUpload.me',
 	            data : formData,
 	            dataType: "json",
-	            processData : false,
-	            contentType : false,
+	            contentType: false,
+				processData: false,
 	            success : function(html) {
 	                alert("파일 업로드하였습니다.");
 	            },

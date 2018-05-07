@@ -1,5 +1,7 @@
 package com.kh.fooding.review.model.service;
 
+import java.util.ArrayList;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,6 +29,12 @@ public class ReviewServiceImpl implements ReviewService{
 	@Override
 	public void insertReview(Review r) {
 		rd.insertReview(r);
+	}
+
+	@Override
+	public ArrayList<Review> selectReview(int sid) {
+		
+		return rd.selectReview(sid);
 	}
 
 }

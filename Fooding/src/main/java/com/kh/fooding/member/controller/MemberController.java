@@ -3,7 +3,6 @@ package com.kh.fooding.member.controller;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -23,15 +22,14 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kh.fooding.common.PageInfo;
 import com.kh.fooding.member.model.exception.LoginException;
 import com.kh.fooding.member.model.exception.selectMemberException;
 import com.kh.fooding.member.model.service.MemberService;
 import com.kh.fooding.member.model.vo.Member;
-import com.kh.fooding.sample.model.vo.Sample;
-import com.kh.fooding.store.model.vo.Store;
 import com.kh.fooding.reservation.model.vo.Reservation;
 import com.kh.fooding.review.model.vo.Review;
-import com.kh.fooding.common.PageInfo;
+import com.kh.fooding.store.model.vo.Store;
 
 @Controller
 public class MemberController {
@@ -427,10 +425,12 @@ public class MemberController {
 		m.getMid();
 		
 		System.out.println(fileName);
+		System.out.println("controller m : " + m);
 		
 		ms.profileUpload(m);
 		
-		mv.setViewName("redirect:/goMyPage.me");
+		mv.addObject("fileName",fileName);
+		mv.setViewName("jsonView");
 		return mv;		
 	}
 
