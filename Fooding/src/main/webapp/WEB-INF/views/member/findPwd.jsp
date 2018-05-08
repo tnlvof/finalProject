@@ -43,6 +43,7 @@ input {
 	width: 390px;
 	height: 47px;
 	border: 1px solid #CCCCCC;
+	border-radius:3px;
 	padding-left: 10px;
 }
 
@@ -77,9 +78,9 @@ border-radius:3px;
 
 			
 				<input type="text" id="userIdInput" name="userId" placeholder="아이디"
-					required>
+					required><br>
 				<input type="email" id="email" name="email"
-					placeholder="이메일" required><br>
+					placeholder="이메일" required><br><br><br>
 				<p class="notice">가입시 입력하신 이메일로 임시 비밀번호를 발송합니다.</p>
 
 				<button id="resetPwd" >비밀번호 재설정하기</button>
