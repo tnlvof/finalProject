@@ -373,6 +373,7 @@ button.red, button.red_fill {
 .review_wrap>.review>.place>.info {
     color: #828282;
     font-size: 12px;
+    margin-top: 5px;
 }
 .review_wrap>.review>.body {
     border-top: solid #dcdcdc;
