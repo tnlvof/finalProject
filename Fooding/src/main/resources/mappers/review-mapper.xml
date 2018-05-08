@@ -32,6 +32,7 @@
         <result property="mainPhoto" column="MAIN_PHOTO"/>
         <result property="writer" column="USER_NAME"/>
         <result property="storePhoto" column="storePhoto"/>
+        <result property="sCode" column="SCODE" />
     </resultMap>
     
     <select id="selectReviewCount" parameterType="_int" resultType="_int">
@@ -49,7 +50,7 @@
     </select>
     
     <select id="selectReviewList" resultMap="reviewResultSet2">
-    SELECT S.MID, S.SNAME, M.USER_NAME, R.STAR, R.RCONTENT, R.MAIN_PHOTO, S.MAIN_PHOTO AS storePhoto, R.ENROLL_DATE AS enrollDate
+    SELECT S.MID, S.SCODE, S.SNAME, M.USER_NAME, R.STAR, R.RCONTENT, R.MAIN_PHOTO, S.MAIN_PHOTO AS storePhoto, R.ENROLL_DATE AS enrollDate
     FROM REVIEW R
     JOIN MEMBER M ON (M.MID = R.MID)
     JOIN STORE S ON (S.SID = R.SID)
@@ -58,7 +59,7 @@
     </select>
     
     <select id="selectStoreReviewList" resultMap="reviewResultSet2">
-    SELECT S.MID, S.SNAME, M.USER_NAME, R.STAR, R.RCONTENT, R.MAIN_PHOTO, S.MAIN_PHOTO AS storePhoto, R.ENROLL_DATE AS enrollDate
+    SELECT S.MID, S.SCODE, S.SNAME, M.USER_NAME, R.STAR, R.RCONTENT, R.MAIN_PHOTO, S.MAIN_PHOTO AS storePhoto, R.ENROLL_DATE AS enrollDate
     FROM REVIEW R
     JOIN MEMBER M ON (M.MID = R.MID)                                           
     JOIN STORE S ON (S.SID = R.SID)                                            
