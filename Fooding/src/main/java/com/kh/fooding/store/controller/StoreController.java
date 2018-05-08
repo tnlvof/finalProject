@@ -388,6 +388,19 @@ public class StoreController {
 			return mv;
 		}
 		
+		//쿠폰등록(업체 마이페이지)
+		@RequestMapping(value="goStoreCoupon.st")
+		public String goStoreCoupon() {
+			
+			return "myPage/storeCoupon";
+		}
+		
+		@RequestMapping(value="insertCoupon.st")
+		public ModelAndView insertCoupon(ModelAndView mv, HttpServletRequest request) {
+			int mid = Integer.parseInt(request.getParameter("mid"));
+			
+			return mv;
+		}
 	
 	
 	
