@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.fooding.common.PageInfo;
+import com.kh.fooding.member.model.vo.Member;
 import com.kh.fooding.store.model.dao.StoreDao;
 
 
@@ -131,6 +132,23 @@ public class StoreServiceImpl implements StoreService{
 	@Override
 	public Store selectOneStore(int sid) {
 		return sd.selectOneStore(sid, sqlSession);
+	}
+
+	@Override
+	public int getSid(int mid) {
+		int result = sd.getSid(sqlSession, mid);
+		return result;
+	}
+
+	@Override
+	public int insertCoupon(Coupon c, Member m) {
+		return sd.insertCoupon(sqlSession, c,m);
+	}
+
+	@Override
+	public ArrayList<Coupon> selectCouponsList(Coupon c, Member m) {
+		ArrayList<Coupon> couponList = sd.selectCouponsList(sqlSession, c, m);
+		return couponList;
 	}
 
 }

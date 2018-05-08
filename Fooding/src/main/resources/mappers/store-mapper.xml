@@ -262,6 +262,19 @@
 	WHERE ROWNUM &lt;=10
 	</select>
 	
+	<select id="getSid" resultType="_int">
+		SELECT SID FROM STORE WHERE MID = #{mid}
+	</select>
+	
+	<insert id="insertCoupon" parameterType="Coupon">
+		INSERT INTO COUPON
+		VALUES(SEQ_CNO.NEXTVAL, #{cname}, #{cdate}, #{cterm}, #{cmethod}, #{sid}, SYSDATE)
+	</insert>
+	
+	<select id="selectCouponsList" resultMap="couponResultSet">
+		SELECT * FROM COUPON WHERE SID=#{sid} ORDER BY ENROLL_DATE DESC
+	</select>
+	
 </mapper>
 
 

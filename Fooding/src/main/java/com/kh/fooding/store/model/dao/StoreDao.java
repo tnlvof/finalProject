@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import com.kh.fooding.store.model.vo.Store;
 import com.kh.fooding.store.model.vo.StoreSam;
 import com.kh.fooding.common.PageInfo;
+import com.kh.fooding.member.model.vo.Member;
 import com.kh.fooding.store.model.vo.Coupon;
 import com.kh.fooding.store.model.vo.Sam;
 
@@ -41,12 +42,16 @@ public interface StoreDao {
 	ArrayList<StoreSam> selectThemeListStore(SqlSessionTemplate sqlSession, String query);
 
 
-
 	Store selectOneStore(int sid, SqlSessionTemplate sqlSession);
 
 
+	int getSid(SqlSessionTemplate sqlSession, int mid);
 
+
+	int insertCoupon(SqlSessionTemplate sqlSession, Coupon c, Member m);
 
 	
+	ArrayList<Coupon> selectCouponsList(SqlSessionTemplate sqlSession, Coupon c, Member m);
+
 
 }
