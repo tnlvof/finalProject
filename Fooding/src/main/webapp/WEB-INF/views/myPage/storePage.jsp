@@ -235,7 +235,7 @@
 		<!-- storeInfotable -->
 		
 		<div class="btn-box">
-			<button type="submit">수정하기</button>
+			<button type="submit">등록하기</button>
 			<button type="reset">목록으로</button>   
 		</div>
 	</form>

@@ -86,4 +86,10 @@
     	ORDER BY R.ENROLL_DATE DESC
     </select> 
     
+    <update id="updateStar">
+    	UPDATE STORE 
+    	SET STAR = (SELECT ROUND(SUM(STAR)/COUNT(STAR),1) FROM REVIEW WHERE SID=#{sid}) 
+    	WHERE SID= #{sid}
+    </update>
+    
 </mapper>

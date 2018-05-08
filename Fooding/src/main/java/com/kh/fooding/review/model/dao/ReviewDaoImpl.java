@@ -23,6 +23,7 @@ public class ReviewDaoImpl implements ReviewDao{
 	@Override
 	public void insertReview(Review r) {
 		sqlSession.insert("Review.insertReview",r);
+		sqlSession.update("Review.updateStar",r);
 	}
 
 	@Override
