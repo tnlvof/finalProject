@@ -127,12 +127,16 @@
 					<button type="submit" id="loginCheck" class="button loginBtn">로그인</button>
 					
 				</form>
+					<p class="forgot">
+					아이디가 기억나지 않으세요? <a href="goFindUserId.me">아이디찾기</a>
+					</p>
 				<p class="forgot">
 					아이디가 기억나지 않으세요? <a href="goFindId.me">아이디 찾기</a>
 				</p>
 				<p class="forgot">
 					비밀번호가 기억나지 않으세요? <a href="goResetPwd.me">재설정하기</a>
 				</p>
+				
 
 				<hr class="hr">
 				<button id="joinBtn" type="button" class="change" onclick="location.href='goMemberJoin.me'">일반 회원가입</button>
@@ -162,8 +166,9 @@
 					<button type="submit" id="loginCheck" class="button loginBtn">로그인</button>
 				</form>
 				<p class="forgot">
+
 					아이디가 기억나지 않으세요? <a href="goFindId.me">아이디 찾기</a>
-				</p>
+			
 				<p class="forgot">
 					비밀번호가 기억나지 않으세요? <a href="goResetPwd.me">재설정하기</a>
 				</p>

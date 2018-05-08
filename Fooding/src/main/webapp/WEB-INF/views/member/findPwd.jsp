@@ -52,6 +52,16 @@ input {
 	font-size: 25px;
 	font-weight: bold;
 }
+
+#resetPwd{
+border:none;
+border-radius:3px;
+}
+
+#resetPwd:hover{
+	cursor:pointer;
+	
+}
 </style>
 
 <div class="container" style="    padding-bottom: 0px;"> 
@@ -72,7 +82,7 @@ input {
 					placeholder="이메일" required><br>
 				<p class="notice">가입시 입력하신 이메일로 임시 비밀번호를 발송합니다.</p>
 
-				<button id="resetPwd">비밀번호 재설정하기</button>
+				<button id="resetPwd" >비밀번호 재설정하기</button>
 			
 			
 			<script type="text/javascript">
@@ -84,6 +94,7 @@ input {
 					alert('항목들을 빠짐없이 채워주세요.')
 				} else {
 					
+
 				/* 	console.log(userId);
 					console.log(email); */
 					var data = {userId:userId, email:email};
@@ -92,12 +103,15 @@ input {
 				 		 
   		  				method:"post",
   		  				url:"resetPwd.me", 
+
   		  				data: JSON.stringify(data),  
   		  				contentType:"application/json",
   		  				success:function(data){
   		  					/* alert('넘어감.'); */
   		  					
+
   		  					alert(data.msg);
+
   		  					
   		  				},
   		  				error:function(){
