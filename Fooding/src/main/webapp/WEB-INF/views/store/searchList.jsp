@@ -290,7 +290,11 @@ body{
 			</c:choose>
              <!-- coupon-price -->
              <div class="write-div">
-             <button class="write-btn" id="reserve-btn">예약하기</button>
+             <c:url var="goBook" value="/goBookingPage.st">
+        			 	<c:param name="storeId" value="${s.sid}"></c:param>
+        	 </c:url>
+					
+             <button class="write-btn" id="reserve-btn"  onclick="location.href='${goBook}'">예약하기</button>
              </div>
              <div class="write-div">
              <button class="write-btn">리뷰쓰기</button>
@@ -356,7 +360,8 @@ body{
 		
 				 		
 		<div class="btns">		
-		<!-- <button class="buttons" >예약하기</button> -->
+		<!-- <button class="buttons" >
+</button> -->
 		<button class="buttons" >리뷰쓰기</button>
 		</div>
 	</div> --%>

@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletRequest; 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,7 +45,7 @@ public class ReviewController {
 		   HttpServletRequest request ,HttpSession session) {
 		
 		int sid = Integer.parseInt(request.getParameter("storeId"));
-		
+		 
 		Member m = (Member) session.getAttribute("loginUser");
 		
 		System.out.println("controller Member : m " + m);

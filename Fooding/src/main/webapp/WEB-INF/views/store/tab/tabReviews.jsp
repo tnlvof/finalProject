@@ -37,7 +37,7 @@ function renewReview(){
 					};
 					
 				$(".rank").last().append("<p>"+ data.rList[i].rContent +"</p></div></div>");
-				$(".showReview").last().append("<div><img src='${contextPath}/resources/reviewFiles/"+data.rList[i].mainPhoto+"' class='reviewImg'></div>");
+				$(".showReview").last().append("<div><img src='/fooding/resources/reviewFiles/"+data.rList[i].mainPhoto+"' class='reviewImg'></div>");
 			}
 		},
 		error:function(msg){
