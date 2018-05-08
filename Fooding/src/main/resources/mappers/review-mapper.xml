@@ -29,8 +29,9 @@
         <result property="service" column="SERVICE" />
         <result property="price" column="PRICE" />
         <result property="sName" column="SNAME" />
-        <result property="photo" column="MAIN_PHOTO" />
+        <result property="mainPhoto" column="MAIN_PHOTO"/>
         <result property="writer" column="USER_NAME"/>
+        <result property="storePhoto" column="storePhoto"/>
     </resultMap>
     
     <select id="selectReviewCount" parameterType="_int" resultType="_int">
@@ -83,7 +84,6 @@
     	WHERE R.STATUS = 'Y'
     	AND R.SID = #{sid}
     	ORDER BY R.ENROLL_DATE DESC
-    	
     </select> 
     
 </mapper>
