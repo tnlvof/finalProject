@@ -34,6 +34,10 @@
 		<result property="modifyDateJson" column="MODIFY_DATE"/>                            
 		<result property="bno" column="BNO"/>                                
 		<result property="bCount" column="B_COUNT"/>
+				<result property="userName" column="USER_NAME"/>
+						<result property="enrollDate" column="ENROLL_DATE"/>                                       
+				
+		
 		
 	</resultMap> 
 	                                                                                    
@@ -168,6 +172,53 @@
 	SET STATUS = 'N'
 	WHERE BID=#{bid}
 	</update>
+	
+	
+	    <select id="listAll" parameterType="Board" resultMap="boardResultSet2">
+   SELECT *
+	FROM BOARD B 
+	JOIN MEMBER M ON(M.MID = B.MID)
+	WHERE B.STATUS = 'Y'
+	ORDER BY B.ENROLL_DATE DESC
+    </select>
+	
+	<!-- 1-12게시글 작성후 목록 ㄱ -->
+	<insert id="insert">
+		INSERT INTO BOARD VALUES(SEQ_BID.NEXTVAL,'2', 1,#{bTitle},#{bContent},SYSDATE,'Y','N',NULL,0,SYSDATE,SEQ_BNO2.NEXTVAL,0)
+	</insert>
+	
+	<!-- 공지글 상세보기 조회 -->
+	<select id="view" parameterType="Board" resultMap="boardResultSet2">
+	SELECT * 
+	FROM BOARD B
+	JOIN MEMBER M ON(M.MID = B.MID)
+	WHERE B.BID = #{bid} AND B.BCODE='2' AND B.STATUS='Y'
+	
+	</select>
+
+	<!-- 공지글 조회수증가처리 -->
+	<update id="increaseViewCnt" parameterType="Integer">
+		UPDATE BOARD SET B_COUNT = B_COUNT +1
+		WHERE BID = #{bid}
+	</update>
+	
+	    <!-- 05. 공지 수정처리 -->
+    <update id="updateArticle" >
+        UPDATE BOARD 
+        SET BTITLE = #{bTitle},
+            BCONTENT = #{bContent}
+        WHERE BID = #{bid}
+    </update>
+    
+    
+    <!-- 06. 공지 삭제처리 -->
+    <delete id="deleteArticle">
+        DELETE BOARD 
+        WHERE BID = #{bid}
+
+    </delete>
+    
+    
 	
 	
 </mapper>

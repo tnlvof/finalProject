@@ -1,9 +1,14 @@
 package com.kh.fooding.store.model.service;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import com.kh.fooding.common.PageInfo;
+
 import com.kh.fooding.member.model.vo.Member;
+
+import com.kh.fooding.reservation.model.vo.Reservation;
+
 import com.kh.fooding.store.model.vo.Coupon;
 import com.kh.fooding.store.model.vo.Sam;
 import com.kh.fooding.store.model.vo.Store;
@@ -37,9 +42,11 @@ public interface StoreService {
 	//store 테이블에서 메뉴별로 가져오기
 	ArrayList<StoreSam> selectThemeListMenuStore(String query);
 
-
-
 	Store selectOneStore(int sid);
+
+	ArrayList<Store> searchStList(Map<String, String> data, String searchCon);
+
+
 
 	int getSid(int mid);
 

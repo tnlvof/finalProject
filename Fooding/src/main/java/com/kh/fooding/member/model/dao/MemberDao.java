@@ -31,18 +31,20 @@ public interface MemberDao {
 
 	int insertStore(Member m, SqlSessionTemplate sqlSession);
 	
-	int selectRcount(int mid);
-
-	int selectReviewCount(int mid);
-
-	ArrayList<Reservation> selectReservList(int mid);
-
-	ArrayList<Review> selectReviewList(int mid, PageInfo pi);
+	int selectRcount(int mid, String mCode);
+ 
+	int selectReviewCount(int mid, String mCode);
+ 
+	ArrayList<Reservation> selectReservList(int mid, String mCode);
+	
+	ArrayList<Review> selectReviewList(int mid, String mCode, PageInfo pi);
 
 	int profileUpload(Member m, SqlSessionTemplate sqlSession);
 
-	int selectSrcount(int mid);
+	int resetPwd(String password, Member checkUser);
 
-	int selectSreviewCount(int mid);
+	Member checkUser(Map<String, String> data);
+
+	Member findId(Map<String, String> data);
 
 }

@@ -3,6 +3,7 @@ package com.kh.fooding.store.controller;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -10,14 +11,17 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.fooding.common.PageInfo;
 import com.kh.fooding.member.model.vo.Member;
+import com.kh.fooding.reservation.model.vo.Reservation;
 import com.kh.fooding.store.model.service.StoreService;
 import com.kh.fooding.store.model.vo.Coupon;
 import com.kh.fooding.store.model.vo.Sam;
@@ -35,9 +39,11 @@ public class StoreController {
 			@RequestParam(name="Photo", required=false)MultipartFile photo,
 			HttpServletRequest request ,HttpSession session) {
 		
-		String am = request.getParameter("bookTimeAm");
-		String pm = request.getParameter("bookTimePm");
-		String sHours = am +" "+ pm;
+		String am = request.getParameter("bookTimeAm").substring(0, 8);
+		String pm = request.getParameter("bookTimePm").substring(0, 8);
+		
+		
+		String sHours = am +"/"+ pm;
 		
 		s.setsHours(sHours);
 		
@@ -192,6 +198,23 @@ public class StoreController {
 		mv.addObject("storeList", storeList);
 		
 		mv.setViewName("jsonView");
+		
+		return mv;
+	}
+	
+	//가게 조회 - admin 검색
+	@RequestMapping(value="searchStoresAdm.st")
+	@ResponseBody
+	public ModelAndView searchStores(ModelAndView mv, @RequestBody Map<String, String> data  ) {
+		
+		String searchCon = data.get("key");
+		
+		ArrayList<Store> searchStList = ss.searchStList(data, searchCon);
+		System.out.println("이ㅏ이ㅏㅇ : " + searchStList);
+		
+		mv.addObject("storeList", searchStList);
+		mv.setViewName("jsonView");
+		
 		
 		return mv;
 	}
@@ -415,7 +438,31 @@ public class StoreController {
 			return mv;
 		}
 		
-	
+	//예약페이지 이동
+		@RequestMapping(value="goBookingPage.st")
+		public ModelAndView goBook(HttpSession session, ModelAndView mv, HttpServletRequest request) {
+		
+			int sid = Integer.parseInt(request.getParameter("storeId"));
+			
+			Store sInfo = ss.selectOneStore(sid);
+			String shours = sInfo.getsHours();
+			String[] sHoursList  = shours.split("/");
+			//String am = sHoursList[0];
+/*			String pm = sHoursList[1];*/
+			System.out.println(sInfo);
+			System.out.println(sHoursList);
+			
+			if(session.getAttribute("loginUser") != null) {
+				
+				mv.addObject("sInfo", sInfo);		
+				mv.setViewName("store/bookingPage");
+				
+			} else {
+				mv.setViewName("member/loginPage");
+			}
+			
+			return mv;
+		}
 	
 	
 }

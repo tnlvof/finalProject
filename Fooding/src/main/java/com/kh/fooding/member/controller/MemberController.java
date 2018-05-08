@@ -3,14 +3,16 @@ package com.kh.fooding.member.controller;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.Map;
 
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,15 +25,14 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kh.fooding.common.PageInfo;
 import com.kh.fooding.member.model.exception.LoginException;
 import com.kh.fooding.member.model.exception.selectMemberException;
 import com.kh.fooding.member.model.service.MemberService;
 import com.kh.fooding.member.model.vo.Member;
-import com.kh.fooding.sample.model.vo.Sample;
-import com.kh.fooding.store.model.vo.Store;
 import com.kh.fooding.reservation.model.vo.Reservation;
 import com.kh.fooding.review.model.vo.Review;
-import com.kh.fooding.common.PageInfo;
+import com.kh.fooding.store.model.vo.Store;
 
 @Controller
 public class MemberController {
@@ -39,6 +40,9 @@ public class MemberController {
 	private MemberService ms;
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
+	@Autowired
+	  private JavaMailSender mailSender;
+	
 
 	// 로그인
 	@RequestMapping(value = "login.me", method = RequestMethod.POST)
@@ -82,6 +86,112 @@ public class MemberController {
 	 * mv; }
 	 */
 
+	//비밀번호 재설정 페이지 이동	
+	@RequestMapping(value="goResetPwd.me")
+	public String goResetPwd() {
+		return "member/findPwd";
+	}
+	//아이디 찾기 페이지 이동
+	@RequestMapping(value="goFindId.me")
+	public String goFindId() {
+		return "member/findId";
+	}
+	@RequestMapping(value="findId.me")
+	@ResponseBody 
+	public ModelAndView findId(ModelAndView mv, @RequestBody Map<String, String> data) {
+		
+		Member findUser = ms.findId(data);
+		String msg = ""; 
+		
+		if(findUser != null && data.get("email").equals(findUser.getEmail())) {
+			msg = "회원님의 아이디는 "+findUser.getUserId()+"입니다.";
+		}else {
+			msg ="일치하는 회원이 없습니다.";
+		}
+		mv.addObject("msg", msg);
+		mv.setViewName("jsonView");
+		
+		return mv;
+	}
+	
+	@RequestMapping(value="goFindUserId.me")
+	public String goFindUserId() {
+		return "member/findId";
+	}
+	
+	@RequestMapping(value="resetPwd.me")
+	@ResponseBody
+	public ModelAndView resetPwd(ModelAndView mv, @RequestBody Map<String, String> data ) {
+		
+		
+		//이메일 확인
+		Member checkUser = ms.checkUser(data);
+		
+		String msg ="";
+		
+		
+		//이메일 확인해서 맞으면 새로 지정해서 메일 보내기
+		if(checkUser != null && data.get("email").equals(checkUser.getEmail())) {
+			        
+		    String tomail  = checkUser.getEmail();     // 받는 사람 이메일
+		    String title   = "변경된 패스워드입니다.";      // 제목
+		    StringBuffer buffer=new StringBuffer();
+			for(int i=0;i<=4;i++){
+				int num=(int)(Math.random()*9+1);
+				buffer.append(num);
+			}
+			String password = buffer.toString();
+		    
+		    String content = "변경된 패스워드는 "+password+"입니다.";    // 내용
+		   
+		    try {
+		      MimeMessage message = mailSender.createMimeMessage();
+		      MimeMessageHelper messageHelper 
+		                        = new MimeMessageHelper(message, true, "UTF-8");
+		 
+		      messageHelper.setFrom("ctradm119@gmail.com");  // 보내는사람 생략하거나 하면 정상작동을 안함
+		      messageHelper.setTo(tomail);     // 받는사람 이메일
+		      messageHelper.setSubject(title); // 메일제목은 생략이 가능하다
+		      messageHelper.setText(content);  // 메일 내용
+		     
+		      mailSender.send(message);
+		      
+		      //변경된 비밀번호로 수정하기 
+		      password = passwordEncoder.encode(password);
+		      
+		      int result = ms.resetPwd(password, checkUser);
+
+		      
+		      if(result>0) {
+		    	  msg = "비밀번호가 재설정되었습니다. 메일을 확인하고 다시 비밀번호를 바꿔주세요.";
+		      }
+		      
+
+		    } catch(Exception e){
+		      System.out.println(e);
+		    }
+		
+		} else {
+			//아니면 없다고 하기
+
+
+			msg = "해당하는 회원 정보가 없습니다.";
+
+		}
+
+		mv.addObject("msg", msg);
+		mv.setViewName("jsonView");
+		
+
+		
+		return mv;
+	}
+	
+	
+	
+	
+	
+	
 	@RequestMapping(value = "goMemberJoin.me")
 	public String goMemberJoin() {
 
@@ -240,17 +350,17 @@ public class MemberController {
  	public ModelAndView goMyPage(HttpSession session, ModelAndView mv, Store s) {
  		Member m = (Member) session.getAttribute("loginUser");
  		
- 		int rcount = ms.selectRcount(m.getMid());
- 		int reviewCount = ms.selectReviewCount(m.getMid());
- 		int srcount = ms.selectSrcount(m.getMid());
- 		int sreviewCount = ms.selectSreviewCount(m.getMid());
+ 		int rcount = ms.selectRcount(m.getMid(), m.getmCode());
+ 		int reviewCount = ms.selectReviewCount(m.getMid(), m.getmCode());
  		
+        s.setMid(m.getMid());
+        
+        int mid = s.getMid();
+        
  		session.setAttribute("rcount", rcount);
  		session.setAttribute("reviewCount", reviewCount);
- 		session.setAttribute("srcount", srcount);
- 		session.setAttribute("sreviewCount", sreviewCount);
  		
- 		ArrayList<Reservation> reservList = ms.selectReservList(m.getMid());
+ 		ArrayList<Reservation> reservList = ms.selectReservList(m.getMid(), m.getmCode());
  		
  		System.out.println("Controller reservList : " + reservList);
  		
@@ -283,7 +393,7 @@ public class MemberController {
 		limit = 3;
 
 		//전체 목록 갯수를 리턴받음
-		int listCount = ms.selectReviewCount(m.getMid());
+		int listCount = ms.selectReviewCount(m.getMid(), m.getmCode());
 
 		System.out.println("listCount : " + listCount);
 
@@ -313,7 +423,7 @@ public class MemberController {
 		System.out.println("startPage : " + startPage);
 		System.out.println("endPage : " + endPage);
 		
-		ArrayList<Review> reviewList = ms.selectReviewList(m.getMid(), pi);
+		ArrayList<Review> reviewList = ms.selectReviewList(m.getMid(), m.getmCode(), pi);
 		
 		System.out.println("Controller reviewList : " + reviewList);
 
@@ -349,7 +459,7 @@ public class MemberController {
 	
 	@RequestMapping(value = "goStorePage.me")
 	public String goStorePage() {
-		
+
 		return "myPage/storePage";
 	}
 	
@@ -359,71 +469,35 @@ public class MemberController {
 		return "myPage/goMemberUpdate";
 	}
 	
-	/*@RequestMapping(value = "/ajaxUpload")
-    public String ajaxUpload() {
-        return "ajaxUpload";
-    }
-     
-    @RequestMapping(value = "profileUpload.me")
-    public String fileUp(MultipartHttpServletRequest multi) {
-         
-        // 저장 경로 설정
-        String root = multi.getSession().getServletContext().getRealPath("resources");
-        String path = root + "\\uploadFiles";
-         
-        String newFileName = ""; // 업로드 되는 파일명
-         
-        File dir = new File(path);
-        if(!dir.isDirectory()){
-            dir.mkdir();
-        }
-         
-        Iterator<String> files = multi.getFileNames();
-        while(files.hasNext()){
-            String uploadFile = files.next();
-                         
-            MultipartFile mFile = multi.getFile(uploadFile);
-            String fileName = mFile.getOriginalFilename();
-            System.out.println("실제 파일 이름 : " +fileName);
-            newFileName = System.currentTimeMillis()+"."
-                    +fileName.substring(fileName.lastIndexOf(".")+1);
-             
-            try {
-                mFile.transferTo(new File(path + "\\" + fileName));
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-         
-        return "ajaxUpload";
-    }*/
-	@ResponseBody
-	@RequestMapping(value = "profileUpload.me")
-    public ModelAndView profileUpload(HttpSession session, MultipartHttpServletRequest request, ModelAndView mv) {
-		Member m = (Member) session.getAttribute("loginUser");
-		
-		MultipartFile mf = request.getFile("PPhoto");
-		String path = request.getRealPath("resources/images/member");
-		String fileName = mf.getOriginalFilename();
-		File uploadFile = new File(path + "\\" + fileName);
-		
-		try {
-			mf.transferTo(uploadFile);
-		} catch (IllegalStateException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-		m.setProfile(fileName);
-		m.getMid();
-		
-		System.out.println(fileName);
-		
-		ms.profileUpload(m);
-		
-		mv.setViewName("redirect:/goMyPage.me");
-		return mv;		
-	}
+	    @ResponseBody
+	    @RequestMapping(value = "profileUpload.me")
+	    public ModelAndView profileUpload(HttpSession session, MultipartHttpServletRequest request, ModelAndView mv) {
+	      Member m = (Member) session.getAttribute("loginUser");
+	      
+	      MultipartFile mf = request.getFile("PPhoto");
+	      String path = request.getRealPath("resources/images/member");
+	      String fileName = mf.getOriginalFilename();
+	      File uploadFile = new File(path + "\\" + fileName);
+	      
+	      try {
+	         mf.transferTo(uploadFile);
+	      } catch (IllegalStateException e) {
+	         e.printStackTrace();
+	      } catch (IOException e) {
+	         e.printStackTrace();
+	      }
+	      
+	      m.setProfile(fileName);
+	      m.getMid();
+	      
+	      System.out.println(fileName);
+	      System.out.println("controller m : " + m);
+	      
+	      ms.profileUpload(m);
+	      
+	      mv.addObject("fileName",fileName);
+	      mv.setViewName("jsonView");
+	      return mv;      
+	   }
 
 }

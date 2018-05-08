@@ -119,17 +119,32 @@ public class MemberDaoImpl implements MemberDao{
 	}
 
 	@Override
-	public int selectRcount(int mid) {
-		int rcount = sqlSession.selectOne("Reservation.selectRcount", mid);
+	public int selectRcount(int mid, String mCode) {
+        String countQ = "";
+		
+		switch(mCode) {
+			case "일반": countQ = "Reservation.selectRcount";break;
+			case "업체": countQ = "Reservation.selectSrcount";break;
+		}
+		
+		int rcount = sqlSession.selectOne(countQ, mid);
 		
 		System.out.println("mid : " + mid);
 		System.out.println("rcount : " + rcount);
+		
 		return rcount;
 	}
 
 	@Override
-	public int selectReviewCount(int mid) {
-		int reviewCount = sqlSession.selectOne("Review.selectReviewCount", mid);
+	public int selectReviewCount(int mid, String mCode) {
+        String countQ = "";
+		
+		switch(mCode) {
+			case "일반": countQ = "Review.selectReviewCount";break;
+			case "업체": countQ = "Review.selectSreviewCount";break;
+		}
+		
+		int reviewCount = sqlSession.selectOne(countQ, mid);
 		
 		System.out.println("reviewCount : " + reviewCount);
 		
@@ -137,20 +152,34 @@ public class MemberDaoImpl implements MemberDao{
 	}
 
 	@Override
-	public ArrayList<Reservation> selectReservList(int mid) {
-		ArrayList<Reservation> reservList = (ArrayList)sqlSession.selectList("Reservation.selectReservList", mid);
+	public ArrayList<Reservation> selectReservList(int mid, String mCode) {
+        String reservQ = "";
 		
-		System.out.println("reservList : " + reservList);
+		switch(mCode) {
+			case "일반": reservQ = "Reservation.selectReservList";break;
+			case "업체": reservQ = "Reservation.selectStoreReservList";break;
+		}
 		
-		return reservList;
+		
+		ArrayList<Reservation> selectReservList = (ArrayList) sqlSession.selectList(reservQ, mid);
+		
+		return selectReservList;
+		
 	}
 
 	@Override
-	public ArrayList<Review> selectReviewList(int mid, PageInfo pi) {
+	public ArrayList<Review> selectReviewList(int mid, String mCode, PageInfo pi) {
 		int offset = (pi.getCurrentPage() -1) * pi.getLimit();
 		RowBounds rowBounds = new RowBounds(offset, pi.getLimit());
 		
-        ArrayList<Review> reviewList = (ArrayList)sqlSession.selectList("Review.selectReviewList", mid, rowBounds);
+        String reviewQ = "";
+		
+		switch(mCode) {
+			case "일반": reviewQ = "Review.selectReviewList";break;
+			case "업체": reviewQ = "Review.selectStoreReviewList";break;
+		}
+		
+        ArrayList<Review> reviewList = (ArrayList)sqlSession.selectList(reviewQ, mid, rowBounds);
 		
 		System.out.println("reviewList : " + reviewList);
 		
@@ -165,18 +194,29 @@ public class MemberDaoImpl implements MemberDao{
 		
 		return result;
 	}
-
+	// 패스워드 리셋하기 
 	@Override
-	public int selectSrcount(int mid) {
-		int srcount = sqlSession.selectOne("Reservation.selectSrcount", mid);
-		return srcount;
+	public int resetPwd(String password, Member checkUser) {
+		
+		checkUser.setUserPwd(password);
+	
+		int result = sqlSession.update("Member.resetPwd", checkUser);
+		
+		return result;
+	}
+ 
+	@Override
+	public Member checkUser(Map<String, String> data) {
+		Member checkUser = sqlSession.selectOne("Member.checkUser", data);
+		return checkUser;
 	}
 
 	@Override
-	public int selectSreviewCount(int mid) {
-		int sreviewcount = sqlSession.selectOne("Review.selectSreviewCount", mid);
-		return sreviewcount;
+	public Member findId(Map<String, String> data) {
+		Member m = new Member();
+		m.setEmail(data.get("email"));
+		Member findId = sqlSession.selectOne("Member.findId", m);
+		return findId;
 	}
-
 	
 }

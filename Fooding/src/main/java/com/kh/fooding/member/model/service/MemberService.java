@@ -29,20 +29,22 @@ public interface MemberService  {
 
 	int idCheck(String checkId);
 
-	int selectRcount(int mid);
+	int selectRcount(int mid, String mCode);
 
-	int selectReviewCount(int mid);
-
-	ArrayList<Reservation> selectReservList(int mid);
+	int selectReviewCount(int mid, String mCode);
+ 
+	ArrayList<Reservation> selectReservList(int mid, String mCode);
 	
-	void insertStore(Member m);
+	void insertStore(Member m); 
 
-	ArrayList<Review> selectReviewList(int mid, PageInfo pi);
+	ArrayList<Review> selectReviewList(int mid, String mCode, PageInfo pi);
 
 	void profileUpload(Member m);
 
-	int selectSrcount(int mid);
+	int resetPwd(String password, Member checkUser);
 
-	int selectSreviewCount(int mid);
+	Member checkUser(Map<String, String> data);
+
+	Member findId(Map<String, String> data);
 
 }

@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="/fooding/resources/css/reset.css">
 <link rel="stylesheet" href="/fooding/resources/css/common.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> 
 </head>
 
 <body>
@@ -36,7 +36,16 @@
 			<c:if test="${ !empty loginUser }">
 				<c:if test="${ loginUser.mCode == '일반' }">
 	            <div class="dropdown" style="display: block;">
-	               <div class="user-profile" onclick="location.href='goMyPage.me'"><img src="/fooding/resources/images/common/no-image.png"></div>
+	               <div class="user-profile" onclick="location.href='goMyPage.me'">
+								<c:choose>
+									<c:when test="${ empty loginUser.profile }">
+										<img src="/fooding/resources/images/common/no-image.png">
+									</c:when>
+									<c:otherwise>
+										<img src="/fooding/resources/images/member/${ loginUser.profile }">
+									</c:otherwise>
+								</c:choose>
+							</div>
 	               <ul class="dropdown-content">
 	                  <li onclick="location.href='goMyPage.me'">예약</li> 
 	                  <li onclick="location.href='goMyPageReview.me'">리뷰</li>
@@ -50,7 +59,17 @@
 	            
 	            <c:if test="${ loginUser.mCode == '업체' }">
 	            <div class="dropdown" style="display: block;">
-	               <div class="user-profile" onclick="location.href='goStorePage.me'"><img src="/fooding/resources/images/common/no-image.png"></div>
+	               <div class="user-profile" onclick="location.href='goMyPage.me'">
+								<c:choose>
+									<c:when test="${ empty loginUser.profile }">
+										<img src="/fooding/resources/images/common/no-image.png">
+									</c:when>
+									<c:otherwise>
+										<img
+											src="/fooding/resources/images/member/${ loginUser.profile }">
+									</c:otherwise>
+								</c:choose>
+							</div>
 	               <ul class="dropdown-content">
 	                  <li>가게정보</li>
 	                  <li>예약</li>
@@ -99,7 +118,7 @@
       	onclick="document.getElementById('id01').style.display='none'">
 		<div class="body">
 			<div class="login active">
-				<p id="title">로그인</p>
+				<p id="title">로그인</p> 
 
 				<form id="loginForm" action="login.me" method="post">
 					<input type="text" id="userId" name="userId" placeholder="아이디" required class="input"> 
@@ -108,9 +127,14 @@
 					<button type="submit" id="loginCheck" class="button loginBtn">로그인</button>
 					
 				</form>
+					
 				<p class="forgot">
-					비밀번호가 기억나지 않으세요? <a>재설정하기</a>
+					아이디가 기억나지 않으세요? <a href="goFindId.me">아이디 찾기</a>
 				</p>
+				<p class="forgot">
+					비밀번호가 기억나지 않으세요? <a href="goResetPwd.me">재설정하기</a>
+				</p>
+				
 
 				<hr class="hr">
 				<button id="joinBtn" type="button" class="change" onclick="location.href='goMemberJoin.me'">일반 회원가입</button>
@@ -140,7 +164,11 @@
 					<button type="submit" id="loginCheck" class="button loginBtn">로그인</button>
 				</form>
 				<p class="forgot">
-					비밀번호가 기억나지 않으세요? <a>재설정하기</a>
+
+					아이디가 기억나지 않으세요? <a href="goFindId.me">아이디 찾기</a>
+			
+				<p class="forgot">
+					비밀번호가 기억나지 않으세요? <a href="goResetPwd.me">재설정하기</a>
 				</p>
 
 				<hr class="hr">

@@ -6,7 +6,7 @@
 <jsp:useBean id="nowDate" class="java.util.Date" />
 <div id="sidebar_wrap" class="mypage">
 				<div id="reservation_calendar" class="sidebar">
-				<div class="title">예약 캘린더</div>
+				<div class="title">캘린더</div>
 				<div class="calendar hasDatepicker" id="dp1523004537154">
 					<div class="calendar-wrapper">
 						<button id="btnPrev" type="button">< 이전</button>
@@ -174,17 +174,17 @@
 						}
 					</script>
 				</div>
-				<div class="desc">
+				<%-- <div class="desc">
 						<span class="recent"></span>
 						<span class="text margin">방문 예정</span>
 						<span class="past"></span>
 						<span class="text">지나간 예약</span>
 						<span class="todatM"></span>
 						<span class="text">오늘 날짜</span>
-						<%-- <fmt:formatDate value="${nowDate}" pattern="yyyy-MM-dd" />
+						<fmt:formatDate value="${nowDate}" pattern="yyyy-MM-dd" />
 						<c:forEach var="list" items="${ reservList }">
 						<span>${ list.rDate }</span>
-						</c:forEach> --%>
-					</div>
+						</c:forEach>
+					</div> --%>
 				</div>
 			</div>

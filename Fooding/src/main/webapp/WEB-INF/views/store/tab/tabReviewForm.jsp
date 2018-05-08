@@ -3,7 +3,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
 <script>
 //파일 업로드
 $(document).ready(function(){
@@ -58,7 +57,7 @@ $(document).ready(function(){
 <c:if test="${ !empty loginUser }">
 <h4>리뷰 작성하기</h4>
 
-<form action="insertReview.rv" method="post" enctype="multipart/form-data">
+<form id="reviewForm"method="post" enctype="multipart/form-data">
 	<ul>
 		<li>
 			<label>별점</label>
@@ -120,6 +119,23 @@ $(document).ready(function(){
 	</ul>
 	<input type="hidden" name="storeId" value="${ store.sid }">
 	
-	<button type="submit">리뷰 올리기</button>
+	<button onclick="insertReview()">리뷰 올리기</button>
 </form>
+	<script>
+		function insertReview(){
+			/* var formData = $("#reviewForm").serialize(); */
+			var form = $('#reviewForm')[0];
+	        var formData = new FormData(form);
+			$.ajax({
+				type:'post',
+				url:'insertReview.re',
+				data:formData,
+				dataType:'json',
+				contentType: false,
+				processData: false,
+				success:function(data){
+				}
+			});		
+		}
+	</script>
 </c:if>

@@ -77,7 +77,7 @@ a {
 
    <div id="sign">
 		<div class="body">
-			<div class="login active">
+			<div class="login active" style="    background-color: f9f9f9;">
 				<p id="title">로그인</p>
 				<br><br>
 				<p> 로그인이 필요한 서비스입니다. </p>

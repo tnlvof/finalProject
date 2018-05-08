@@ -2,6 +2,16 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <meta charset="UTF-8">
+<style>
+.image {
+	width: 100%;
+	height: 100%;
+	background-size: cover;
+	display: block;
+	background-position: center center;
+	float: left;
+}
+</style>
 
 <!-- header -->
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
@@ -45,9 +55,9 @@
 						<div class="body review list review_wrap">
 							<div class="review">
 								<a class="place" href=""> <span class="thumbnail"
-									style="display: block; background-image: url(${ list.mainPhoto });"></span>
+									style="display: block; background-image: url('/fooding/resources/uploadFiles/${ list.storePhoto }');"></span>
 									<p class="name">${ list.sName }</p>
-									<p class="info">강남역 · ${ list.sCode }</p>
+									<p class="info"><!-- 강남역 ·  -->${ list.sCode }</p>
 								</a>
 								<div class="body">
 									<div class="time  loaded" style="display: block;">${ list.enrollDate }</div>
@@ -61,13 +71,13 @@
 									</c:forEach>
 									</c:if>
 											<c:if test="${ list.star eq 1 }">
-											<span> 1점 / 실망이에요. 두 번 다시오고 싶지 않아요.</span>
+											<span> 1점 / 실망이예요. 집에서 먹는게 나을 뻔 했어요.</span>
 											</c:if>
 											<c:if test="${ list.star eq 2 }">
-											<span> 2점 / 평균 이하! 맛, 분위기, 서비스...전체적으로 다 별로예요!</span>
+											<span> 2점 / 평균 이하! 이 정도 레스토랑은 어디에나 있죠.</span>
 											</c:if>
 											<c:if test="${ list.star eq 3 }">
-											<span> 3점 / 보통이에요. 한 번 쯤은 다시 올 것 같아요.</span>
+											<span> 3점 / 보통이에요. 이 정도면 괜찮네요.</span>
 											</c:if>
 											<c:if test="${ list.star eq 4 }">
 											<span> 4점/ 인상적이네요. 꼭 추천하고 싶어요.</span>
@@ -77,13 +87,20 @@
 											</c:if>
 										</span>
 									</div>
-									<div class="text" data-truncated="">${ list.rContent }</div>
+										<div class="review-image"
+											style="width: 250px; height: 250px; padding: 17px 0 17px 0;">
+											<span class="image border_radius hard"
+												style="background-image: url('/fooding/resources/reviewFiles/${ list.mainPhoto }');"></span>
+										</div>
+										<div class="text">${ list.rContent }</div>
 									<div class="action">
 										<div class="article">
 								            <input type="hidden" value="${ list.rid }" class="reviewId">
 											<!-- <button class="edit" tabindex="-1">수정하기</button> -->
+											<c:if test="${ loginUser.mCode == '일반' }">
 											<button class="delete" tabindex="-1"
 												onclick="document.getElementById('reviewDelete').style.display='block'">삭제</button>
+											</c:if>
 											<input type="hidden" value="" class="reid">
 											
 										</div>

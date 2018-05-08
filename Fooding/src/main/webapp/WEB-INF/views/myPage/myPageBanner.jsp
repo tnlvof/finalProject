@@ -50,6 +50,8 @@
 .filebox .upload-display img {
 	display: block;
 	height: 100%;
+	width: 100%;
+	background-position: center center;
 }
 
 .over {
@@ -80,7 +82,7 @@
 	color: #fff;
 	width: 162px;
 	margin-left: 10px;
-	padding-top: 260px;
+	margin-top: 260px;
 }
 </style>
 <c:set var="contextPath" value="${ pageContext.servletContext.contextPath }" scope="application" />
@@ -99,11 +101,6 @@
 		<div class="inner_wrap">
 			<div class="inner">
 				<div id="change_user_image" class="user_image i_wrap">
-					<!-- <div class="image border_radius circle profile_image" id="btn-upload">
-						<button type="button" id="btn-upload"></button>
-					</div>
-					<input type="file" id="file" name="file" onchange="changeValue(this)" />
-					<div class="border_radius circle"></div> -->
 					<div class="photo filebox bs3-primary preview-image">
 						<div class="upload-display">
 							<div class="upload-thumb-wrap">
@@ -119,12 +116,12 @@
 						</div>
 
 						<!-- 현재 프로필인 사진 경로 -->
-						<form id="fileForm" action="profileUpload.me" method="post" enctype="multipart/form-data">
+						<form id="fileForm" method="post" enctype="multipart/form-data">
 							<input class="upload-name" value="파일선택" disabled="disabled">
-							<label for="input_file" class="img_text">&nbsp;</label> 
-							<input
+							<label for="input_file" class="img_text">&nbsp;</label> <input
 								type="file" id="input_file" class="upload-hidden" name="PPhoto">
-								<button class="PSBtn" onclick="profileSubmit();">변경</button>
+							<button class="PSBtn" id="profileSubmit">변경</button>
+
 						</form>
 					</div>
 					<!-- photo -->
@@ -137,7 +134,8 @@
 				<!-- name -->
 				<div class="intro">맛있는 발견의 즐거움 - Fooding</div>
 				<div class="info">
-					<a>예약 <span>${ rcount }</span></a> &nbsp; <a>리뷰 <span>${ reviewCount }</span></a>
+					<a>예약 <span>${ rcount }</span></a> &nbsp;
+					<a>리뷰 <span>${ reviewCount }</span></a>
 				</div>
 				<!-- info -->
 			</div>
@@ -213,34 +211,33 @@
 	    });
 	});
 	
-	$(".profileSubmit").click(function(){
-	        
-			var formData = new FormData($("#fileForm")[0]);
-	        $.ajax({
-	            type : 'post',
-	            url : 'profileUpload.me',
-	            data : formData,
-	            dataType: "json",
-	            processData : false,
-	            contentType : false,
-	            success : function(html) {
-	                alert("파일 업로드하였습니다.");
-	            },
-	            error : function(error) {
-	                alert("파일 업로드에 실패하였습니다.");
-	                /* console.log(error);
-	                console.log(error.status); */
-	            }
-	        });
-	}); 
 
-	$(function(){
-		$('.img_text').mouseover(function(){
+	
+	$("#profileSubmit").click(function() {
+
+		var formData = new FormData($("#fileForm")[0]);
+		$.ajax({
+			type : 'post',
+			url : 'profileUpload.me',
+			data : formData,
+			dataType : "json",
+			contentType : false,
+			processData : false,
+			success : function(html) {
+				alert("프로필 사진이 변경되었습니다.");
+			},
+			error : function(error) {
+				alert("프로필 사진 변경에 실패하였습니다.");
+			}
+		});
+	});
+
+	$(function() {
+		$('.img_text').mouseover(function() {
 			$(this).addClass('over');
 		});
-		$('.img_text').mouseout(function(){
+		$('.img_text').mouseout(function() {
 			$(this).removeClass('over');
 		});
 	});
-	
 </script>
