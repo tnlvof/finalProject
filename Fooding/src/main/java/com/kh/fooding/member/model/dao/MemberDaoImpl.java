@@ -102,7 +102,6 @@ public class MemberDaoImpl implements MemberDao{
 			case "연락처":statement = "Member.searchPhone";break;
 		}
 		
-		
 		ArrayList<Member> searchMember = (ArrayList) sqlSession.selectList(statement, data);
 		
 		return searchMember;

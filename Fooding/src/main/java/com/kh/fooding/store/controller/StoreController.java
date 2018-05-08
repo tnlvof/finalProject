@@ -266,8 +266,6 @@ public class StoreController {
 				after = "resources\\uploadFiles\\" + photoLocation;				
 				themeList.get(i).setMainPhoto(after);				
 			}
-		
-			
 		}
 		
 		// Sam Table에서 가져오는 리스트 - 카테고리별

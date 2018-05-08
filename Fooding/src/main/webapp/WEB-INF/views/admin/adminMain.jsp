@@ -83,9 +83,6 @@
   		  				data: JSON.stringify(data),  
   		  				contentType:"application/json",
   		  				success:function(data){
-  		  					/* alert('넘어감.'); */
-  		  					
-  		  					console.log(data);
   		  					
   		  				 $("#memberHeader").nextAll("tr").remove();
   		     			 
@@ -235,10 +232,8 @@ $(function(){
 				alert('검색어를 입력해주세요.');
 			} else {
 				
-			// 예약자명, 업체명, 날짜 검색
 			var search ;
 			var key;
-		
 				
 			switch($("#searchSelectStore option:selected").text()){			
   					case '전화번호': key = '전화번호';  console.log(key); break;
@@ -253,7 +248,7 @@ $(function(){
 			
 	 		if( !$("#searchBarStore").is(":visible")){
 				console.log('still here');
-				//날짜 검색
+				
 				if( $("#categorySelect").is(":visible")){
 					key = '업종';
 					search= $("#categorySelect option:selected").val();
@@ -263,10 +258,7 @@ $(function(){
 	
 			
 			var data = {key : key, search:search };
-			
-			console.log("맵 : ");
-			console.log( data);
-			
+						
 		  	$.ajax({
 		 		
 	  				method:"post",
@@ -715,15 +707,7 @@ function openTab(evt, tabName) {
 	     		  url: "selectMemberList.me", 
 	     		  success:function(data){
 	     			
-	     			  console.log(data);
-	     			  console.log(data.memberlist); 
-	     			 
-	     			  
-	     			  
-	     			  
 	     			 $("#memberHeader").nextAll("tr").remove();
-	     			 
-	     			 
 	     			 
 	     			 for(var i = 0; i<data.memberlist.length;i++){	     				 	  
 	     				 
