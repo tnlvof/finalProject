@@ -329,8 +329,6 @@ public class MemberController {
 	@RequestMapping(value = "searchMembers.me", method = RequestMethod.POST)
 	@ResponseBody
 	public ModelAndView searchMembers(ModelAndView mv, @RequestBody Map<String, String> data) {
-		System.out.println("넘어옴?");
-		System.out.println(data);
 
 		String searchCon = data.get("key");
 

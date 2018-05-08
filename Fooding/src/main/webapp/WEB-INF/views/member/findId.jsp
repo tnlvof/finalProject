@@ -124,13 +124,11 @@ border:none;
   		  				data: JSON.stringify(data),  
   		  				contentType:"application/json",
   		  				success:function(data){
-  		  					/* alert('넘어감.'); */
-  		  					
-  		  					alert(data.msg);
-  		  					
+  		  					/* alert('넘어감.'); */  		  					
+  		  					alert(data.msg);  		  					
   		  				},
   		  				error:function(){
-  		  					alert('ㅡㅡ');
+  		  					alert('실패');
   		  				}
   		  				
   		  			}); 

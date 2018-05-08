@@ -239,8 +239,10 @@
 	REST_UPSTREAM , REST_NUMBER, REST_X, REST_Y, WRITER, CONTENT, PHOTO, STAR,
 	DENSE_RANK() OVER(ORDER BY STAR DESC)순위 
 	FROM SAM
-	WHERE REST_MENU LIKE '%' ||#{query} || '%' )
-	WHERE ROWNUM &lt;=10
+	WHERE REST_MENU LIKE '%' ||#{query} || '%'
+	AND STAR IS NOT NULL 
+	AND STAR<![CDATA[ > ]]>2)
+	WHERE ROWNUM <![CDATA[ < ]]>=10
 	</select>
 	
 	<select   id="selectMenuStore" resultMap = "storeSamResultSet">
@@ -249,9 +251,10 @@
   	S_LOCATION, SHOURS, DAYOFF, S_TABLE, BUDGET, ATMOSPHERE, FACILITIES, DESCRIPTION,
  	COUPON_NO, KEYWORD, STATUS, MENU, MAIN_PHOTO, SUB_PHOTO, MID, STAR,
  	DENSE_RANK() OVER(ORDER BY STAR DESC)순위
-   	FROM STORE WHERE MENU LIKE '%' ||#{query} || '%') 
-	WHERE ROWNUM  &lt;= 10
-	
+   	FROM STORE WHERE MENU LIKE '%' ||#{query} || '%'
+   	AND STAR IS NOT NULL
+   	AND STAR<![CDATA[ > ]]>2)
+	WHERE ROWNUM  <![CDATA[ < ]]>= 10	
 	</select>
 	
 	<select id="selectMenuMeat" resultMap = "storeSamResultSet">
