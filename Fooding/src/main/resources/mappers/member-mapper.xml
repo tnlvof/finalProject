@@ -125,7 +125,7 @@
 	<select id="checkUser" resultMap="memberResultSet2" parameterType="map">
 	 	SELECT * FROM MEMBER
 	 	WHERE USER_ID =#{userId}
-	 	AND EAMIL=#{email}
+	 	AND EMAIL=#{email}
 	</select>
 	<update id="resetPwd">
 	UPDATE MEMBER

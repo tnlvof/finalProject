@@ -92,9 +92,15 @@ public class MemberController {
 		return "member/findPwd";
 	}
 	
+	@RequestMapping(value="goFindUserId.me")
+	public String goFindUserId() {
+		return "member/findId";
+	}
+	
 	@RequestMapping(value="resetPwd.me")
 	@ResponseBody
 	public ModelAndView resetPwd(ModelAndView mv, @RequestBody Map<String, String> data ) {
+		String msg ="";
 		
 		//이메일 확인
 		Member checkUser = ms.checkUser(data);
@@ -132,13 +138,22 @@ public class MemberController {
 		      
 		      int result = ms.resetPwd(password, checkUser);
 		      
+		      if(result>0) {
+		    	  msg = "비밀번호가 재설정되었습니다. 메일을 확인하고 다시 비밀번호를 바꿔주세요.";
+		      }
+		      
 		    } catch(Exception e){
 		      System.out.println(e);
 		    }
 		
+		} else {
+			//아니면 없다고 하기
+			msg = "해당하는 회원 정보가 없습니다.";
 		}
 		
-		//아니면 없다고 하기
+		mv.addObject("msg", msg);
+		mv.setViewName("jsonView");
+		
 		
 		return mv;
 	}
