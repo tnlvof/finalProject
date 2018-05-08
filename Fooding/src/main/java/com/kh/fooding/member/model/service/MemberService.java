@@ -32,10 +32,10 @@ public interface MemberService  {
 	int selectRcount(int mid, String mCode);
 
 	int selectReviewCount(int mid, String mCode);
-
+ 
 	ArrayList<Reservation> selectReservList(int mid, String mCode);
 	
-	void insertStore(Member m);
+	void insertStore(Member m); 
 
 	ArrayList<Review> selectReviewList(int mid, String mCode, PageInfo pi);
 
@@ -44,5 +44,7 @@ public interface MemberService  {
 	int resetPwd(String password, Member checkUser);
 
 	Member checkUser(Map<String, String> data);
+
+	Member findId(Map<String, String> data);
 
 }

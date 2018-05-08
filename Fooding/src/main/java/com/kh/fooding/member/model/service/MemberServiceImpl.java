@@ -120,13 +120,19 @@ public class MemberServiceImpl implements MemberService{
 		
 		int result = md.resetPwd(password, checkUser);
 	
-		return result;
+		return result; 
 	}
-
+ 
 	@Override
 	public Member checkUser(Map<String, String> data) {
 	
 		return md.checkUser(data);
+	}
+
+	@Override
+	public Member findId(Map<String, String> data) {
+		// TODO Auto-generated method stub
+		 return md.findId(data);
 	}
 
 }
