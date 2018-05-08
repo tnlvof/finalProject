@@ -45,4 +45,6 @@ public interface MemberDao {
 
 	Member checkUser(Map<String, String> data);
 
+	Member findId(Map<String, String> data);
+
 }

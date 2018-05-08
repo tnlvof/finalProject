@@ -28,7 +28,7 @@
 	text-align: center;
 }
 
-#forgot_password>.body>.description {
+.description {
 	font-size: 14px;
 	color: #646464;
 	margin-top: 22px;
@@ -46,12 +46,7 @@ input {
 	padding-left: 10px;
 }
 
-#forgot_password>.body>form>.notice {
-	font-size: 11px;
-	color: #969696;
-	margin-top: 5px;
-	margin-bottom: 36px;
-}
+
 
 #title {
 	font-size: 25px;
@@ -89,10 +84,27 @@ input {
 					alert('항목들을 빠짐없이 채워주세요.')
 				} else {
 					
-					console.log(userId);
-					console.log(email);
+				/* 	console.log(userId);
+					console.log(email); */
+					var data = {userId:userId, email:email};
 					
-					
+					$.ajax({
+				 		
+  		  				method:"post",
+  		  				url:"resetPwd.me",
+  		  				data: JSON.stringify(data),  
+  		  				contentType:"application/json",
+  		  				success:function(data){
+  		  					/* alert('넘어감.'); */
+  		  					
+  		  					alert(data.msg);
+  		  					
+  		  				},
+  		  				error:function(){
+  		  					alert('ㅡㅡ');
+  		  				}
+  		  				
+  		  			}); 
 					
 				}
 			});

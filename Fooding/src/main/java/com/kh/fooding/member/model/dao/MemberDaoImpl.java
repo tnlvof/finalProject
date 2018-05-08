@@ -210,5 +210,13 @@ public class MemberDaoImpl implements MemberDao{
 		Member checkUser = sqlSession.selectOne("Member.checkUser", data);
 		return checkUser;
 	}
+
+	@Override
+	public Member findId(Map<String, String> data) {
+		Member m = new Member();
+		m.setEmail(data.get("email"));
+		Member findId = sqlSession.selectOne("Member.findId", m);
+		return findId;
+	}
 	
 }

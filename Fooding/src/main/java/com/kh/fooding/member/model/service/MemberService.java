@@ -45,4 +45,6 @@ public interface MemberService  {
 
 	Member checkUser(Map<String, String> data);
 
+	Member findId(Map<String, String> data);
+
 }

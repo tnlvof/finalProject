@@ -91,6 +91,28 @@ public class MemberController {
 	public String goResetPwd() {
 		return "member/findPwd";
 	}
+	//아이디 찾기 페이지 이동
+	@RequestMapping(value="goFindId.me")
+	public String goFindId() {
+		return "member/findId";
+	}
+	@RequestMapping(value="findId.me")
+	@ResponseBody
+	public ModelAndView findId(ModelAndView mv, @RequestBody Map<String, String> data) {
+		
+		Member findUser = ms.findId(data);
+		String msg = "";
+		
+		if(findUser != null && data.get("email").equals(findUser.getEmail())) {
+			msg = "회원님의 아이디는 "+findUser.getUserId()+"입니다.";
+		}else {
+			msg ="일치하는 회원이 없습니다.";
+		}
+		mv.addObject("msg", msg);
+		mv.setViewName("jsonView");
+		
+		return mv;
+	}
 	
 	@RequestMapping(value="resetPwd.me")
 	@ResponseBody
@@ -99,6 +121,7 @@ public class MemberController {
 		//이메일 확인
 		Member checkUser = ms.checkUser(data);
 		
+		String msg ="";
 		
 		
 		//이메일 확인해서 맞으면 새로 지정해서 메일 보내기
@@ -131,14 +154,18 @@ public class MemberController {
 		      password = passwordEncoder.encode(password);
 		      
 		      int result = ms.resetPwd(password, checkUser);
-		      
+		      msg ="비밀번호가 성공적으로 재설정 되었습니다. 이메일을 확인해주세요.";
 		    } catch(Exception e){
 		      System.out.println(e);
 		    }
 		
+		} else {
+			//아니면 없다고 하기
+			msg = "해당하는 정보가 없습니다.";
 		}
+		mv.addObject("msg",msg);
 		
-		//아니면 없다고 하기
+		mv.setViewName("jsonView");
 		
 		return mv;
 	}

@@ -129,4 +129,10 @@ public class MemberServiceImpl implements MemberService{
 		return md.checkUser(data);
 	}
 
+	@Override
+	public Member findId(Map<String, String> data) {
+		// TODO Auto-generated method stub
+		 return md.findId(data);
+	}
+
 }
