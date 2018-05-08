@@ -1,6 +1,7 @@
 package com.kh.fooding.board.model.dao;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.RowBounds;
@@ -189,6 +190,49 @@ public class BoardDaoImpl implements BoardDao{
 		
 		return result;
 	}
+	
+
+	//공지사항 전체 목록
+	@Override
+	public List<Board> listAll() {
+		return sqlSession.selectList("Board.listAll");
+		
+	}
+	
+	//공지사항 작성후 목록
+	@Override
+	public void create(Board board) throws Exception{
+		sqlSession.insert("Board.insert", board);
+		
+	}
+	
+	
+	//2.공지글 상세보기
+	@Override
+	public  Board read(int bid) throws Exception{
+		return sqlSession.selectOne("Board.view",bid);
+	}
+	
+	//공지글 조회수!
+	
+	@Override
+	public void increaseViewCnt(int bid) throws Exception{
+		sqlSession.update("Board.increaseViewCnt", bid);
+		
+	}
+	
+    // 03. 공지 수정
+    @Override
+    public void update(Board board) throws Exception {
+        sqlSession.update("Board.updateArticle", board);
+ 
+    }
+    // 04. 게시글 삭제
+    @Override
+    public void delete(int bid) throws Exception {
+        sqlSession.delete("Board.deleteArticle", bid);
+ 
+    }
 
 	
 

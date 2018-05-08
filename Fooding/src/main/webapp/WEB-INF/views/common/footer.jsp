@@ -15,7 +15,7 @@
 				<li> | </li>
 				<li>회사 소개</li>
 				<li> | </li>
-				<li>공지사항</li>
+				<li onclick="location.href='list.bo'">공지사항</li>
 				<li> | </li>
 				<li onclick="location.href='https://instagram.com/fooding_0509/'">Instagram</li>
 			</ul>
