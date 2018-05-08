@@ -410,6 +410,33 @@ public class StoreController {
 			
 			return mv;
 		}
+	
+		@RequestMapping(value="goStoreCoupon.st")
+		public String goStoreCoupon(ModelAndView mv, HttpServletRequest request, Store s, HttpSession session,Coupon c) {
+			Member m = (Member) session.getAttribute("loginUser");
+			
+			ArrayList<Coupon> couponList = ss.selectCouponsList(c,m);
+			
+			request.setAttribute("couponList", couponList);
+				
+			return "myPage/storeCoupon";
+		}
+		@RequestMapping(value="insertCoupon.st")
+		public ModelAndView insertCoupon(ModelAndView mv, HttpServletRequest request, Store s, HttpSession session,Coupon c) {
+			Member m = (Member) session.getAttribute("loginUser");
+			
+			int coupon = ss.insertCoupon(c,m);
+			
+			ArrayList<Coupon> couponList = ss.selectCouponsList(c,m);
+			
+			System.out.println("couponList : " + couponList);
+			
+			
+			mv.addObject("coupon", coupon);
+			mv.addObject("couponList", couponList);
+			mv.setViewName("myPage/storeCoupon");
+			return mv;
+		}
 		
 	//예약페이지 이동
 		@RequestMapping(value="goBookingPage.st")

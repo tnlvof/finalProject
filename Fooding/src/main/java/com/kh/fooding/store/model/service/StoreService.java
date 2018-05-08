@@ -4,7 +4,11 @@ import java.util.ArrayList;
 import java.util.Map;
 
 import com.kh.fooding.common.PageInfo;
+
+import com.kh.fooding.member.model.vo.Member;
+
 import com.kh.fooding.reservation.model.vo.Reservation;
+
 import com.kh.fooding.store.model.vo.Coupon;
 import com.kh.fooding.store.model.vo.Sam;
 import com.kh.fooding.store.model.vo.Store;
@@ -42,6 +46,13 @@ public interface StoreService {
 
 	ArrayList<Store> searchStList(Map<String, String> data, String searchCon);
 
+
+
+	int getSid(int mid);
+
+	int insertCoupon(Coupon c, Member m);
+
+	ArrayList<Coupon> selectCouponsList(Coupon c, Member m);
 
 
 

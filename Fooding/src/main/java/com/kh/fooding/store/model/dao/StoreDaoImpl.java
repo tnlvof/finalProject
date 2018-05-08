@@ -9,7 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kh.fooding.common.PageInfo;
+
+import com.kh.fooding.member.model.vo.Member;
+
 import com.kh.fooding.reservation.model.vo.Reservation;
+
 import com.kh.fooding.store.model.vo.Coupon;
 import com.kh.fooding.store.model.vo.Sam;
 import com.kh.fooding.store.model.vo.Store;
@@ -187,7 +191,7 @@ public class StoreDaoImpl implements StoreDao{
 			case "pizza" :query="피자"; break;			
 			case "meat" : statement = "Store.selectMenuMeat"; break;
  		}
-		
+		 
 		if(! query.equals("meat")) {			
 			selectThemeListMenu =  (ArrayList) sqlSession.selectList(statement, query);
 		} else {
@@ -217,8 +221,6 @@ public class StoreDaoImpl implements StoreDao{
 		return themeList2;
 	}
 
-	
-	
 		@Override
 			public Store selectOneStore(int sid, SqlSessionTemplate sqlSession) {
 				
@@ -246,6 +248,41 @@ public class StoreDaoImpl implements StoreDao{
 
 
 	
+
+
+	@Override
+	public int getSid(SqlSessionTemplate sqlSession, int mid) {
+		int result = sqlSession.selectOne("Store.getSid", mid);
+		return result;
+	}
+	
+	@Override
+	public int insertCoupon(SqlSessionTemplate sqlSession, Coupon c, Member m) {
+		
+		int mid = m.getMid();
+		
+		int sid = sqlSession.selectOne("Store.getSid",mid);
+		
+		c.setSid(sid);
+		
+		int coupon = sqlSession.insert("Store.insertCoupon", c);
+		
+		return coupon;
+	}
+
+
+	@Override
+	public ArrayList<Coupon> selectCouponsList(SqlSessionTemplate sqlSession, Coupon c, Member m) {
+		int mid = m.getMid();
+		int sid = sqlSession.selectOne("Store.getSid",mid);
+
+		c.setSid(sid);
+		System.out.println("dao sid : " +sid);
+		ArrayList<Coupon> couponList = (ArrayList) sqlSession.selectList("Store.selectCouponsList", sid);
+		
+		return couponList;
+	}
+
 
 
 

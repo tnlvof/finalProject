@@ -469,13 +469,6 @@ public class MemberController {
 		return "myPage/goMemberUpdate";
 	}
 	
-	//업체마이페이지(쿠폰)
-	@RequestMapping(value="goStoreCoupon.me")
-	public String goStoreCoupon(){
-		
-		return "myPage/storeCoupon";
-	}
-	
 	    @ResponseBody
 	    @RequestMapping(value = "profileUpload.me")
 	    public ModelAndView profileUpload(HttpSession session, MultipartHttpServletRequest request, ModelAndView mv) {
@@ -506,6 +499,5 @@ public class MemberController {
 	      mv.setViewName("jsonView");
 	      return mv;      
 	   }
-
 
 }

@@ -15,7 +15,30 @@ public class Coupon implements java.io.Serializable{
 	private int sid;
 	private Date enrollDate;
 	private ArrayList<Store> couponList;
+	private int mid;
 	
+	public int getMid() {
+		return mid;
+	}
+
+	public void setMid(int mid) {
+		this.mid = mid;
+	}
+
+	public Coupon(int cid, String cname, Date cdate, String cterm, String cmethod, int sid, Date enrollDate,
+			ArrayList<Store> couponList, int mid) {
+		super();
+		this.cid = cid;
+		this.cname = cname;
+		this.cdate = cdate;
+		this.cterm = cterm;
+		this.cmethod = cmethod;
+		this.sid = sid;
+		this.enrollDate = enrollDate;
+		this.couponList = couponList;
+		this.mid = mid;
+	}
+
 	public Coupon() {}
 
 	public Coupon(int cid, String cname, Date cdate, String cterm, String cmethod, int sid, Date enrollDate, ArrayList<Store> couponList) {
@@ -29,6 +52,7 @@ public class Coupon implements java.io.Serializable{
 		this.enrollDate = enrollDate;
 		this.couponList = couponList;
 	}
+
 
 	public int getCid() {
 		return cid;
@@ -85,8 +109,6 @@ public class Coupon implements java.io.Serializable{
 	public void setEnrollDate(Date enrollDate) {
 		this.enrollDate = enrollDate;
 	}
-	
-	
 
 	public ArrayList<Store> getCouponList() {
 		return couponList;
@@ -99,7 +121,8 @@ public class Coupon implements java.io.Serializable{
 	@Override
 	public String toString() {
 		return "Coupon [cid=" + cid + ", cname=" + cname + ", cdate=" + cdate + ", cterm=" + cterm + ", cmethod="
-				+ cmethod + ", sid=" + sid + ", enrollDate=" + enrollDate + ", couponList=" + couponList + "]";
+				+ cmethod + ", sid=" + sid + ", enrollDate=" + enrollDate + ", couponList=" + couponList + ", mid="
+				+ mid + "]";
 	}
 
 
