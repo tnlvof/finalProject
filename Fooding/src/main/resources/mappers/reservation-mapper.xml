@@ -24,6 +24,7 @@
         <result property="sid" column="SID" />
         <result property="sName" column="SNAME" />
         <result property="userName" column="USER_NAME" />
+        <result property="mainPhoto" column="MAIN_PHOTO"/>
     </resultMap>
     
      <resultMap type="Reservation" id="reservationResultSet3">

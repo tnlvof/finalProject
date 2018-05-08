@@ -45,7 +45,7 @@
 						<div class="body review list review_wrap">
 							<div class="review">
 								<a class="place" href=""> <span class="thumbnail"
-									style="display: block; background-image: url(${ list.mainPhoto });"></span>
+									style="display: block; background-image: url('/fooding/resources/uploadFiles/${ list.mainPhoto }');"></span>
 									<p class="name">${ list.sName }</p>
 									<p class="info"><!-- 강남역 ·  -->${ list.sCode }</p>
 								</a>
