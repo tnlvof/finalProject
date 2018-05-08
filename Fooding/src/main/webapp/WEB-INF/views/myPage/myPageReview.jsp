@@ -2,6 +2,16 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <meta charset="UTF-8">
+<style>
+.image {
+	width: 100%;
+	height: 100%;
+	background-size: cover;
+	display: block;
+	background-position: center center;
+	float: left;
+}
+</style>
 
 <!-- header -->
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
@@ -77,7 +87,12 @@
 											</c:if>
 										</span>
 									</div>
-									<div class="text" data-truncated="">${ list.rContent }</div>
+										<div class="review-image"
+											style="width: 250px; height: 250px; padding: 17px 0 17px 0;">
+											<span class="image border_radius hard"
+												style="background-image: url('/fooding/resources/reviewFiles/${ list.mainPhoto }');"></span>
+										</div>
+										<div class="text">${ list.rContent }</div>
 									<div class="action">
 										<div class="article">
 								            <input type="hidden" value="${ list.rid }" class="reviewId">
