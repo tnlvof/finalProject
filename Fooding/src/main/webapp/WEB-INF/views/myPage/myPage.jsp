@@ -3,7 +3,16 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-
+<style>
+.image {
+	width: 100%;
+	height: 100%;
+	background-size: cover;
+	display: block;
+	background-position: center center;
+	float: left;
+}
+</style>
 <!-- header -->
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 
@@ -52,9 +61,9 @@
 				<div class="list">
 					<div class="reservation">
 						<div class="i_wrap image">
-							<div class="image border_radius hard"
-								style="background-image: url(&quot;http://c2.poing.co.kr/PIMAGE-default/5746a03f668a484de2000044.png&quot;);"></div>
-						</div>
+										<span class="image border_radius hard"
+											style="background-image: url('/fooding/resources/uploadFiles/${ list.mainPhoto }');"></span>
+									</div>
 						<div class="info">
 							<div class="name">
 							<c:if test="${ loginUser.mCode == '일반' }">
@@ -135,7 +144,7 @@
 									console.log("예약컨펌버튼 : "+ $(".idrv").val());
 									
 									var idrv = $(".idrv").val();
-									
+							        
 									location.href="confirmReserv.rv?reservId="+idrv;
 								});
 								
@@ -176,9 +185,9 @@
 						<div class="confirmMessage">예약을 확인하시겠습니까?</div>
 					</div>
 					<div class="rconfirmOk"
-						style="margin-left: -110.5px; margin-top: 28.5px; width: 108.5px; display: block;">확인</div>
+						style="margin-left: -110.5px; margin-top: 28.5px; width: 108.5px; display: block;">예약 확인</div>
 					<div class="rconfirmNo"
-						style="margin-left: 1px; margin-top: 28.5px; width: 108.5px; display: block;">취소</div>
+						style="margin-left: 1px; margin-top: 28.5px; width: 108.5px; display: block;">예약 취소</div>
 				</div>
 			</div>
 		</div>

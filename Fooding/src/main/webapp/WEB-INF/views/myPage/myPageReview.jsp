@@ -45,7 +45,7 @@
 						<div class="body review list review_wrap">
 							<div class="review">
 								<a class="place" href=""> <span class="thumbnail"
-									style="display: block; background-image: url(${ list.mainPhoto });"></span>
+									style="display: block; background-image: url('/fooding/resources/uploadFiles/${ list.mainPhoto }');"></span>
 									<p class="name">${ list.sName }</p>
 									<p class="info"><!-- 강남역 ·  -->${ list.sCode }</p>
 								</a>
@@ -61,13 +61,13 @@
 									</c:forEach>
 									</c:if>
 											<c:if test="${ list.star eq 1 }">
-											<span> 1점 / 실망이에요. 두 번 다시오고 싶지 않아요.</span>
+											<span> 1점 / 실망이예요. 집에서 먹는게 나을 뻔 했어요.</span>
 											</c:if>
 											<c:if test="${ list.star eq 2 }">
-											<span> 2점 / 평균 이하! 맛, 분위기, 서비스...전체적으로 다 별로예요!</span>
+											<span> 2점 / 평균 이하! 이 정도 레스토랑은 어디에나 있죠.</span>
 											</c:if>
 											<c:if test="${ list.star eq 3 }">
-											<span> 3점 / 보통이에요. 한 번 쯤은 다시 올 것 같아요.</span>
+											<span> 3점 / 보통이에요. 이 정도면 괜찮네요.</span>
 											</c:if>
 											<c:if test="${ list.star eq 4 }">
 											<span> 4점/ 인상적이네요. 꼭 추천하고 싶어요.</span>

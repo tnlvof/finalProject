@@ -50,6 +50,8 @@
 .filebox .upload-display img {
 	display: block;
 	height: 100%;
+	width: 100%;
+	background-position: center center;
 }
 
 .over {
@@ -80,7 +82,7 @@
 	color: #fff;
 	width: 162px;
 	margin-left: 10px;
-	padding-top: 260px;
+	margin-top: 260px;
 }
 </style>
 <c:set var="contextPath" value="${ pageContext.servletContext.contextPath }" scope="application" />
@@ -99,11 +101,6 @@
 		<div class="inner_wrap">
 			<div class="inner">
 				<div id="change_user_image" class="user_image i_wrap">
-					<!-- <div class="image border_radius circle profile_image" id="btn-upload">
-						<button type="button" id="btn-upload"></button>
-					</div>
-					<input type="file" id="file" name="file" onchange="changeValue(this)" />
-					<div class="border_radius circle"></div> -->
 					<div class="photo filebox bs3-primary preview-image">
 						<div class="upload-display">
 							<div class="upload-thumb-wrap">
@@ -137,7 +134,8 @@
 				<!-- name -->
 				<div class="intro">맛있는 발견의 즐거움 - Fooding</div>
 				<div class="info">
-					<a>예약 <span>${ rcount }</span></a> &nbsp; <a>리뷰 <span>${ reviewCount }</span></a>
+					<a>예약 <span>${ rcount }</span></a> &nbsp;
+					<a>리뷰 <span>${ reviewCount }</span></a>
 				</div>
 				<!-- info -->
 			</div>
@@ -230,8 +228,6 @@
 			},
 			error : function(error) {
 				alert("프로필 사진 변경에 실패하였습니다.");
-				/* console.log(error);
-				console.log(error.status); */
 			}
 		});
 	});
