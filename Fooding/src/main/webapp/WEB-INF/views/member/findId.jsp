@@ -53,6 +53,7 @@ input {
 	height: 47px;
 	border: 1px solid #CCCCCC;
 	padding-left: 10px;
+	border-radius:3px;
 }
 
 
@@ -71,12 +72,12 @@ input {
 	font-weight: bold;
 }
 
-#findIdBtn{
+#resetPwd{
 border:none;
 	border-radius:3px;
 }
 
-#findIdBtn:hover{
+#resetPwd:hover{
 	cursor:pointer;
 	
 }
@@ -92,14 +93,14 @@ border:none;
 			<p id="title">아이디 찾기</p>
 			<hr>
 			<p class="description">
-				가입하신 계정의 이메일을 입력해주세요.<br>
+				가입하신 계정의 이메일을 입력해주세요.<br><br>
 				
 			</p>
 
 
 				<input type="email" id="email" name="email"
-					placeholder="이메일" required><br>
-				<p class="notice">가입시 입력하신 이메일로 임시 비밀번호를 발송합니다.</p>
+					placeholder="이메일" required><br><br><br>
+		
 
 				<button id="resetPwd">아이디 찾기</button>
 			
