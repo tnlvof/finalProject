@@ -17,14 +17,14 @@ public class Review implements java.io.Serializable{
 	private int price;
 	private String sName;
 	private String sCode;
-	private String mainPhoto;
+	private String photo;
 	private String writer;
 	public Review() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	public Review(int rid, String enrollDate, String rTitle, String rContent, int sid, String status, int star, int mid,
-			int taste, int service, int price, String sName, String sCode, String mainPhoto, String writer) {
+			int taste, int service, int price, String sName, String sCode, String photo, String writer) {
 		super();
 		this.rid = rid;
 		this.enrollDate = enrollDate;
@@ -39,7 +39,7 @@ public class Review implements java.io.Serializable{
 		this.price = price;
 		this.sName = sName;
 		this.sCode = sCode;
-		this.mainPhoto = mainPhoto;
+		this.photo = photo;
 		this.writer = writer;
 	}
 	public int getRid() {
@@ -120,11 +120,11 @@ public class Review implements java.io.Serializable{
 	public void setsCode(String sCode) {
 		this.sCode = sCode;
 	}
-	public String getMainPhoto() {
-		return mainPhoto;
+	public String getPhoto() {
+		return photo;
 	}
-	public void setMainPhoto(String mainPhoto) {
-		this.mainPhoto = mainPhoto;
+	public void setPhoto(String photo) {
+		this.photo = photo;
 	}
 	public String getWriter() {
 		return writer;
@@ -136,8 +136,8 @@ public class Review implements java.io.Serializable{
 	public String toString() {
 		return "Review [rid=" + rid + ", enrollDate=" + enrollDate + ", rTitle=" + rTitle + ", rContent=" + rContent
 				+ ", sid=" + sid + ", status=" + status + ", star=" + star + ", mid=" + mid + ", taste=" + taste
-				+ ", service=" + service + ", price=" + price + ", sName=" + sName + ", sCode=" + sCode + ", mainPhoto="
-				+ mainPhoto + ", writer=" + writer + "]";
+				+ ", service=" + service + ", price=" + price + ", sName=" + sName + ", sCode=" + sCode + ", photo="
+				+ photo + ", writer=" + writer + "]";
 	}
 	
-	}
+}
