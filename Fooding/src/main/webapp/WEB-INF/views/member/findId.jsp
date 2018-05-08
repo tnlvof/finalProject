@@ -82,7 +82,7 @@ input {
 					alert('항목들을 빠짐없이 채워주세요.')
 				} else {
 					
-					
+					 
 				var data = { email:email};
 					
 					$.ajax({

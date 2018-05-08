@@ -91,7 +91,7 @@ input {
 					$.ajax({
 				 		
   		  				method:"post",
-  		  				url:"resetPwd.me",
+  		  				url:"resetPwd.me", 
   		  				data: JSON.stringify(data),  
   		  				contentType:"application/json",
   		  				success:function(data){

@@ -101,7 +101,7 @@ public class MemberController {
 	public ModelAndView findId(ModelAndView mv, @RequestBody Map<String, String> data) {
 		
 		Member findUser = ms.findId(data);
-		String msg = "";
+		String msg = ""; 
 		
 		if(findUser != null && data.get("email").equals(findUser.getEmail())) {
 			msg = "회원님의 아이디는 "+findUser.getUserId()+"입니다.";

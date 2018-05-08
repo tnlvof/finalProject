@@ -35,7 +35,7 @@ public interface MemberService  {
 
 	ArrayList<Reservation> selectReservList(int mid, String mCode);
 	
-	void insertStore(Member m);
+	void insertStore(Member m); 
 
 	ArrayList<Review> selectReviewList(int mid, String mCode, PageInfo pi);
 
