@@ -89,7 +89,7 @@ input {
 					var data = {userId:userId, email:email};
 					
 					$.ajax({
-				 		
+				 		 
   		  				method:"post",
   		  				url:"resetPwd.me", 
   		  				data: JSON.stringify(data),  

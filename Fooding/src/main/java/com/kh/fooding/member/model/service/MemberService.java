@@ -32,7 +32,7 @@ public interface MemberService  {
 	int selectRcount(int mid, String mCode);
 
 	int selectReviewCount(int mid, String mCode);
-
+ 
 	ArrayList<Reservation> selectReservList(int mid, String mCode);
 	
 	void insertStore(Member m); 

@@ -86,7 +86,7 @@ input {
 				var data = { email:email};
 					
 					$.ajax({
-				 		
+				 		 
   		  				method:"post",
   		  				url:"findId.me",
   		  				data: JSON.stringify(data),  

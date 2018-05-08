@@ -97,7 +97,7 @@ public class MemberController {
 		return "member/findId";
 	}
 	@RequestMapping(value="findId.me")
-	@ResponseBody
+	@ResponseBody 
 	public ModelAndView findId(ModelAndView mv, @RequestBody Map<String, String> data) {
 		
 		Member findUser = ms.findId(data);

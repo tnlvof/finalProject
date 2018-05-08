@@ -120,7 +120,7 @@ public class MemberServiceImpl implements MemberService{
 		
 		int result = md.resetPwd(password, checkUser);
 	
-		return result;
+		return result; 
 	}
  
 	@Override

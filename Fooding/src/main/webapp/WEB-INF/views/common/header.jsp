@@ -118,7 +118,7 @@
       	onclick="document.getElementById('id01').style.display='none'">
 		<div class="body">
 			<div class="login active">
-				<p id="title">로그인</p>
+				<p id="title">로그인</p> 
 
 				<form id="loginForm" action="login.me" method="post">
 					<input type="text" id="userId" name="userId" placeholder="아이디" required class="input"> 

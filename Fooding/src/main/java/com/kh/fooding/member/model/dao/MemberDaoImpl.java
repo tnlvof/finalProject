@@ -204,7 +204,7 @@ public class MemberDaoImpl implements MemberDao{
 		
 		return result;
 	}
-
+ 
 	@Override
 	public Member checkUser(Map<String, String> data) {
 		Member checkUser = sqlSession.selectOne("Member.checkUser", data);
