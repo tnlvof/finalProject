@@ -50,6 +50,8 @@
 .filebox .upload-display img {
 	display: block;
 	height: 100%;
+	width: 100%;
+	background-position: center center;
 }
 
 .over {
