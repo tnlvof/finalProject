@@ -49,7 +49,7 @@
     </select>
     
     <select id="selectReviewList" resultMap="reviewResultSet2">
-    SELECT *
+    SELECT S.MID, S.SNAME, R.USER_NAME, R.STAR, R.RCONTENT, R.MAIN_PHOTO, S.MAIN_PHOTO AS storePhoto, R.ENROLL_DATE AS enrollDate
     FROM REVIEW R
     JOIN MEMBER M ON (M.MID = R.MID)
     JOIN STORE S ON (S.SID = R.SID)
@@ -58,21 +58,21 @@
     </select>
     
     <select id="selectStoreReviewList" resultMap="reviewResultSet2">
-    SELECT *
+    SELECT S.MID, S.SNAME, R.USER_NAME, R.STAR, R.RCONTENT, R.MAIN_PHOTO, S.MAIN_PHOTO AS storePhoto, R.ENROLL_DATE AS enrollDate
     FROM REVIEW R
-    JOIN MEMBER M ON (M.MID = R.MID)
-    JOIN STORE S ON (S.SID = R.SID)
-    WHERE S.MID=#{ mid } AND R.STATUS = 'Y'AND ROWNUM &lt;= 100
-    ORDER BY R.RID DESC
-    </select>
-    
-    <update id="deleteReview">
-    UPDATE REVIEW
-    SET STATUS='N'
-    WHERE RID = #{ rid }
-    </update>   
-    
-    <insert id="insertReview">
+    JOIN MEMBER M ON (M.MID = R.MID)                                           
+    JOIN STORE S ON (S.SID = R.SID)                                            
+    WHERE S.MID=#{ mid } AND R.STATUS = 'Y'AND ROWNUM &lt;= 100                
+    ORDER BY R.RID DESC                                                        
+    </select>                                                                  
+                                                                               
+    <update id="deleteReview">                                                 
+    UPDATE REVIEW                                                              
+    SET STATUS='N'                                                             
+    WHERE RID = #{ rid }                                                       
+    </update>                                                                  
+                                                                               
+    <insert id="insertReview">                                                 
     INSERT INTO REVIEW(RID,ENROLL_DATE,RCONTENT,SID,STATUS,STAR,MID,MAIN_PHOTO)
     VALUES(SEQ_RVID.NEXTVAL, SYSDATE, #{rContent}, #{sid}, DEFAULT, #{star}, #{mid},#{mainPhoto})
     </insert>
