@@ -284,7 +284,7 @@ button {
     border-radius: 3px;
 }
 
-#content.mypage>.body>.list>.reservation>.info>.coupon, #content.mypage>.body>.list>.reservation>.info>.date, #content.mypage>.body>.list>.reservation>.info>.party_size, #content.mypage>.body>.list>.reservation>.info>.request {
+#content.mypage>.body>.list>.reservation>.info>.coupon, #content.mypage>.body>.list>.reservation>.info>.date, #content.mypage>.body>.list>.reservation>.info>.party_size, #content.mypage>.body>.list>.reservation>.info>.request, #content.mypage>.body>.list>.reservation>.info>.phone, #content.mypage>.body>.list>.reservation>.info>.rcontent {
     margin-bottom: 2px;
     line-height: 14px;
     font-size: 10pt;
