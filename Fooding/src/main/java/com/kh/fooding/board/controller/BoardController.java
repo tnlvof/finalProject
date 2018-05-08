@@ -1,6 +1,7 @@
 package com.kh.fooding.board.controller;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -8,11 +9,14 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kh.fooding.board.model.exception.insertException;
 import com.kh.fooding.board.model.exception.searchException;
@@ -288,6 +292,90 @@ public class BoardController {
 		return mv;
 	}
 	
+	//공지사항 전체목록2
+		 @RequestMapping(value="list.bo", method=RequestMethod.GET)
+		 public String list(Model model) throws Exception {
+			 List<Board> list = bs.listAll();
+			 System.out.println( list);
+			 model.addAttribute("list",list);
+			 //결과를 list라는 이름으로 request에 저장
+			 return "notice/noticeMain";
+			 
+		 }
+		 
+		 
+		//1-1 공지사항 작성화면으로 ㄱ ㄱ 
+		 @RequestMapping(value="goNoticeWrite.bo", method=RequestMethod.GET)
+			public String write(HttpServletRequest request) {
+				return "notice/boardInsertForm"; 
+		 }
+		 
+		 //1-2 공지사항 작성처리
+		 @RequestMapping(value="insert.bo")
+		 public String insert(Board board,HttpSession session, Model model) throws Exception{
+			Member m=(Member) session.getAttribute("loginUser");
+			board.setMid(m.getMid());
+			 System.out.println(board);
+			 bs.create(board);
+					 
+			 return "redirect:list.bo";
+		 }
+		 
+		 
+		 //2 공지글 상세내용 조회, 공지사항 조회수 증가
+		 @RequestMapping(value="noticeRead.bo", method=RequestMethod.GET)
+		 public ModelAndView view(ModelAndView mv,HttpServletRequest request, HttpSession session) throws Exception {
+
+			 int bid = Integer.parseInt(request.getParameter("boardId"));
+			 
+			 //조회수 증가처리
+			 bs.increaseViewCnt(bid, session);
+			 
+			 //모델(데이터) + 뷰(화면)를 함께 전달하는 객체
+			 
+			 
+		 System.out.println(bid);
+		 
+			 
+			 
+			 Board b =  bs.read(bid);
+			 
+			 //뷰이름
+			 mv.setViewName("notice/noticeRead");
+			 
+			 //뷰에 전달할 데이터
+			 mv.addObject("board", b);
+			 return mv;
+		 }
+		 
+		 
+		    // 04. 공지 수정
+		    @RequestMapping(value="update.bo", method=RequestMethod.POST)
+		    public String update(@ModelAttribute Board board,HttpServletRequest request) throws Exception{
+				 /*int bid = Integer.parseInt(request.getParameter("baordId"));*/
+				/* System.out.println("공지수정아이디:"+bid);*/
+				
+		    	/*board.setBid(bid);*/
+		    	System.out.println(board);
+		    	bs.update(board);
+		    	System.out.println("공지수정 board: "+board);
+		        return "redirect:list.bo";
+
+		    }
+		    
+		    // 05. 공지 삭제
+		    @RequestMapping(value="delete.bo")
+		    public String delete(HttpServletRequest request, RedirectAttributes rttr) throws Exception{
+				 int bid = Integer.parseInt(request.getParameter("boardId"));
+				 System.out.println("공지삭제아이이디"+bid);
+				 
+				 bs.delete(bid);
+
+		        
+		        
+		       return "redirect:list.bo";
+		    }
+
 	
 	
 	

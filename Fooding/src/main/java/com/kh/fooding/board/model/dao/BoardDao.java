@@ -1,6 +1,7 @@
 package com.kh.fooding.board.model.dao;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -39,4 +40,22 @@ public interface BoardDao {
 
 	int deleteAnswer(String bid, SqlSessionTemplate sqlSession);
 
+
+	//공지사항 목록 조회
+	 public   List<Board> listAll();
+
+	 //게시글 작성후 목록에 보이는..그거
+	void create(Board board) throws Exception;
+
+	
+	//공지글 상세보기 
+	Board read(int bid) throws Exception;
+
+	//조회수(공지)
+	public void increaseViewCnt(int bid) throws Exception;
+
+    // 03. 게시글 수정
+    public void update(Board board) throws Exception;
+    // 04. 게시글 삭제
+    public void delete(int bid) throws Exception;
 }
