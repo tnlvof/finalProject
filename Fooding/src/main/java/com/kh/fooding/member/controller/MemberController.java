@@ -122,7 +122,7 @@ public class MemberController {
 	@RequestMapping(value="resetPwd.me")
 	@ResponseBody
 	public ModelAndView resetPwd(ModelAndView mv, @RequestBody Map<String, String> data ) {
-		String msg ="";
+		
 		
 		//이메일 확인
 		Member checkUser = ms.checkUser(data);

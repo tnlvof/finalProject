@@ -127,9 +127,7 @@
 					<button type="submit" id="loginCheck" class="button loginBtn">로그인</button>
 					
 				</form>
-					<p class="forgot">
-					아이디가 기억나지 않으세요? <a href="goFindUserId.me">아이디찾기</a>
-					</p>
+					
 				<p class="forgot">
 					아이디가 기억나지 않으세요? <a href="goFindId.me">아이디 찾기</a>
 				</p>
