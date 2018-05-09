@@ -60,7 +60,7 @@
 	
 	<insert id="insertStore">
 		INSERT INTO MEMBER
-		VALUES(SEQ_MID.NEXTVAL, #{userId}, #{userPwd}, #{bizName}, NULL, NULL, NULL, NULL, '업체', DEFAULT, NULL, #{bizNo}, #{bizName}, NULL, NULL, SYSDATE,null)
+		VALUES(SEQ_MID.NEXTVAL, #{userId}, #{userPwd}, #{userName}, NULL, NULL, NULL, NULL, '업체', DEFAULT, NULL, #{bizNo}, #{bizName}, NULL, NULL, SYSDATE,null)
  	</insert>
 	
 	<select id="selectMemberList" resultMap="memberResultSet2">		

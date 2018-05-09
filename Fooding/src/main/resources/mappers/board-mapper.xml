@@ -39,11 +39,30 @@
 				
 		
 		
+	</resultMap>
+	
+	<resultMap id="boardResultSet3" type="Board">
+		<id property="bid" column="BID"/>                                               
+		<result property="mCode" column="USER_ID"/>                                    
+		<result property="mid" column="MID"/>                                  
+		<result property="bTitle" column="BTITLE"/>                                
+		<result property="bContent" column="BCONTENT"/>                                       
+		<result property="enrollDateJson" column="ENROLL_DATE"/>                                       
+		<result property="status" column="STATUS"/>                                     
+		<result property="refYN" column="REF_YN"/>                                       
+		<result property="pno" column="PNO"/>                                   
+		<result property="bLevel" column="B_LEVEL"/>                                       
+		<result property="modifyDateJson" column="MODIFY_DATE"/>                            
+		<result property="bno" column="BNO"/>                                
+		<result property="bCount" column="B_COUNT"/>
+		<result property="userName" column="USER_NAME"/>	
+		<result property="enrollDateJson" column="ENROLL_DATE"/>
 	</resultMap> 
+	 
 	                                                                                    
 	<insert id="insertQuestion" parameterType="Board">
 		INSERT INTO BOARD(BID, BCODE, MID, BTITLE, BCONTENT, ENROLL_DATE, STATUS, REF_YN, PNO, B_LEVEL, MODIFY_DATE, BNO, B_COUNT)
-		VALUES(SEQ_BID.NEXTVAL, '1' ,#{mid}, #{bTitle}, #{bContent} ,SYSDATE, DEFAULT, DEFAULT, NULL, 0, SYSDATE, SEQ_BNO1.NEXTVAL, DEFAULT)	
+		VALUES(SEQ_BID.NEXTVAL, '2' ,#{mid}, #{bTitle}, #{bContent} ,SYSDATE, DEFAULT, DEFAULT, NULL, 0, SYSDATE, SEQ_BNO1.NEXTVAL, DEFAULT)	
 	</insert>
 	
 	<select id="selectBoardList" parameterType="Board" resultMap="boardResultSet">
@@ -72,12 +91,12 @@
 		ORDER BY ENROLL_DATE DESC
 	</select>
 	
-	<select id="getAllQuestions" resultMap = "boardResultSet2">
+	<select id="getAllQuestions" resultMap = "boardResultSet3">
 		SELECT B.BID, B.BCODE, B.MID, B.BTITLE, B.BCONTENT, M.USER_ID, B.ENROLL_DATE, B.STATUS, B.REF_YN, B.PNO, B.B_LEVEL, B.MODIFY_DATE, B.BNO, B.B_COUNT
 		FROM BOARD B 
 		JOIN MEMBER M ON(M.MID = B.MID)
 		WHERE B.STATUS = 'Y'
-		AND BCODE='1'
+		AND BCODE='2'
 		ORDER BY B.ENROLL_DATE DESC
 	
 	</select>
@@ -179,6 +198,7 @@
 	FROM BOARD B 
 	JOIN MEMBER M ON(M.MID = B.MID)
 	WHERE B.STATUS = 'Y'
+	AND BCODE='1'
 	ORDER BY B.ENROLL_DATE DESC
     </select>
 	

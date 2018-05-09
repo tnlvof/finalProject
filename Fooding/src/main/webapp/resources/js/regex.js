@@ -90,8 +90,8 @@ function checkBizNo(){
     	success:function(data){       
     		var s = data.sample;
 
-    		$("#bizName").val(s.sbName);
-    		$("#sbRname").val(s.sbRname);
+    		$("#sbRname").val(s.sbName);
+    		$("#bizName").val(s.sbRname);
     		
     		
     	},                                                                                         
