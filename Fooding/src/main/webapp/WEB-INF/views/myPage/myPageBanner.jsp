@@ -224,10 +224,10 @@
 			contentType : false,
 			processData : false,
 			success : function(html) {
-				alert("프로필 사진이 변경되었습니다.");
+				
 			},
 			error : function(error) {
-				alert("프로필 사진 변경에 실패하였습니다.");
+				
 			}
 		});
 	});
