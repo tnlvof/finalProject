@@ -79,7 +79,7 @@
  	<table id="memberList" class="tableList" style="margin-left:auto;margin-right:auto;" >
  	<tr style="border-bottom:1px solid lightgray;">
  	<th style="width:100px; text-align:center;height:20px;font-weight:bold;">
- 	<input type="checkbox" id="checkAll" >&nbsp;전체선택</th>
+ 	
  	
  	<th style="width:100px; text-align:center;height:20px;font-weight:bold;">아이디</th>
  	<th style="width:100px; text-align:center;height:20px;font-weight:bold;">이름</th>
@@ -96,7 +96,7 @@
 	
  	<c:forEach items="${editList }" var="e" >
  	<tr class="tableRow">
- 		<td class="checkTd"><input type="checkbox" name="memberCheck" class="memberCheck checkboxes" > <input type="text" class="eMid" name="mid" value="${ e.mid}"></td>
+ 		<td class="checkTd"><input type="hidden" class="eMid" name="mid" value="${ e.mid}"></td>
  		 <td  style="padding:10px; cursor:pointer;">${ e.userId}  </td>
  		 <td >${ e.userName}</td>
  		 <td >${ e.birth} </td>
@@ -130,12 +130,7 @@
 	   
 	   
 	    
-    	$("#blacklistOff").click(function(){
-    		if(!$(".checkboxes").is(':checked') ){
-    			alert("블랙리스트 풀기 대상인 회원을 선택해주세요.");    			
-    		} 	
-    			
-    	});
+    	
     </script>
 
 
