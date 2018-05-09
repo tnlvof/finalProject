@@ -57,7 +57,13 @@ public class MemberController {
 			session.setAttribute("loginUser", loginUser);
 			session.removeAttribute("loginFail");
 
-			return "main/main";
+			if(loginUser.getUserId().equals("administrator")) {
+				return "admin/adminMain";
+			} else {
+				return "main/main";
+			}
+			
+			
 
 		} catch (LoginException e) {
 			String loginFail = "로그인에 실패하였습니다.";
